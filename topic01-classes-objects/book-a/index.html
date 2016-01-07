@@ -1,0 +1,440 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      1: Introduction to Java programming language
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Classes-objects">
+        Classes-objects
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Classes-objects">
+    <h1>Classes and objects</h1>
+<p>Introduction to the Java programming language, beginning with the concepts of classes and objects and instruction in the use of a key tool used throughout the course, namely the BlueJ Integrated Development Environment (IDE).</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>BlueJ IDE</h1>
+<p>It is very important to select the correct BlueJ version to download. </p>
+<p>A link to the download page is provided below but before opening the page, you are recommended to note the following:</p>
+<p>Windows users should select the <em>BlueJ Combined Installer</em> that includes JDK, the Java Development Kit.</p>
+<p><img alt="BlueJ + Java installer for windows" src="./img/blueJWin.png"></p>
+<p>For those who use Mac OSX Lion 10.7 or later select the <em>BlueJ Installer</em> that includes Oracle JDK</p>
+<p><img alt="BlueJ + Oracle JDK installer for Mac OSX Lion 10.7.3 and later" src="./img/blueJMacLion.png"></p>
+<p>A different download is available for MacOSX Lion 10.7.2 and earlier versions.</p>
+<p><img alt="BlueJ + Apple JDK installer for Mac OSX Lion 10.7.2 or earlier" src="./img/blueJMacLionPre.png"></p>
+<p>For users of Ubuntu or Debian Linux there is a different download.
+<img alt="BlueJ installer for Ubuntu\Debian Linux" src="./img/blueJLinux.png"></p>
+<p>Finally, for operating systems other than the above, it's necessary to download the Oracle JDK and BlueJ Installer separately.</p>
+<p><img alt="BlueJ installer for remaining operating systems" src="./img/blueJOtherOS.png"></p>
+<p>Once you have decided on the correct download select the appropriate downloads from <a href="http://www.bluej.org/index.html">this site</a>.</p>
+<p>Information on the installation procedure is provided in the next step.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>BlueJ Installation</h1>
+<p>Select and click on the downloaded BlueJ installer. </p>
+<p>The result will vary with your operating system but the general steps should be similar. </p>
+<p>Here are some of the screens for an installation on Windows XP.</p>
+<p><img alt="Figure 1: BlueJ Installation on Windows XP" src="./img/blueJSetup.png"></p>
+<p>Accept the default suggestions as you step through the BlueJ Setup Wizard.</p>
+<p><img alt="Figure 2: BlueJ Setup Wizard" src="./img/blueJSetup1.png"></p>
+<p><img alt="Figure 3: BlueJ Installation complete" src="./img/blueJSetup2.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>BlueJ Launch</h1>
+<p>Once the installation is complete, launch BlueJ.</p>
+<p>If the launch fails this may be because the Java component has not installed properly. </p>
+<p>A fallback method to resolve this is to install Oracle's Netbeans IDE details for which are available <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk-7-netbeans-download-432126.html">here</a>. This ought to install the missing Java infrastructure.</p>
+<p>Once setup has completed you may find that creating a shortcut or alias on your desktop helps during the various lab sessions.</p>
+<p>Helpful information on working with files and folders is available <a href="http://windows.microsoft.com/en-IE/windows-8/files-folders-windows-explorer">here</a> for Windows and <a href="http://etc.usf.edu/techease/mac/files-sharing/how-do-i-use-the-finder-to-manage-my-files-and-folders/">here</a> for Mac users.</p>
+<p>We suggest you create a folder on your computer named <em>workspaceBlueJ</em> and use this for the entire sequence of upcoming labs. </p>
+<p>BlueJ sample code will be saved to the blueJ directory.</p>
+<p>Your code will be saved to the sessions directory with subdirectories as shown, one for each lab.</p>
+<p>This is illustrated in Figure 4.</p>
+<p>Before launching BlueJ:</p>
+<ul>
+<li>
+<p>Download an archive of Chapter 1 sample projects provided by BlueJ, available <a href="archives/chapter01.zip">here</a>. These projects are in a file named <em>chapter01.zip</em>. </p>
+</li>
+<li>
+<p>Save the file to the <em>workspaceBlueJ/blueJ</em> folder.</p>
+</li>
+<li>Select the zip file in a file manager (example Finder or Windows Explorer) and unzip it in its present location. This should create a folder <em>chapter01</em> in which are located three subdirectories: <em>lab-classes</em>, <em>icture</em> and <em>shapes</em>.</li>
+</ul>
+<p>For the remaining BlueJ labs we should, therefore, progressively build a directory structure as shown in Figure 1.</p>
+<p><img alt="Figure 1: Proposed directory structure" src="./img/directoryStructure.png"></p>
+<p>Launch BlueJ using the alias created earlier or otherwise (Figure 2).</p>
+<p><img alt="Figure 2: BlueJ Alias" src="./img/blueJAlias.png"></p>
+<p>From the BlueJ menu chose Project | Open Project. Navigate to the chapter01 folder within the workspaceBlueJ folder, select and open <em>shapes</em> project(Figure 3).</p>
+<p><img alt="Figure 3: Open Shapes project" src="./img/openProj.png"></p>
+<p>You should be presented with a window as shown in Figure 4. This gives a graphical representation of classes. For example, a Circle or Square class and so on.</p>
+<p><img alt="Figure 4: Graphical representation of classes" src="./img/shapes.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Create simple objects</h1>
+<p>We will now create an instance of the Circle class. </p>
+<p>Before proceeding, however, one should check if the rectangle representing the Circle class is hatched, which indicates compilation is required. See Figure 1.</p>
+<ul>
+<li>Compilation is the process of transforming our computer programs' source code into <a href="http://en.wikipedia.org/wiki/Java_compiler">Java bytecode</a>.</li>
+</ul>
+<p><img alt="Figure 1: Circle class requires compiling as indicated by hatching" src="./img/circleTocompile.png"></p>
+<p>If necessary, you can compile a class by pressing the compile button on the left. This will cause all the classes in the BlueJ window to be compiled.</p>
+<p>The process of creating an instance of a class is called <em>instantiation</em>. For example, to create an instance of a Circle, place the cursor on the Circle class and right click. You should be presented with a drop-down menu as shown in Figure 2.</p>
+<ul>
+<li>An instance of a class is also frequently referred to as an object of that particular class.</li>
+</ul>
+<p><img alt="Figure 2: Creating a circle object" src="./img/circleMenu.png"></p>
+<p>Select and click on the <em>new Circle()</em> expression in the menu.</p>
+<p>This action invokes the Circle class constructor. </p>
+<p>You will be presented with a dialog box as shown in Figure 3 - the small BlueJ Create Object window.</p>
+<p><img alt="Figure 3: Creating Circle object" src="./img/createCircleObj.png"></p>
+<p>In the <em>Name of Instance</em> text box, enter <em>circle1</em>. This is the name of the object that is now being created. </p>
+<p>Notice that a graphical representation of the <em>circle1</em> object appears at the foot of the Shapes window. This is located in what is termed the <em>object bench</em>. See Figure 4.</p>
+<p><img alt="Figure 4: Circle object on Object Bench" src="./img/circleObj.png"></p>
+<p>We could have given any valid Java variable name to the circle object. </p>
+<p>We simply chose <em>circle1</em> for convenience and to distinguish the object from future Circle objects that we might create.</p>
+<p>We have now created our first Java object, an object of the Circle class.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Method invocation</h1>
+<p>A method in Java is a block of code that may be reused. Generally a method performs a single specific task. </p>
+<ul>
+<li>Using methods helps a avoid repeatedly using similar code. </li>
+<li>One of the principles of software development is: <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Do not Repeat Yourself (DRY)</a></li>
+</ul>
+<p>Here is an example of a method that we shall later encounter in the Circle class.</p>
+<pre><code>public float area(float radius)
+{
+  return 3.14159*radius*radius;
+}
+</code></pre>
+
+<p>The method calculates the area of a circle and hands back the value to the object calling (or invoking) the method.</p>
+<ul>
+<li>In other computer languages, the term <em>function</em> is often used to describe blocks of reusable code. </li>
+</ul>
+<p>Select the <em>circle1</em> object on the object bench, right click and observe the drop-down list of methods (See Figure 1). </p>
+<p>The list comprises the methods of the class Circle. </p>
+<ul>
+<li>Any Circle object, for example <em>circle1</em>, may invoke (call) any or all of these methods as required.</li>
+</ul>
+<p><img alt="Figure 1: Circle methods" src="./img/circleMethods.png"></p>
+<p>Select and click on the method <em>makeVisible()</em>. A picture represenation of the <em>circle1</em> object that we created earlier should appear in a separate window (See Figure 2).</p>
+<p>This circle object clearly has certain characteristics:</p>
+<ul>
+<li>
+<p>It is visible.</p>
+</li>
+<li>
+<p>Its colour is blue.</p>
+</li>
+<li>
+<p>It has a particular radius.</p>
+</li>
+<li>
+<p>It is positioned at a particular location within its containing window.</p>
+</li>
+</ul>
+<p>As we progress through the labs we shall discover how these characteristics are defined.</p>
+<p><img alt="Figure 2: Graphical represenation of circle1 object" src="./img/circleObjPicture.png"></p>
+<p>We will now invoke a selection of Circle methods.</p>
+<ul>
+<li>
+<p>Invoke the method <em>makeInvisible()</em>. </p>
+<ul>
+<li>The blue circle object should disappear. </li>
+</ul>
+</li>
+<li>
+<p>Invoke <em>makeVisible()</em> again to have it reappear.</p>
+<ul>
+<li>Invoke the <em>moveDown()</em> method and observe the effect.</li>
+</ul>
+</li>
+<li>
+<p>Invoke <em>moveDown()</em> again. </p>
+<ul>
+<li>Is the behaviour what you would expect?</li>
+</ul>
+</li>
+<li>
+<p>Invoke <em>moveRight()</em> folllowed by <em>moveLeft()</em>. </p>
+<ul>
+<li>What is the net effect? </li>
+</ul>
+</li>
+</ul>
+<p>Later we will explore how moving the circle object to a precise location might be achieved.</p>
+<p>Here's a question. We have invoked the following methods:</p>
+<pre><code>void makeVisible();
+void makeInvisible();
+void moveDown();
+void moveUp();
+void moveRight();
+void moveLeft();
+</code></pre>
+
+<p>What characteristics do all these methods have in common?</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Parameters</h1>
+<p><strong>Primitive data types as parameters</strong></p>
+<p>At the end of the last session we asked what characteristics the list of methods provided have in common. </p>
+<p>Apart from beginning with <em>void</em>, notice that none of the methods contain parameters. That is, the space within the parentheses does not contain reference to any data. For example <em>void moveDown()</em>.</p>
+<p>In this section we will deal with parameter passing. By parameter passing is meant sending data into the method where it is used in producing the behaviour for which the method is designed.</p>
+<p>We will examine some of the Circle methods which contain parameters.</p>
+<p>Consider the Circle method:</p>
+<pre><code>void changeSize(int newDiameter);
+</code></pre>
+
+<p>This method requires a parameter of type <em>int</em> (an integer). </p>
+<p>We are at a disadvantage because we have not been informed of the scale of the circle object nor the units used for its diameter. So let's try 100 as a new diameter. This can be done by clicking on the red circle object on the object workbench, selecting <em>void changeSize(int newDiameter)</em> from the drop-down menu and entering 100 in the textbox provided.</p>
+<p>Figure 1 shows the result. We've been lucky. The new circle might have been an invisible dot or completely overflowed its containing window, depending on the units defined within the Circle class.</p>
+<p><img alt="Figure 1: Changed circle object diamater to 100" src="./img/circle100Diameter.png"></p>
+<p>Experiment with different circle objects and diameters. You may discover some glitches in BlueJ itself. If so, this will have been an introduction to the the buggy world of software development.</p>
+<p><strong>Objects as parameters</strong></p>
+<p>We now deal with objects as parameters.</p>
+<p>Now let's change the colour of <em>circle1</em> object and in doing so pass an object, an instance of the String class.</p>
+<ul>
+<li>String is a Java class and used extensively to represent sequences of characters. Here are some examples of String objects (instances):<ul>
+<li><em>abcd</em></li>
+<li><em>word is a word</em></li>
+<li><em>One, 2, buckle my shoe</em></li>
+</ul>
+</li>
+</ul>
+<p>Right click on the object, select and click on the method:</p>
+<pre><code>void changeColor(String);
+</code></pre>
+
+<p>A dialog window illustrated in Figure 2 appears.</p>
+<p><img alt="Figure 2: Invoking method to change circle object colour" src="./img/circleColorChange.png"></p>
+<p>Enter the colour green, for example. </p>
+<p>Note that it is necessary to enclose the word <em>green</em> in inverted commas (double quotation marks).</p>
+<ul>
+<li>Failure to do so will cause an error to be generated when an attempt is made to compile the code.<ul>
+<li>Often referred to as a compilation or compile-time error.</li>
+</ul>
+</li>
+</ul>
+<p>Figure 3 illustrates the result of invoking <em>changeColor</em> method.</p>
+<p><img alt="Figure 3: Circle object colour change" src="./img/circleGreen.png"></p>
+<p>The method <em>changeColor</em> has been written in a manner that requires a value to be passed when it is called. This value is an example of a parameter. In this case we are passing an instance of a String object.</p>
+<p>If you were writing Java code and wished to create such a String object and then use that as a parameter you could do it like this:</p>
+<pre><code>//Method 1: verbose
+String newColor = &quot;green&quot;;
+circle1.changeColor(newColor);
+
+//Method 2: preferrable
+circle.changeColor(&quot;green&quot;);
+</code></pre>
+
+<p>The period (.) between <em>circle1</em> and <em>changeColor</em> is known as the <em>dot</em> operator and associates a class with its object. It allows an object to access its class methods, for example, as just shown.</p>
+<p>Note the the term <em>parameter</em> is sometimes used interchangeably with the term <em>argument</em>. </p>
+<ul>
+<li>This is discussed <a href="http://stackoverflow.com/questions/3176310/difference-between-parameter-and-argument">here</a> in StackOverflow.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Multiple instances of objects of same class</h1>
+<p>One may create many instances of a class. </p>
+<p>Each instance possesses state. </p>
+<p>State is the complete set of values (attributes) stored in the fields of the class.</p>
+<p>For example, here are the fields of Circle:</p>
+<pre><code>    private int diameter;
+    private int xPosition;
+    private int yPosition;
+    private String color;
+    private boolean isVisible;
+</code></pre>
+
+<p>Recreate <em>circle1</em>:</p>
+<ul>
+<li>Close the BlueJ Shapes Demo window</li>
+<li>Select <em>circle1</em> on the object bench, right click and select <em>Remove</em> at the bottom of the context menu.</li>
+<li>Select the Circle class in the BlueJ:shapes window, right click and select <em>new Circle()</em>.</li>
+<li>Name the object <em>circle1</em>.</li>
+</ul>
+<p>Right click on the Circle object, <em>circle1</em>, select and double click the menu option <em>Inspect</em> (Figure 1).</p>
+<p><img alt="Figure 1: Inspect object" src="./img/inspect.png"></p>
+<p>This opens what BlueJ refers to as the <em>object inspector</em> that describes the state of <em>circle1</em>.</p>
+<p>The state defines the position of the circle object in the x-y plane, the diameter of the object, its colour and whether the object is visible or not. None of the attributes has been defined by you during the instantiation process. Therefore these values must have been generated internally. This indeed is the case and such values are sometimes referred to as default values.</p>
+<p>Use the <em>Close</em> button to close the field graphic and invoke the <em>makeVisible</em> method. The circle object representation will appear in a window, the BlueShapesDemo window.</p>
+<p>Create a second circle object named <em>circle2</em>. Invoke its <em>makeVisible</em> method. 
+- Do this by selecting the red <em>circle2</em> object on the workbench, right clicking to reveal a drop-down menu and then selecting the <em>makeVisible</em> method as illustrated in Figure 2.</p>
+<p>Does <em>circle2</em> appear in the BlueShapesDemo window?</p>
+<p>It does. But since its state is exactly the same as that of <em>circle1</em>, it is not differentiable from <em>circle1</em>. There are several ways introduce state changes so as to visually distinguish between <em>circle1</em> and <em>circle2</em>. Let's try the following:</p>
+<ul>
+<li>Make circle2 visible.<ul>
+<li>The method to achieve this was describe a few paragraphs above on this page.</li>
+</ul>
+</li>
+<li>Change circle2 color to green. <ul>
+<li>Select the red circle2 object, right click to reveal the drop-down menu and select <em>void changeColor(String)</em>. Enter "green" (including the double quotes) into the BlueJ Method call window text box (Figure 3) and press OK.</li>
+</ul>
+</li>
+<li>Change circle2 diameter to 100.<ul>
+<li>Select the red circle2 object, right click to reveal the drop-down menu and select <em>void changeSize(int newDiameter)</em>. Enter 100 (without quotes) and press OK. See Figure 4.</li>
+</ul>
+</li>
+</ul>
+<p>The result of these three changes is shown in Figure 5.</p>
+<p><img alt="Figure 2: Make circle object visible" src="./img/circleVisible.png"></p>
+<p><img alt="Figure 3: Change circle2 color to green" src="./img/circleChangeGreen.png"></p>
+<p><img alt="Figure 4: Change circle2 diameter" src="./img/circleChangeDiameter.png"></p>
+<p><img alt="Figure 5: Two Circle objects possessing different states" src="./img/circle2Objs.png"></p>
+<p>The two circle objects are now clearly distinguishable. However the relative positions of the objects might not be what one expected. Why, for example, are the circle objects not concentric? Explore the different objects' states and attempt to determine why this is not so.</p>
+<p>The main purpose of this section of the lab has, however, been demonstrated. Multiple instances of the same class have been created. And these instances are independent of each other. Changing any of the attributes in one object does not influence the other.</p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
