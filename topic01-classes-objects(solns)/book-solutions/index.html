@@ -1,0 +1,693 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      1: Introduction to Java programming language
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Class-components-Solutions">
+        Class-components-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Class-components-Solutions">
+    <h1>Solutions</h1>
+<p>This lab contains sample solutions to the exercise set.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<ul>
+<li>Using the modified Circle class from the earlier stages of this lab, change the diameter of a circle object.</li>
+<li>Retrieve the area of this modified Circle object.</li>
+<li>Check that the method you wrote earlier to calculate the area still produces correct results.</li>
+</ul>
+<h1>Solution</h1>
+<p>Open your working <em>shapes</em> project located in <em>workspaceBlueJ/labs/session01</em> folder.</p>
+<p>Check that the Circle class compiles.</p>
+<p><strong>Change diameter</strong></p>
+<p>We are asked to change the diameter of a circle object.</p>
+<p>In order to do this we require a setter method.</p>
+<p>Here is the code for a setter that facilitates changing the diameter:</p>
+<pre><code>public void setDiameter(int diameter)
+{
+    this.diameter = diameter;
+}
+</code></pre>
+
+<p><strong>Retrieve area modified circle object</strong></p>
+<p>Create a Circle object on the object bench.</p>
+<p>Create a new default Circle.</p>
+<p>Invoke <em>setDiameter</em> on the circle object, providing, for example, 100, as the new diameter.</p>
+<p>Invoke <em>getArea</em> on the circle object.</p>
+<p>The answer returned should be 7853.98 to two decimal places.</p>
+<p><strong>Check answer</strong></p>
+<p>Calculator check: Area circle diameter 100 is pi*r*r = 3.141592654*50*50 = 7853.98</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<ul>
+<li>Write a method to return the circumference of a circle object and integrate into project.</li>
+<li>The method signature (including return type) could be int getCircumference().</li>
+<li>Create a circle object </li>
+<li>Invoke the method you have written and note the returned value, the circumference of the circle object.</li>
+<li>Use the inspector to view the circle object state. Note the values (attributes). Use these values to verify the result returned by the getCircumference method.</li>
+<li>Change the diameter of the circle object and retest the result returned for the length of the circumference.</li>
+</ul>
+<h1>Solution</h1>
+<p><strong>Method to return circumference</strong></p>
+<pre><code>    public double getCircumference()
+    {
+        return Math.PI*diameter;
+    }
+</code></pre>
+
+<p><strong>Invoke method on default Circle object</strong></p>
+<ul>
+<li>Create default circle object.</li>
+<li>Invoke <em>getCircumference</em><ul>
+<li>See Figure 1.</li>
+</ul>
+</li>
+<li>Note returned value<ul>
+<li>94.25 to two decimal places.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Inspect state</strong></p>
+<p>Open the inspector window (Figure 2).</p>
+<ul>
+<li>Note the default diameter is 30</li>
+<li>Check with calculator : circumference circle whose diameter is 30 is 94.25 to 2 d.p..</li>
+</ul>
+<p><strong>Change diameter and recheck circumference</strong></p>
+<p>Change the diameter of the default Circle object to, for example, 100.</p>
+<ul>
+<li>Invoke <em>getCircumference</em>.</li>
+<li>Verify answer is 314.16 to 2.d.p..</li>
+</ul>
+<p><img alt="Figure 1: Get circumference default circle" src="./img/getCircumference.png">
+<img alt="Figure 2: Circle object state" src="./img/circleState.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<ul>
+<li>Write a method in the Triangle class to return the area of a triangle object and integrate into project.</li>
+<li>The method signature (including return type) could be int getArea().</li>
+<li>Create a triangle object.</li>
+<li>Invoke the method you have written and note the returned value, the area of the triangle.</li>
+<li>Use the inspector to view the triangle object state. Note the values (attributes). Use these values to verify the result returned by the getArea method.</li>
+</ul>
+<h1>Solution</h1>
+<p><strong>Method to return calculate area triangle</strong></p>
+<pre><code>    public double getArea()
+    {
+        return (height*width)/2;
+    }
+</code></pre>
+
+<p><strong>Invoke getArea()</strong></p>
+<p>Instantiate a default Triangle on the object bench.</p>
+<ul>
+<li>Invoke <em>getArea</em> <ul>
+<li>Figure 1</li>
+</ul>
+</li>
+<li>Check state in inspector window<ul>
+<li>Figure 2</li>
+<li>Default attributes: <ul>
+<li>Height: 30</li>
+<li>Width: 40</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Result as calculated by Triangle getArea method:<ul>
+<li>600</li>
+</ul>
+</li>
+<li>Checked result: <ul>
+<li>600</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1" src="./img/getTriangleArea.png">
+<img alt="Figure 2" src="./img/triangleState.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<p><strong>Exercise 4</strong></p>
+<ul>
+<li>Open the <em>lab-classes</em> project.</li>
+<li>Create an object of class LabClass to cater for 4 students.</li>
+<li>Invoke the LabClass method <em>numberOfStudents</em>. <ul>
+<li>Note the returned value. Is it what you expected?</li>
+</ul>
+</li>
+<li>Create a new Student object.</li>
+<li>Again, invoke <em>numberOfStudents</em>. Understand why the returned result has not changed.</li>
+<li>Invoke the LabClass <em>enrolStudent</em> method and add the Student object just created as a parameter (argument).</li>
+<li>Invoke the LabClass method <em>numberOfStudents</em>. Satisfy yourself the answer is correct.</li>
+<li>Create a further 3 Student objects.</li>
+<li>Enroll these 3 students. It should be possible to do so without any errors being notified.</li>
+<li>Check the number of students in the lab class. Is the number correct? Does it corrrespond to the number of students enrolled?</li>
+<li>Inspect the LabClass object state to verify the number of students corresponds to the number returned by the method <em>numberOfStudents</em> and to the number of students that you actually enrolled.</li>
+<li>Invoke LabClass <em>printList</em> method to see a list of all the students in lab. It should be printed to the BlueJ terminal window.</li>
+<li>Create a 5th student and attempt to add to LabClass. This attempt should fail because the capacity was set to 4 when the lab class was created (instantiated).</li>
+<li>Write a setter (mutator) method <em>public void setCapacity(int capacity)</em> that will allow one to change the capacity of the object.</li>
+<li>Invoke <em>setCapacity</em> and set capacity to 5.</li>
+<li>You should now be able to add the 5th student. When you have done so inspect the state of the lab class object and satisfy yourself that the data is correct.</li>
+</ul>
+<h1>Solution</h1>
+<p>We recommend you implement the setter method <em>public void setCapacity(int capacity)</em> before commencing the solution so as to avoid the necessity to recompile the project during the exercise.</p>
+<p>Here is a (naive) setter method which you should add to the LabClass source code. </p>
+<ul>
+<li>You can open the source code by double-clicking on the LabClass icon.</li>
+</ul>
+<pre><code>public void setCapacity(int capacity)
+{
+    this.capacity = capacity;
+}
+</code></pre>
+
+<ul>
+<li>
+<p>Create LabClass object named labClass1</p>
+<ul>
+<li>Enter 4 as actual parameter (argument)</li>
+<li>Figure 1</li>
+</ul>
+</li>
+<li>
+<p>Invoke numberStudents method on labClass1</p>
+<ul>
+<li>Figure 2</li>
+<li>0 the returned value<ul>
+<li>No students yet enrolled so this value expected</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Create a Student object named student1<ul>
+<li>Figure 3</li>
+</ul>
+</li>
+<li>Again, invoke numberStudents on labClass1<ul>
+<li>Still zero: student has not been enrolled.</li>
+</ul>
+</li>
+<li>Enroll student1 in lab class</li>
+<li>
+<p>Invoke enrollStudent on Student object, student1</p>
+<ul>
+<li>Invoke numberStudents on labClass1<ul>
+<li>The number of students enrolled should be returned as one <ul>
+<li>Figure 5</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Create a further 3 student objects</p>
+<ul>
+<li>Enroll the three</li>
+<li>Check the number enrolled is now 4 by invoking numberStudents on labClass1<ul>
+<li>Figure 6</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Open LabClass inspector</p>
+<ul>
+<li>Figure 7</li>
+<li>Notice the field "private List&lt;Student> students"<ul>
+<li>Select this field and press the Inspect button</li>
+<li>This will open a further inspector window <ul>
+<li>Figure 8</li>
+<li>the field "int modCount = 4" represents the number of enrolled students</li>
+<li>this value is correct</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Invoke the printList method on labClass1<ul>
+<li>The output should be similar to that in Figure 9</li>
+</ul>
+</li>
+<li>Create a 5th student and attempt to enrol: the attempt should fail because of inadequate capacity.</li>
+<li>Invoke the newly created method <em>setCapacity</em> with an actual parameter (argument) of 5.</li>
+<li>Enrol the 5th student.</li>
+<li>Check the LabClass object state using the inspector.</li>
+</ul>
+<p><img alt="Figure 1: LabClass instantiation" src="./img/newLabClass.png">
+<img alt="Figure 2: LabClass student capacity" src="./img/numberStudents.png">
+<img alt="Figure 3: Student instantiated" src="./img/newStudent.png">
+<img alt="Figure 4: Enroll student1" src="./img/enrollStudent1.png">
+<img alt="Figure 5: One student enrolled" src="./img/student1Enrolled.png">
+<img alt="Figure 6: Four Students" src="./img/fourStudents.png">
+<img alt="Figure 7: LabClass inspector" src="./img/labClassInspector.png">
+<img alt="Figure 8: LabClass inspector Student list" src="./img/labClassInspector2.png">
+<img alt="Figure 9: List enrolled students" src="./img/printListStudents.png"></p>
+<p>The solution provided does not contain any validation. Validation will be the subject of later labs.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 5 (Advanced)</h1>
+<ul>
+<li>
+<p>Create a new class called Cone to represent a right circular cone (Figure 1). </p>
+</li>
+<li>
+<p>The fields of the Cone class are</p>
+<ul>
+<li>a double type representing the height</li>
+<li>a Circle object representing the base</li>
+</ul>
+</li>
+<li>The constructor signature (including return type) is </li>
+</ul>
+<pre><code>public Cone(double height, Circle base);
+</code></pre>
+
+<p><img alt="Figure 1: Right circular cone" src="./img/cone.png"></p>
+<h1>Solution</h1>
+<ul>
+<li>
+<p>Right cick on the BlueJ shapes window and in the drop-down menu that appears, invoked <em>new Class</em> and name it <em>Cone</em>.</p>
+</li>
+<li>
+<p>Open Cone in the editor and delete all except the following:</p>
+</li>
+</ul>
+<pre><code>public class Cone
+{
+
+}
+</code></pre>
+
+<p>Check that this compiles.</p>
+<p>We are obliged to comply with the specification for the class' fields which are a Circle object reference and a primitive type, a double, representing the cone height.</p>
+<p>Add these fields and recompile.</p>
+<pre><code>public class Cone
+{
+    private double height;
+    private Circle base;
+}
+</code></pre>
+
+<p>A constructor signature (including modifier and return type) is also specified: here is the constructor code:</p>
+<pre><code>public Cone(double height, Circle base)
+{
+    this.height = height;
+    this.base = base;
+}
+</code></pre>
+
+<p>Add the constructor to the class and recompile.</p>
+<p>Here is the complete source code for the Cone class as specified in the exercise:</p>
+<pre><code>public class Cone
+{
+    private double height;
+    private Circle base;
+
+    public Cone(double height, Circle base)
+    {
+        this.height = height;
+        this.base = base;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Exercise 6 (Advanced)</h1>
+<p>Write and test a method to calculate and return the volume of the cone.</p>
+<h1>Solution</h1>
+<p><strong>Method to calculate volume of cone</strong></p>
+<p>The volume of a right circular cone is 1/3 * height * area base which is equivalent to PI times diameter squared divided by 12. </p>
+<p>See <a href="http://en.wikipedia.org/wiki/Cone#Volume">here</a> for further information.</p>
+<p>This may be expressed in Java as follows:</p>
+<pre><code>Math.PI*diameter*diameter*height/12;
+</code></pre>
+
+<p>Notice that a class <em>Math</em> is used to access pi. </p>
+<p>We could have simply inserted a numberic value, for example, 3.141592654. </p>
+<p>However, the use of number values throughout code, pejoratively referred to as <em>magic numbers</em>, is strongly discouraged because</p>
+<ul>
+<li>It adds to the difficulty of understanding code</li>
+<li>It makes maintenance more difficult</li>
+<li>It increases the risk of bugs being introduced both during development and maintenance.</li>
+</ul>
+<p>The <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html">Math</a> class is contained with the <em>java.lang</em> package. This is a fundamental package and does not require an import statement.</p>
+<p>We can incorporate the above statement into a the <em>volume</em> method as follows:</p>
+<pre><code>public double volume()
+{
+    double diameter = base.getDiameter();
+    return Math.PI*diameter*diameter*height/12;
+}
+</code></pre>
+
+<p>Add this method to the Cone class and attempt to compile.</p>
+<p>This may generate a compile-time error with the following message output at the bottom of the Cone-shapes window as illustrated in Figure 1.</p>
+<p><em>cannot find symbol - method getDiameter()</em></p>
+<p>The message is informing us that our attempt to invoke a method in the Circle class has failed because no such method is accessible</p>
+<p>To resolve this issue open the Circle source code in the editor and insert a getter method for the diameter field as follows:</p>
+<pre><code>public double getDiameter()
+{
+    return diameter;
+}
+</code></pre>
+
+<p>Observe that we have returned diameter as a double despite the variable being declared as an int in Circle. Clearly, the integer value is being transparently cast to a double by the compiler.</p>
+<p>Add <em>getDiameter</em> to Circle and press the compile button on the BlueJ: shapes window.</p>
+<p>You should see a message at the bottom of the window: <em>Compiling... Done</em>, indicating that the Cone and associated classes are free of syntactic errors.</p>
+<p><img alt="Figure 1: Compile-time error" src="./img/coneCompileError.png"></p>
+<p><strong>Testing method to calculate volume of cone</strong></p>
+<p>We shall use 3 methods to test the method we have just written - <em>public double volume()</em>.</p>
+<h3>Method 1</h3>
+<ul>
+<li>Create a default Circle object on the object bench called <em>circle1</em></li>
+<li>Create a new Cone object by selecting the Cone class diagram (rectangle in the BlueJ shapes window), right clicking and invoking <em>new Cone(...)</em>.<ul>
+<li>Enter 100 for the height</li>
+<li>Enter <em>circle1</em> for the base<ul>
+<li>See Figure 2.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Right click on the Cone object</p>
+<ul>
+<li>Invoke <em>double volume()</em><ul>
+<li>See Figure 3 for the result of invocation.</li>
+</ul>
+</li>
+</ul>
+<p>Check the answer as follows:</p>
+<ul>
+<li>Discover the default circle diameter as previously by right clicking on the Circle object and selecing <em>Inspect</em> which is located towards to bottom of the drop-down window.<ul>
+<li>The default diameter is 30</li>
+</ul>
+</li>
+<li>Use a calculator to evalutate the volume of the cone.<ul>
+<li>It is 23561.94 to 2 d.p..</li>
+<li>This matches the value returned by the <em>volume</em> method (Figure 3).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Creating new Cone instance" src="./img/newCone.png">
+<img alt="Figure 3: Obtaining volume of cone" src="./img/volumeCone.png"></p>
+<h3>Method 2</h3>
+<ul>
+<li>Right click on the Cone class diagram and invoke the constructor <em>Cone(double height, Circle base)</em></li>
+<li>Accept the default Cone object name, <em>cone2</em></li>
+<li>Enter 100 for the height</li>
+<li>Enter <em>new Circle()</em> for the base</li>
+<li>Press OK to create <em>cone2</em><ul>
+<li>See Figure 4.</li>
+</ul>
+</li>
+<li>Right click on cone2 and invoke <em>volume</em>.<ul>
+<li>The same value should be returned as previously<ul>
+<li>23561.94 to 2 d.p..</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In this case an anonymous Circle object is created as an argument in the Cone constructor</p>
+<ul>
+<li>It is referred to as an anonymous object because it is not assigned to a variable such as for example in a statement:<ul>
+<li>Circle circle = new Circle();</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 4: Creating cone using anonymous Circle object" src="./img/newCone2.png"></p>
+<h3>Method 3</h3>
+<p>Construct a new class called TestCone.</p>
+<pre><code>public class TestCone
+{
+
+}
+</code></pre>
+
+<p>Add the following method:</p>
+<pre><code>public double volume()
+{
+    double height = 100;
+    Circle base = new Circle();
+    Cone cone = new Cone(height, base);
+    return cone.volume();
+}
+</code></pre>
+
+<p>This method creates a Cone object with similar dimensions to these created in method 1 and 2 above and so we would expect to have the same volume returned by the <em>volume</em> method.</p>
+<ul>
+<li>Add this method and check that TestClass compiles.</li>
+<li>Create a TestClass object on the object bench.</li>
+<li>Invoke <em>volume</em> on the TestClass object:<ul>
+<li>The result is illustrated in Figure 5.<ul>
+<li>The result matches earlier results.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 5: Using a TestClass to check the Cone.volume method" src="./img/testClassCone.png"></p>
+<p>The method <em>volume</em> in TestClass is quite verbose: we have written it so to illustrate clearly the steps being taken. </p>
+<p>Here are two progressively more terse versions of the same method.</p>
+<ul>
+<li>The have been given slightly different names so that you can include all three methods in TestClass and observe they generate the same results.</li>
+</ul>
+<pre><code>public double volume2()
+{
+    Cone cone = new Cone(100, new Circle());
+    return cone.volume();
+}
+</code></pre>
+
+<pre><code>public double volume3()
+{
+    return new Cone(100, new Circle()).volume();
+}
+</code></pre>
+
+<p>Add these method to TestClass and invoke each in turn, verifying that all three return similar values as illustrated in Figure 6.</p>
+<p><img alt="Figure 6: Volume method variations" src="./img/testClassCone2.png"></p>
+<p>Here is the complete source for TestClass</p>
+<pre><code>public class TestClass
+{
+    public double volume()
+    {
+        double height = 100;
+        Circle base = new Circle();
+        Cone cone = new Cone(height, base);
+        return cone.volume();
+    }
+
+    public double volume2()
+    {
+        Cone cone = new Cone(100, new Circle());
+        return cone.volume();
+    }
+
+    public double volume3()
+    {
+        return new Cone(100, new Circle()).volume();
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Exercise 7 (Advanced)</h1>
+<p>Write and test a method to calculate and return the surface area of the cone including the base.</p>
+<h1>Solution</h1>
+<p>Derivation of the volume of a cone is elegantly dealt with <a href="http://www.mathopenref.com/coneareaderivation.html">here</a>.</p>
+<p><img alt="Figure 1: Surface area of cone" src="./img/surfaceAreaCone.png"></p>
+<p>Here is the code for a method <em>surfaceArea</em> that uses this formula:</p>
+<pre><code>public double surfaceArea()
+{
+    double radius = base.getDiameter()/2.0;
+    double slantHeight = Math.hypot(radius, height);
+    double areaTop = Math.PI*radius*slantHeight;
+    double areaBase = base.getArea();
+    return areaTop + areaBase;
+}
+</code></pre>
+
+<p>Add this method to the Cone class and compile.</p>
+<p>You will encounter a compile-time error:</p>
+<ul>
+<li><em>cannot find symbol - method getArea()</em>.</li>
+</ul>
+<p>We can fix this be adding a method, <em>getArea</em> to the Circle class.</p>
+<p>Open the Circle class code in the editor and add this method:</p>
+<pre><code>public double getArea()
+{
+
+    return Math.PI*diameter*diameter/4;
+}
+</code></pre>
+
+<p>The project shapes should now compile.</p>
+<p>Use the three methods employed in the previous Exercise 6 to test the <em>surfaceArea</em> method.</p>
+<p>Here, in Figure 2, is the outcome of a test using a default Circle object from the object bench.</p>
+<ul>
+<li>The result is 5471.97 to 2 d.p..</li>
+<li>Using a radius of 15 and height of 100 will produce a similar result when using the formula in Figure 1 directly.</li>
+</ul>
+<p><img alt="Figure 2: Surface area cone" src="./img/surfaceAreaCone2.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
