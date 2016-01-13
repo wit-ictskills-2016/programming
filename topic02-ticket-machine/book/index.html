@@ -1,0 +1,595 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      2: Analysis & refactoring class
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Ticket-Machine">
+        Ticket-Machine
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Ticket-Machine">
+    <h1>Virtual ticket machine</h1>
+<p>In this lab we shall build a very basic virtual ticket machine and in doing so gain further experience with some of the elements of classes such as fields, constructors and methods. We shall conduct a rudimentary analysis of the ticket machine class and implement some design improvements.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>TicketMachine</h1>
+<p>Unarchive chapter02.zip BlueJ sample files, available <a href="archives/chapter02.zip">here</a>, into the directory <em>workspaceBlueJ/bluej</em>. Then copy chapter02 into your working tree <em>workspaceBlueJ/labs</em>.</p>
+<p>Open the project <em>naive-ticket-machine</em>.</p>
+<p>Activate the BlueJ Terminal <em>Record method calls</em> functionality as shown in Figures 1, 2 and 3.</p>
+<p><img alt="Figure 1: Show Terminal" src="img/01.png">
+<img alt="Figure 2: The BlueJ Terminal window" src="img/02.png">
+<img alt="Figure 3: Activate Record method call" src="img/03.png"></p>
+<p>Create an object <em>ticketMachine1</em> using 500 as an actual parameter (argument) as illustrated in Figure 4.</p>
+<p><img alt="Figure 4: creating ticketmachine object" src="img/tickMachine1.png"></p>
+<p>The argument 500 represents the cost of the ticket that this <em>naive</em> ticket machine issues.</p>
+<p>Inspect the TicketMachine methods: right clicking on the TicketMachine object opens a drop-down menu containing all the methods in the class. </p>
+<p>These are:</p>
+<pre><code>int getBalance()
+int getPrice()
+void insertMoney(int amount)
+void printTicket()
+</code></pre>
+
+<p>Call <em>getBalance</em>. As expected you should have zero balance.</p>
+<p>Call <em>getPrice</em>. The price of the ticket should be returned as 500, the figure entered as an argument.</p>
+<p>Now print a ticket and inspect the BlueJ Terminal Window. This may be as illustrated in Figure 5.</p>
+<p><img alt="Figure 5: Ticket from naive Ticket machine" src="img/tickMachinePrint.png"></p>
+<p>The commands executed to instantiate TicketMachine and to print the ticket are shown on the ticket in Figure 2. If you wish not to see these commands click on the Terminal window and untick <em>Record method calls</em> in the BlueJ Options menu (Figure 6).</p>
+<p><img alt="Figure 6: Record method calls" src="img/tickMachineRecord.png"></p>
+<p>We have already revealed a serious design flaw in our ticket machine application which you no doubt have observed.</p>
+<p>The flaw is that we have succeeded in printing a 500 cents ticket without inserting any money. </p>
+<p>In fact we could print an indefinite number of such tickets.</p>
+<p>Let's explore the behaviour of TicketMachine further. </p>
+<ul>
+<li>
+<p>Insert 100 cents and print a ticket. </p>
+</li>
+<li>
+<p>Then verify that the balance is zero by invoking <em>getBalance()</em>.</p>
+</li>
+</ul>
+<p>Now let's insert money in increments and verify the balance is correctly updated each time you make an addition. </p>
+<ul>
+<li>
+<p>Starting from zero balance insert in turn 100, 400, 100. </p>
+</li>
+<li>
+<p>The final balance should be returned as 600 cents. So far so good.</p>
+</li>
+<li>
+<p>Now with a balance of 600 print off a ticket. Remember the ticket costs 500 cent. </p>
+</li>
+<li>
+<p>Check the balance. It returns zero. Clearly this is a no-refund machine.</p>
+</li>
+</ul>
+<p>Here is another design flaw: It is possible to insert negative amounts of money as an actual parameter into the constructor. For example:</p>
+<pre><code>TicketMachine ticketMachine = new TicketMachine(-500);
+</code></pre>
+
+<p>Here is a summary of the tested behaviours of the ticket machine:</p>
+<ul>
+<li>TicketMachine object: can be constructed for negative-amount ticket.</li>
+<li>Money insertion: a negative amount can be inserted.</li>
+<li>Balance zero cents: possible to print any number of 500 cent tickets.</li>
+<li>Balance 100 cents: still possible to print tickets and balance falls to zero following printing.</li>
+<li>Balance 600 cents: following ticket printing the balance is zero meaning no refund. </li>
+</ul>
+<p>We shall now set about correcting these design errors.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Explore TicketMachine source code</h1>
+<p>Still in <em>naive-ticket-machine</em> click on the BlueJ naive-ticket-machine window and using the menu commands <em>Project | Save as</em> save a copy of the project to your folder <em>workspaceBlueJ/labs/session02</em>.</p>
+<p>Double click on the TicketMachine class graphic to reveal the underlying source code (Figure 1).</p>
+<p><img alt="Figure 1: TicketMachine source code" src="img/tickMachineSource.png"></p>
+<p>Here, below, is the complete class. It is good practice to comment code but we have removed the comments for the sake of compactness and to allow their introduction as each part of the class is explored and upgraded.</p>
+<pre><code>public class TicketMachine
+{
+    private int price;
+    private int balance;
+    private int total;
+
+    public TicketMachine(int ticketCost)
+    {
+        price = ticketCost;
+        balance = 0;
+        total = 0;
+    }
+
+    public int getPrice()
+    {
+        return price;
+    }
+
+    public int getBalance()
+    {
+        return balance;
+    }
+
+    public void insertMoney(int amount)
+    {
+        balance = balance + amount;
+    }
+
+    public void printTicket()
+    {
+        System.out.println(&quot;##################&quot;);
+        System.out.println(&quot;# The BlueJ Line&quot;);
+        System.out.println(&quot;# Ticket&quot;);
+        System.out.println(&quot;# &quot; + price + &quot; cents.&quot;);
+        System.out.println(&quot;##################&quot;);
+        System.out.println();
+
+        total = total + balance;
+        balance = 0;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>TicketMachine Refactoring</h1>
+<p><strong>Refactor TicketMachine constructor</strong></p>
+<p>We will impose a pre-condtion on the constructor to ensure that negative numbers are not processed as arguments.</p>
+<p>This is the constructor code we wish to refactor:</p>
+<pre><code>    public TicketMachine(int ticketCost)
+    {
+        price = ticketCost;
+        balance = 0;
+        total = 0;
+    }
+</code></pre>
+
+<p>The statement <em>price = ticketCost;</em> :</p>
+<ul>
+<li>assigns the value represented by the actual parameter (argument) <em>ticketCost</em> to the instance variable <em>price</em>.</li>
+<li>the value that the instance variable <em>price</em> contains before the assignment statement is executed is replaced by the actual parameter <em>ticketCost</em>.</li>
+</ul>
+<p>The statements <em>balance = 0;</em> and <em>total = 0;</em> initialize these instance variables to zero.</p>
+<p>To ensure that only positive <em>ticketCost</em> values are processed we could refactor the constructor as shown in Figure 1.</p>
+<p><img alt="Figure 1: Refactored constructor" src="img/tickMachineConstruct.png"></p>
+<p>The statement </p>
+<pre><code>if (ticketCost &gt; 0)
+</code></pre>
+
+<p>checks if the ticket cost exceeds zero and if it does, the statements within the following curly braces are executed, namely:</p>
+<pre><code>price = ticketCost;
+balance = 0;
+total = 0;
+</code></pre>
+
+<p>Should an attempt be made to enter zero or a negative ticket cost, this block of code immediately above would be skipped over and the block following the word <em>else</em> would be executed (which would print a warning).</p>
+<p>The words <strong>if</strong> and <strong>else</strong> are Java reserved words and consequently may only be used in an appropriate context.</p>
+<ul>
+<li>For example, it would be illegal to include the following statement in your code:</li>
+</ul>
+<pre><code>String if = &quot;this is an illegal statement because if is a reserved word&quot;;
+</code></pre>
+
+<p>This refactoring simply alerts the user to the attempt to construct an object illegally. However the application still proceeds to construct a TicketMachine object in which the object state remains uninitialized.</p>
+<p>This is far from a perfect solution but will suffice for now. We will address this issue again later but with an industry-standard solution.</p>
+<p>Carry out this refactoring, recompile the code, run and test.</p>
+<p>The test should include:</p>
+<ul>
+<li>Create TicketMachine object.</li>
+<li>Insert a negative <em>ticketCost</em>.</li>
+<li>Verify that warning messages printed to console.</li>
+<li>Check that balance correct. It should still be zero.</li>
+<li>Insert a positive <em>ticketCost</em>.</li>
+<li>Verify input accepted.</li>
+<li>Check balance is correct. It should equal the <em>ticketCost</em> argument.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>TicketMachine Refactoring</h1>
+<p><strong>Refactor method: <em>insertMoney</em> </strong>.</p>
+<p>Here is the existing code:</p>
+<pre><code>    public void insertMoney(int amount)
+    {
+        balance = balance + amount;
+    }
+</code></pre>
+
+<p>Again, we wish to prevent insertion of a negative amount of money. </p>
+<p>Here again is a temporary solution (Figure 1).</p>
+<p><img alt="Figure 1: Refactored insertMoney method" src="img/tickMachineInsertValid.png"></p>
+<p>Carry out this refactoring, recompile the code, run and test.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>TicketMachine Refactoring</h1>
+<p><strong>Refactor printTicket method</strong></p>
+<p>We must ensure ticket printed only when an adequate balance present.</p>
+<p>Here is the existing code to print a ticket:</p>
+<pre><code>    public void printTicket()
+    {
+        System.out.println(&quot;##################&quot;);
+        System.out.println(&quot;# The BlueJ Line&quot;);
+        System.out.println(&quot;# Ticket&quot;);
+        System.out.println(&quot;# &quot; + price + &quot; cents.&quot;);
+        System.out.println(&quot;##################&quot;);
+        System.out.println();
+
+        total = total + balance;
+        balance = 0;
+    }
+</code></pre>
+
+<p>Three actions are performed in this method <em>printTicket</em>.</p>
+<ul>
+<li>Ticket printed</li>
+<li>The <em>total</em> instance variable updated:<ul>
+<li>This variable maintains a cumulative total cost of all tickets issued to date.</li>
+<li>Note: the variable name could have been chosen to be more descriptive, for example <em>int sumTicketsIssued</em>;</li>
+</ul>
+</li>
+<li>Balance updated</li>
+</ul>
+<p>Here is the refactored code to update cumulative value of all tickets issued by this instance of the TicketMachine:</p>
+<pre><code>total = total + balance;
+</code></pre>
+
+<p>This statement does not perform the required task. </p>
+<p>It should read</p>
+<pre><code>total = total + price;
+</code></pre>
+
+<p>When a ticket is printed the balance requires adjusting. </p>
+<p>The statement</p>
+<pre><code>balance = 0;
+</code></pre>
+
+<p>clearly does not perform the required action, namely, updating the balance each time a ticket is issued.</p>
+<p>Here is the refactored code to update the balance:</p>
+<pre><code>balance = balance - price;
+</code></pre>
+
+<p>We must also ensure that the balance is sufficient to pay for the ticket. </p>
+<p>This refactoring can be achieved as follows:</p>
+<pre><code>public void printTicket()
+{
+
+    if (balance &gt;= price) 
+    {
+        //print ticket
+    }
+    else
+    {
+        //warn user insufficient funds
+    }
+}
+</code></pre>
+
+<p>The refactored method is illustrated in Figure 1.</p>
+<p><img alt="Figure 1: Refactored ticket printing" src="img/tickMachinePrintRefactor.png"></p>
+<p>Carry out this refactoring, recompile the code, run and test.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>TicketMachine Refactoring</h1>
+<p><strong>New method refundBalance</strong></p>
+<p>Once a ticket is issued the balance is refunded to the client.</p>
+<p>This requires a new method which we shall call <em>refundBalance</em>. </p>
+<p>The signature of the getter method (including modifier and return type) is:</p>
+<pre><code>public int refundBalance()
+</code></pre>
+
+<p>Here is what <em>refundBalance</em> does:</p>
+<ul>
+<li>Store the original (existing) balance in a temporary variable.</li>
+<li>Set the balance to zero;</li>
+<li>Return the original balance to the caller.</li>
+</ul>
+<p><img alt="Figure 1: New Method refundBalance" src="img/tickMachineRefund.png"></p>
+<p>The complete class, including <em>some</em> documentation, is illustrated in the next step.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Refactored TicketMachine</h1>
+<pre><code>public class TicketMachine
+{
+    /**
+     * Create a machine that issues tickets of the given price.
+     * Note that the price must be greater than zero.
+     */
+    public TicketMachine(int ticketCost)
+    {
+        if (ticketCost &gt; 0)
+        {
+            price = ticketCost;
+            balance = 0;
+            total = 0;
+        }
+        else
+        { 
+            System.out.println(&quot;Please insert a positive ticket cost&quot;);
+        }
+
+    }
+
+    /**
+     * Return the price of a ticket.
+     */
+    public int getPrice()
+    {
+        return price;
+    }
+
+    /**
+     * Return the amount of money already inserted for the
+     * next ticket.
+     */
+    public int getBalance()
+    {
+        return balance;
+    }
+
+    /**
+     * Receive an amount of money in cents from a customer.
+     * A negative amount will be disallowed.
+     */
+    public void insertMoney(int amount)
+    {
+        if (amount &gt; 0)
+        { 
+          balance = balance + amount;
+        }
+        else 
+        { 
+          System.out.println(&quot;Please insert a positive amount&quot;);
+        }
+    }
+
+    /**
+     * If sufficient funds available print a ticket.
+     * Update the total value tickets to date
+     * Update the remaining balance.
+     */
+    public void printTicket()
+    {
+        // If the balance greater than ticket price then we can print a ticket
+        if (balance &gt; price)
+        {
+        // Simulate the printing of a ticket.
+            System.out.println(&quot;##################&quot;);
+            System.out.println(&quot;# The BlueJ Line&quot;);
+            System.out.println(&quot;# Ticket&quot;);
+            System.out.println(&quot;# &quot; + price + &quot; cents.&quot;);
+            System.out.println(&quot;##################&quot;);
+            System.out.println();
+            // Update the total value of tickets to date.
+            total = total + price;
+            // Update the balance.
+            balance = balance - price;
+        }
+        else
+        {
+            int deficit = price - balance;
+            System.out.println(&quot;Please insert at least &quot;+ deficit +&quot; more cents&quot;);
+        }
+    }
+}
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<p><strong>Exercise 1</strong></p>
+<ul>
+<li>Write an accessor for the TicketMachine field <em>int total</em>.</li>
+<li>The signature including return type should be <em>int getTotal()</em>.</li>
+<li>Compile and test the method:<ul>
+<li>Create a TicketMachine object for a 250 cents ticket.</li>
+<li>Insert 1000 cents.</li>
+<li>Use <em>getTotal</em> to verify that the <em>total</em> attribute value is correct.</li>
+<li>Print 2 tickets <ul>
+<li>Verify that the <em>total</em> is correct subsequently.</li>
+</ul>
+</li>
+<li>Print 2 further tickets<ul>
+<li>Check <em>total</em></li>
+<li>Check <em>balance</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Exercise 2</strong></p>
+<ul>
+<li>Write a method to allow the price of a ticket to be changed.</li>
+<li>Use the signature (including modifier and return type) <em>public void setPrice(int price)</em></li>
+<li>Use the <em>this</em> keyword within the method.</li>
+<li>Create a TicketMachine object, ticket cost 1000<ul>
+<li>Check the price using <em>getPrice</em> method</li>
+</ul>
+</li>
+<li>Change the ticket price to 2000<ul>
+<li>Check the price has been changed by invoking <em>getPrice</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>Exercise 3</strong></p>
+<ul>
+<li>Write a default constructor for TicketMachine<ul>
+<li>Set the default price at 1000</li>
+</ul>
+</li>
+<li>Create a default TicketMachine object on the object bench<ul>
+<li>Check the price has been correctly set by invoking <em>getPrice</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>Exercise 4</strong></p>
+<ul>
+<li>Write a method to simulate removal of all money from the machine.<ul>
+<li>Use a method signature (including modifier and return type) <em>public void empty()</em></li>
+</ul>
+</li>
+<li>Create a default TicketMachine object<ul>
+<li>Check the balance</li>
+<li>Invoke the <em>empty</em> method</li>
+<li>Verify the balance is zero</li>
+</ul>
+</li>
+<li>Create a TicketMachine object using the original constructor, the overloaded constructor, setting the initial price at 500<ul>
+<li>Insert 1000 into machine</li>
+<li>Check the balance</li>
+<li>Invoke the method <em>empty</em></li>
+<li>Check the balance is zero.</li>
+</ul>
+</li>
+</ul>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
