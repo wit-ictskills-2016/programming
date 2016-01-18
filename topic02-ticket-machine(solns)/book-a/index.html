@@ -1,0 +1,345 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      2: Analysis & refactoring class
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Ticket-Machine-Solutions">
+        Ticket-Machine-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Ticket-Machine-Solutions">
+    <h1>Solutions</h1>
+<p>Solutions to the exercise set are provided here.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<ul>
+<li>Write an accessor for the TicketMachine field int total.</li>
+<li>The signature (including return type) should be int getTotal().</li>
+<li>Compile and test the method:<ul>
+<li>Create a TicketMachine object for a 250 cents ticket.</li>
+<li>Insert 1000 cents.</li>
+<li>Use getTotal to verify that the total attribute value is correct.</li>
+<li>Print 2 tickets<ul>
+<li>Verify that the total is correct subsequently.</li>
+</ul>
+</li>
+<li>Print 2 further tickets<ul>
+<li>Check total</li>
+<li>Check balance</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Do you think a mutator for this field (balance) would be inappropriate?</li>
+</ul>
+<h2>Solution</h2>
+<p>Open ticket-master project completed to the end of the lab.</p>
+<ul>
+<li>An archive of the project is available <a href="archives/ticket-machine.zip">here</a>.</li>
+</ul>
+<h2>Accessor</h2>
+<p>Write an accessor for the TicketMachine field int total:</p>
+<ul>
+<li>The signature should be int getTotal().</li>
+</ul>
+<p>Here is the accessor for the field <em>int total</em>:</p>
+<pre><code>    /**
+     * @return total the total amout of money collected by this machine
+     */
+    public int getTotal()
+    {
+        return total;
+    }
+</code></pre>
+
+<h2>Compile and test</h2>
+<p>Compile TicketMachine following addition of <em>getTotal</em> accessor.</p>
+<p>Create a TicketMachine object on the object bench, inserting 250 as parameter.</p>
+<ul>
+<li>See Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Instantiating TicketMachine" src="img/ex0101.png"></p>
+<p>Right click on TicketMachine object and invoke <em>insertMoney</em>, adding 1000 as parameter (Figure 2).</p>
+<p><img alt="Figure 2: Insert 1000 as argument in TicketMachine.insertMoney" src="img/ex0102.png"></p>
+<p>Check the total.</p>
+<p><img alt="Figure 3: getTotal" src="img/ex0103.png"></p>
+<p>The returned value is 0.</p>
+<p>This is correct because <em>total</em> is the total amout of money collected by this machine and at this time no money has been collected. This is somewhat ambiguous. After all we have inserted 1000 cent. However, the variable <em>total</em> is incremented by the amount of each ticket issued. </p>
+<p>Print two tickets and then check the balance. </p>
+<p>We inserted 1000 and have now printed two 250 cent tickets so we would expect the balance to be 500.</p>
+<p>Invoke <em>getBalance</em> on the TicketMachine object. This reveals the balance as 500 which is what we expected. See Figure 4.</p>
+<p><img alt="Figure 4: getBalance" src="img/ex0104.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<ul>
+<li>Write a method to allow the price of a ticket to be changed.</li>
+<li>Use the signature <em>public void setPrice(int price)</em></li>
+<li>Use the <em>this</em> keyword within the method.</li>
+<li>Create a TicketMachine object, ticket cost 1000<ul>
+<li>Check the price using <em>getPrice</em> method</li>
+</ul>
+</li>
+<li>Change the ticket price to 2000<ul>
+<li>Check the price has been changed by invoking <em>getPrice</em></li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<h2>Mutator (setter) <em>setPrice</em> in which the <em>this</em> keyword is used as required.</h2>
+<p>Here is the mutator <em>setPrice</em>.</p>
+<pre><code>    /**
+     * Sets the value of field price representing the cost of a ticket
+     * @param price the cost of a ticket
+     */
+    public void setPrice(int price)
+    {
+        this.price = price;
+    }
+</code></pre>
+
+<p>By using <em>this</em> in the assignment <em>this.price = price</em> we ensure that the contents of the local variable <em>price</em> are assiged to the instance variable <em>price</em>.</p>
+<p>Were we to have written <em>price = price</em> then the contents of the local variable <em>price</em> would simply have been assigned to itself leaving the instance variable unchanged.</p>
+<h2>TicketMachine instantiation and testing</h2>
+<p>Instantiate a TicketMachine object with a parameter of 1000 as required. See Figure 1.</p>
+<p><img alt="Figure 1: TicketMachine instantiation, ticket cost 1000" src="img/ex0201.png"></p>
+<p>Check that the price is 1000 by invoking <em>getPrice</em> on the TicketMachine object.</p>
+<p>Change the ticket price to 2000 by invoking <em>setPrice</em>. See Figure 2.</p>
+<p><img alt="Figure 2: Changing ticket price" src="img/ex0202.png"></p>
+<p>Check the price again and observe it has changed to 2000. See Figure 3.</p>
+<p><img alt="Figure 3: Check ticket price" src="img/ex0203.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<ul>
+<li>Write a default constructor for TicketMachine<ul>
+<li>Set the default price at 1000</li>
+</ul>
+</li>
+<li>Create a default TicketMachine object on the object bench<ul>
+<li>Check the price has been correctly set by invoking <em>getPrice</em></li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the default constructor:</p>
+<pre><code>    /**
+     * Constructs a new default TicketMachine object
+     */
+    public TicketMachine()
+    {
+        price   = 1000;
+        balance = 0;
+        total   = 0;
+    }
+</code></pre>
+
+<p>Since there are no parameters there is no requirement to use the <em>this</em> keyword to identify the instance variables within the constructor body.</p>
+<p>Instantiate TicketMachine using the newly written default constructor. See Figure 1.</p>
+<p><img alt="Figure 1: Instantiating default TicketMachine" src="img/ex0301.png"></p>
+<p>Invoke <em>getPrice</em> on the TicketMachine object.</p>
+<ul>
+<li>Observe it matches the default value assigned in the constructor body, namely 1000.</li>
+<li>See Figure 2.</li>
+</ul>
+<p><img alt="Figure 2: Check default TicketMachine object price" src="img/ex0302.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<ul>
+<li>Write a method to simulate removal of all money from the machine.<ul>
+<li>Use a method signature <em>public void empty()</em></li>
+</ul>
+</li>
+<li>Create a default TicketMachine object<ul>
+<li>Check the balance</li>
+<li>Invoke the <em>empty</em> method</li>
+<li>Verify the balance is zero</li>
+</ul>
+</li>
+<li>Create a TicketMachine object using the original constructor, the overloaded constructor, setting the initial price at 500<ul>
+<li>Check the balance</li>
+<li>Insert 1000 into machine</li>
+<li>Check balance again</li>
+<li>Invoke the method <em>empty</em></li>
+<li>Check the balance is zero.</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<h2>Simulate emptying machine</h2>
+<p>Removal of all money from the machine may be similated by setting the balance to zero.</p>
+<p>Here is the method to do this:</p>
+<pre><code>/**
+ * Sets the balance in the TicketMachine object to zero, simulating removal of all money.
+ */
+public void empty()
+{
+    balance = 0;
+}
+</code></pre>
+
+<h2>Test using default constructor</h2>
+<p>Instantiate TicketMachine using default constructor.</p>
+<ul>
+<li>Invoke <em>getBalance</em>.</li>
+<li>As expected the balance is zero. See Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Balance default TicketMachine is zero" src="img/ex0401.png"></p>
+<h2>Test using overloaded constructor</h2>
+<p>Instantiate TicketMachine using overloaded constructor and a ticket price of 500.</p>
+<ul>
+<li>Check balance: it should be zero.</li>
+<li>Insert 1000</li>
+<li>Check balance: it should now be 1000.</li>
+<li>Invoke <em>empty</em> method. See Figure 2.</li>
+<li>Check balance: it should be zero.</li>
+</ul>
+<p><img alt="Figure 2: Invoking empty method on TicketMachine" src="img/ex0402.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
