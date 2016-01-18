@@ -1,0 +1,711 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      3: Object Interaction
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Abstraction-modularization[1]">
+        Abstraction-modularization[1]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Abstraction-modularization[1]">
+    <p>Using existing classes</p>
+<p>Use set of object from <em>shapes</em> project to manually create a house object. Use existing Square, Circle and Triangle classes. Manually assemble component set to create and display initial design. Develop a new class RectangleBJ by refactoring Square class. Further refactor Circle and Triangle classes.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Initial design</h1>
+<p>Copy the shapes project (folder) from the BlueJ chapter01 folder to your session03 folder.</p>
+<p>The path to the copied <em>shapes</em> project should be as follows:</p>
+<pre><code>../workspaceBlueJ/labs/session03/shapes
+</code></pre>
+
+<p>This is the house we will construct (Figure 1):</p>
+<p><img alt="Figure 1: House of the Risen sun" src="img/house.png"></p>
+<p>From Figure 1 it's evident we require two rectangle objects to represent the wall and window, a triangle object to represent the roof and a circle object to represent the sun.</p>
+<p>We require methods to be available to resize, position and colour the various objects. Let's explore the availabe methods. Recall that you can do this be creating an object of each class on the object bench and then right clicking on the object.</p>
+<p><img alt="Figure 2: Square class methods" src="img/squareMethods.png"></p>
+<p><img alt="Figure 3: Triangle class methods" src="img/triangleMethods.png"></p>
+<p><img alt="Figure 4: Circle class methods" src="img/circleMethods.png"></p>
+<p>All necessary methods are available to create and manually assemble a picture of the house and sun albeit much trial and error will be required. </p>
+<p>Let's begin.</p>
+<p>Relaunch BlueJ and open the <em>shapes</em> project in your <em>session03</em> folder.</p>
+<p>Create and make visible a window object from the Square class.</p>
+<p>Inspect the state of window. Notice the size, i.e. the length of each side, is 30 units. This is illustrated in Figure 5.</p>
+<p><img alt="Figure 5: State window object" src="img/square1State.png"></p>
+<p>A comparison between Figure 1 and the window object just created suggests that the default square size is suitable for a window and that the wall dimension is approximately three times that of the window. </p>
+<p>The triangular roof extends beyond the walls by about half the width of the window therefore the new triangle base width could be approximately four times the default square width.</p>
+<p>As a first draft you could work with these dimensions, which are summarised as follows:</p>
+<p><strong>Window size</strong>    : 30 which is the default value</p>
+<p><strong>Wall size</strong>      : 90</p>
+<p><strong>Triangle base</strong>   : 120</p>
+<p><strong>Circle diameter</strong> : 30</p>
+<p>Figure 6 illustrates the necessary objects that you should now create on the object  bench.</p>
+<p><img alt="Figure 6: Picture objects on object bench" src="img/pictureObjs.png"></p>
+<p>Make these four objects visible. See Figure 7. Only three appear because the two rectangle objects are similar.</p>
+<p><img alt="Figure 7: Picture objects displayed" src="img/picture1.png"></p>
+<p><strong>The Sun:</strong></p>
+<ul>
+<li>
+<p>Change colour to yellow</p>
+</li>
+<li>
+<p>Change size to 50</p>
+</li>
+<li>
+<p>Move it right 150</p>
+</li>
+</ul>
+<p>Experiment with changes to the position and dimensions of the house components until you are satisfied with the result which should reasonably match that illustrated in Figure 1.</p>
+<p>When you are satisfied with the picture you have created, inspect each object and note down its state. </p>
+<p>You will require this data to recreate the picture once you have designed a Tree class and wish to introduce a tree object. </p>
+<p>You will also require the data when you are designing a Picture class later in this lab.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Create new class RectangleBJ</h1>
+<p>Study the picture of the tree in Figure 1 below:</p>
+<p><img alt="Figure 1: A Tree object comprising triangles and a rectangle" src="img/tree.png"></p>
+<p>The upper part of the tree can be created from triangles. </p>
+<p>We,however, require a new class to create the main stem or trunk of the tree.</p>
+<p>A rectangle class will suffice and we will create this by refactoring the Square class as follows.</p>
+<p>We can create a RectangleBJ class by modifying the Square class.</p>
+<ul>
+<li>
+<p>In BlueJ : session03 window you should see Circle, Square and Triangle class diagrams. </p>
+</li>
+<li>
+<p>Create a new class RectangleBJ, open the source code in the editor and delete the contents.</p>
+</li>
+<li>
+<p>Open Square source code, select, copy and paste into the RectangeleBJ class.</p>
+</li>
+<li>
+<p>Alternatively, in Finder (Mac), Explorer (Windows) or similarly in other OSs, save the file Square.java as RectangleBJ.java.</p>
+</li>
+</ul>
+<p>We will refactor the Square class code that should now reside in the new class RectangleBJ.</p>
+<ul>
+<li>
+<p>The first modification that you should make is to replace the class name <em>Square</em> with <em>RectangleBJ</em> anywhere it exists in the source code.</p>
+</li>
+<li>
+<p>The word <em>square</em> occurs throughout the source: replact it with the word <em>rectangle</em>. </p>
+</li>
+<li>
+<p>Now, examine the method <em>private void draw()</em>. Notice that a new Rectangle object is created here and that two actual parameters are <em>size</em>, the length of the sides of the Rectangle object. Note: this <em>Rectangle</em> class is a different class to the <em>RectangleBJ</em> class that we are writing.</p>
+</li>
+</ul>
+<pre><code>Rectangle(xPosition, yPosition, size, size)
+</code></pre>
+
+<ul>
+<li>Change the call to the Rectangle constructor to the following:</li>
+</ul>
+<pre><code>Rectangle(xPosition, yPosition, xSideLength, ySideLength)
+</code></pre>
+
+<p>We are discarding the <em>size</em> field and replacing it with two new fields, <em>xSideLength</em> and <em>ySideLength</em> representing the length and height (or breadth) respectively of the rectangle.</p>
+<p>Delete the field <em>private int size</em> and replace it with</p>
+<pre><code>    private int xSideLength;
+    private int ySideLength;
+</code></pre>
+
+<p>Now refactor the constructor. Here is the origin Square constructor:</p>
+<pre><code>public Square()
+    {
+        size = 30;
+        xPosition = 60;
+        yPosition = 50;
+        color = &quot;red&quot;;
+        isVisible = false;
+    }
+</code></pre>
+
+<p>Delete <em>size</em> and replace with </p>
+<pre><code>        xSideLength = 60;
+        ySideLength = 30;
+</code></pre>
+
+<p>The signature of the constructor also requires changing. Here is the original Square constructor</p>
+<pre><code>public Square()
+</code></pre>
+
+<p>Fixed (default) values are assigned to the fields within this constructor.
+However we would like to have control over setting these values at instantiation, therefore we will use the following signature:</p>
+<pre><code>RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+</code></pre>
+
+<p>In addition to specifying the size of the rectangle at instantiation, the position and colour of the rectangle will also be specified. </p>
+<p>The refactored (overloaded) constructor is, therefore,</p>
+<pre><code>    public RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+    {
+       setState(xSideLen, ySideLen, xPos, yPos,colour);
+    } 
+</code></pre>
+
+<p>Notice that a new method <em>setState</em> is invoked within the constructor. This is easily defined:</p>
+<pre><code>    public void setState(int xSideLength, int ySideLength, int xPosition, int yPosition,String color)
+    {
+        this.xSideLength = xSideLength;
+        this.ySideLength = ySideLength;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.color = color;
+        isVisible = true;
+    }
+</code></pre>
+
+<p>You may well ask why write a separate method to define the object state. </p>
+<ul>
+<li>The reason is that by doing so we can now create an object with the default constructor and later set the state of the object.</li>
+<li>By adopting this approach we are complying with the <em>DRY</em> principle, namely: <strong>D</strong>o <strong>N</strong>ot <strong>R</strong>epeat yourself</li>
+</ul>
+<p>Later, following instantiation, we may require to relocate the rectangle. This can be achieved by writing a method called, for example, <em>moveTo</em> to which we give as parameters the new position (x,y coordinates). Here is a suitable method. </p>
+<pre><code>    public void moveTo(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+    }
+</code></pre>
+
+<p>It's also necessary to refactor the <em>changeSize</em> method. Here is the original method:</p>
+<pre><code>    public void changeSize(int size)
+    {
+        erase();
+        this.size = size;
+        draw();
+    }
+</code></pre>
+
+<p>It's easily observable what needs to be done: change the signature and replace <em>size</em> with the new fields. Here's the refactored code:</p>
+<pre><code>    public void changeSize(int xSideLength, int ySideLength)
+    {
+        erase();
+        this.xSideLength = xSideLength;
+        this.ySideLength = ySideLength;
+        draw();
+    }
+</code></pre>
+
+<p>No other changes are necessary. To summarise, we have:</p>
+<ul>
+<li>Generalized the internal call to the Java Rectangle constructor to allow for the construction of a rectangle rather than simply a square.</li>
+<li>Changed the fields so as to allow for sides of different lengths in the polygon (the rectangle).</li>
+<li>Changed the signature of the constructor by introducing a parameter set that fully defines the new rectangle object.</li>
+<li>Written a new method to allow a rectangle object to be repositioned after instantiation.</li>
+<li>Refactored <em>changeSize</em> method.</li>
+</ul>
+<p>Perform some simple tests of the new class:</p>
+<ul>
+<li>Compile the RectangleBJ. </li>
+<li>Create a new object and make visible.</li>
+<li>Inspect object state. See Figure 2.</li>
+<li>Check the method list. See Figure 3.</li>
+<li>Exercise <em>setPosition</em> method and verify correct behaviour.</li>
+<li>Exercise <em>changeSize</em> method and verify correct behaviour.</li>
+</ul>
+<p><img alt="Figure 2" src="img/rectBJMethods.png"></p>
+<p><img alt="Figure 3" src="img/rectBJObj.png"></p>
+<p>In your opinion, why did we not choose the name <strong>Rectangle</strong> for the new class?</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Complete refactored RectangleBJ</h1>
+<p>Here is the complete refactored class. </p>
+<p>As an exercise at the end of this lab you will be invited to comment this class and generate documentation.</p>
+<pre><code>import java.awt.*;
+
+public class RectangleBJ
+{
+    private int xSideLength;
+    private int ySideLength;
+    private int xPosition;
+    private int yPosition;
+    private String color;
+    private boolean isVisible;
+
+    public RectangleBJ()
+    {
+        xSideLength = 60;
+        ySideLength = 30;
+        xPosition = 60;
+        yPosition = 50;
+        color = &quot;red&quot;;
+        isVisible = false;
+    }
+
+    public RectangleBJ(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
+    {
+        setState(xSideLength, ySideLength, xPosition, yPosition, color);
+    }
+
+    public void setState(int xSideLength, int ySideLength, int xPos, int yPosition, String color)
+    {
+        this.xSideLength = xSideLength;
+        this.ySideLength = ySideLength;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.color = color;
+        isVisible = true;
+    }
+
+    public void makeVisible()
+    {
+        isVisible = true;
+        draw();
+    }
+
+    public void makeInvisible()
+    {
+        erase();
+        isVisible = false;
+    }
+
+    public void moveTo(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+    }
+
+    public void moveRight()
+    {
+        moveHorizontal(20);
+    }
+
+    public void moveLeft()
+    {
+        moveHorizontal(-20);
+    }
+
+    public void moveUp()
+    {
+        moveVertical(-20);
+    }
+
+    public void moveDown()
+    {
+        moveVertical(20);
+    }
+
+    public void moveHorizontal(int distance)
+    {
+        erase();
+        xPosition += distance;
+        draw();
+    }
+
+    public void moveVertical(int distance)
+    {
+        erase();
+        yPosition += distance;
+        draw();
+    }
+
+    public void slowMoveHorizontal(int distance)
+    {
+        int delta;
+
+        if(distance &lt; 0) 
+        {
+            delta = -1;
+            distance = -distance;
+        }
+        else 
+        {
+            delta = 1;
+        }
+
+        for(int i = 0; i &lt; distance; i++)
+        {
+            xPosition += delta;
+            draw();
+        }
+    }
+
+    public void slowMoveVertical(int distance)
+    {
+        int delta;
+
+        if(distance &lt; 0) 
+        {
+            delta = -1;
+            distance = -distance;
+        }
+        else 
+        {
+            delta = 1;
+        }
+
+        for(int i = 0; i &lt; distance; i++)
+        {
+            yPosition += delta;
+            draw();
+        }
+    }
+
+    public void changeSize(int xSideLength, int ySideLength)
+    {
+        if(xSideLength &gt; 0 &amp;&amp; ySideLength &gt; 0) 
+        {
+            erase();
+            this.xSideLength = xSideLength;
+            this.ySideLength = ySideLength;
+            draw();
+        }
+        else
+        {
+            System.out.println(&quot;Enter positive dimensions&quot;);
+        }
+
+    }
+
+    public void changeColor(String color)
+    {
+        this.color = color;
+        draw();
+    }
+
+    private void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color,
+                    new Rectangle(xPosition, yPosition, xSideLength, ySideLength));
+            canvas.wait(10);
+        }
+    }
+
+    private void erase()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.erase(this);
+        }
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Create and introduce Tree object into picture</h1>
+<p>Now that we have a class to create rectangles we can proceed to manually assemble a tree.</p>
+<p>Create a set of tree objects as illustrated in Figure 1.</p>
+<p><img alt="Figure 1: tree objects" src="img/treeObjs.png"></p>
+<p>Make a first approximation at creating a suitable tree trunk object by instantiating a <em>RectangleBJ</em> object with the attributes illustated in Figure 2.</p>
+<p><img alt="Figure 2: tree trunk instantiation" src="img/treeTrunkConstruct.png"></p>
+<p>Invoke the tree trunk object's <em>makeVisible</em> method. The object will be rendered in the top left corner of the display window.</p>
+<p>Now create the remaining tree component objects: three triangles using the only constructor available - the default constructor.</p>
+<p>Display all objects.</p>
+<p>Manually move the objects into position using suitable methods such as <em>moveDown</em>, <em>moveLeft</em> and so on.</p>
+<p>Vary the triangle base widths to create a suitable appearance.</p>
+<p>The result should be somewhat similar to that shown in Figure 3.</p>
+<p><img alt="Figure 3: Tree object comprising 3 triangles and 1 rectangle" src="img/tree.png"></p>
+<p>Now, using the data saved earlier when you created the house, manually recreate the complete picture. See Figure 4.</p>
+<p><img alt="Figure 4: Completed Picture" src="img/picture.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Add methods &amp; refactor constructor Circle and Triangle classes</h1>
+<p>We have added a method <em>moveTo(int,int)</em> to the RectangleBJ class. </p>
+<p>This method allows us to move objects of this class to a precise location of our choosing. </p>
+<p>Let's add a similar method to each of Triangle and Circle classes now as this method will prove extremely useful during the next steps of the lab as we create Tree, House and Picture classes and their objects.</p>
+<h1>Triangle class</h1>
+<p>In the BlueJ editor, place cursor on the Triangle graphic, right click and select <em>Open Editor</em>.</p>
+<p>Add the method <em>moveTo</em> illustrated in Figure 1.</p>
+<p><img alt="Figure 1: method moveTo added to Triangle class" src="img/triangleMoveTo.png"></p>
+<p>Refactor the constructor and add a <em>setState</em> method in a similar manner as in the <em>RectangleBJ</em> class. Here is the refactored code, which you should add to <em>Triangle</em> class:</p>
+<p><img alt="Figure 2: triangle constructor refactored" src="img/triangleCtorRefact.png"></p>
+<h1>Circle class</h1>
+<p>Repeating the procedure above, add a method <em>moveTo</em> to the Circle class (Figure 3).</p>
+<p><img alt="Figure 3: method moveTo added to Circle class" src="img/circleMoveTo.png"></p>
+<p>As with Triangle and RectangleBJ, create an overloaded constructor and accompanying <em>setState</em> method.</p>
+<p><img alt="Figure 4: circle constructor refactored" src="img/circleCtorRefact.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Create House class</h1>
+<p>We have seen that a house object may be assembled from a triangle and two rectangles.</p>
+<p>Let's now capture this behaviour in a class called House.  </p>
+<p>The advantage in doing so will become obvious when the class has been completed and its methods' behaviours demonstrated.</p>
+<p>Place the cursor in the IDE window, still in the BlueJ shapes project in session03 folder, right click and select <em>New Class</em> (Figure 1).</p>
+<p><img alt="Figure 1: Create New Class" src="img/houseNewClass.png"></p>
+<p>A rectangle (class diagram) representing the new House class should appear in the BlueJ IDE window (Figure 2).</p>
+<p><img alt="Figure 2: New House class created but not compiled" src="img/houseClass.png"></p>
+<p>Click on this House representation in the IDE, right click and open the editor.</p>
+<p>This will launch the House class skeleton source code file (Figure 3).</p>
+<p><img alt="Figure 3: House class skeleton code" src="img/houseClassCode.png"></p>
+<p>Delete all except the following so that we begin with just the outer class wrapper.</p>
+<p><img alt="Figure 4: House outer class wrapper" src="img/houseOuterClassWrapper.png"></p>
+<p>Check that the above compiles.</p>
+<p>Let's now design the House class. </p>
+<p>It will have the following fields:</p>
+<p><img alt="Figure 5: House fields" src="img/houseFields.png"></p>
+<p>We could have used the Square class for the wall and window but since a square is a particular instance of a rectangle, using the rectangle is more general and thus gives us more flexibility.</p>
+<p>Next we will add a default constructor, invoke private methods to create and initialize the fields and implement these methods with data:</p>
+<p><img alt="Figure 6: House default constructor" src="img/houseDefaultCtor.png"></p>
+<p>Here are the private creation methods:</p>
+<p><img alt="Figure 7: House class skeleton code" src="img/houseCreateWall.png"></p>
+<p><img alt="Figure 8: House class skeleton code" src="img/houseCreateWindow.png"></p>
+<p><img alt="Figure 9: House class skeleton code" src="img/houseCreateRoof.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Displaying a House object</h1>
+<p>Let's subject the House class to some rudimentary tests:</p>
+<ul>
+<li>Create a House object on the object bench. Right click on the object to view its behaviours. </li>
+<li>There's not much to see because we haven't coded any behaviours. </li>
+<li>Also, the object is not displayed. Let's correct this omission :<ul>
+<li>Add a method <em>void display(boolean show)</em>.</li>
+<li>If <em>show</em> is <em>true</em> the house will be displayed</li>
+<li>If <em>show</em> is <em>false</em> the house will be hidden.</li>
+</ul>
+</li>
+</ul>
+<p>Here's the source: add it to the class, compile and test.</p>
+<pre><code>    public void display(boolean show)
+    {
+        if(show)
+        {
+            roof.makeVisible();
+            wall.makeVisible();
+            window.makeVisible();
+        }
+        else
+        {
+            roof.makeInvisible();
+            wall.makeInvisible();
+            window.makeInvisible();
+        }
+    }
+</code></pre>
+
+<p>Here is what's created using the default coordinates that we've provided. </p>
+<p>You may be happy with this. </p>
+<p>On the other hand, you may wish to make some architectural changes. (Figure 1).</p>
+<p><img alt="Figure 1: A most unusual house" src="img/unusualHouse.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>House source code</h1>
+<p>Here is the complete source code for the House class (file House.java):</p>
+<pre><code>public class House
+{
+    private Triangle roof;
+    private RectangleBJ wall;
+    private RectangleBJ window; 
+
+    public House()
+    {
+        createWall(&quot;red&quot;);
+        createWindow();
+        createRoof();
+    }
+
+    public House(String color)
+    {
+        createWall(color);
+        createWindow();
+        createRoof();
+    }
+
+        private void createWall(String color) 
+    {
+        int xSideLength = 125;
+        int ySideLength = 100;
+        int xPosition = 25;
+        int yPosition = 125;
+
+        wall = new RectangleBJ(xSideLength, ySideLength, xPosition, yPosition, color);
+
+    }
+
+    private void createWindow() 
+    {
+        int xSideLength = 25;
+        int ySideLength = 50;
+        int xPosition = 45;
+        int yPosition = 150;
+        String color = &quot;black&quot;;
+
+        window = new RectangleBJ(xSideLength, ySideLength, xPosition, yPosition, color);
+    }
+
+    private void createRoof() 
+    {
+        int height = 60;
+        int width = 150;
+        int xPosition = 87;
+        int yPosition = 75;
+        String color = &quot;green&quot;;
+
+        roof = new Triangle(height, width, xPosition, yPosition, color);
+    }
+
+    public void display(boolean show)
+    {
+        if(show)
+        {
+            roof.makeVisible();
+            wall.makeVisible();
+            window.makeVisible();
+        }
+        else
+        {
+            roof.makeInvisible();
+            wall.makeInvisible();
+            window.makeInvisible();
+        }
+    }
+}
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

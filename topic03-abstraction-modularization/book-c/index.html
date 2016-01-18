@@ -1,0 +1,778 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      3: Object Interaction
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Abstraction-modularization[3]">
+        Abstraction-modularization[3]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Abstraction-modularization[3]">
+    <p>Develop NumberDisplay</p>
+<p>Based on BlueJ ClockDisplay progressively develop NumberDisplay class to display a pair of digits to represent hours and minutes using the existing BlueJ class Clock to drive the ClockDisplay.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Set up</h1>
+<ul>
+<li>Download an archive of Chapter 3 sample projects provided by BlueJ, available <a href="archives/chapter03.zip">here</a>. These projects are in a file named <em>chapter03.zip</em>. </li>
+<li>Save and unzip chapter03.zip into <em>workspaceBlueJ/blueJ/</em> directory.<ul>
+<li>The archive should unzip a folder <em>chapter03</em> within <em>workspaceBlueJ/blueJ/</em>. </li>
+</ul>
+</li>
+<li>On the BlueJ menu select Project | Open Project and browse to <em>workspaceBlueJava/blueJ/chapter03</em>. </li>
+<li>You should be presented with two BlueJ projects:<ul>
+<li>clock-display</li>
+<li>clock-display-with-GUI<ul>
+<li>See Figure 1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: BlueJ clock-display project" src="img/01.png"></p>
+<p>To get a flavour of this lab:</p>
+<ul>
+<li>Open the <em>clock-display-with-GUI</em> project.</li>
+<li>Create an instance of the Clock class on the object bench<ul>
+<li>A clock should be launched</li>
+<li>Press Start on the Clock<ul>
+<li>Observe the clock starts</li>
+</ul>
+</li>
+<li>Press Stop<ul>
+<li>The clock should stop</li>
+</ul>
+</li>
+<li>Press Step<ul>
+<li>The clock should advance 1 tick</li>
+</ul>
+</li>
+<li>Press Stop</li>
+</ul>
+</li>
+<li>See Figure 2</li>
+</ul>
+<p>We shall now build a clock project, step-by-step with functionality matching that in both <em>clock-display</em> and <em>clock-display-with-GUI</em>.</p>
+<ul>
+<li>Create a new project named <em>clock</em> in your <em>workspaceBlueJ/labs/session03</em> folder<ul>
+<li>See Figure 3</li>
+</ul>
+</li>
+<li>Proceed to next step where we shall begin to populate the project with the necessary classes.</li>
+</ul>
+<p><img alt="Figure 2: BlueJ clock-display with GUI" src="img/02.png"></p>
+<p><img alt="Figure 3: New Clock project" src="img/03.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>NumberDisplay class implementation</h1>
+<p>Observe the Clock in Figure 1.</p>
+<p><img alt="Figure 1: Clock has 2 NumberDisplay objects" src="img/04.png"></p>
+<p>Instances of NumberDisplay objects are used to represent both hours and minutes.</p>
+<p>We shall now implement this class.</p>
+<p>Assume we are designing a 24 hour clock.</p>
+<p>In the case of the hour display, therefore, </p>
+<ul>
+<li>The valid range of numbers is [00, 23]<ul>
+<li>Once 23 is reached, the clock rolls over to 00 on the next hour.</li>
+</ul>
+</li>
+</ul>
+<p>In the case of the minutes display</p>
+<ul>
+<li>The valid range of numbers is [00, 59]<ul>
+<li>Once 59 is reached, the clock rolls over to 00 on the next minute.</li>
+</ul>
+</li>
+</ul>
+<p>The NumberDisplay class, therefore, requires 2 fields</p>
+<ul>
+<li><em>int limit</em><ul>
+<li>Less than 24 for the hour display</li>
+<li>Less than 60 for the minute display</li>
+</ul>
+</li>
+<li><em>int value</em> <ul>
+<li>The actual number displayed<ul>
+<li>Any number in the range  00 to 23 inclusive for the hour display</li>
+<li>Any number in the range  00 to 59 inclusive for the minute display</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the NumberDisplay class. </p>
+<pre><code>public class NumberDisplay
+{
+    private int limit;
+    private int value;
+}
+</code></pre>
+
+<p>Create a new class, NumberDisplay, in the BlueJ: clock project window (Figure 2):</p>
+<ul>
+<li>Open the class in the editor and replace the existing code with that immediately above.</li>
+<li>Compile<ul>
+<li>You should see something similar to that illustrated in Figure </li>
+</ul>
+</li>
+<li>
+<p>Add each piece of code as it is developed below and compile as you go, attending to any syntactic errors that may be introduced.</p>
+</li>
+<li>
+<p>We now write a constructor in which we will initialize the fields.</p>
+</li>
+<li>The field <em>value</em> will be initialized to zero for both hour and minute displays.<ul>
+<li>There is no requirement, therefore, to include <em>value</em> as a parameter in the constructor.</li>
+</ul>
+</li>
+<li>The field <em>limit</em> will be<ul>
+<li>24 for the hour display</li>
+<li>60 for the minute display.</li>
+<li>Consequently we must include <em>limit</em> as a parameter in the constructor.</li>
+</ul>
+</li>
+</ul>
+<p>Here is the code for the constructor:</p>
+<pre><code>public NumberDisplay(int limit)
+{
+    this.limit = limit;
+    value = 0;
+}
+</code></pre>
+
+<p>We will also require a getter for <em>value</em>:</p>
+<pre><code>public int getValue()
+{
+    return value;
+}
+</code></pre>
+
+<p>We require a method to increment <em>value</em>. </p>
+<pre><code>/**
+ * Use modular arithmetic to increment value
+ * thus ensuring it's always within legal range
+ */
+public void incrementValue()
+{
+    value = (value + 1) % limit;
+}
+</code></pre>
+
+<p>Finally, here is a method to display the current <em>value</em>:</p>
+<pre><code>public String display()
+{
+
+    //add a leading zero where necessary
+    if(value &lt; 10)
+    {
+        return &quot;0&quot; + value;
+    }
+    else
+    {
+        return Integer.toString(value);
+    }
+}
+</code></pre>
+
+<p>Observe that we are using the <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true">Integer</a> class <em>toString</em> method to convert the integer to a string with the expression:</p>
+<ul>
+<li>return Integer.toString(value);</li>
+</ul>
+<p>Alternatively we could have used this expression:</p>
+<ul>
+<li>return "" + value;</li>
+</ul>
+<p>with similar effect.</p>
+<p><img alt="Figure 2: NumberDisplay class" src="img/05.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>ClockDisplay class implementation</h1>
+<p>We require a ClockDisplay containing two NumberDisplays, one representing hours, the other minutes.</p>
+<p>We also require a field representing the text to display:</p>
+<ul>
+<li>String displayTime;</li>
+</ul>
+<p>Here is the class skeletion:</p>
+<pre><code>public class ClockDisplay
+{
+
+    private NumberDisplay hours;
+    private NumberDisplay minutes;
+    private String displayTime;
+}
+</code></pre>
+
+<p>Create a new class in the BlueJ: clock project window named ClockDisplay and replace the autogenerated code with that above.</p>
+<p>Compile the class. The result should match that shown in Figure 1.</p>
+<p><img alt="Figure 1: ClockDisplay class" src="img/06.png"></p>
+<p>Next we shall develop the constructor in which we will instantiate the NumberDisplay objects.</p>
+<pre><code>public ClockDisplay()
+{
+    hours = new NumberDisplay(24);
+    minutes = new NumberDisplay(60);
+}
+</code></pre>
+
+<p>We require a method to update the <em>displayTime</em> field, that is, to</p>
+<ul>
+<li>Obtain the hours and minutes values in the NumberDisplay objects and</li>
+<li>Construct the <em>displayTime</em> String using these values.</li>
+</ul>
+<pre><code>public void updateDisplay()
+{
+
+    this.displayTime = hours.display() + &quot;:&quot; + minutes.display();
+}
+</code></pre>
+
+<p>We shall now add a method named <em>timeTick</em> to </p>
+<ul>
+<li>increment the <em>minutes</em> field</li>
+<li>when the minutes field value reaches 60<ul>
+<li>increment the <em>hours</em> field.</li>
+</ul>
+</li>
+</ul>
+<pre><code>public void timeTick()
+{
+    minutes.incrementValue();
+    //when minutes value is zero it means time to increment hours
+    if(minutes.getValue() == 0)
+    {
+        hours.incrementValue();
+    }
+    updateDisplay();
+}
+</code></pre>
+
+<p>We can obtain the time from a Clock object by invoking a getter:</p>
+<pre><code>public String getTime()
+{
+    return displayTime;
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>NumberDisplay</h1>
+<p>Here, as a check, is the complete source code for NumberDisplay:</p>
+<pre><code>public class NumberDisplay
+{
+    private int limit;
+    private int value;
+
+    public NumberDisplay(int limit)
+    {
+        this.limit = limit;
+        value = 0;
+    }
+
+    public int getValue()
+    {
+        return value;
+    }
+
+    /**
+     * Use modular arithmetic to increment value 
+     * thus ensuring it's always within legal range
+     */
+    public void incrementValue()
+    {
+        value = (value + 1) % limit;
+    }
+
+    public String display()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return &quot;0&quot; + value;
+        }
+        else
+        {
+            return Integer.toString(value);
+        }
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>ClockDisplay</h1>
+<p>Here, as a check, is the complete source code for ClockDisplay:</p>
+<pre><code>public class ClockDisplay
+{
+    private NumberDisplay hours;
+    private NumberDisplay minutes;
+    private String displayTime;
+
+    public ClockDisplay()
+    {
+        hours = new NumberDisplay(24);
+        minutes = new NumberDisplay(60); 
+        updateDisplay();
+    }
+
+    public void timeTick()
+    {
+        minutes.incrementValue();
+        //when minutes value is zero it means time to increment hours
+        if(minutes.getValue() == 0)
+        {
+            hours.incrementValue();
+        }
+        updateDisplay();
+    }
+
+    public void updateDisplay()
+    {
+
+        displayTime = hours.display() + &quot;:&quot; + minutes.display();
+    }
+
+    public String getTime()
+    {
+        return displayTime;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Test the ClockDisplay</h1>
+<p>The BlueJ: clock project window should look something like that illustrated in Figure 1.</p>
+<p><img alt="Figure 1: BlueJ: clock project window" src="img/07.png"></p>
+<p>We shall now import a BlueJ component to enable us to test the  ClockDisplay and view its output in a GUI.</p>
+<ul>
+<li>
+<p>Close BlueJ.</p>
+</li>
+<li>
+<p>Download an archive <em>clockBJ.zip</em>, available <a href="archives/clockBJ.zip">here</a>.</p>
+<ul>
+<li>Expand (unzip) the archive.<ul>
+<li>It should expand to a folder named <em>clockBJ</em>.</li>
+<li>Copy the contents of this <em>clockBJ</em> folder into your working folder which should be <em>../workspaceBlueJ/labs/session03/clock</em>.</li>
+<li>The contents of your folder <em>clock</em> should be similar to those displayed in Figure 2.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: working directory contents" src="img/08.png"></p>
+<ul>
+<li>Open BlueJ.<ul>
+<li>The <em>clock</em> project should open on launching BlueJ.<ul>
+<li>Else open it (Project | Open Project | clock).</li>
+<li>The project window should contain three class diagrams<ul>
+<li>ClockDisplay</li>
+<li>NumberDisplay</li>
+<li>Clock<ul>
+<li>All as displayed in Figure 3.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Instantiate a Clock object on the object bench.<ul>
+<li>A clock GUI should launch simultaneous with instantiation</li>
+<li>This is illustrated in Figure 4.</li>
+</ul>
+</li>
+<li>Experiment with the clock:<ul>
+<li>Press Start button<ul>
+<li>The clock should start running</li>
+</ul>
+</li>
+<li>Press End to stop the clock.</li>
+<li>Press Step to advance the clock 1 tick.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: Clock project class diagrams" src="img/09.png"></p>
+<p><img alt="Figure 4: Clock instantiation" src="img/10.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>Create a NumberDisplay object and exercise its methods:</p>
+<ul>
+<li>display()</li>
+<li>getValue()</li>
+<li>incrementValue()</li>
+</ul>
+<p>Use the inspector to observe changes in state that you bring about.</p>
+<h2>Exercise 2</h2>
+<p>Here is the code for the NumberDisplay increment method:</p>
+<pre><code>    /**
+     * Use modular arithmetic to increment value 
+     * thus ensuring it always within legal range
+     */
+    public void incrementValue()
+    {
+        value = (value + 1) % limit;
+    }
+</code></pre>
+
+<p>Refactor this code as follows:</p>
+<ul>
+<li>Discard use of the modulo operator (%).</li>
+<li>Instead, use the <em>if</em> statement.</li>
+</ul>
+<h2>Exercise 3</h2>
+<p>Here is the code for the NumberDisplay setValue method:</p>
+<pre><code>    /**
+     * We check parameter value is in range
+     * If not in range, do nothing
+     * @param value is the new value
+     */
+    public void setValue(int value)
+    {
+
+        if(value &gt;= 0 &amp;&amp; value &lt; this.limit)
+        {
+            this.value = value;
+        }
+    }
+</code></pre>
+
+<p>What would the consequences be were you to replace the line </p>
+<ul>
+<li><em>if(value &gt;= 0 &amp;&amp; value &lt; this.limit)</em></li>
+</ul>
+<p>with the following:</p>
+<ul>
+<li><em>if(value &gt;= 0 || value &lt; this.limit)</em></li>
+</ul>
+<p>Test the edge cases in the case of both lines of code.</p>
+<ul>
+<li>By edge case is meant the situation that arises at the extreme values, for example here where:<ul>
+<li>value less than zero</li>
+<li>value equal to zero</li>
+<li>value equal to limit</li>
+<li>value greater than limit</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 4</h2>
+<p>List all possible results of the expression <em>n % 10</em> where n is an integer variable and % is the modulus operator.</p>
+<p>You will find the definition of an integer <a href="http://www.mathsisfun.com/definitions/integer.html">here</a></p>
+<p>Here's a simple example that may help those unfamiliar with this operator:</p>
+<ul>
+<li>20 % 3 evaluates to 2<ul>
+<li>20 / 3 is 6 with remainder 2</li>
+<li>6 * 3  == 18</li>
+<li>20 - 18 = 2</li>
+</ul>
+</li>
+</ul>
+<p>Evaluation:</p>
+<ul>
+<li>Simple examples can be done by observation</li>
+<li>Excel has a function MOD(number, divisor)</li>
+<li>Java % operator referred to as <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">remainder operator</a></li>
+</ul>
+<h2>Exercise 5</h2>
+<p>Here's the method NumberDisplay display()</p>
+<pre><code>public String display()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return &quot;0&quot; + value;
+        }
+        else
+        {
+            return Integer.toString(value);
+        }
+    }
+</code></pre>
+
+<p>Check what the result of substituting the following for <em>return Integer.toString(value)</em>:</p>
+<ul>
+<li>return "" + value</li>
+<li>return value + ""</li>
+</ul>
+<p>Explain any differences in behaviour.</p>
+<h2>Exercise 6</h2>
+<p>What is the value of each of the boolean variables? </p>
+<p>Provide a short explanation in each case.</p>
+<ul>
+<li>boolean a = 8 &lt; 9;</li>
+<li>boolean b = 9 &lt; 8;</li>
+<li>boolean c = !(8 &lt; 9);</li>
+<li>boolean d = !true;</li>
+<li>boolean e = !false;</li>
+<li>boolean f = (a == true);</li>
+<li>boolean g = (a &amp;&amp; b) == true;</li>
+<li>boolean h = (a || b) == true;</li>
+<li>boolean j = (!a &amp;&amp; !b) == false;</li>
+<li>boolean k = (!a || !b) == false;</li>
+</ul>
+<p>Test your answers with the class LogicalOperator:</p>
+<ul>
+<li>Skeleton code provided below<ul>
+<li>Two methods implemented<ul>
+<li>public boolean a();</li>
+<li>public boolean g();</li>
+</ul>
+</li>
+<li>Write the remaining methods b(), c(), d(), e(), f(), h(), j(), k() corresponding to the items above.</li>
+</ul>
+</li>
+</ul>
+<pre><code>
+public class LogicalOperator
+{
+    public boolean a()
+    {
+       return 8 &lt; 9;
+    }
+
+    //Note the internal method call to methods a() &amp; b()
+    public boolean g()
+    {
+        return (a() &amp;&amp; b()) == true;
+    }   
+}
+</code></pre>
+
+<h2>Exercise 7</h2>
+<ul>
+<li>Create a new project in <em>session03</em> folder named <em>strings</em></li>
+<li>Create a new class <em>TestStrings</em></li>
+<li>Replace the source code with the  skeleton class below.</li>
+<li>Create a TestStrings object on the object bench<ul>
+<li>Examine the list of methods available by right clicking on the TestStrings object</li>
+<li>These are illustrated in Figure 1.</li>
+</ul>
+</li>
+<li>Complete the method bodies in TestStrings<ul>
+<li>Satisfy yourself that your answers are correct.</li>
+</ul>
+</li>
+</ul>
+<pre><code>public class TestStrings
+{
+    String s0;
+    String s1;
+
+    public TestStrings()
+    {
+        s0 = new String(&quot;ICTSkills Group&quot;);
+        s1 = new String(&quot;ICTSkills group&quot;);
+    }
+
+    /*
+     * Check if s0 and s1 are equal
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equals()
+    {
+            return false;
+    }
+
+    /*
+     * Check if s0 and s1 equal ignoring case
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equalsIgnoreCase()
+    {
+            return false;
+    }
+
+    /*
+     * Return concatenation of s0, s1 and s
+     * @param s string to be concatenated with instance variable strings
+     * @return the composite string
+     */
+    public String stringConcat(String s)
+    {
+        return &quot;&quot;;
+    }
+
+    /*
+     * @param sDouble is String representation of a primitive double e.g. &quot;100.345&quot;
+     * @return param converted to double
+     */
+    public double convertToDouble(String sDouble)
+    {
+        return 0.0;
+    }
+
+    /*
+     * @param sInteger is String representation of a primitive int e.g. &quot;100&quot;
+     * @return param converted to int
+     */
+    public int  convertToInteger(String sInteger)
+    {
+        return 0;
+    }
+
+    /*
+     * @param number to be converted to a String
+     * @return param converted to String
+     */
+    public String convertToString(int number)
+    {
+        return &quot;&quot;;
+    }
+}
+</code></pre>
+
+<p><img alt="Figure 1: TestStings' methods" src="img/11.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
