@@ -123,7 +123,7 @@ h3
 
   <div  class="ui tab segment lab" data-tab="Abstraction-modularization[1]">
     <p>Using existing classes</p>
-<p>Use set of object from <em>shapes</em> project to manually create a house object. Use existing Square, Circle and Triangle classes. Manually assemble component set to create and display initial design. Develop a new class RectangleBJ by refactoring Square class. Further refactor Circle and Triangle classes.</p>
+<p>Use set of object from <em>shapes</em> project to manually create a house object. Use existing Square, Circle and Triangle classes. Manually assemble component set to create and display initial design. Develop a new class Rectangle by refactoring Square class. Further refactor Circle and Triangle classes.</p>
   </div>
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Initial design</h1>
@@ -174,37 +174,40 @@ h3
 <p>You will also require the data when you are designing a Picture class later in this lab.</p>
   </div>
   <div  class="ui tab segment lab" data-tab="02">
-    <h1>Create new class RectangleBJ</h1>
+    <h1>Create new class Rectangle</h1>
 <p>Study the picture of the tree in Figure 1 below:</p>
 <p><img alt="Figure 1: A Tree object comprising triangles and a rectangle" src="img/tree.png"></p>
 <p>The upper part of the tree can be created from triangles. </p>
 <p>We,however, require a new class to create the main stem or trunk of the tree.</p>
 <p>A rectangle class will suffice and we will create this by refactoring the Square class as follows.</p>
-<p>We can create a RectangleBJ class by modifying the Square class.</p>
+<p>We can create a Rectangle class by modifying the Square class.</p>
 <ul>
 <li>
 <p>In BlueJ : session03 window you should see Circle, Square and Triangle class diagrams. </p>
 </li>
 <li>
-<p>Create a new class RectangleBJ, open the source code in the editor and delete the contents.</p>
+<p>Create a new class Rectangle, open the source code in the editor and delete the contents.</p>
 </li>
 <li>
-<p>Open Square source code, select, copy and paste into the RectangeleBJ class.</p>
+<p>Open Square source code, select, copy and paste into the Rectangle class.</p>
 </li>
 <li>
-<p>Alternatively, in Finder (Mac), Explorer (Windows) or similarly in other OSs, save the file Square.java as RectangleBJ.java.</p>
+<p>Alternatively, in Finder (Mac), Explorer (Windows) or similarly in other OSs, save the file Square.java as Rectangle.java.</p>
+</li>
+<li>
+<p>In the method <em>draw()</em>, replace <em>Rectangle</em> with <em>java.awt.Rectangle</em> so as to differentiate this Java class Rectangle from our Rectangle class. </p>
 </li>
 </ul>
-<p>We will refactor the Square class code that should now reside in the new class RectangleBJ.</p>
+<p>We will refactor the Square class code that you have copied into class Rectangle.</p>
 <ul>
 <li>
-<p>The first modification that you should make is to replace the class name <em>Square</em> with <em>RectangleBJ</em> anywhere it exists in the source code.</p>
+<p>The first modification that you should make is to replace the class name <em>Square</em> with <em>Rectangle</em> anywhere it exists in the source code.</p>
 </li>
 <li>
-<p>The word <em>square</em> occurs throughout the source: replact it with the word <em>rectangle</em>. </p>
+<p>The word <em>square</em> occurs throughout the source: replace it with the word <em>rectangle</em>. </p>
 </li>
 <li>
-<p>Now, examine the method <em>private void draw()</em>. Notice that a new Rectangle object is created here and that two actual parameters are <em>size</em>, the length of the sides of the Rectangle object. Note: this <em>Rectangle</em> class is a different class to the <em>RectangleBJ</em> class that we are writing.</p>
+<p>Now, examine the method <em>private void draw()</em>. Notice that a new Java Rectangle object is created here and that two actual parameters are <em>size</em>, the length of the sides of the Rectangle object. Note: this <em>Rectangle</em> class is a different class to the <em>Rectangle</em> class that we are writing.</p>
 </li>
 </ul>
 <pre><code>Rectangle(xPosition, yPosition, size, size)
@@ -217,12 +220,25 @@ h3
 </code></pre>
 
 <p>We are discarding the <em>size</em> field and replacing it with two new fields, <em>xSideLength</em> and <em>ySideLength</em> representing the length and height (or breadth) respectively of the rectangle.</p>
+<p>Here is the refacored <em>draw()</em> method:</p>
+<pre><code>
+    private void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color,
+                    new java.awt.Rectangle(xPosition, yPosition, xSideLength, ySideLength));
+            canvas.wait(10);
+        }
+    }
+</code></pre>
+
 <p>Delete the field <em>private int size</em> and replace it with</p>
 <pre><code>    private int xSideLength;
     private int ySideLength;
 </code></pre>
 
-<p>Now refactor the constructor. Here is the origin Square constructor:</p>
+<p>Now refactor the constructor. Here is the original Square constructor:</p>
 <pre><code>public Square()
     {
         size = 30;
@@ -244,18 +260,18 @@ h3
 
 <p>Fixed (default) values are assigned to the fields within this constructor.
 However we would like to have control over setting these values at instantiation, therefore we will use the following signature:</p>
-<pre><code>RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+<pre><code>Rectangle(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
 </code></pre>
 
 <p>In addition to specifying the size of the rectangle at instantiation, the position and colour of the rectangle will also be specified. </p>
 <p>The refactored (overloaded) constructor is, therefore,</p>
-<pre><code>    public RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+<pre><code>    public Rectangle(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
     {
        setState(xSideLen, ySideLen, xPos, yPos,colour);
     } 
 </code></pre>
 
-<p>Notice that a new method <em>setState</em> is invoked within the constructor. This is easily defined:</p>
+<p>Notice that a new helper method <em>setState</em> is invoked within the constructor. This is easily implemented:</p>
 <pre><code>    public void setState(int xSideLength, int ySideLength, int xPosition, int yPosition,String color)
     {
         this.xSideLength = xSideLength;
@@ -272,11 +288,13 @@ However we would like to have control over setting these values at instantiation
 <li>The reason is that by doing so we can now create an object with the default constructor and later set the state of the object.</li>
 <li>By adopting this approach we are complying with the <em>DRY</em> principle, namely: <strong>D</strong>o <strong>N</strong>ot <strong>R</strong>epeat yourself</li>
 </ul>
-<p>Later, following instantiation, we may require to relocate the rectangle. This can be achieved by writing a method called, for example, <em>moveTo</em> to which we give as parameters the new position (x,y coordinates). Here is a suitable method. </p>
+<p>Later, following instantiation, we may require to relocate the rectangle. This can be achieved by writing a method named <em>moveTo</em> to which we give as parameters the new position (x,y coordinates). Here is a suitable method. </p>
 <pre><code>    public void moveTo(int x, int y)
     {
+        erase();
         xPosition = x;
         yPosition = y;
+        draw();
     }
 </code></pre>
 
@@ -309,24 +327,32 @@ However we would like to have control over setting these values at instantiation
 </ul>
 <p>Perform some simple tests of the new class:</p>
 <ul>
-<li>Compile the RectangleBJ. </li>
+<li>Compile the Rectangle. </li>
 <li>Create a new object and make visible.</li>
 <li>Inspect object state. See Figure 2.</li>
 <li>Check the method list. See Figure 3.</li>
-<li>Exercise <em>setPosition</em> method and verify correct behaviour.</li>
+<li>Exercise <em>moveTo</em> method and verify correct behaviour.</li>
 <li>Exercise <em>changeSize</em> method and verify correct behaviour.</li>
 </ul>
 <p><img alt="Figure 2" src="img/rectBJMethods.png"></p>
 <p><img alt="Figure 3" src="img/rectBJObj.png"></p>
-<p>In your opinion, why did we not choose the name <strong>Rectangle</strong> for the new class?</p>
   </div>
   <div  class="ui tab segment lab" data-tab="03">
-    <h1>Complete refactored RectangleBJ</h1>
+    <h1>Complete refactored Rectangle</h1>
 <p>Here is the complete refactored class. </p>
 <p>As an exercise at the end of this lab you will be invited to comment this class and generate documentation.</p>
-<pre><code>import java.awt.*;
+<pre><code>
 
-public class RectangleBJ
+/**
+ * @file    Rectangle.java
+ * @brief   This class describes a rectangle and includes 
+ *                  methods to change rectangle objects' size and appearance.
+ * @version 1.0 April 1, 2014
+ * @author   Michael Kolling and David J. Barnes
+ * @author  &lt;your name here&gt;
+ */
+
+public class Rectangle
 {
     private int xSideLength;
     private int ySideLength;
@@ -335,18 +361,38 @@ public class RectangleBJ
     private String color;
     private boolean isVisible;
 
-    public RectangleBJ()
+    /**
+     * Constructs a new RectangleBJ defined by default data
+     */
+    public Rectangle()
     {
         isVisible = false;
-        setState(60, 30, 60, 50, &quot;red&quot;)
+        // setState(xSideLength, ySideLength, xPosition, yPosition, color)
+        setState(60, 30, 60, 50, &quot;red&quot;); 
     }
 
-    public RectangleBJ(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
+    /**
+     * Constructs a new RectangleBJ defined by user-supplied parameters
+     * @param xSideLength the length of the rectangle
+     * @param ySideLength the width or height of the rectangle
+     * @param xPosition the x-coordinate of the top left corner of the rectangle
+     * @param yPosition the y-coordinate of the top left corner of the rectanglep
+     * @param color the colour of the rectangle including perimeter and body
+     */
+    public Rectangle(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
     {
         setState(xSideLength, ySideLength, xPosition, yPosition, color);
     }
 
-    public void setState(int xSideLength, int ySideLength, int xPos, int yPosition, String color)
+    /**
+     * Public method to facilitate initialization or re-initialization of the rectangle
+     * @param xSideLength the length of the rectangle
+     * @param ySideLength the width or height of the rectangle
+     * @param xPosition the x-coordinate of the top left corner of the rectangle
+     * @param yPosition the y-coordinate of the top left corner of the rectanglep
+     * @param color the colour of the rectangle including perimeter and body
+     */
+    public void setState(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
     {
         this.xSideLength = xSideLength;
         this.ySideLength = ySideLength;
@@ -355,6 +401,17 @@ public class RectangleBJ
         this.color = color;
         isVisible = true;
     }
+
+    public int getWidth()
+    {
+        return xSideLength;
+    }
+
+    public int getHeight()
+    {
+        return ySideLength;
+    }
+
 
     public void makeVisible()
     {
@@ -372,6 +429,7 @@ public class RectangleBJ
     {
         xPosition = x;
         yPosition = y;
+        makeVisible();
     }
 
     public void moveRight()
@@ -450,6 +508,7 @@ public class RectangleBJ
         }
     }
 
+
     public void changeSize(int xSideLength, int ySideLength)
     {
         if(xSideLength &gt; 0 &amp;&amp; ySideLength &gt; 0) 
@@ -477,7 +536,7 @@ public class RectangleBJ
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.draw(this, color,
-                    new Rectangle(xPosition, yPosition, xSideLength, ySideLength));
+                    new java.awt.Rectangle(xPosition, yPosition, xSideLength, ySideLength));
             canvas.wait(10);
         }
     }
@@ -497,7 +556,7 @@ public class RectangleBJ
 <p>Now that we have a class to create rectangles we can proceed to manually assemble a tree.</p>
 <p>Create a set of tree objects as illustrated in Figure 1.</p>
 <p><img alt="Figure 1: tree objects" src="img/treeObjs.png"></p>
-<p>Make a first approximation at creating a suitable tree trunk object by instantiating a <em>RectangleBJ</em> object with the attributes illustated in Figure 2.</p>
+<p>Make a first approximation at creating a suitable tree trunk object by instantiating a <em>Rectangle</em> object with the attributes illustated in Figure 2.</p>
 <p><img alt="Figure 2: tree trunk instantiation" src="img/treeTrunkConstruct.png"></p>
 <p>Invoke the tree trunk object's <em>makeVisible</em> method. The object will be rendered in the top left corner of the display window.</p>
 <p>Now create the remaining tree component objects: three triangles using the only constructor available - the default constructor.</p>
@@ -511,19 +570,19 @@ public class RectangleBJ
   </div>
   <div  class="ui tab segment lab" data-tab="05">
     <h1>Add methods &amp; refactor constructor Circle and Triangle classes</h1>
-<p>We have added a method <em>moveTo(int,int)</em> to the RectangleBJ class. </p>
+<p>We have added a method <em>moveTo(int,int)</em> to the Rectangle class. </p>
 <p>This method allows us to move objects of this class to a precise location of our choosing. </p>
 <p>Let's add a similar method to each of Triangle and Circle classes now as this method will prove extremely useful during the next steps of the lab as we create Tree, House and Picture classes and their objects.</p>
 <h1>Triangle class</h1>
 <p>In the BlueJ editor, place cursor on the Triangle graphic, right click and select <em>Open Editor</em>.</p>
 <p>Add the method <em>moveTo</em> illustrated in Figure 1.</p>
 <p><img alt="Figure 1: method moveTo added to Triangle class" src="img/triangleMoveTo.png"></p>
-<p>Refactor the constructor and add a <em>setState</em> method in a similar manner as in the <em>RectangleBJ</em> class. Here is the refactored code, which you should add to <em>Triangle</em> class:</p>
+<p>Refactor the constructor and add a <em>setState</em> method in a similar manner as in the <em>Rectangle</em> class. Here is the refactored code, which you should add to <em>Triangle</em> class:</p>
 <p><img alt="Figure 2: triangle constructor refactored" src="img/triangleCtorRefact.png"></p>
 <h1>Circle class</h1>
 <p>Repeating the procedure above, add a method <em>moveTo</em> to the Circle class (Figure 3).</p>
 <p><img alt="Figure 3: method moveTo added to Circle class" src="img/circleMoveTo.png"></p>
-<p>As with Triangle and RectangleBJ, create an overloaded constructor and accompanying <em>setState</em> method.</p>
+<p>As with Triangle and Rectangle, create an overloaded constructor and accompanying <em>setState</em> method.</p>
 <p><img alt="Figure 4: circle constructor refactored" src="img/circleCtorRefact.png"></p>
   </div>
   <div  class="ui tab segment lab" data-tab="06">
@@ -594,8 +653,8 @@ public class RectangleBJ
 <pre><code>public class House
 {
     private Triangle roof;
-    private RectangleBJ wall;
-    private RectangleBJ window; 
+    private Rectangle wall;
+    private Rectangle window; 
 
     public House()
     {
@@ -618,7 +677,7 @@ public class RectangleBJ
         int xPosition = 25;
         int yPosition = 125;
 
-        wall = new RectangleBJ(xSideLength, ySideLength, xPosition, yPosition, color);
+        wall = new Rectangle(xSideLength, ySideLength, xPosition, yPosition, color);
 
     }
 
@@ -630,7 +689,7 @@ public class RectangleBJ
         int yPosition = 150;
         String color = &quot;black&quot;;
 
-        window = new RectangleBJ(xSideLength, ySideLength, xPosition, yPosition, color);
+        window = new Rectangle(xSideLength, ySideLength, xPosition, yPosition, color);
     }
 
     private void createRoof() 
