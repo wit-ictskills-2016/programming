@@ -1,0 +1,911 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      4: Grouping Objects
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Control-flow">
+        Control-flow
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Control-flow">
+    <h1>Objectives</h1>
+<p>Gain further flow control experience. Introduce a very basic sorting algorithm
+Understand Autoboxing and Unboxing. A brief discussion on <em>precedence</em> of operators presented.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>for loop</h1>
+<p>Create a BlueJ project named <em>algorithm</em> in your <em>workspaceBlueJ/labs/session04</em> folder.</p>
+<ul>
+<li>
+<p>In <em>algorithm</em> create a class named <em>Loops</em>.</p>
+</li>
+<li>
+<p>Replace the auto-generated code in <em>Loops.java</em> with the outer wrapper:</p>
+</li>
+</ul>
+<pre><code>public class Loops
+{
+
+}
+</code></pre>
+
+<p>We shall now write a method, <em>printNumbers</em> to print the numbers from 0 to n-1 using a <em>for</em> loop.</p>
+<p>The value of <em>n</em> shall be passed as a parameter.</p>
+<p>Here is the method which you should add to the class and then compile and test in the usual manner:</p>
+<ul>
+<li>Instantiate <em>Loops</em></li>
+<li>Invoke <em>printNumbers</em> on the <em>Loops</em> object<ul>
+<li>Use, for example 10, as an actual parameter</li>
+<li>The output is displayed in Figure 1.</li>
+</ul>
+</li>
+</ul>
+<pre><code>/**
+ * Print numbers from 0 to n-1 using for loop
+ * @param n the terminating value 
+ */
+public  void printNumbers(int n)
+{
+    System.out.println(&quot;Numbers from 0 to &quot; + (n - 1));
+    for(int i = 0; i &lt; n; i += 1)
+    {
+        System.out.println(i);
+    }
+}
+</code></pre>
+
+<p><img alt="Figure 1: Printing numbers from 0 to 9 using for loop" src="img/01.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>while loop</h1>
+<p>We shall now write a method, <em>printNumbers2</em> to print the numbers from 0 to n-1 using a <em>while</em> loop.</p>
+<p>The value of <em>n</em> shall be passed as a parameter.</p>
+<p>Here is the method which you should add to the class and then compile and test in the usual manner:</p>
+<ul>
+<li>Instantiate <em>Loops</em></li>
+<li>Invoke <em>printNumbers2</em> on the <em>Loops</em> object<ul>
+<li>Use, for example 10, as an actual parameter</li>
+<li>The output should be as displayed in Figure 1.</li>
+</ul>
+</li>
+</ul>
+<pre><code>/**
+ * Print numbers from 0 to n-1 using while loop
+ * @param n the terminating value 
+ */
+public  void printNumbers2(int n)
+{
+    System.out.println(&quot;Numbers from 0 to &quot; + (n-1));
+    int i = 0;
+    while(i &lt; n)
+    {
+        System.out.println(i);
+        i += 1;
+    }
+}
+</code></pre>
+
+<p>What, in your opinion, would be the effect of omitting the expression </p>
+<ul>
+<li><em>i += 1;</em></li>
+</ul>
+<p>from the method above?</p>
+<p><img alt="Figure 1: Printing numbers from 0 to 9 using while loop" src="img/02.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>do-while loop</h1>
+<p>Write a method, <em>printNumbers3</em> to print the numbers from 0 to n-1 using a <em>do-while</em> loop.</p>
+<p>The value of <em>n</em> shall be passed as a parameter.</p>
+<p>Here is the method which you should add to the class and then compile and test in the usual manner:</p>
+<ul>
+<li>Instantiate <em>Loops</em></li>
+<li>Invoke <em>printNumbers3</em> on the <em>Loops</em> object<ul>
+<li>Use, for example 10, as an actual parameter</li>
+<li>The output should be as displayed in Figure 1.</li>
+</ul>
+</li>
+</ul>
+<pre><code>/**
+ * Print numbers from 0 to n-1 using do-while loop
+ * @param n the terminating value 
+ */
+public  void printNumbers3(int n)
+{
+    System.out.println(&quot;Numbers from 0 to &quot; + (n-1));
+    int i = 0;
+    do
+    {
+        System.out.println(i);
+        i += 1;
+    }while(i &lt; n);
+}
+</code></pre>
+
+<p><img alt="Figure 1: Printing numbers from 0 to 9 using do-while loop" src="img/03.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Manipulating arrays</h1>
+<p>In the <em>algorithm</em> project, create a new class named <em>Collections</em>.</p>
+<p>Open the class in the editor and replace autogenerated code with the outer class wrapper:</p>
+<pre><code>public class Collections
+{
+
+}
+</code></pre>
+
+<p>Write a method named <em>printArray</em> as follows:</p>
+<pre><code>public void printArray()
+{
+   // declares an array of integers
+    int[] intArray;
+}
+</code></pre>
+
+<p>What we have done here is simply declared the an array of integers.</p>
+<p>Add this method to the class </p>
+<ul>
+<li>Compile <em>Collections</em></li>
+<li>Create a Collection object<ul>
+<li>Invoke <em>printArray</em>.</li>
+</ul>
+</li>
+</ul>
+<p>There should be no observable behaviour.
+Why not?</p>
+<p>Place a breakpoint on the closing curly brace of the method <em>printArray</em> and then invoke the method.</p>
+<ul>
+<li>The program will halt at the breakpoint.</li>
+<li>Double click on the expression <em>int[] intArray = &lt;object reference></em> in the <em>Local Variables</em> panel towards the bottom of the BlueJ: Debugger window. <ul>
+<li>The object state will be revealed in the inspection window as shown in Figure 1.</li>
+<li>As expected, the value of each element in the integer array is zero.<ul>
+<li>This is so because instance arrays are initialized by default to zero when declared.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Array initialized to zero by default" src="img/04.png"></p>
+<p>We will now proceed to separately initialize each element of the array by extending the method as follows:</p>
+<pre><code>public void printArray()
+{
+   // declares an array of integers
+    int[] intArray;
+    // allocates memory for 5 integers
+    intArray = new int[5];
+    //initialize each element
+    intArray[0] = 100;
+    intArray[1] = 200;
+    intArray[2] = 300;
+    intArray[3] = 400;
+    intArray[4] = 500;
+}
+</code></pre>
+
+<p>Add the following code to display the array elements:</p>
+<pre><code>    System.out.println(&quot;Element at index 0: &quot; + intArray[0]);
+    System.out.println(&quot;Element at index 1: &quot; + intArray[1]);
+    System.out.println(&quot;Element at index 2: &quot; + intArray[2]);
+    System.out.println(&quot;Element at index 3: &quot; + intArray[3]);
+    System.out.println(&quot;Element at index 4: &quot; + intArray[4]);
+</code></pre>
+
+<p>Compile, create an object and invoke the method again.</p>
+<p>The output should match that shown in Figure 2.</p>
+<p><img alt="Figure 2: Display contents array of integers" src="img/05.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Order check</h1>
+<p>Check if three integers are ordered, either ascending or descending.</p>
+<p>For example </p>
+<ul>
+<li>The following are ordered:<ul>
+<li>4, 7, 35</li>
+<li>60, 20, -5</li>
+</ul>
+</li>
+<li>The following are unordered:<ul>
+<li>7, 4, 35</li>
+</ul>
+</li>
+</ul>
+<p>Create a class named <em>OrderCheck3</em> in the <em>algorithm</em> project and replace the auto-generated code with the class wrapper:</p>
+<pre><code>public class OrderCheck3
+{    
+}
+</code></pre>
+
+<p>Add three fields to represent the three integers that will be checked for order:</p>
+<pre><code>private int a;
+private int b;
+private int c;
+</code></pre>
+
+<p>Add the constructor:</p>
+<pre><code>    /**
+     * Constructor
+     * @param a an integer
+     * @param b an integer
+     * @param c an integer
+     */
+    public OrderCheck3(int a, int b, int c)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+</code></pre>
+
+<p>The approach to check if the attributes are ordered is straightforward:</p>
+<ul>
+<li>If the values are ordered ascending then <ul>
+<li>a will be less than b and</li>
+<li>b will be less than c</li>
+<li>This translates to the following code<ul>
+<li>a &lt; b &amp;&amp; b &lt; c</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If the values are ordered descending then<ul>
+<li>a will be greater than b and</li>
+<li>b will be greater than c<ul>
+<li>This translates to the following code<ul>
+<li>a &gt; b &amp;&amp; b &gt; c</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The method <em>isOrdered</em> therefore is as follows:</p>
+<pre><code>public boolean isOrdered()
+{
+    return (a &lt; b &amp;&amp; b &lt; c) || (a &gt; b &amp;&amp; b &gt; c);
+}
+</code></pre>
+
+<p>Add this to the class, compile and test.</p>
+<p>Question: what would be the consequence of replacing the return statement with the following?</p>
+<ul>
+<li>return (a &lt; b &amp;&amp; b &lt; c) &amp;&amp; (a &gt; b &amp;&amp; b &gt; c);</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Basic sorting</h1>
+<p>In <em>algorithm</em> project create a class <em>ThreeSort</em>.</p>
+<ul>
+<li>The purpose of the class is to sort three integers into ascending order.</li>
+<li>The integers will be provided as parameters to the constructor.</li>
+</ul>
+<p>Here is the class wrapper:</p>
+<pre><code>public class ThreeSort
+{
+
+}
+</code></pre>
+
+<p>We shall now write method to sort the arguments.</p>
+<ul>
+<li>The method signature is <em>public void sort()</em>.</li>
+<li>We shall use the <em>Math.min</em> and <em>Math.max</em> methods.</li>
+</ul>
+<p>Here is the approach we adopt:</p>
+<ul>
+<li>Use <em>Math.min</em> to discover the smallest of the three numbers.</li>
+<li>Use <em>Math.max</em> to discover the largest of the three.</li>
+<li>The third number will be the middle number.</li>
+</ul>
+<p>Here is the method. </p>
+<ul>
+<li>You will, no doubt, observe that discovering the middle number is the most difficult part to understand.</li>
+</ul>
+<pre><code>public static void sort(int a, int b, int c)
+{
+    // determine smallest and largest of three
+    int smallest = Math.min(a, Math.min(b, c));
+    int biggest = Math.max(a, Math.max(b, c));
+
+    //discover the middle number   
+    int tmp1 = Math.min(Math.max(a, b), Math.max(a, c));
+    int tmp2 = Math.min(Math.max(a, b), Math.max(b, c));
+    int middle = Math.min(tmp1, tmp2); 
+
+    System.out.println(&quot;&quot; + smallest + &quot; &quot; + middle + &quot; &quot; + biggest);  
+}
+</code></pre>
+
+<p>Notice that we include the <em>static</em> keyword in the method signature.</p>
+<ul>
+<li>This means that the method is invoked as follows:<ul>
+<li>Select the ThreeSort class diagram in the BlueJ: algorithm<ul>
+<li>Do not create a ThreeSort object</li>
+</ul>
+</li>
+<li>Invoke <em>void sort(...)</em></li>
+</ul>
+</li>
+</ul>
+<p>Because the method is static, the invocation is made thus:</p>
+<ul>
+<li>ThreeSort.sort(...);<ul>
+<li>Were the keyword static omitted then the following steps would be required to invoke the method:<ul>
+<li>ThreeSort obj = new ThreeSort();</li>
+<li>obj.sort(...);</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Compile the class and test with some data in the usual manner.</p>
+<p>See Figure 1 for typical input and output. Notice the absence of a ThreeSort object on the object bench.</p>
+<p><img alt="Figure 1: Testing ThreeSort" src="img/06.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Encoding</h1>
+<ul>
+<li>Create a new BlueJ project named <em>Encoding</em>.</li>
+<li>Create a new class <em>Encode</em> in this project</li>
+<li>Open <em>Encode</em> in the editor and replace the contents with the following:</li>
+</ul>
+<pre><code>public class Encode
+{
+    public static void encode() {
+        int decimal = 65;
+        int hexadecimal = 0x41;
+        char character = 0x41;
+        char character2 = 65;
+        System.out.println(&quot;decimal : &quot; + decimal);
+        System.out.println(&quot;hexadecimal : &quot; + hexadecimal);
+        System.out.println(&quot;character : &quot; + character);
+        System.out.println(&quot;character2 : &quot; + character2);
+    }
+}
+</code></pre>
+
+<p>Invoke the static method <em>encode</em> and observe the output as depicted in Figure 1.</p>
+<p><img alt="Figure 1: Example character encoding" src="img/07.png"></p>
+<p>Here is an explanation of what's happening:</p>
+<ul>
+<li>We create a decimal variable with value 65 (base 10).</li>
+<li>We create a hexadecimal variable with value 41 (base 16)<ul>
+<li>Note the <em>0x</em> that precedes the 41: this is how a hexadecimal number is expressed in Java.<ul>
+<li>Had we simply written <em>int hexadecimal = 41;</em> then the decimal number 41 would be stored in the variable <em>hexadecimal</em>.</li>
+</ul>
+</li>
+<li>41 base 16 is the same as 65 base 10<ul>
+<li>Check this in the <a href="http://www.mathsisfun.com/binary-decimal-hexadecimal-converter.html">online calculator</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Next we create a <em>char</em> variable, <em>character</em> and assign the hexadecimal value <em>0x41</em> to it.<ul>
+<li><strong>char</strong> primitive Java data type is a single 16-bit Unicode character. It has a minimum value of 0 and a maximum value of 65,535 inclusive.</li>
+<li>Check the ASCII table <a href="http://ascii.cl/">here</a> or in Figure 2 below and note that the code for <em>A</em> is 65 (base 10), 41 (base 16).</li>
+</ul>
+</li>
+<li>Then we create a second <em>char</em> variable, <em>character2</em> and assign the decimal value 65 to it.</li>
+</ul>
+<p>We conclude the method by printing the values of the four variables (Figure 1).</p>
+<p>Study the values in Figure 1. In particular note the following:</p>
+<ul>
+<li>The variable names have been chosen so as to be self-documenting<ul>
+<li>No other significance attaches to the names</li>
+</ul>
+</li>
+<li>The output values of both the variables <em>decimal</em> and <em>hexadecimal</em> are the same<ul>
+<li>Clearly <em>System.out.println</em> outputs integers in base 10</li>
+<li>There are a number of methods to print the output in hexadecimal such as:<ul>
+<li>System.out.println(Integer.toHexString(number));</li>
+<li>Try it: add the following lines to the method, invoke and observe the output:</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>System.out.println(Integer.toHexString(hexadecimal)); 
+System.out.println(Integer.toHexString(0x41));
+System.out.println(Integer.toHexString(65));
+</code></pre>
+
+<p><img alt="Figure 2: ASCII Codes Table" src="img/08.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Characters</h1>
+<p>Add the following method to <em>Encoding</em>:</p>
+<pre><code>    public static void characterExample()
+    {
+        /*
+        char backspace = '\b';
+        char formfeed = '\f';
+        char newline = '\n';
+        char retrn = '\r';
+        char tab = '\t';
+        char doublequote = '\&quot;';//for string constants
+        char singlequote = '\'';//for character constants
+        */
+        char backslash = '\\';
+        char lettera = 'a';
+        char letterA = 'A';
+
+        System.out.println(&quot;backslash ASCII code is : &quot; + (int)backslash);
+
+        char[] chars = {'\b', '\f','\n','\r', '\t','\&quot;', '\'', '\\', 'a', 'A' }; 
+
+        for(char c : chars)
+        {
+            System.out.println((int)c);
+        }
+
+        System.out.println(&quot;A - a = &quot; + (lettera - letterA));  
+    }
+</code></pre>
+
+<p>Invoke <em>characterExample</em>. The output is depicted in Figure 1.</p>
+<p><img alt="Figure 1: characterExample output" src="img/09.png"></p>
+<p>Here is a brief explanation of the above code:</p>
+<ul>
+<li>Outline documentation is provided in the block comment </li>
+<li>With the exception of <strong><em>a</em></strong> and <strong><em>A</em></strong>, the characters, if included as arguments in <em>System.out.print</em> are not visibly represented on the screen. That is, they are non-printable characters.<ul>
+<li><em>char</em>s such as \b and \r not always correctly implemented in IDEs. See <a href="http://stackoverflow.com/questions/3095986/how-to-get-backspace-b-to-work-in-eclipses-console">Here</a></li>
+</ul>
+</li>
+<li><em>char[] chars</em> is an array of primitive <em>char</em> types<ul>
+<li>The underlying integer values of this array of <em>char</em> types is displayed in the output as shown in Figure 1</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>Write a method named <em>printNumbersReverse</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers</em> in Loops class.</p>
+<p>Use a <em>for</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse(int n)</em></li>
+</ul>
+<p>Here is the existing <em>printNumbers</em> method:</p>
+<pre><code>/**
+ * Print numbers from 0 to n-1 using for loop
+ * @param n the terminating value 
+ */
+public  void printNumbers(int n)
+{
+    System.out.println(&quot;Numbers from 1 to &quot; + n);
+    for(int i = 0; i &lt; n; i += 1)
+    {
+        System.out.println(i);
+    }
+}
+</code></pre>
+
+<h2>Exercise 2</h2>
+<p>Write a method named <em>printNumbersReverse2</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers2</em>.</p>
+<p>Use a <em>while</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse2(int n)</em></li>
+</ul>
+<h2>Exercise 3</h2>
+<p>Write a method named <em>printNumbersReverse3</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers3</em>.</p>
+<p>Use a <em>do-while</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse3(int n)</em></li>
+</ul>
+<h2>Exercise 4</h2>
+<p>Add a method to the Collection class named <em>convertToArray</em>.</p>
+<ul>
+<li>The method signature is <em>public void convertToArray()</em>.</li>
+<li>The purpose of the method is to demonstrate the usefulness of using an array.</li>
+</ul>
+<p>Here is the initial method. Add this to the Collection class.</p>
+<ul>
+<li>Compile</li>
+<li>Create Collection object on the object bench</li>
+<li>Invoke <em>convertToArray</em><ul>
+<li>The output should correspond to that shown in Figure 1</li>
+</ul>
+</li>
+</ul>
+<pre><code>public void convertToArray()
+{
+    double d1 = 100.01;
+    double d2 = 311.64;
+    double d3 = 206.36;
+    double d4 = 721.64;
+    double d5 = 951.56;
+
+    System.out.println(&quot;Value of d1 is &quot; + d1);
+    System.out.println(&quot;Value of d2 is &quot; + d2);
+    System.out.println(&quot;Value of d3 is &quot; + d3);
+    System.out.println(&quot;Value of d4 is &quot; + d4);
+    System.out.println(&quot;Value of d5 is &quot; + d4); 
+}
+</code></pre>
+
+<p><img alt="Figure 1: Output from *convertArray* method invovation" src="img/xercise01.png"></p>
+<p>The exercise comprises the following:</p>
+<ul>
+<li>Replace the double variables with a single double array.<ul>
+<li>Example: double[] arDouble</li>
+</ul>
+</li>
+<li>Use the <em>new</em> operator appropriately</li>
+<li>Initialize the array with the same values as for the individual variables.</li>
+<li>Use a for loop to print the array.</li>
+</ul>
+<h2>Exercise 5</h2>
+<p>Repeat exercise 4 but using a <em>for-each</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray2()</em></li>
+</ul>
+<h2>Exercise 6</h2>
+<p>Repeat exercise 4 but using a <em>while</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray3()</em></li>
+</ul>
+<h2>Exercise 7</h2>
+<p>Repeat exercise 4 but using a <em>do-while</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray4()</em></li>
+</ul>
+<h2>Exercise 8 (Advanced)</h2>
+<p>Consider this list of primitive type <em>double</em> values:</p>
+<pre><code>    double d1 = 100.01;
+    double d2 = 311.64;
+    double d3 = 206.36;
+    double d4 = 721.64;
+    double d5 = 951.56;
+</code></pre>
+
+<ul>
+<li>Store these values in an ArrayList.<ul>
+<li>Warning: primitives cannot be stored directly in an ArrayList.<ul>
+<li>ArrayList&lt;double>   : incorrect</li>
+<li>ArrayList&lt;Double>   : correct</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Use a method with signature <em>public void convertToArrayList()</em></p>
+<p>Print out the list of elements using an iterator to traverse the ArrayList.</p>
+<h2>Exercise 9</h2>
+<p>Write a class <em>OrderCheck4</em> using the class <em>OrderCheck3</em> that was developed in the lab as a model.</p>
+<p>The purpose of the class is to:</p>
+<ul>
+<li>Accept 4 integers as constructor parameters</li>
+<li>Provide a method to check if the parameters are ordered<ul>
+<li>The signature of the method is <ul>
+<li>public boolean isOrdered()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 10 (Advanced)</h2>
+<ul>
+<li>Write a different version of the sort method in ThreeSort.</li>
+<li>Name the method <em>sort2</em>.</li>
+<li>Use a similar signature to <em>sort</em>, namely:<ul>
+<li><em>public static void sort2(int a, int b, int c)</em></li>
+</ul>
+</li>
+</ul>
+<p>Here is the skeleton of the method: you are asked to complete the missing blocks.</p>
+<pre><code>    public static void sort2(int a, int b, int c)
+    {
+        if(a &lt; b &amp;&amp; a &lt; c) //then a is smallest
+        {
+            if(b &lt; c)// sorted order is a b c
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + b + &quot; &quot; + c);
+            }
+            else //a c b
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + c + &quot; &quot; + b);
+            }
+        }
+        else if (...) // then b is smallest
+        {
+            if(...) // sorted order is b a c
+            {
+                ...             
+            }
+            else// sorted order is b c a
+            {
+                ...              
+            }
+        }  
+        else if (...) // then c is smallest
+        {
+            if(a &lt; b) // sorted order is c a b
+            {
+                ...             
+            }
+            else// c b a 
+            {
+                ...            
+            }
+        } 
+    }
+</code></pre>
+
+<h2>Exercise 11</h2>
+<p>In the <em>algorithm</em> project, create a new class named TestThreeSort.</p>
+<p>Add the following method:</p>
+<pre><code>    public static void test_sort()
+    {
+        System.out.println(&quot;Testing ThreeSort.sort()&quot;);
+        System.out.println(&quot;Sorting Sorted&quot;);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+5+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort(4, 5, 6);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+6+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort(4, 6, 5);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+4+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort(5, 4, 6);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+6+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort(5, 6, 4);    
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+4+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort(6, 4, 5);
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+5+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort(6, 5, 4);       
+    }
+</code></pre>
+
+<p>Invoke the <em>test_sort</em> method.</p>
+<p>Satisfy yourself that the output is correct.</p>
+<h2>Exercise 12</h2>
+<ul>
+<li>Write a similar method to that in Exercise 9 to test the method <em>sort2</em>. <ul>
+<li>Name it <em>test_sort2</em>.</li>
+</ul>
+</li>
+<li>Invoke <em>test_sort2</em>.</li>
+<li>Compare the output to that from <em>test_sort</em>.<ul>
+<li>The outputs should be the same.</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 13</h2>
+<p>Study both methods in ThreeSort: <em>sort</em> and <em>sort2</em>.</p>
+<ul>
+<li>Which method <ul>
+<li>is easier to understand and explain to others?</li>
+<li>would you prefer to maintain?</li>
+</ul>
+</li>
+<li>List any observations you may have regarding the class and its methods.</li>
+</ul>
+<h2>The methods referred to below should be included in the <em>Encode</em> class</h2>
+<h2>Exercise 14</h2>
+<p>Write a method to determine if 2 characters are equal.</p>
+<ul>
+<li>The signature is <em>public static boolean isEqual(char ch1, char ch2)</em><ul>
+<li>return true if <em>ch1</em> is the same as <em>ch2</em></li>
+<li>otherwise return <em>false</em><ul>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> return <em>true</em>.</li>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>A</em></strong> return <em>false</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 15</h2>
+<p>Write a method to compare 2 characters.</p>
+<ul>
+<li>The signature is <em>public static int compareTo(char ch1, char ch2)</em><ul>
+<li>return -1 if the Unicode value of <em>ch1</em> is less than that of <em>ch2</em></li>
+<li>return 0 if the Unicode value of <em>ch1</em> is equal to that of <em>ch2</em></li>
+<li>return 1 if the Unicode value of <em>ch1</em> is greater than that of <em>ch2</em></li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 16</h2>
+<p>Write a method to determine if 2 characters are equal, ignoring case.</p>
+<ul>
+<li>The signature is <em>public static boolean isEqualIgnoreCase(char ch1, char ch2)</em><ul>
+<li>return true if <em>ch1</em> is the same as <em>ch2</em> ignoring case<ul>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> return <em>true</em><ul>
+<li>Letter:   a - z, A - Z</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Assume that <em>ch1 and </em>ch2* are letters.</p>
+</li>
+<li>
+<p>Thus, for example, if <em>ch1</em> is <strong><em>A</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> then return <em>true</em>.</p>
+</li>
+</ul>
+<h2>Exercise 17</h2>
+<p>Write a method to determine if a character is either a letter or a digit.</p>
+<ul>
+<li>The signature is<em>public static boolean isLetterOrDigit(char ch)</em><ul>
+<li>return <em>true</em> if <em>ch</em> is either a letter or a digit<ul>
+<li>Letter:   a - z, A - Z</li>
+<li>Digit:    0 - 9 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 18</h2>
+<p>Write a method to convert a character as follows:</p>
+<ul>
+<li>if the character is lower case convert it to upper case</li>
+<li>if the character is upper case convert it to lower case<ul>
+<li>return the converted letter<ul>
+<li>Example: if <em>ch</em> is <strong><em>a</em></strong> return <strong><em>A</em></strong></li>
+<li>Example: if <em>ch</em> is <strong><em>A</em></strong> return <strong><em>a</em></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The method signature is <em>public static char toggleCase(char ch)</em>.</li>
+<li>Assume that <em>ch</em> is a letter.</li>
+<li>Use methods from <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html"><em>Character</em></a> class</li>
+</ul>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

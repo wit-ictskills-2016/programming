@@ -1,0 +1,442 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      3.1: Object Interaction (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Abstraction-modularization-Solutions-[1-2]">
+        Abstraction-modularization-Solutions-[1-2]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Abstraction-modularization-Solutions-[1-2]">
+    <h1>Solutions</h1>
+<p>These are the solutions to the exercises set in the lab relating to shapes.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<ul>
+<li>Fully comment the Rectangle class.</li>
+<li>Generate documentation using BlueJ's Project Documentation menu option.</li>
+<li>Refer to the Oracle online document <a href="http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">How to Write Doc Comments for the Javadoc Tool</a> in writing comments.</li>
+</ul>
+<h2>Solution</h2>
+<p>The Rectangle class is a refactored version of the BlueJ Square class. </p>
+<p>The solution has commented only selectd parts of the class Rectangle.</p>
+<pre><code>package tests;
+
+import java.awt.*;
+
+/**
+ * @file    Rectangle.java
+ * @brief   This class describes a rectangle and includes 
+ *                  methods to change rectangle object size and appearance.
+ * @version 1.2 April 1, 2014
+ * @author   Michael Kolling and David J. Barnes
+ * @author  &lt;your name here&gt;
+ */
+
+public class Rectangle
+{
+    private int xSideLength;
+    private int ySideLength;
+    private int xPosition;
+    private int yPosition;
+    private String color;
+    private boolean isVisible;
+
+    /**
+     * Constructs a new Rectangle defined by default data
+     */
+    public Rectangle()
+    {
+        isVisible = false;
+        // setState (xSideLength, ySideLength, xPosition, yPosition, color)
+        setState(60, 30, 60, 50, &quot;red&quot;); 
+    }
+
+    /**
+     * Constructs a new Rectangle defined by user-supplied parameters
+     * @param xSideLength the length of the rectangle
+     * @param ySideLength the width or height of the rectangle
+     * @param xPosition the x-coordinate of the top left corner of the rectangle
+     * @param yPosition the y-coordinate of the top left corner of the rectanglep
+     * @param color the colour of the rectangle including perimeter and body
+     */
+    public Rectangle(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
+    {
+        setState(xSideLength, ySideLength, xPosition, yPosition, color);
+    }
+    /**
+     * Public method to facilitate initialization or re-initialization of the rectangle
+     * @param xSideLength the length of the rectangle
+     * @param ySideLength the width or height of the rectangle
+     * @param xPosition the x-coordinate of the top left corner of the rectangle
+     * @param yPosition the y-coordinate of the top left corner of the rectanglep
+     * @param color the colour of the rectangle including perimeter and body
+     */
+    public void setState(int xSideLength, int ySideLength, int xPosition, int yPosition, String color)
+    {
+        this.xSideLength = xSideLength;
+        this.ySideLength = ySideLength;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.color = color;
+        isVisible = true;
+    }
+    // and so on
+    ...
+    ...
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2 (Advanced)</h1>
+<p>Create a Picture class</p>
+<p>Open the <em>shapes</em> project that you have been working on to complete labs to this point: this should be located in <em>workspaceBlueJ/labs/session03</em>.</p>
+<p>This class will facilitate rendering of the house, sun and tree objects that were manually assembled into a picture in the earlier sections of the session.</p>
+<p>The class to contain these fields:</p>
+<ul>
+<li>House </li>
+<li>Sun</li>
+<li>Tree</li>
+</ul>
+<h2>Solution</h2>
+<p>We first create Sun class. </p>
+<p>This is easy since the Circle class contains all the fields and behaviour we require. </p>
+<p>In fact we could simply replace the Sun field with a Circle field.</p>
+<p>However, we will adhere strictly to the specification.</p>
+<p>Here is the Sun class code. </p>
+<pre><code>public class Sun
+{
+    Circle sun;
+
+    public Sun()
+    {
+        sun = new Circle();
+    }
+}
+</code></pre>
+
+<p>We will also add a method to display the sun:</p>
+<pre><code>    public void display(boolean show)
+    {
+        if(show)
+        {
+            sun.makeVisible();
+        }
+        else
+        {
+            sun.makeInvisible();
+        }
+    }
+</code></pre>
+
+<p>Here is the source code for a Picture class that </p>
+<ul>
+<li>instantiates a Picture object using the default constructors of the field classes<ul>
+<li>House house</li>
+<li>Sun sun</li>
+<li>Tree tree</li>
+</ul>
+</li>
+<li>has a method to allow one to toggle the picture object state between visible and invisible.</li>
+</ul>
+<pre><code>public class Picture
+{
+    private House   house;
+    private Tree    tree;
+    private Sun     sun;
+
+    public Picture()
+    {
+        house   = new House();
+        tree    = new Tree();
+        sun     = new Sun();
+    }
+
+    public void display(boolean show)
+    {
+        if(show)
+        {
+            house.display(true);
+            tree.display(true);
+            sun.display(true);
+        }
+        else
+        {
+            house.display(false);
+            tree.display(false);
+            sun.display(false);
+        }
+    }
+
+}
+</code></pre>
+
+<p>Conduct a preliminary test as follows:</p>
+<ul>
+<li>Write and compile both classes, Sun and Picture.</li>
+<li>Invoke <em>display(true)</em> on the Picture object.</li>
+<li>A picture should be displayed with its components in the default locations as shown in Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Picture components in default states" src="img/ex0101.png"></p>
+<p>Note the color of the sun is blue. We will now change this to the more realistic colour yellow. </p>
+<p>Where should we place the code to do this?</p>
+<ul>
+<li>One's first reaction might be to place the method to change the colour of the sun in Picture.</li>
+<li>It's better, however, to locate the method in Sun.<ul>
+<li>For example, a method <em>Sun changeColor(String)</em> that could be invoked in the Sun constructor:</li>
+</ul>
+</li>
+</ul>
+<pre><code>    public Sun()
+    {
+        sun = new Circle();
+        changeColor(&quot;yellow&quot;);
+    }
+
+    public void changeColor(String color)
+    {
+        sun.changeColor(color);
+    }
+</code></pre>
+
+<p>Observe that <em>Circle sun.changeColor</em> is invoking the existing method <em>changeColor</em> in the Circle class.</p>
+<p>Once you have written the code to move the house you will be in a position to programmatically arrange the picture components in a reasonable layout.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3 (Advanced)</h1>
+<p>Refactor the House class as follows:</p>
+<ul>
+<li>Add a method with this header:<ul>
+<li>public void moveTo(int x, int y)</li>
+<li>where (x,y) is the coordinate pair in pixels of the destinatio and is the apex of the roof, i.e. the highest point or ridge.</li>
+</ul>
+</li>
+<li>Fully implement this method and check it works correctly.</li>
+<li>Here is key information regarding the BlueJ demo window <ul>
+<li>Size: 300 x 300 pixels, </li>
+<li>Axes directions: <ul>
+<li>x axis direction is to the right</li>
+<li>y axis direction is vertically down</li>
+<li>origin (0, 0) is at the top-left corner of the window.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>Many different approaches are possible in providing a solution to this problem.</p>
+<p>The approach adopted here is summarised as follows:</p>
+<ul>
+<li>Create instances of the components in the House class.<ul>
+<li>Triangle </li>
+<li>Rectangle</li>
+</ul>
+</li>
+<li>Make these visible.</li>
+<li>Invoke <em>moveTo(x,y)</em> on each component where (x,y) == (0,0), the origin.<ul>
+<li>This informs us which point on the object (x,y) refers to.</li>
+</ul>
+</li>
+</ul>
+<p>Create an instance of Triangle using the default constructor and move it to the origin (0,0).</p>
+<ul>
+<li>You can see from Figure 1 that the point (x,y) refers to the apex of the triangle</li>
+</ul>
+<p><img alt="Figure 1: Triangle object at origin (0,0)" src="img/ex0301.png"></p>
+<p>Create an instance of Rectangle using the default constructor and move it to the origin (0,0).</p>
+<ul>
+<li>You can see from Figure 2 that the point (x,y) refers to the top left corner of the rectangle.</li>
+</ul>
+<p><img alt="Figure 2: Rectangle at origin (0,0)" src="img/ex0302.png"></p>
+<p>Refer to Figure 3. This drawing contains the coordinates of the top left corners of the wall and window relative to the apex of the roof.</p>
+<p>We simply invoke the <em>moveTo</em> methods of the individual components using these coordinates.</p>
+<p>Here is the source code:</p>
+<pre><code>    public void moveTo(int x, int y)
+    {
+        int xWall = x - wall.getWidth()/2;
+        int yWall = y + roof.getHeight();
+        int xWindow = xWall + wall.getWidth()/5;
+        int yWindow = yWall + wall.getHeight()/4; 
+        roof.moveTo(x,y);
+        wall.moveTo(xWall, yWall);
+        window.moveTo(xWindow, yWindow);
+    }
+</code></pre>
+
+<p>It may also prove necessary to write getters for the rectangle and triangle fields, something you will have had ample experience of at this point.</p>
+<p><img alt="Figure 3: Relative coordinates of House components" src="img/ex0303.png"></p>
+<p>Finally, although not specifically requested, here is a method to move the Picture components into reasonable positions.</p>
+<pre><code>    private void position()
+    {
+        int xRoof = 100;
+        int yRoof = 100;
+        house.moveTo(xRoof, yRoof);
+        tree.moveTo(xRoof + 100, yRoof + 100);
+        sun.moveTo(xRoof + 150, yRoof - 50);
+    }
+</code></pre>
+
+<p>Invoke this within the constructor which then becomes:</p>
+<pre><code>    public Picture()
+    {
+        house   = new House();
+        tree    = new Tree();
+        sun     = new Sun();
+        this.position();
+    }
+</code></pre>
+
+<p>A <em>moveTo</em> method will be required in Sun: here is the source:</p>
+<pre><code>    public void moveTo(int x, int y)
+    {
+        sun.moveTo(x, y);
+    }
+</code></pre>
+
+<p>Instantiate a Picture object. The result is displayed in Figure 4.</p>
+<p><img alt="Figure 4: Picture object comprising house, tree and sun" src="img/ex0304.png"></p>
+<p>A project that includes a completed set of classes, including Picture and House is available to download from <a href="archives/picture.zip">here</a></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

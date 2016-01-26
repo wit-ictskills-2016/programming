@@ -1,0 +1,901 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      3.1: Object Interaction (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Abstraction-modularization-Solutions-[3]">
+        Abstraction-modularization-Solutions-[3]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Abstraction-modularization-Solutions-[3]">
+    <h1>Solutions</h1>
+<p>These are the solutions to the exercises relating to the BlueJ ClockDisplay and NumberDisplay classes.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p>Create a NumberDisplay object and exercise its methods:</p>
+<ul>
+<li>display()</li>
+<li>getValue()</li>
+<li>incrementValue()</li>
+</ul>
+<p>Use the inspector to observe changes in state that you bring about.</p>
+<h2>Solution</h2>
+<p>Open the <em>clock</em> project that you developed as part of the preceeding lab and save it to your working solutions folder at <em>workspaceBlueJ/labs-solutions/session03</em>.</p>
+<p>Alternatively download a copy of the project from <a href="archives/clock.zip">here</a> and expand it into your solutions working folder.</p>
+<ul>
+<li>Open the <em>clock</em> project and create a NumberDisplay object named <em>nmrDisplay</em>.</li>
+<li>
+<p>See Figure 1 and observe <em>nmrDisplay</em> on the object bench.
+<img alt="Figure 1: Instantiation NumberDisplay" src="img/ex0101.png"></p>
+</li>
+<li>
+<p>Insert the number 12 as an argument in the constructor </p>
+<ul>
+<li>This represents a 12 hour clock, for example.</li>
+</ul>
+</li>
+<li>
+<p>Right click on the NumberDisplay object on the object bench and invoke <em>display</em>.</p>
+<ul>
+<li>See Figure 2 for the response to the invocation.</li>
+<li>The string is "00" as expected since no activity has taken place on the object.</li>
+</ul>
+<p><img alt="Figure 2: Invocation method display()" src="img/ex0102.png"></p>
+</li>
+<li>
+<p>Invoke <em>getValue</em>.</p>
+<ul>
+<li>See Figure 3 for the response.</li>
+<li>The return number is zero, the content of the field <em>value</em> as expected - no activity on the object.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: Invocation method getValue()" src="img/ex0103.png"></p>
+<ul>
+<li>Invoke <em>incrementValue</em><ul>
+<li>This increments the <em>value</em> field by 1.</li>
+<li>Invoke <em>display</em> and <em>getValue</em> in turn and note the outputs have now changed to "01" and 1 respectively as illustrated in Figure 4.</li>
+<li>These are the expected outputs.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 4: Effect of invoking incrementValue()" src="img/ex0104.png"></p>
+<p>Continue invoking <em>incrementValue</em> until the string returned by invoking <em>display</em> is "11" </p>
+<ul>
+<li>Use the inspector to study the object state (See Figure 5).</li>
+</ul>
+<p><img alt="Figure 5: Twelve hour display about to rollover" src="img/ex0105.png"></p>
+<p>Increment again and observe that the display has now rolled over to "00", the exact behaviour that one would expect in the hour display of a 12-hour clock.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p>Here is the code for the NumberDisplay increment method:</p>
+<pre><code>    /**
+     * Use modular arithmetic to increment value 
+     * thus ensuring it always within legal range
+     */
+    public void incrementValue()
+    {
+        value = (value + 1) % limit;
+    }
+</code></pre>
+
+<p>Refactor this code as follows:</p>
+<ul>
+<li>Discard use of the modulo operator (%).</li>
+<li>Instead, use the <em>if</em> statement.</li>
+</ul>
+<h2>Solution</h2>
+<p>The incrementValue above does the following:</p>
+<ul>
+<li>Increments <em>value</em> by 1</li>
+<li>Divides result by <em>limit</em></li>
+<li>Replaces the original number in <em>value</em> with the remainder when division takes place.<ul>
+<li>Example 1: if <em>value + 1</em> is 10 and <em>limit</em> is 12 then <em>value</em> becomes 10<ul>
+<li>Because 10/12 is equal to zero plus remainder 10</li>
+</ul>
+</li>
+<li>Example 2: if <em>value + 1</em> is 12 and <em>limit</em> is 12 then <em>value</em> becomes 0<ul>
+<li>Because 12/12 equals 1 plus remainder 0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Note: It's the remainder that's assigned to <em>value</em> following division by <em>limit</em>.</li>
+</ul>
+<p>We require a method the achieves a similar result when using the <em>if</em> statement rather than the % operator.</p>
+<p>Here is one such approach:</p>
+<pre><code>    int value;
+    int limit;
+    ...
+    private void incrementValue()
+    {
+        value += 1;
+        if(value &gt;= limit)
+        {
+          value = 0;
+          //the following is a more general and robust expression: Question: Why so?
+          //value = value - (value/limit)*limit;
+        }       
+    }
+</code></pre>
+
+<p>This method is equally good as original.</p>
+<p>Test with sample values such as:</p>
+<ul>
+<li>value 10 , limit 12</li>
+<li>value 12 , limit 12</li>
+<li>value 13 , limit 12</li>
+</ul>
+<p>Let's write a test class TestModulo in the <em>clock</em> project to test such values:</p>
+<pre><code>public class TestModulo
+{
+    int limit;
+    int value;
+
+    public void testIncrementValue(int limit, int value)
+    {
+        this.limit = limit;
+        this.value = value;
+        incrementValue();
+        System.out.println(&quot;Limit: &quot;+this.limit + &quot;  Value: &quot;+this.value);     
+    }
+
+    private void incrementValue()
+    {
+        value += 1;
+        if(value &gt;= limit)
+        {
+          value = value - (value/limit)*limit;
+        }     
+    }
+}
+</code></pre>
+
+<p>Instantiate TestModulo and invoke <em>testIncrementValue</em> with a range of values, ensuring you test the edge conditions.</p>
+<p>Here is suggested list of values to test and the corresponding outputs (where the method <em>incrementValue</em> uses the expression <em>value = value - (value/limit)*limit</em>):</p>
+<p><img alt="Figure 1: Sample data" src="img/ex0201.png"></p>
+<p>See Figure 1 where the last row of data input and the expected value 4 output.</p>
+<p><img alt="Figure 2: Clock arithmetic test" src="img/ex0202.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<p>Here is the code for the NumberDisplay setValue method:</p>
+<pre><code>    /**
+     * We check parameter value is in range
+     * If not in range, do nothing
+     * @param value is the new value
+     */
+    public void setValue(int value)
+    {
+
+        if(value &gt;= 0 &amp;&amp; value &lt; this.limit)
+        {
+            this.value = value;
+        }
+    }
+</code></pre>
+
+<p>What would the consequences be were you to replace the line </p>
+<ul>
+<li><em>if(value &gt;= 0 &amp;&amp; value &lt; this.limit)</em></li>
+</ul>
+<p>with the following:</p>
+<ul>
+<li><em>if(value &gt;= 0 || value &lt; this.limit)</em>?</li>
+</ul>
+<p>Test the edge cases in the case of both lines of code.</p>
+<ul>
+<li>By edge case is meant the situation that arises at the extreme values, for example here where:<ul>
+<li>value less than zero</li>
+<li>value equal to zero</li>
+<li>value equal to limit</li>
+<li>value greater than limit</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>We are working on the assumption that <em>limit</em> will always be greater than zero as in the case of the clock example.</p>
+<p>The expression <em>value &gt;= 0 || value &lt; limit</em> will always resolve to <em>true</em>.</p>
+<p>The reason should be apparent from Figure 1: the expression includes all values in the range -infinity to +infinity.</p>
+<p><img alt="Figure 1: Ranges of value &gt;= 0 and value &lt; limit" src="img/ex0301.png"></p>
+<p>We shall now test the edge cases. Remember that the expression </p>
+<ul>
+<li><em>(value &gt;= 0 || value &lt; limit)</em> is true if either <ul>
+<li><em>value &gt;= 0</em> is <em>true</em> or </li>
+<li><em>value &lt; limit</em> is <em>true</em>.</li>
+</ul>
+</li>
+</ul>
+<p>Edge case tests for expression <em>(value &gt;= 0 || value &lt; limit)</em>.</p>
+<ul>
+<li>value &lt; 0<ul>
+<li>value &lt; limit is true</li>
+<li>Therefore expresssion evaluates to true.</li>
+</ul>
+</li>
+<li>value == 0<ul>
+<li>value &gt;= 0 is true.</li>
+<li>Therefore expresssion evaluates to true.</li>
+</ul>
+</li>
+<li>value == limit <ul>
+<li>value &gt;= 0 is true.</li>
+<li>Therefore expresssion evaluates to true.</li>
+</ul>
+</li>
+<li>value &gt; limit <ul>
+<li>value &gt;= 0 is true is true </li>
+<li>Therefore expresssion evaluates to true.</li>
+</ul>
+</li>
+</ul>
+<p>The consequence, therefore, of replacing the line:</p>
+<ul>
+<li><em>if(value &gt;= 0 &amp;&amp; value &lt; this.limit)</em></li>
+</ul>
+<p>with the line</p>
+<ul>
+<li><em>if(value &gt;= 0 || value &lt; this.limit)</em></li>
+</ul>
+<p>would be that were we to include the method <em>setValue</em> in NumberDisplay and provide access to this method to a clock instance, we would be in a position to inject an illegal time in the clock. </p>
+<p>We shall carry out some refactoring and then test the effects of invoking</p>
+<ul>
+<li>the un-modified <em>setValue</em></li>
+<li>the modified <em>setValue</em></li>
+</ul>
+<p>Include the un-modified method <em>setValue</em> in NumberDisplay class:</p>
+<pre><code>/**
+     * We check parameter value is in range
+     * If not in range, do nothing
+     * @param value is the new value
+     */
+    public void setValue(int value)
+    {
+
+        if(value &gt;= 0 &amp;&amp; value &lt; this.limit)
+        {
+            this.value = value;
+        }
+    }
+</code></pre>
+
+<p>Open ClockDisplay code in the editor and note the presence of a <em>NumberDisplay hours</em> field.</p>
+<p>Insert this method in ClockDisplay:</p>
+<pre><code>    public void resetHour(int value)
+    {
+        hours.setValue(value);
+    }  
+</code></pre>
+
+<p>Open the Clock source in the editor.</p>
+<p>Observe the presence of a field <em>private ClockDisplay clock</em>. </p>
+<p>Insert this method in Clock:</p>
+<pre><code>    public void resetHour(int value)
+    {
+        clock.resetHour(value);
+    }
+</code></pre>
+
+<p>We have now created a facility to reset the hour in a running clock. Let's check this out.</p>
+<ul>
+<li>
+<p>Compile the project and instantiate a Clock object.</p>
+</li>
+<li>
+<p>Start and stop the clock to verify it runs ok.</p>
+</li>
+<li>
+<p>Right click on the clock object and invoke <em>resetHour</em>, entering 23 as a parameter.</p>
+</li>
+<li>
+<p>Start the clock.</p>
+</li>
+<li>
+<p>The hour display should immediately appear as 23.</p>
+</li>
+<li>
+<p>Stop the clock.</p>
+</li>
+<li>
+<p>Invoke <em>resetHour</em> with 25 as a parameter.</p>
+</li>
+<li>
+<p>Start the clock. </p>
+</li>
+<li>
+<p>The hour remains unchanged at 23.</p>
+</li>
+<li>
+<p>This is the behaviour we have programmed. Examine the code for <em>setValue</em> to understand why.</p>
+</li>
+</ul>
+<p>Now change the line in <em>setValue</em> from </p>
+<ul>
+<li>
+<p><em>if(value &gt;= 0 &amp;&amp; value &lt; this.limit)</em> to </p>
+</li>
+<li>
+<p><em>if(value &gt;= 0 || value &lt; this.limit)</em></p>
+</li>
+</ul>
+<p>Conduct the same tests as above and observe how the clock can be manipulated to display an illegal time.</p>
+<ul>
+<li>See Figures 2, 3 and 4.</li>
+</ul>
+<p><img alt="Figure 2: Clock stopped at 00:08" src="img/ex0302.png">
+<img alt="Figure 3: Insert illegal time" src="img/ex0303.png">
+<img alt="Figure 4: Illegal time displayed" src="img/ex0304.png"></p>
+<p>It would be particularly worthwhile taking the time to understand the steps taken above to refactor the code so as to be able to change the hour display. That is, introducing the methods:</p>
+<ul>
+<li><em>setValue</em> into Clock</li>
+<li><em>setValue</em> into ClockDisplay.</li>
+</ul>
+<p>For example: why could we not simply invoke the <em>setValue</em> directly in <em>NumberDisplay</em> when we wish to change the hour display? </p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<p>List all possible results of the expression <em>n % 10</em> where n is an integer variable and % is the modulus operator.</p>
+<p>You will find the definition of an integer <a href="http://www.mathsisfun.com/definitions/integer.html">here</a></p>
+<p>Here's a simple example that may help those unfamiliar with this operator:</p>
+<ul>
+<li>20 % 3 evaluates to 2<ul>
+<li>20 / 3 is 6 with remainder 2</li>
+<li>6 * 3  == 18</li>
+<li>20 - 18 = 2</li>
+</ul>
+</li>
+</ul>
+<p>Evaluation:</p>
+<ul>
+<li>Simple examples can be done by observation</li>
+<li>Excel has a function MOD(number, divisor)</li>
+<li>Java % operator referred to as <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/opsummary.html">remainder operator</a></li>
+</ul>
+<h2>Solution</h2>
+<p>Let's use a brute-force approach by constructing a table with 2 columns as shown in Figure 1.</p>
+<ul>
+<li>The first column contains a range of values for <em>n</em>.</li>
+<li>The second column contains corresponding values for <em>n%10</em>.</li>
+<li>The pattern is clear: <ul>
+<li>The range of <em>n%10</em> is [0, 9]</li>
+</ul>
+</li>
+</ul>
+<p>The list of all possible results of <em>n%10</em>, therefore, consists of the digits 0 to 9 inclusive.</p>
+<p><img alt="Figure 1: n%10" src="img/ex0401.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 5</h1>
+<p>Here's the method NumberDisplay display()</p>
+<pre><code>public String display()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return (&quot;0&quot; + value);
+        }
+        else
+        {
+            return Integer.toString(value);
+        }
+    }
+</code></pre>
+
+<p>Check what the result of substituting the following for <em>return Integer.toString(value)</em>:</p>
+<ul>
+<li>return "" + value</li>
+<li>return value + ""</li>
+</ul>
+<p>Explain any differences in behaviour.</p>
+<h2>Solution</h2>
+<p>Test the differences, if any, by writing a simple class named, for example, TestString.</p>
+<pre><code>public class TestString
+{
+    int value;
+
+    public TestString(int value)
+    {
+        this.value = value;
+    }
+
+    public void test()
+    {
+        System.out.println(&quot;Integer.toString : &quot; + display());
+        System.out.println(&quot;\&quot;\&quot; + value : &quot;+display2());
+        System.out.println(&quot;value + \&quot;\&quot; : &quot;+display3());
+    }
+
+    //NumberDisplay display method
+    private String display()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return (&quot;0&quot; + value);
+        }
+        else
+        {
+            return Integer.toString(value);
+        }
+    }
+
+    //Replace Integer.toString(value) with  &quot;&quot; + value
+    private String display2()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return (&quot;0&quot; + value);
+        }
+        else
+        {
+            return (&quot;&quot; + value);
+        }
+    }
+    //Replace Integer.toString(value) with value + &quot;&quot;
+    private String display3()
+    {
+        //add a leading zero where necessary
+        if(value &lt; 10)
+        {
+            return (&quot;0&quot; + value);
+        }
+        else
+        {
+            return (value + &quot;&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p>Instantiate <em>TestString</em> and invoke <em>test</em>. The output is displayed in Figure 1.</p>
+<p><img alt="Figure 1: String test" src="img/ex0501.png"></p>
+<p>Notice that we have chosen a test value of 11 so as to route the code execution path through the <em>else</em> part of the code which is were we wish to conduct the test.</p>
+<p>There is no discernable difference between the output of the three methods <em>display</em>, <em>display1</em> and <em>display2</em>. </p>
+<ul>
+<li>This is so because <em>The Java language provides special support for the string concatenation operator ( + ), and for conversion of other objects to strings</em> (see <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">here</a>). </li>
+<li>
+<p>As a consequence, both expressions </p>
+<ul>
+<li><em>value + ""</em>  </li>
+<li><em>"" + value</em> </li>
+</ul>
+<p>resolve to String objects. </p>
+</li>
+<li>
+<p>However, were one to replace, for example, <em>return (value + "");</em> with <em>return value;</em>, a compile time error would be triggered with the message <em>incompatible types</em>.</p>
+</li>
+</ul>
+<p>Note: In the method <em>public void test()</em>, consider the statment</p>
+<p><em>System.out.println("\"\" + value : "+display2());</em></p>
+<p>We are using what is referred to as an <em>escape sequence</em> here (\) to print the double quotes. </p>
+<p>Experiment by omitting the escape sequences and observing the results.</p>
+<p>See Figure 2 for a list of various escape sequences and <a href="http://docs.oracle.com/javase/tutorial/java/data/characters.html">here</a> for further information.</p>
+<p><img alt="Figure 2: Escape Sequences" src="img/ex0502.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Exercise 6 (Advanced)</h1>
+<p>What is the value of each of the boolean variables? </p>
+<p>Provide a short explanation in each case.</p>
+<ul>
+<li>boolean a = 8 &lt; 9;</li>
+<li>boolean b = 9 &lt; 8;</li>
+<li>boolean c = !(8 &lt; 9);</li>
+<li>boolean d = !true;</li>
+<li>boolean e = !false;</li>
+<li>boolean f = (a == true);</li>
+<li>boolean g = (a &amp;&amp; b) == true;</li>
+<li>boolean h = (a || b) == true;</li>
+<li>boolean j = (!a &amp;&amp; !b) == false;</li>
+<li>boolean k = (!a || !b) == false;</li>
+</ul>
+<p>Test your answers with the class LogicalOperator:</p>
+<ul>
+<li>Skeleton code provided below<ul>
+<li>Two methods implemented<ul>
+<li>public boolean a();</li>
+<li>public boolean g();</li>
+</ul>
+</li>
+<li>Write the remaining methods b(), c(), d(), e(), f(), h(), j(), k() corresponding to the items above.</li>
+</ul>
+</li>
+</ul>
+<pre><code>
+public class LogicalOperator
+{
+    public boolean a()
+    {
+       return 8 &lt; 9;
+    }
+
+    //Note the internal method call to methods a() &amp; b()
+    public boolean g()
+    {
+        return (a() &amp;&amp; b()) == true;
+    }   
+}
+</code></pre>
+
+<h2>Solution</h2>
+<p>Here is the completed source for LogicalOperator:</p>
+<pre><code>
+public class LogicalOperator
+{
+    public boolean a()
+    {
+       return 8 &lt; 9;
+    }
+
+    public boolean b()
+    {
+        return  9 &lt; 8;
+    }
+
+    public boolean c()
+    {
+        return !(8 &lt; 9);
+    }
+
+    public boolean d()
+    {
+        return !true;
+    }
+
+    public boolean e()
+    {
+        return !false;
+    }
+
+    //Note the internal method call to method a()
+    public boolean f()
+    {
+        return (a() == true);
+    }
+
+    public boolean g()
+    {
+        return (a() &amp;&amp; b()) == true;
+    }  
+
+    public boolean h()
+    {
+        return ((a() || b()) == true);
+    }
+
+    public boolean j()
+    {
+        return ((!a() &amp;&amp; !b()) == false);
+    }
+
+    public boolean k()
+    {
+        return ((!a() || !b()) == false);
+    }
+
+}
+</code></pre>
+
+<p>Instantiate LogicalOperator and exercise all the methods in turn. See Figure 1.</p>
+<p><img alt="Figure 1: LogicalOperator and its methods" src="img/ex0601.png"></p>
+<p>Check the return values against the truth tables below in Figure 2.</p>
+<ul>
+<li>Invoke each method in turn and verity the results correspond to those in the truth tables.</li>
+</ul>
+<p><img alt="Figure 2: Truth tables" src="img/ex0602.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Exercise 7</h1>
+<ul>
+<li>Create a new project in <em>session03</em> folder named <em>strings</em></li>
+<li>Create a new class <em>TestStrings</em></li>
+<li>Replace the source code with the  skeleton class below.</li>
+<li>Create a TestStrings object on the object bench<ul>
+<li>Examine the list of methods available by right clicking on the TestStrings object</li>
+<li>These are illustrated in Figure 1.</li>
+</ul>
+</li>
+<li>Complete the method bodies in TestStrings<ul>
+<li>Satisfy yourself that your answers are correct.</li>
+</ul>
+</li>
+</ul>
+<pre><code>public class TestStrings
+{
+    String s0;
+    String s1;
+
+    public TestStrings()
+    {
+        s0 = new String(&quot;ICTSkills Group&quot;);
+        s1 = new String(&quot;ICTSkills group&quot;);
+    }
+
+    /*
+     * Check if s0 and s1 are equal
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equals()
+    {
+            return false;
+    }
+
+    /*
+     * Check if s0 and s1 equal ignoring case
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equalsIgnoreCase()
+    {
+            return false;
+    }
+
+    /*
+     * Return concatenation of s0, s1 and s
+     * @param s string to be concatenated with instance variable strings
+     * @return the composite string
+     */
+    public String stringConcat(String s)
+    {
+        return &quot;&quot;;
+    }
+
+    /*
+     * @param sDouble is String representation of a primitive double e.g. &quot;100.345&quot;
+     * @return param converted to double
+     */
+    public double convertToDouble(String sDouble)
+    {
+        return 0.0;
+    }
+
+    /*
+     * @param sInteger is String representation of a primitive int e.g. &quot;100&quot;
+     * @return param converted to int
+     */
+    public int  convertToInteger(String sInteger)
+    {
+        return 0;
+    }
+
+    /*
+     * @param number to be converted to a String
+     * @return param converted to String
+     */
+    public String convertToString(int number)
+    {
+        return &quot;&quot;;
+    }
+}
+</code></pre>
+
+<p><img alt="Figure 1: TestStings' methods" src="img/ex0701.png"></p>
+<h2>Solution</h2>
+<p>Here is the completed class TestStrings:</p>
+<pre><code>
+public class TestStrings
+{
+    String s0;
+    String s1;
+
+    public TestStrings()
+    {
+        s0 = new String(&quot;ICTSkills Group&quot;);
+        s1 = new String(&quot;ICTSkills group&quot;);
+    }
+
+    /*
+     * Check if s0 and s1 are equal
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equals()
+    {
+            return s0.equals(s1);
+    }
+
+    /*
+     * Check if s0 and s1 equal ignoring case
+     * @return true if s0 and s1 equal else false
+     */
+    public boolean equalsIgnoreCase()
+    {
+            return s0.equalsIgnoreCase(s1);
+    }
+
+    /*
+     * Return concatenation of s0, s1 and s
+     * @param s string to be concatenated with instance variable strings
+     * @return the composite string
+     */
+    public String stringConcat(String s)
+    {
+        return s0.concat(s1).concat(s);
+        //alternatively: return s0 + s1 + s;
+    }
+
+    /*
+     * @param sDouble is String representation of a primitive double e.g. &quot;100.345&quot;
+     * @return param converted to double
+     */
+    public double convertToDouble(String sDouble)
+    {
+        return Double.parseDouble(sDouble);
+    }
+
+    /*
+     * @param sInteger is String representation of a primitive int e.g. &quot;100&quot;
+     * @return param converted to int
+     */
+    public int  convertToInteger(String sInteger)
+    {
+        return Integer.parseInt(sInteger);
+    }
+
+    /*
+     * @param number to be converted to a String
+     * @return param converted to String
+     */
+    public String convertToString(int number)
+    {
+        return Integer.toString(number);
+        //alternatively: return String.valueOf(number);
+        //alternatively: return &quot;&quot; + number;
+    }
+}
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
