@@ -1,0 +1,292 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      4.1: Grouping Objects (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Encoding-solutions-[14-18].md">
+        Encoding-solutions-[14-18].md
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Encoding-solutions-[14-18].md">
+    <h1>Objectives</h1>
+<p>Solutions to number systems and character encoding lab.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercises</h1>
+<p>The following methods are to be added to <em>Encoding</em> class</p>
+<h2>Exercise 14</h2>
+<p>Write a method to determine if 2 characters are equal.</p>
+<ul>
+<li>The signature is <em>public static boolean isEqual(char ch1, char ch2)</em><ul>
+<li>return true if <em>ch1</em> is the same as <em>ch2</em></li>
+<li>otherwise return <em>false</em><ul>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> return <em>true</em>.</li>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>A</em></strong> return <em>false</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 14 Solution</h2>
+<pre><code>    public static boolean isEqual(char ch1, char ch2)
+    {
+        return ch1 == ch2;
+    }
+</code></pre>
+
+<h2>Exercise 15</h2>
+<p>Write a method to compare 2 characters.</p>
+<ul>
+<li>The signature is <em>public static int compareTo(char ch1, char ch2)</em><ul>
+<li>return -1 if the Unicode value of <em>ch1</em> is less than that of <em>ch2</em></li>
+<li>return 0 if the Unicode value of <em>ch1</em> is equal to that of <em>ch2</em></li>
+<li>return 1 if the Unicode value of <em>ch1</em> is greater than that of <em>ch2</em></li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 15 Solution</h2>
+<pre><code>    public static int compareTo(char ch1, char ch2)
+    {
+        if(ch1 &lt; ch2) {
+            return -1;
+        }
+        if(ch1 == ch2) {
+            return 0;
+        }
+        return 1;   
+    }
+</code></pre>
+
+<h2>Exercise 16</h2>
+<p>Write a method to determine if 2 characters are equal, ignoring case.</p>
+<ul>
+<li>The signature is <em>public static boolean isEqualIgnoreCase(char ch1, char ch2)</em><ul>
+<li>return true if <em>ch1</em> is the same as <em>ch2</em> ignoring case<ul>
+<li>Example: if <em>ch1</em> is <strong><em>a</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> return <em>true</em><ul>
+<li>Letter:   a - z, A - Z</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Assume that <em>ch1 and </em>ch2* are letters.</p>
+</li>
+<li>
+<p>Thus, for example, if <em>ch1</em> is <strong><em>A</em></strong> and <em>ch2</em> is <strong><em>a</em></strong> then return <em>true</em>.</p>
+</li>
+</ul>
+<h2>Exercise 16 Solution 1</h2>
+<pre><code>    public static boolean isEqualIgnoreCase(char ch1, char ch2)
+    {
+        return Character.toUpperCase(ch1) == Character.toUpperCase(ch2);
+    }
+</code></pre>
+
+<h2>Exercise 16 Solution 2</h2>
+<pre><code>    public static boolean isEqualIgnoreCase(char ch1, char ch2)
+    {
+        if((ch1 == ch2) || Math.abs(ch1 - ch2) == 32)
+        {
+            return true;
+        }
+        return false;
+    }
+</code></pre>
+
+<h2>Exercise 17</h2>
+<p>Write a method to determine if a character is either a letter or a digit.</p>
+<ul>
+<li>The signature is<em>public static boolean isLetterOrDigit(char ch)</em><ul>
+<li>return <em>true</em> if <em>ch</em> is either a letter or a digit<ul>
+<li>Letter:   a - z, A - Z</li>
+<li>Digit:    0 - 9 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 17 Solution 1</h2>
+<pre><code>    public static boolean isLetterOrDigit(char ch)
+    {
+       return Character.isLetter(ch) || Character.isDigit(ch);
+    }
+</code></pre>
+
+<h2>Exercise 17 Solution 2</h2>
+<pre><code>    public static boolean isLetterOrDigit(char ch)
+    {
+        if((ch &gt; 64 &amp;&amp; ch &lt; 91) //Upper case letter
+        || (ch &gt; 96 &amp;&amp; ch &lt; 123)//Lower case letter
+        || (ch &gt; 47 &amp;&amp; ch &lt; 58))//Digit 
+        {
+            return true;
+        }
+        return false;
+    }
+</code></pre>
+
+<h2>Exercise 18</h2>
+<p>Write a method to convert a character as follows:</p>
+<ul>
+<li>if the character is lower case convert it to upper case</li>
+<li>if the character is upper case convert it to lower case<ul>
+<li>return the converted letter<ul>
+<li>Example: if <em>ch</em> is <strong><em>a</em></strong> return <strong><em>A</em></strong></li>
+<li>Example: if <em>ch</em> is <strong><em>A</em></strong> return <strong><em>a</em></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The method signature is <em>public static char toggleCase(char ch)</em>.</li>
+<li>Assume that <em>ch</em> is a letter.</li>
+<li>Use methods from <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html"><em>Character</em></a> class</li>
+</ul>
+<h2>Exercise 18 Solution</h2>
+<pre><code>    public static char toggleCase(char ch)
+    {
+        if(Character.isLowerCase(ch))
+        {
+            return Character.toUpperCase(ch);
+        }
+        return Character.toLowerCase(ch);
+    }
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

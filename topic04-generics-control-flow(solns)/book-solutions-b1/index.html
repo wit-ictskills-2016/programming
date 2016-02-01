@@ -1,0 +1,511 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      4.1: Grouping Objects (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Grouping-objects-solutions-[1-7]">
+        Grouping-objects-solutions-[1-7]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Grouping-objects-solutions-[1-7]">
+    <h1>Solutions</h1>
+<p>These are the solutions to the first seven exercises set in the session <em>Grouping Objects</em> and relating to </p>
+<ul>
+<li>arrays</li>
+<li>lists</li>
+<li>iterators</li>
+<li>control flow</li>
+<li>basic sorting</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p>Write a method named <em>printNumbersReverse</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers</em> in Loops class.</p>
+<p>Use a <em>for</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse(int n)</em></li>
+</ul>
+<p>Here is the existing <em>printNumbers</em> method:</p>
+<pre><code>/**
+ * Print numbers from 0 to n-1 using for loop
+ * @param n the terminating value 
+ */
+public  void printNumbers(int n)
+{
+    System.out.println(&quot;Numbers from 1 to &quot; + n);
+    for(int i = 0; i &lt; n; i += 1)
+    {
+        System.out.println(i);
+    }
+}
+</code></pre>
+
+<h2>Solution</h2>
+<p>In the method above, the <em>for</em> loop commences at <em>i = 0</em> and proceeds in increments of 1 through successive loops until the terminating value is reached, namely <em>n-1</em>.</p>
+<p>At each iteration the value of <em>i</em> is printed.</p>
+<p>In this exercise we simply reverse the process so that </p>
+<ul>
+<li>instead of the loop counter <em>i</em> beginning at zero, it begins at <em>n-1</em> and decrements by 1 in each iteration</li>
+<li>while the loop counter is greater than or equal to zero the program prints its value.</li>
+<li>when the loop counter reaches zero the looping terminates.</li>
+</ul>
+<p>Here is the code:</p>
+<pre><code>/**
+ * Print numbers from n-1 to 0
+ */
+public void printNumbersReverse(int n)
+{
+    System.out.println(&quot;Numbers from &quot; + (n-1) + &quot; to 0&quot;);
+    for(int i = n-1; i &gt;= 0; i -= 1)
+    {
+        System.out.println(i);
+    }
+}
+</code></pre>
+
+<p>The minimum value of <em>n</em> for which the method produces meaningful resuls is 1.</p>
+<p><img alt="Figure 1: printNumbersReverse using for loop" src="img/ex0101.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p>Write a method named <em>printNumbersReverse2</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers2</em>.</p>
+<p>Use a <em>while</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse2(int n)</em></li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the code to print the numbers <em>n-1</em> to 0 in descending order using a <em>while</em> loop:</p>
+<pre><code>    /**
+     * Print numbers from n-1 to 0
+     */
+    public void printNumbersReverse2(int n)
+    {
+        System.out.println(&quot;Numbers from &quot; + (n-1) + &quot; to 0&quot;);
+        int i = n-1;
+        while(i &gt;= 0)
+        {
+            System.out.println(i);
+            i -= 1;
+        }
+    }
+}
+</code></pre>
+
+<ul>
+<li>
+<p>The program declares and initializes a loop counter:</p>
+<ul>
+<li><em>int i = n-1;</em></li>
+</ul>
+</li>
+<li>
+<p>Then the expression <em>i &gt;= 0</em> is evaluated.</p>
+<ul>
+<li>If the expression evaluates to <em>true</em> the body of the loop is executed<ul>
+<li>The value of <em>i</em> is  printed</li>
+</ul>
+</li>
+<li>When <em>i &gt;= 0</em> evaluates to <em>false</em> then the looping terminates.<ul>
+<li>This occurs when <em>i</em> is - 1.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The minimum value of <em>n</em> for which the method produces meaningful resuls is 1.</p>
+<p><img alt="Figure 1: printNumbersReverse2 using while loop" src="img/ex0201.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<p>Write a method named <em>printNumbersReverse3</em> that prints the numbers between 0 and n-1 inclusive in descending (reverse) order.</p>
+<p>Use as a model the existing method <em>printNumbers3</em>.</p>
+<p>Use a <em>do-while</em> loop.</p>
+<p>Here is the method signature:</p>
+<ul>
+<li><em>public void printNumbersReverse3(int n)</em></li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the code to print numbers in reverse order from <em>n-1</em> to 0 using a <em>do-while</em> loop.</p>
+<pre><code>    /**
+     * Print numbers from n-1 to 0
+     */
+    public void printNumbersReverse3(int n)
+    {
+        System.out.println(&quot;Numbers from &quot; + (n-1) + &quot; to 0&quot;);
+        int i = n-1;
+        do
+        {
+            System.out.println(i);
+            i -= 1;
+        }while(i &gt;= 0);
+    }
+</code></pre>
+
+<p>The minimum value of <em>n</em> for which the method produces meaningful resuls is 1.</p>
+<p><img alt="Figure 1: printNumbersReverse3 using do-while loop" src="img/ex0301.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<p>Add a method to the Collection class named <em>convertToArray</em>.</p>
+<ul>
+<li>The method signature is <em>public void convertToArray()</em>.</li>
+<li>The purpose of the method is to demonstrate the usefulness of using an array.</li>
+</ul>
+<p>Here is the initial method. Add this to the Collection class.</p>
+<ul>
+<li>Compile</li>
+<li>Create Collection object on the object bench</li>
+<li>Invoke <em>convertToArray</em><ul>
+<li>The output should correspond to that shown in Figure 1</li>
+</ul>
+</li>
+</ul>
+<pre><code>public void convertToArray()
+{
+    double d1 = 100.01;
+    double d2 = 311.64;
+    double d3 = 206.36;
+    double d4 = 721.64;
+    double d5 = 951.56;
+
+    System.out.println(&quot;Value of d1 is &quot; + d1);
+    System.out.println(&quot;Value of d2 is &quot; + d2);
+    System.out.println(&quot;Value of d3 is &quot; + d3);
+    System.out.println(&quot;Value of d4 is &quot; + d4);
+    System.out.println(&quot;Value of d5 is &quot; + d5); 
+}
+</code></pre>
+
+<p><img alt="Figure 1: Output from *convertArray* method invovation" src="img/ex0401.png"></p>
+<p>The exercise comprises the following:</p>
+<ul>
+<li>Replace the double variables with a single double array.<ul>
+<li>Example: double[] arDouble</li>
+</ul>
+</li>
+<li>Use the <em>new</em> operator appropriately</li>
+<li>Initialize the array with the same values as for the individual variables.</li>
+<li>Use a for loop to print the array.</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the refactored method:</p>
+<pre><code>    public void convertToArray()
+    {
+        int size = 5;
+        double[] d = new double[size];
+
+        d[0] = 100.01;
+        d[1] = 311.64;
+        d[2] = 206.36;
+        d[3] = 721.64;
+        d[4] = 951.56;
+
+        System.out.println(&quot;Value of d1 is &quot; + d[0]);
+        System.out.println(&quot;Value of d2 is &quot; + d[1]);
+        System.out.println(&quot;Value of d3 is &quot; + d[2]);
+        System.out.println(&quot;Value of d4 is &quot; + d[3]);
+        System.out.println(&quot;Value of d5 is &quot; + d[4]); 
+    }
+</code></pre>
+
+<p>We have created an array of type <em>double</em>.</p>
+<ul>
+<li>The size of the array is 5.</li>
+<li>We have chosen <em>d</em> as the array variable name to closely correspond the variable names in the original code: <em>d1</em>, <em>d2</em>, and so on.</li>
+<li>We have then assigned the original double values to the individual element slots in the array.<ul>
+<li>See Figure 2 as revision and refer to the original Java Trails page that deals with arrays <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html">here</a>.</li>
+</ul>
+</li>
+<li>Compare the differences between printing out the values in the original code and the refactored code:<ul>
+<li>In the original code, for example: <em>d1</em> is the first variable.</li>
+<li>In the refactored code, <em>d[0]</em> now references the same value as previously did <em>d1</em>.<ul>
+<li>Remember: arrays are zero index based.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Array indexing" src="img/ex0402.png"></p>
+<p><img alt="Figure 3: output array type double" src="img/ex0403.png"></p>
+<p>A more compact solution pair is provided here, in one of which cases we use double literals.</p>
+<pre><code>    // Using double array objects
+    public static void convertToArray()
+    {
+        double[] data = new double[] {100.01, 311.64, 206.36, 721.64, 951.56};
+
+        for (int i = 0; i &lt; data.length; i += 1)
+        {
+            System.out.println(&quot;Value of d&quot; + i + &quot; is &quot; + data[i]); 
+        }
+    }
+</code></pre>
+
+<pre><code>    // Using double literals
+    public static void convertToArray2()
+    {
+        double[] data = {100.01, 311.64, 206.36, 721.64, 951.56};
+
+        for (int i = 0; i &lt; data.length; i += 1)
+        {
+            System.out.println(&quot;Value of d&quot; + i + &quot; is &quot; + data[i]); 
+        }
+    }
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 5</h1>
+<p>Repeat exercise 4 but using a <em>for-each</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray2()</em></li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the refactored method using a <em>for-each</em> loop to print the array:</p>
+<pre><code>    public void convertToArray2()
+    {
+        int size = 5;
+        double[] d = new double[size];
+
+        d[0] = 100.01;
+        d[1] = 311.64;
+        d[2] = 206.36;
+        d[3] = 721.64;
+        d[4] = 951.56;
+
+        int i = 0;
+        for(double element : d)
+        {
+            System.out.println(&quot;Value of d[&quot; + i + &quot;] is &quot; + element);
+            i += 1;
+        }
+    }
+</code></pre>
+
+<p>Notice that we have been obliged to introduce a loop counter so as to distinguish between each element in the printed label preceeding each output value, example:</p>
+<p><em>Value of d[1] is 100.41</em></p>
+<p><em>Value of d[2] is 311.64</em></p>
+<ul>
+<li>This suggests that in practice it would have been more appropriate to use a conventional <em>for</em> loop.</li>
+</ul>
+<p><img alt="Figure 1: Output array using enhanced for loop" src="img/ex0501.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Exercise 6</h1>
+<p>Repeat exercise 4 but using a <em>while</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray3()</em></li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the method <em>convertToArray4()</em> in which a <em>while</em> loop is used to print the contents of the array of type <em>double</em>:</p>
+<pre><code>    public void convertToArray3()
+    {
+        int size = 5;
+        double[] d = new double[size];
+
+        d[0] = 100.01;
+        d[1] = 311.64;
+        d[2] = 206.36;
+        d[3] = 721.64;
+        d[4] = 951.56;
+
+        System.out.println(&quot;Output array of type double using  while loop&quot;);
+        int i = 0;
+        while(i &lt; d.length)
+        {
+            System.out.println(&quot;Value of d[&quot; + i + &quot;] is &quot; + d[i]);
+            i += 1;
+        }
+    }
+</code></pre>
+
+<p><img alt="Figure 1: Output array using while loop" src="img/ex0601.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Exercise 7</h1>
+<p>Repeat exercise 4 but using a <em>do-while</em> loop to display the values.</p>
+<ul>
+<li>Use a new method with signature <em>public void convertToArray4()</em></li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the method <em>convertToArray4()</em> in which a <em>do-while</em> loop is used to print the contents of the array of type <em>double</em>:</p>
+<pre><code>    public void convertToArray4()
+    {
+        int size = 5;
+        double[] d = new double[size];
+
+        d[0] = 100.01;
+        d[1] = 311.64;
+        d[2] = 206.36;
+        d[3] = 721.64;
+        d[4] = 951.56;
+
+        System.out.println(&quot;Output array of type double using do-while loop&quot;);
+        int i = 0;
+        do
+        {
+            System.out.println(&quot;Value of d[&quot; + i + &quot;] is &quot; + d[i]);
+            i += 1;
+        }while(i &lt; d.length);
+    }
+</code></pre>
+
+<p><img alt="Figure 1: Output array using do-while loop" src="img/ex0701.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

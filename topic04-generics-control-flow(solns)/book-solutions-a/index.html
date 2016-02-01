@@ -1,0 +1,368 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      4.1: Grouping Objects (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Notebook_solutions-[1-3]">
+        Notebook_solutions-[1-3]
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Notebook_solutions-[1-3]">
+    <h1>Solutions</h1>
+<p>These are the solutions to the exercises set in the session <em>Grouping Objects</em> and relating to </p>
+<ul>
+<li>BlueJ Notebook class</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p>Write a method <em>listNotesFor</em> to process all the elements in the ArrayList of notes in the Notebook class and print all the notes.</p>
+<p>Test the method by:</p>
+<ul>
+<li>Adding the method to Notebook source code.</li>
+<li>Compiling the source.</li>
+<li>Creating a Notebook object.</li>
+<li>Initializing, using method such as <em>initializeTestData</em>, with sample data.</li>
+<li>Invoking <em>listNotesFor</em> and verifying the correctness of the output.</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the method <em>listNotesFor</em>:</p>
+<pre><code>    public void listNotesFor()
+    {
+        for(int i = 0; i &lt; notes.size(); i += 1)
+        {
+            System.out.println(notes.get(i));
+        }
+    }
+</code></pre>
+
+<p>Recall <em>notes</em> is an ArrayList of String types.</p>
+<p>The for loop can be expressed in a general sense as follows:</p>
+<p><img alt="Figure 1: for loop" src="img/ex0101.png"></p>
+<p>Specifically, in the method <em>listNotesFor</em>, this generalization translates to:</p>
+<ul>
+<li><em>initialization</em>: <ul>
+<li>a local variable <strong>i</strong> is declared and initialized to zero.</li>
+</ul>
+</li>
+<li><em>termination</em>: <ul>
+<li>a check is performed to determine if <em>i</em> is less than the number of notes</li>
+<li>if it less then the expression in the following block is executed, namely,<ul>
+<li><em>System.out.println(notes.get(i));</em></li>
+<li>The effect of this statement is to retrieve and print the note at position <em>i</em> in the ArrayList.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>increment</em>:<ul>
+<li>the variable <em>i</em> is then incremented by 1<ul>
+<li>the termination condition is checked to determine if any elements remain in which case another element is printed.</li>
+</ul>
+</li>
+<li>looping continues until the termination expression resolves to <em>false</em> at which time the looping ends.</li>
+</ul>
+</li>
+</ul>
+<p>Test the method as prescribed:</p>
+<ul>
+<li>Add to the method to Notebook source code </li>
+<li>Compile.</li>
+<li>Instantiate Notebook class</li>
+<li>Initialize by invoking <em>initializeTestData</em> on the Notebook object</li>
+<li>Verify the resulting printout is correct (Figure 2).</li>
+</ul>
+<p><img alt="Figure 2: Testing listNotesFor" src="img/ex0102.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p>Write a Notebook method <em>public boolean searchWhile(String searchString)</em> similar in effect to that written earlier in the lab but using a <em>while</em> loop to process the array of notes.</p>
+<p>Test the method by:</p>
+<ul>
+<li>Adding the method to Notebook source code.</li>
+<li>Compiling the source.</li>
+<li>Creating a Notebook object.</li>
+<li>Initializing with sample data using a method such as <em>initializeTestData</em>.</li>
+<li>Searching for the presence of a string that exists in the sample data and observing the result.</li>
+<li>Searching for the presence of a string that does not exist in the sample data and observing the result.</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the method <em>searchString</em> developed in step 09 in the earlier lab:</p>
+<pre><code>public boolean search(String searchString)
+{
+    Iterator&lt;String&gt; it = notes.iterator();
+    while (it.hasNext())
+    {
+        String string = it.next();
+        if (string.contains(searchString))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+</code></pre>
+
+<p>Here is the modified version using a <em>while</em> loop rather than an <em>Iterator</em>:</p>
+<pre><code>    public boolean searchWhile(String searchString)
+    {
+        int i = 0;
+        while (i &lt; notes.size())
+        {
+            String note = notes.get(i);
+            if (note.contains(searchString))
+            {
+                return true;
+            }
+            i += 1;
+        }
+        return false;
+    }
+</code></pre>
+
+<p>The <em>while</em> loop can be expressed in a general sense as follows:</p>
+<p><img alt="Figure 1: while loop" src="img/ex0201.png"></p>
+<p>We will examine key aspects of the method now:</p>
+<ul>
+<li><em>int i = 0;</em><ul>
+<li>set an element or note counter to zero</li>
+</ul>
+</li>
+<li><em>while (i &lt; notes.size())</em><ul>
+<li>the subsquent block is executed provided <strong>i</strong> is less than the number of notes</li>
+</ul>
+</li>
+<li><em>String note = notes.get(i);</em><ul>
+<li>copy the note at element position <strong>i</strong> in the ArrayList into a String variable called <em>note</em></li>
+</ul>
+</li>
+<li><em>if (note.contains(searchString))</em><ul>
+<li>we use a method <em>contains</em> that is part of the String library to check if the actual parameter <em>searchString</em> is contained within the current note<ul>
+<li>if so, the program immediately returns <em>true</em> meaning the search has been successful.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>if the loop processes all the elements without discovering the search string then the program returns <em>false</em> indicating it has failed to find the supplied search string.</li>
+</ul>
+<p>Test by </p>
+<ul>
+<li>adding the method to the Notebook source</li>
+<li>compiling</li>
+<li>instantiating a Notebook object</li>
+<li>Initializing test data</li>
+<li>Invoking <em>searchWhile</em><ul>
+<li>Use <em>Lecture</em>, for example, as a parameter</li>
+<li>We know that <em>Lecture</em> is in at least one note</li>
+<li>Observe the output is <em>true</em> for this parameter (Figure 2).</li>
+</ul>
+</li>
+<li>Repeat but search for a string we know is not in the notes and verify <em>false</em> is returned.</li>
+</ul>
+<p><img alt="Figure 2: Testing searchWhile" src="img/ex0202.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<p>Write a Notebook method <em>public boolean searchForEach(String searchString)</em> similar in effect to that written earlier in the lab but using a <em>for-each</em> loop to process the array of notes.</p>
+<p>Test the method by:</p>
+<ul>
+<li>Adding the method to Notebook source code.</li>
+<li>Compiling the source.</li>
+<li>Creating a Notebook object.</li>
+<li>Initializing with sample data using a method such as <em>initializeTestData</em>.</li>
+<li>Searching for the presence of a string that exists in the sample data and observing the result.</li>
+<li>Searching for the presence of a string that does not exist in the sample data and observing the result.</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the required method followed by an explanation of key parts:</p>
+<pre><code>     public boolean searchForEach(String searchString)
+    {
+        for(String note : notes)
+        {
+            if(note.contains(searchString))
+            {
+               return true;
+            }
+        }
+        return false;
+    } 
+</code></pre>
+
+<p>Here is an example of the use of the <em>for each</em> or <em>enhanced for</em> loop as demonstrated in <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">Java Tutorials</a>, the same principal applying for collection types such as ArrayList and so on :</p>
+<p><img alt="Figure 1: for-each (enhanced-for) loop" src="img/ex0301.png"></p>
+<ul>
+<li>the method <em>searchForEach</em> uses a <em>for each</em>, sometimes called an <em>enhanced for</em>, statement.</li>
+<li><em>for(String note : notes)</em><ul>
+<li>sets up a loop that creates a local variable String to contain a note from the ArrayList</li>
+<li>the string is created with a note  and the following block of code is executed<ul>
+<li>the String method <em>contains</em> is used to determine if the search string exists in the current note</li>
+<li>if it exists, the method immediately returns <em>true</em> indicating success.</li>
+<li>if not, the next note, if it exists, is copied to <em>String note</em> from the list</li>
+</ul>
+</li>
+<li>all the notes are checked in turn</li>
+<li>if the search string is not found when all the notes have been checked<ul>
+<li>then the program returns <em>false</em> indicating failure to find the search string.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Test by </p>
+<ul>
+<li>adding the method to the Notebook source</li>
+<li>compiling</li>
+<li>instantiating a Notebook object</li>
+<li>Initializing test data</li>
+<li>Invoking <em>searchForEach</em><ul>
+<li>Use <em>Lecture</em>, for example, as a parameter</li>
+<li>We know that <em>Lecture</em> is in at least one note</li>
+<li>Observe the output is <em>true</em> for this parameter (Figure 2).</li>
+</ul>
+</li>
+<li>Repeat but search for a string we know is not in the notes and verify <em>false</em> is returned (Figure 3).</li>
+</ul>
+<p><img alt="Figure 2: for-each successful search" src="img/ex0302.png"></p>
+<p><img alt="Figure 3: for-each unsuccessful search" src="img/ex0303.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

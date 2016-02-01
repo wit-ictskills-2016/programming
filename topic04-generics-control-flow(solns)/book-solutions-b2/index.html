@@ -1,0 +1,738 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      4.1: Grouping Objects (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Grouping-objects-solutions-[8-13].md">
+        Grouping-objects-solutions-[8-13].md
+    </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+      <a class="item" data-tab="10">
+        10
+      </a>
+      <a class="item" data-tab="11">
+        11
+      </a>
+      <a class="item" data-tab="12">
+        12
+      </a>
+      <a class="item" data-tab="13">
+        13
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Grouping-objects-solutions-[8-13].md">
+    <h1>Solutions</h1>
+<p>These are the remaining solutions to the exercises set in the session <em>Grouping Objects</em> and relating to </p>
+<ul>
+<li>arrays</li>
+<li>lists</li>
+<li>iterators</li>
+<li>control flow</li>
+<li>basic sorting</li>
+</ul>
+<p>-</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Exercise 8 (Advanced)</h1>
+<p>Consider this list of primitive type <em>double</em> values:</p>
+<pre><code>    double d1 = 100.01;
+    double d2 = 311.64;
+    double d3 = 206.36;
+    double d4 = 721.64;
+    double d5 = 951.56;
+</code></pre>
+
+<ul>
+<li>Store these values in an ArrayList.<ul>
+<li>Warning: primitives cannot be stored directly in an ArrayList.<ul>
+<li>ArrayList&lt;double>   : incorrect</li>
+<li>ArrayList&lt;Double>   : correct</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Use a method with signature <em>public void convertToArrayList()</em></p>
+<p>Print out the list of elements using an iterator to traverse the ArrayList.</p>
+<h2>Solution</h2>
+<ul>
+<li>Open the <em>algorithm</em> project contained in your folder <em>workspaceBlueJ/session04</em>.</li>
+<li>Open the <em>Collections</em> class source code in the editor.<ul>
+<li>Add a method <em>public void convertToArrayList</em> in stages below, compiling each stage.</li>
+</ul>
+</li>
+</ul>
+<pre><code>    public void convertToArrayList()
+    {
+
+    }
+</code></pre>
+
+<ul>
+<li>Add the sample data :</li>
+</ul>
+<pre><code>    public void convertToArrayList()
+    {   
+        double d1 = 100.01;
+        double d2 = 311.64;
+        double d3 = 206.36;
+        double d4 = 721.64;
+        double d5 = 951.56;
+    }
+</code></pre>
+
+<p>Declare and allocate memory to an ArrayList<Double>.</p>
+<pre><code>    public void convertToArrayList()
+    {   
+        double d1 = 100.01;
+        double d2 = 311.64;
+        double d3 = 206.36;
+        double d4 = 721.64;
+        double d5 = 951.56;
+
+        ArrayList&lt;Double&gt; listDouble = new ArrayList&lt;&gt;();
+    }
+</code></pre>
+
+<p>An import statement is required for the ArrayList:</p>
+<pre><code>import java.util.ArrayList;
+</code></pre>
+
+<p>We can add a <em>double</em> type directly to the ArrayList<Double> array with the following statement:</p>
+<p><em>listDouble.add(d1);</em></p>
+<p>where <em>listDouble</em> is the ArrayList<Double> and <em>d1</em> is a primitive <em>double</em> type variable as above.</p>
+<p>This is possible thanks to a Java feature known as <strong>Autoboxing</strong>. See <a href="http://docs.oracle.com/javase/tutorial/java/data/autoboxing.html">here</a> for detailed information in the <em>Java Tutorials</em> series on this topic.</p>
+<p>The opposite of <em>Autoboxing</em> is <strong>Unboxing</strong>. Here is an example:</p>
+<p><em>double dval = listDouble.get(4);</em></p>
+<p>In this example, again, <em>listDouble</em> is the ArrayList<Double> and so its elements are type <em>Double</em> : yet, as can be seen, one of its Double elements can legally be assigned to a primitive <em>double</em> variable.</p>
+<pre><code>    public void convertToArrayList()
+    {   
+        double d1 = 100.01;
+        double d2 = 311.64;
+        double d3 = 206.36;
+        double d4 = 721.64;
+        double d5 = 951.56;
+
+        ArrayList&lt;Double&gt; listDouble = new ArrayList&lt;&gt;();
+
+        listDouble.add(d1);
+        listDouble.add(d2);
+        listDouble.add(d3);
+        listDouble.add(d4);
+        listDouble.add(d5);
+    }
+</code></pre>
+
+<p>Finally, we print out the values using an iterator as required. </p>
+<p>Here is the complete method.</p>
+<pre><code>    public void convertToArrayList()
+    {   
+        double d1 = 100.01;
+        double d2 = 311.64;
+        double d3 = 206.36;
+        double d4 = 721.64;
+        double d5 = 951.56;
+
+        ArrayList&lt;Double&gt; listDouble = new ArrayList&lt;&gt;();
+
+        listDouble.add(d1);
+        listDouble.add(d2);
+        listDouble.add(d3);
+        listDouble.add(d4);
+        listDouble.add(d5);
+
+        Iterator&lt;Double&gt; it = listDouble.iterator();
+        while(it.hasNext())
+        {
+            System.out.println(&quot;Value of double variable is &quot;+it.next());
+        }
+    }
+</code></pre>
+
+<p><img alt="Figure 1: convertToArrayList" src="img/ex0801.png">!</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Exercise 9</h1>
+<p>Write a class <em>OrderCheck4</em> using the class <em>OrderCheck3</em> that was developed in the lab as a model.</p>
+<p>The purpose of the class is to:</p>
+<ul>
+<li>Accept 4 integers as constructor parameters</li>
+<li>Provide a method to check if the parameters are ordered<ul>
+<li>The signature of the method is <ul>
+<li>public boolean isOrdered()</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the completed <em>OrderCheck3</em> class developed in the lab:</p>
+<pre><code>public class OrderCheck3
+{
+    int a;
+    int b;
+    int c;
+    /**
+     * Constructor
+     * @param a an integer
+     * @param b an integer
+     * @param c an integer
+     */
+    public OrderCheck3(int a, int b, int c)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+   public boolean isOrdered()
+   {
+       return (a &lt; b &amp;&amp; b &lt; c) || (a &gt; b &amp;&amp; b &gt; c);
+   }
+
+}
+</code></pre>
+
+<p>In the <em>algorithm</em> project create a new class <em>OrderCheck4</em>. </p>
+<pre><code>public class OrderCheck4
+{
+
+}
+</code></pre>
+
+<p>Introduce 4 integer fields and a constructor to initialize these:</p>
+<pre><code>public class OrderCheck4
+{
+    int a;
+    int b;
+    int c;
+    int d;
+
+    public OrderCheck4(int a, int b, int c, int d)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+    }
+}
+</code></pre>
+
+<p>Study the method <em>isOrdered</em> in <em>OrderCheck3</em> and apply the same logic but for 4 rather than 3 variables.</p>
+<p>Here is the method we require:</p>
+<pre><code>   public boolean isOrdered()
+   {
+       return (a &lt; b &amp;&amp; b &lt; c &amp;&amp; c &lt; d) || (a &gt; b &amp;&amp; b &gt; c &amp;&amp; c &gt; d);
+   }
+</code></pre>
+
+<p>We check both ascending and descending order.</p>
+<p>Notice that we have surrounded the return statement parts with parentheses.</p>
+<p>The reason for doing so is to comply with a recommendation in the style guide. See Figure 1, an extract from  <a href="archives/java-codeconventions-150003.pdf">Java Code Conventions</a>.</p>
+<p><img alt="Figure 1: Java Code Convention" src="img/ex0901.png">
+The reason that parentheses are not functionally required is to be found by studying the table of Operator Precedence <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html">here</a>, also shown below in Figure 2.</p>
+<p>Notice that the relational operators &lt; and &gt; have higher precedence than the logical operators &amp;&amp; and || and so, for example, a &lt; b and b &lt; c are evaluated before the &amp;&amp; operation is applied which is what we require.</p>
+<p><img alt="Figure 2: Operator Precedence" src="img/ex0902.png"></p>
+<p>Here is the complete class</p>
+<pre><code>public class OrderCheck4
+{
+    int a;
+    int b;
+    int c;
+    int d;
+
+    public OrderCheck4(int a, int b, int c, int d)
+    {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+    }
+
+    public boolean isOrdered()
+    {
+       return (a &lt; b &amp;&amp; b &lt; c &amp;&amp; c &lt; d) || (a &gt; b &amp;&amp; b &gt; c &amp;&amp; c &gt; d);
+    }
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>
+<p>Create OrderCheck4 object</p>
+<ul>
+<li>Use ascending values, for example 1,2,3,4 as in Figure 2.</li>
+<li>Invoke method <em>isOrdered</em>.</li>
+<li>Verify the result (<em>true</em>)</li>
+</ul>
+</li>
+<li>
+<p>Repeat, creating objects descending parameters</p>
+<ul>
+<li>descending, for example, 4,3,2,1</li>
+<li>Invokde <em>isOrdered</em></li>
+<li>Verify correct result (<em>true</em>)</li>
+</ul>
+</li>
+<li>
+<p>Repeat, creating objects non-ordered parameters</p>
+<ul>
+<li>for example, 4,1,3,2</li>
+<li>Invokde <em>isOrdered</em></li>
+<li>Verify correct result (<em>false</em>)</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: OrderCheck4 using ascending values" src="img/ex0903.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="10">
+    <h1>Exercise 10 (Advanced)</h1>
+<ul>
+<li>Write a different version of the sort method in ThreeSort.</li>
+<li>Name the method <em>sort2</em>.</li>
+<li>Use a similar signature to <em>sort</em>, namely:<ul>
+<li><em>public static void sort2(int a, int b, int c)</em></li>
+</ul>
+</li>
+</ul>
+<p>Here is the skeleton of the method: you are asked to complete the missing blocks.</p>
+<pre><code>    public static void sort2(int a, int b, int c)
+    {
+        if(a &lt; b &amp;&amp; a &lt; c) //then a is smallest
+        {
+            if(b &lt; c)// sorted order is a b c
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + b + &quot; &quot; + c);
+            }
+            else //a c b
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + c + &quot; &quot; + b);
+            }
+        }
+        else if (...) // then b is smallest
+        {
+            if(...) // sorted order is b a c
+            {
+                ...             
+            }
+            else// sorted order is b c a
+            {
+                ...              
+            }
+        }  
+        else if (...) // then c is smallest
+        {
+            if(a &lt; b) // sorted order is c a b
+            {
+                ...             
+            }
+            else// c b a 
+            {
+                ...            
+            }
+        } 
+    }
+</code></pre>
+
+<h2>Solution</h2>
+<p>Let's consider the missing code in the first <em>else if</em> block:</p>
+<pre><code>        else if (...) // then b is smallest
+        {
+            if(...) // sorted order is b a c
+            {
+                ...             
+            }
+            else// sorted order is b c a
+            {
+                ...              
+            }
+        }  
+</code></pre>
+
+<p>If b is the smallest </p>
+<ul>
+<li>then it is less than both a and c</li>
+<li>therefore b &lt; a &amp;&amp; b &lt; c</li>
+</ul>
+<p>This allows us to fill in the missing code in the <em>else if(...)</em> statement:</p>
+<pre><code>else if (b &lt; a &amp;&amp; b &lt; c)
+</code></pre>
+
+<p>Notice that it is not necessary to surround <em>b &lt; a</em> nor <em>b &lt; c</em> with parentheses because, as previously discussed, the precedence of relational operators is greater than logical operators and so <em>b &lt; a</em> will be evaluated first rather than, for example <em>a &amp;&amp; b</em> being evaluated first which, were this to be the case, would lead to an incorrect result.</p>
+<p>Next consider the missing code from:</p>
+<pre><code>            if(...) // sorted order is b a c
+            {
+                ...             
+            }
+</code></pre>
+
+<p>Here we are considering the case where the order is <em>b a c</em> :</p>
+<ul>
+<li>so the test is <em>a &lt; c</em>.</li>
+<li>if <em>a</em> is less than <em>c</em> <ul>
+<li>then print the order <em>b a c</em></li>
+</ul>
+</li>
+</ul>
+<pre><code>            if(a &lt; c) // b a c
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + a + &quot; &quot; + c);                
+            }
+</code></pre>
+
+<p>The else block follows logically:</p>
+<ul>
+<li>We know that here <em>b</em> is the smallest</li>
+<li>The two possible orderings are therefore<ul>
+<li><em>b a c</em> </li>
+<li><em>b c a</em></li>
+</ul>
+</li>
+<li>Therefore the order in this, the <em>else</em> block must be <em>b c a</em> since we have already encountered <em>b a c</em>.</li>
+</ul>
+<p>Here then is the completed <em>else if</em> block:</p>
+<pre><code>        else if (b &lt; a &amp;&amp; b &lt; c) // then b is smallest
+        {
+            if(a &lt; c) // b a c
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + a + &quot; &quot; + c);                
+            }
+            else// b c a
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + c + &quot; &quot; + a);                
+            }
+        }  
+</code></pre>
+
+<p>Applying similar reasoning to the the last <em>else if</em> block produces:</p>
+<pre><code>        else if (c &lt; a &amp;&amp; c &lt; b) // then c is smallest
+        {
+            if(a &lt; b) // c a b
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + a + &quot; &quot; + b);                
+            }
+            else// c b a 
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + b + &quot; &quot; + a);                
+            }
+        } 
+</code></pre>
+
+<p>Here is the complete refactored <em>sort2</em>:</p>
+<pre><code>    public static void sort2(int a, int b, int c)
+    {
+        if(a &lt; b &amp;&amp; a &lt; c) //then a is smallest
+        {
+            if(b &lt; c)// a b c
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + b + &quot; &quot; + c);
+            }
+            else //a c b
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + c + &quot; &quot; + b);
+            }
+        }
+        else if (b &lt; a &amp;&amp; b &lt; c) // then b is smallest
+        {
+            if(a &lt; c) // b a c
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + a + &quot; &quot; + c);                
+            }
+            else// b c a
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + c + &quot; &quot; + a);                
+            }
+        }  
+        else if (c &lt; a &amp;&amp; c &lt; b) // then c is smallest
+        {
+            if(a &lt; b) // c a b
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + a + &quot; &quot; + b);                
+            }
+            else// c b a 
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + b + &quot; &quot; + a);                
+            }
+        } 
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="11">
+    <h1>Exercise 11</h1>
+<p>In the <em>algorithm</em> project, create a new class named TestThreeSort.</p>
+<p>Add the following method:</p>
+<pre><code>    public static void test_sort()
+    {
+        System.out.println(&quot;Testing ThreeSort.sort()&quot;);
+        System.out.println(&quot;Sorting Sorted&quot;);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+5+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort(4, 5, 6);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+6+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort(4, 6, 5);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+4+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort(5, 4, 6);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+6+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort(5, 6, 4);    
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+4+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort(6, 4, 5);
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+5+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort(6, 5, 4);       
+    }
+</code></pre>
+
+<p>Invoke the <em>test_sort</em> method.</p>
+<p>Satisfy yourself that the output is correct.</p>
+<h2>Solution</h2>
+<p>Create the class TestThreeSort and add the above method <em>test_sort</em>.</p>
+<ul>
+<li>Right click on the class diagram TestThreeSort</li>
+<li>Since <em>test_sort</em> is a static method we invoke it without instantiating TestThreeSort.<ul>
+<li>Invoke the method</li>
+<li>The output should match that shown in Figure 1.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: TestThreeSort.test_sort()" src="img/ex1101.png"></p>
+<p>We can be reasonably satisfied that method <em>sort</em> in the class ThreeSort works correctly because we have invoked it for all possible combinations the digits 4, 5 and 6 and in each case the numbers were sorted correctly.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="12">
+    <h1>Exercise 12</h1>
+<ul>
+<li>Write a similar method to that in Exercise 9 to test the method <em>sort2</em>. <ul>
+<li>Name it <em>test_sort2</em>.</li>
+</ul>
+</li>
+<li>Invoke <em>test_sort2</em>.</li>
+<li>Compare the output to that from <em>test_sort</em>.<ul>
+<li>The outputs should be the same.</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>The method TestThreeSort.test_sort2() essentially differs from test_sort only in that ThreeSort.sort2 is invoked rather than ThreeSort.sort.</p>
+<p>Here is the method:</p>
+<pre><code>    public static void test_sort2()
+    {
+        System.out.println(&quot;Testing ThreeSort.sort2()&quot;);
+        System.out.println(&quot;Sorting Sorted&quot;);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+5+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort2(4, 5, 6);
+        System.out.print(&quot; &quot;+4 +&quot; &quot;+6+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort2(4, 6, 5);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+4+&quot; &quot;+6+&quot;  &quot;); ThreeSort.sort2(5, 4, 6);
+        System.out.print(&quot; &quot;+5 +&quot; &quot;+6+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort2(5, 6, 4);    
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+4+&quot; &quot;+5+&quot;  &quot;); ThreeSort.sort2(6, 4, 5);
+        System.out.print(&quot; &quot;+6 +&quot; &quot;+5+&quot; &quot;+4+&quot;  &quot;); ThreeSort.sort2(6, 5, 4);        
+    }
+</code></pre>
+
+<ul>
+<li>Right click on the class diagram TestThreeSort<ul>
+<li>Invoke the static method <em>test_sort2</em></li>
+<li>The output should match that shown in Figure 1.<ul>
+<li>The output in Figure 1 matches that in TestThreeSort.sort thus providing reasonable assurance that both methods operate on data to the same effect.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: TestThreeSort.test_sort()" src="img/ex1201.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="13">
+    <h1>Exercise 13</h1>
+<p>Study both methods in ThreeSort: <em>sort</em> and <em>sort2</em>.</p>
+<ul>
+<li>Which method <ul>
+<li>is easier to understand and explain to others?</li>
+<li>would you prefer to maintain?</li>
+</ul>
+</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the method sort:</p>
+<pre><code>    public static void sort(int a, int b, int c)
+    {
+        // determine smallest and largest of three
+        int smallest = Math.min(a, Math.min(b, c));
+        int biggest = Math.max(a, Math.max(b, c));
+
+        //discover the middle number   
+        int tmp1 = Math.min(Math.max(a, b), Math.max(a, c));
+        int tmp2 = Math.min(Math.max(a, b), Math.max(b, c));
+        int middle = Math.min(tmp1, tmp2); 
+
+        System.out.println(&quot;&quot; + smallest + &quot; &quot; + middle + &quot; &quot; + biggest);  
+    }
+</code></pre>
+
+<p>Here is the method sort2:</p>
+<pre><code>public static void sort2(int a, int b, int c)
+    {
+        if(a &lt; b &amp;&amp; a &lt; c) //then a is smallest
+        {
+            if(b &lt; c)// a b c
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + b + &quot; &quot; + c);
+            }
+            else //a c b
+            {
+                System.out.println(&quot;&quot; + a + &quot; &quot; + c + &quot; &quot; + b);
+            }
+        }
+        else if (b &lt; a &amp;&amp; b &lt; c) // then b is smallest
+        {
+            if(a &lt; c) // b a c
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + a + &quot; &quot; + c);                
+            }
+            else// b c a
+            {
+                System.out.println(&quot;&quot; + b + &quot; &quot; + c + &quot; &quot; + a);                
+            }
+        }  
+        else if (c &lt; a &amp;&amp; c &lt; b) // then c is smallest
+        {
+            if(a &lt; b) // c a b
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + a + &quot; &quot; + b);                
+            }
+            else// c b a 
+            {
+                System.out.println(&quot;&quot; + c + &quot; &quot; + b + &quot; &quot; + a);                
+            }
+        } 
+    }
+</code></pre>
+
+<p>Certainly the first method is the more elegant but whether it is easier to understand and thus easier to maintain is a question that is left to you to answer.</p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
