@@ -1,0 +1,612 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-1
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-1">
+        Assignment-1
+    </a>
+      <a class="item" data-tab="Guidelines">
+        Guidelines
+      </a>
+      <a class="item" data-tab="Question-1">
+        Question-1
+      </a>
+      <a class="item" data-tab="Question-2">
+        Question-2
+      </a>
+      <a class="item" data-tab="Question-3">
+        Question-3
+      </a>
+      <a class="item" data-tab="Question-4">
+        Question-4
+      </a>
+      <a class="item" data-tab="Question-5">
+        Question-5
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-1">
+    <h1>Readme</h1>
+<p>Assignment 1: This assignment is based on materials contained in the slide decks and labs in the first 4 topics, namely, <em>Introduction to Java programming language</em>, <em>Analysis &amp; refactoring class</em>, <em>Object Interaction</em> and <em>Grouping Objects</em>.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Guidelines">
+    <h1>Setup</h1>
+<p>Starter code is available to download at the beginning of each question.</p>
+<p>We suggest you create a folder name <em>assignment-1</em> (within a sub-folder <em>assignments</em>) into which you download the starter code. Your directory structure might be as depicted in Figure 1. </p>
+<p><img alt="Figure 1: Suggested directory structure" src="img/readme01.png"></p>
+<h2>Assignment completion guidelines</h2>
+<ul>
+<li>Ensure all your Java compiles. Any classes that fail to compile will not be graded.</li>
+<li>Ensure that all instantiations and methods execute without error.</li>
+<li>All code developed by you should be styled and documented using as a model the Cone class which is located in Q1_Sphere</li>
+<li>Submission material:<ul>
+<li>Complete the assignment by modifying the starter code you download to the folder <em>assignments-1</em> as required in the questions that follow.</li>
+<li>When you are ready to submit, remove the original downloaded zip files and then compress the folder <em>assignments-1</em>.</li>
+<li>The starter code zip files should be removed from <em>assignment-1</em> folder once expanded so as to avoid inadvertently uploading them as part of your submission.</li>
+<li>Do not compress the individual question project folders. Simply compress the containing folder <em>assignment-1</em> and then upload the single resulting file <em>assignment-1.zip</em>.</li>
+<li>Each student's file will be automatically stored in separate folders on Moodle thus ensuring naming conflicts will not arise.</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Question-1">
+    <h1>Question 1</h1>
+<p>Starter code is available <a href="archives/Q1_Sphere.zip">here</a>.</p>
+<p>Develop a Sphere class with the following Application Programming Interface (API):</p>
+<pre><code>  public Sphere() // set the default value of the radius to 10.0
+  public Sphere(double radius)
+  public double surfaceArea() // surface area of sphere 
+  public double volume() // the volume of sphere 
+  public double greatCircle() // circumference of great circle
+  public void changeSize(int radius) // facilitates radius reset
+  public void getNumberSpheres(); // number of Sphere objects created
+
+</code></pre>
+
+<p>Do not introduce any of the graphics methods present in the BlueJ classes that we encountered in the labs.</p>
+<p>Use package private access control for instance and class variables.</p>
+<p>One instance variable is required, the radius of the sphere:</p>
+<pre><code>double radius;
+</code></pre>
+
+<p>Use a class variable to maintain a count of the number of Sphere objects created. </p>
+<ul>
+<li>Initialize and increment this appropriately.</li>
+</ul>
+<pre><code>static int numberSpheres;
+</code></pre>
+
+<p>Avoid code duplication in the constructors by implementing and invoking a private method <em>setState</em>:</p>
+<pre><code>private void setState(double radius)
+</code></pre>
+
+<p>Do not rely on the default values of primitive variables. Instead, where necessary, set them equal to a specific value of your choosing.</p>
+<p>Apply style and documentation matching the accompanying <em>Cone</em> class provided.</p>
+<p>Use the Math library to evaluate geometric formulae:</p>
+<p><img alt="Figure 1: Geometric formulae" src="img/03.png"></p>
+<p>Enforce a condition rendering it impossible for a user to successfully input a negative number as an argument (actual parameter).</p>
+<ul>
+<li>If a user attempts to enter a negative number provide a short warning message.</li>
+<li>Provide a private method <em>boolean isValid(double value)</em> within which you check that each inputted <em>value</em> is valid.</li>
+</ul>
+<pre><code>private boolean isValid(double value)
+</code></pre>
+
+<p>The method TestSphere.testAll() should generate output as shown in Figure 2.</p>
+<p>TestSphere will not compile until Sphere has been fully implemented.</p>
+<p><img alt="Figure 2: Test Sphere class behaviour" src="img/10.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Question-2">
+    <h1>Question 2</h1>
+<p>Starter code is available <a href="archives/Q2_Arrays.zip">here</a>.</p>
+<p>Open the <em>DemoArray</em> class in the <em>arrays</em> project.</p>
+<h2>2.1</h2>
+<p>In the default constructor:</p>
+<ul>
+<li>Initialize the <em>intArray</em> using the instance variable <em>size</em> to set the capacity of the array. </li>
+<li>Hint: use the <em>new</em> operator.</li>
+</ul>
+<p>Write a method <em>demoArray</em> in which you:</p>
+<ul>
+<li>Use a <em>for</em> loop to initialize each element in the array with the following value:<ul>
+<li>100 + i</li>
+<li>where <em>i</em> is the index you use in the <em>for</em> loop</li>
+</ul>
+</li>
+<li>Use a second <em>for</em> loop to output the integers.<ul>
+<li>See Figure 1.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: An array of integers" src="img/Q601.png"></p>
+<h2>2.2</h2>
+<p>Write a method <em>demoArray2</em> in which you:</p>
+<ul>
+<li>Use a <em>while</em> loop to initialize each element in the array with the following value:<ul>
+<li>200 + 2*i</li>
+<li>where <em>i</em> is the index you use in the <em>while</em> loop</li>
+</ul>
+</li>
+<li>Use a second <em>while</em> loop to output the integers.<ul>
+<li>See Figure 2.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: An array of integers" src="img/Q602.png"></p>
+<h2>2.3</h2>
+<p>Write a method <em>demoArray3</em> in which you:</p>
+<ul>
+<li>Use a <em>do while</em> loop to initialize each element in the array with the following value:<ul>
+<li>300 + 3*i</li>
+<li>where <em>i</em> is the index you use in the <em>do-while</em> loop</li>
+</ul>
+</li>
+<li>Use a second <em>do while</em> loop to output the integers.<ul>
+<li>See Figure 3.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: An array of integers" src="img/Q603.png"></p>
+<h2>2.4</h2>
+<p>Write a method <em>demoArray4</em> in which you:</p>
+<ul>
+<li>Declare an ArrayList of Integer</li>
+<li>Add <em>size</em> number of int values generated as follows<ul>
+<li>Use a <strong>for</strong> loop.</li>
+<li>Each element is 400 + 4*i where <strong>i</strong> is the loop counter</li>
+</ul>
+</li>
+<li>Print out all the elements in the list in rows so that the display matches Figure 4.<ul>
+<li>Use an <strong>iterator</strong> to traverse the loop as you print each element.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 4: An ArrayList of Integer" src="img/Q604.png"></p>
+<h2>2.5</h2>
+<p>Develop a method to create an array of even integers within a given range. Iterate the array and calculate and print the sum of its contents.</p>
+<p>The method header is:</p>
+<p><em>public void sumEven(int low, int hi)</em></p>
+<p>Summary of steps:</p>
+<ul>
+<li>Check preconditions. If not complied with print message and return.</li>
+<li>
+<p>Message: Please enter even arguments</p>
+</li>
+<li>
+<p>Declare and allocate memory to array of int type</p>
+</li>
+<li>
+<p>In a loop, initialize the array with even numbers in range [lo, hi]</p>
+</li>
+<li>
+<p>In a second loop. accessing the above array, calculate the cumulative sum of the even numbers.</p>
+</li>
+<li>Print the sum as part of a message structured as follows, for example, where range is [0, 10] and consequently sum is 30</li>
+<li><em>Sum even numbers from 0 to 10 is 30</em></li>
+</ul>
+<p>Here is the complete output including that for the method <em>sumEven</em> with parameters (0, 10).</p>
+<p><img alt="Figure 5: test output" src="img/11.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Question-3">
+    <h1>Question 3</h1>
+<p>Here you are asked to develop a small suite of classes: Library, Librarian and Book.</p>
+<p>Starter code is available <a href="archives/Q3_Library.zip">here</a>.</p>
+<h2>3.1</h2>
+<p>Develop a Book class with the following API:</p>
+<pre><code>public Book(String title, String author, int numberPages, String isbn)
+public void borrow()        // borrow a book
+public boolean isBorrowed() // is book on loan?
+public void returns()       // return book 
+public String loanStatus()  // print a message
+public void printDetails()  // print details re book
+public void getTitle()      // return book title
+
+</code></pre>
+
+<p>Here is the list of fields:</p>
+<pre><code>  String   title
+  String   author
+  String   isbn
+  int      numberPages
+  boolean  borrowed
+  int      numberBorrowings
+</code></pre>
+
+<p>Assume that the book resides in a library. The method <em>borrow</em> facilitates borrowing the book:</p>
+<ul>
+<li>Borrowing may be represented by setting the variable <em>borrowed</em> to true.<ul>
+<li>The value of this boolean field should be <em>true</em> if a book is borrowed (on loan), else <em>false</em>.</li>
+<li>Increment <em>numberBorrowings</em> when book borrowed: field keeps track of the number of times the book has been borrowed.</li>
+</ul>
+</li>
+</ul>
+<p>The method loanStatus should return a String as follows:</p>
+<ul>
+<li>if the book is borrowed:  "{title of book} not available: presently on loan"</li>
+<li>if the book is available: "{title of book} is available"</li>
+</ul>
+<p>The required output on invoking <em>printDetails</em> is shown in Figure 1 for a sample book. It is important to align the output as illustrated.</p>
+<p><img alt="Figure 1: Sample book details" src="img/book-details.png"></p>
+<h2>3.2</h2>
+<p>Now write a simple Library class in which to store books. Here is its API:      </p>
+<pre><code>    public void     addBook(Book book)
+    public int      numberBooks()
+    public String   loanStatus(Book book)
+    public boolean  hasBook(Book book)
+    public boolean  removeBook(Book book)
+    public void     removeAllBooks()
+    public void     printDetails()
+</code></pre>
+
+<p>The books are stored in a list:</p>
+<pre><code>ArrayList&lt;Book&gt; books;
+</code></pre>
+
+<h2>3.3</h2>
+<p>Finally, create a Librarian class. Use this to test the Book and Library classes.</p>
+<p>Here is the API:</p>
+<pre><code>public Librarian()
+public void unitTest()
+</code></pre>
+
+<p>And here is the entire class:</p>
+<pre><code>public class Librarian
+{  
+    Library library;
+
+    public Librarian()
+    {
+        library = new Library();
+    }
+
+    public void unitTest()
+    {
+        // Create a set of 4 books books
+        Book book1 = new Book(&quot;Objects First with Java&quot;, &quot;Barnes &amp; Kolling&quot;, 250, &quot;978-0-13-249266-9&quot;);
+        Book book2 = new Book(&quot;Head First Android Development&quot;,&quot;Griffiths &amp; Griffiths&quot;, 250, &quot;978-1-449362188&quot;);  
+        Book book3 = new Book(&quot;Learning Android&quot;, &quot;Gargenta &amp; Nakamura&quot;, 600, &quot;978-1-449-31923-6&quot;);
+        Book book4 = new Book(&quot;Android Programming&quot;, &quot;Phillips &amp; Hardy&quot;, 500, &quot;978-0-321804334&quot;);
+
+        // Add to library
+        library.add(book1);
+        library.add(book2);
+        library.add(book3);
+        library.add(book4);
+        //library.add(book4);
+
+        // Borrow and return
+        book1.borrow();
+        book1.returns();
+        book1.borrow();
+
+        // Print details &amp; output number books
+        System.out.println(&quot;Adding 4 books to library&quot;);
+        library.printDetailsAll();
+        System.out.println(&quot;Number books in library is &quot; + library.numberBooks());
+
+        // Remove a book, verify book no longer in library
+        System.out.println(&quot;Removing a book from library stock&quot;);
+        library.removeBook(book4);
+        System.out.println(&quot;Number books in library is &quot; + library.numberBooks());
+        System.out.println(library.hasBook(book4));
+        library.printDetailsAll();
+
+        // Restore book
+        System.out.println(&quot;Putting back the book we removed&quot;);
+        library.add(book4);
+        System.out.println(library.hasBook(book4));
+        System.out.println(&quot;Number books in library is &quot; + library.numberBooks());
+
+        // Remove all books and verify library empty
+        System.out.println(&quot;Austerity bites. Shutting down library. Selling off all books&quot;);
+        library.removeAllBooks();
+        System.out.println(&quot;Number books in library is &quot; + library.numberBooks());
+    }
+
+}
+</code></pre>
+
+<p>You are expected to obtain output matching that in Figure 2 when you invoke the Librarian.unitTest method.</p>
+<p><img alt="Figure 2: Librarian unit tests system" src="img/04.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Question-4">
+    <h1>Question 4</h1>
+<p>This questions relates to the <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a> class.</p>
+<p>Starter code is available <a href="archives/Q4_Strings.zip">here</a>.</p>
+<p>Open <em>ICTStrings</em> class:</p>
+<ul>
+<li>Complete the class by adding the following methods, the skeletons of which are already in place:</li>
+</ul>
+<h2>4.1</h2>
+<p><em>isEqual</em>:</p>
+<ul>
+<li>signature <em>public static boolean isEqual(String s1, String s2)</em>.</li>
+<li>return <em>true</em> if the strings are equal</li>
+<li>else <em>false</em>.</li>
+</ul>
+<h2>4.2</h2>
+<p><em>isEqualIgnoreCase</em>:</p>
+<ul>
+<li>signature <em>public static boolean isEqualIgnoreCase(String s1, String s2)</em>.</li>
+<li>return <em>true</em> if the strings are equal, ignoring case</li>
+<li>else return <em>false</em>.</li>
+</ul>
+<h2>4.3</h2>
+<p><em>hasPrefix</em></p>
+<ul>
+<li>signature <em>public static boolean hasPrefix(String s1, String prefix)</em></li>
+<li>return <em>true</em> if <em>s1</em> begins with <em>prefix</em></li>
+<li>else return false</li>
+</ul>
+<h2>4.4</h2>
+<p><em>length</em></p>
+<ul>
+<li>signature <em>public static int length(String s1, String s2)</em></li>
+<li>concatenate the strings <em>s1</em> and <em>s2</em>.</li>
+<li>evaluate the length of the concatenated string</li>
+<li>return the evaluated length</li>
+</ul>
+<h2>4.5</h2>
+<p><em>toUpper</em></p>
+<ul>
+<li>signature <em>public static String toUpper(String s1)</em></li>
+<li>return a string whose characters match those in <em>s1</em> but are all upper case</li>
+</ul>
+<h2>4.6</h2>
+<p><em>endsWith</em></p>
+<ul>
+<li>signature <em>public static String endsWith(String s1, String suffix)</em></li>
+<li>return a boolean whose value is true if <em>s1</em> ends with <em>suffix</em>, else return false.</li>
+</ul>
+<h2>4.7</h2>
+<p><em>subString</em></p>
+<ul>
+<li>signature <em>public static subString(String s1, int beginIndex, int endIndex)</em></li>
+<li>return string a subset of <em>s1</em> beginning at <em>beginIndex</em> and whose final index is <em>endIndex</em>.</li>
+</ul>
+<h2>4.8</h2>
+<p><em>reverse 1</em></p>
+<ul>
+<li>header: <em>public static String reverse_1(String s1)</em></li>
+<li>return a string that is equal to <em>s1</em> reversed.</li>
+<li>Method: Use <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html">StringBuilder</a></li>
+<li>consider searching <a href="http://stackoverflow.com">stackoverflow</a> for various options.</li>
+</ul>
+<h2>4.9</h2>
+<p><em>reverse 2</em></p>
+<ul>
+<li>header: <em>public static String reverse_2(String s1)</em></li>
+<li>return a string that is equal to <em>s1</em> reversed.</li>
+<li>Method: In a for loop assign each s1 character to a position in an array of primitive char type such that the char[] array consists of the characters of the <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String</a> s1 in reverse order as required.</li>
+</ul>
+<h2>4.10</h2>
+<p><em>reverse 3</em></p>
+<ul>
+<li>header: <em>public static String reverse_3(String s1)</em></li>
+<li>return a string that is equal to <em>s1</em> reversed.</li>
+<li>Method: Use <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/StringBuffer.html">StringBuffer class</a>.</li>
+</ul>
+<h2>4.11</h2>
+<p><em>isPalindrome</em></p>
+<ul>
+<li>header: <em>public static boolean isPalindrome(String s)</em></li>
+<li>return true if s is a palindrome. </li>
+<li>Ignore case and all non-word characters. That is, only consider a-z and A-Z. Thus, "No lemon, no melon" should be reported as a palindrome.</li>
+<li>Hint: The String class method <em>replace</em> may be used to remove unwanted characters such as punctuation. Here is an example:</li>
+</ul>
+<pre><code>String s = ...;
+s.replaceAll(&quot;[^a-zA-Z]&quot;, &quot;&quot;);
+</code></pre>
+
+<h2></h2>
+<p>A test class TestICTStrings that includes test data is provided to facilitate testing of the methods above (See Figure 1).</p>
+<ul>
+<li>You can test the methods individually or</li>
+<li>Collectively by invoking <em>testAll</em>.</li>
+</ul>
+<p>The indicative test results are shown in Figure 2.</p>
+<p><img alt="Figure 1: Test string methods" src="img/Q701.png"></p>
+<p><img alt="Figure 2: Expected test results" src="img/Q702.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Question-5">
+    <h1>Question 5</h1>
+<p>This question requires that you modify the 24-hour clock we encountered in the labs. </p>
+<p>There are two parts to this question. The first part requires modifying the starter code to produce a clock displaying hours, minutes and seconds.</p>
+<p>The second part requires that you add days to the display. This is discussed at the end of this step.</p>
+<p>Starter code is available here for both parts of the question: <a href="archives/Q5_Clock.zip">Q5_Clock</a> and <a href="archives/Q5_Clock_Days.zip">Q5_Clock_Days</a>.</p>
+<h2>5.1: Hours, Minutes, Seconds clock</h2>
+<p>Figure 2 represents the upgraded clock, the goal of part 1 of this question.</p>
+<p><img alt="Figure 1: Base clock" src="img/05.png"></p>
+<p><img alt="Figure 2: Upgraded clock" src="img/06.png"></p>
+<ul>
+<li>The classes Clock, ClockDisplay and NumberDisplay apply to the question.</li>
+<li>You are not required to make any changes to NumberDisplay.</li>
+<li>Clock requires the addition of three methods to reset hours, minutes and seconds.</li>
+<li>The modified clock display is shown in Figure 3.</li>
+<li>It is also necessary to add new behaviours (methods) to ClockDisplay.</li>
+<li>The changes required to Clock and ClockDisplay classes are described below.  </li>
+</ul>
+<p><img alt="Figure 3: Clock display" src="img/clock-display.png"></p>
+<p>In Clock:</p>
+<ul>
+<li>Implement methods with the following headers:</li>
+<li>These methods should each invoke methods of the same name in ClockDisplay.</li>
+</ul>
+<pre><code>   public void resetSeconds(int value)
+   public void resetMinutes(int value)
+   public void resetHours(int value)
+</code></pre>
+
+<p>It will be necessary to make some changes to provide the upgraded display as indicated in Figures 4 and 5.</p>
+<p><img alt="Figure 4: Base clock display snippet" src="img/07.png">
+<img alt="Figure 5: Upgraded clock display snippet" src="img/08.png"></p>
+<p>In ClockDisplay:</p>
+<ul>
+<li>Introduce a new NumberDisplay field to represent seconds.</li>
+<li>Initialize this field in the constructor.</li>
+<li>Modify the existing method <em>updateDisplay</em> to include seconds.</li>
+<li>Implement methods with the following headers:</li>
+</ul>
+<pre><code>   public void resetSeconds(int value)
+   public void resetMinutes(int value)
+   public void resetHours(int value)
+</code></pre>
+
+<ul>
+<li>Implement the method <strong>public void timeTick()</strong> in ClockDisplay.</li>
+<li>Increment seconds.</li>
+<li>When sixty seconds have elapsed increment minutes, ensuring seconds display recommences at zero.</li>
+<li>When sixty mintues have elapsed increment hours, ensuring minutes recommences at zero.</li>
+<li>When twenty four hours have elapsed reset entire display to zero (00:00:00).</li>
+</ul>
+<p>The purpose of these methods is to facilitate testing. For example, when you have completed the refactoring:</p>
+<ul>
+<li>Instantiate Clock.</li>
+<li>Start the clock. The display format is hours:minutes:seconds. </li>
+<li>Observe that the seconds display increments.</li>
+<li>Reset seconds to, say, 58.</li>
+<li>Observe that the transition from 00:00:59 to 00:01:00 occurs correctly.</li>
+<li>Reset minutes to 59.</li>
+<li>Observe that the transition from 00:59:59 to 01:00:00 occurs correctly.</li>
+<li>Reset hours to 23 and minutes to 59.</li>
+<li>Observe that the transition from 23:59:59 to 00:00:00 occurs correctly.</li>
+</ul>
+<h2>5.2: Days, Hours, Minutes, Seconds clock.</h2>
+<p>Assume all years have 365 days.</p>
+<p>Unlike in part 1, in this part it will be necessary to modify the NumberDisplay class so that leading zeroes are displayed for the day component. The NumberDisplay in the starter code caters only for 2 digits.</p>
+<p>The clock is shown below in Figure 6.</p>
+<p><img alt="Figure 6: Days, Hours, Minutes, Seconds clock" src="img/09.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
