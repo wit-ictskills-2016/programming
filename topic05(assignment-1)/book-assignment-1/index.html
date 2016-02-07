@@ -288,6 +288,7 @@ h3
 public void borrow()        // borrow a book
 public boolean isBorrowed() // is book on loan?
 public void returns()       // return book 
+public String bookTitle()   // return title of book
 public String loanStatus()  // print a message
 public void printDetails()  // print details re book
 public void getTitle()      // return book title
@@ -320,13 +321,13 @@ public void getTitle()      // return book title
 <p><img alt="Figure 1: Sample book details" src="img/book-details.png"></p>
 <h2>3.2</h2>
 <p>Now write a simple Library class in which to store books. Here is its API:      </p>
-<pre><code>    public void     addBook(Book book)
+<pre><code>    public void     add(Book book)
     public int      numberBooks()
     public String   loanStatus(Book book)
     public boolean  hasBook(Book book)
     public boolean  removeBook(Book book)
     public void     removeAllBooks()
-    public void     printDetails()
+    public void     printDetailsAll() // print details all books in library
 </code></pre>
 
 <p>The books are stored in a list:</p>
@@ -341,7 +342,8 @@ public void unitTest()
 </code></pre>
 
 <p>And here is the entire class:</p>
-<pre><code>public class Librarian
+<pre><code>
+public class Librarian
 {  
     Library library;
 
@@ -395,6 +397,7 @@ public void unitTest()
     }
 
 }
+
 </code></pre>
 
 <p>You are expected to obtain output matching that in Figure 2 when you invoke the Librarian.unitTest method.</p>
