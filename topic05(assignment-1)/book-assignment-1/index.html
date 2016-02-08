@@ -177,7 +177,7 @@ h3
 <p><img alt="Figure 1: Geometric formulae" src="img/03.png"></p>
 <p>Enforce a condition rendering it impossible for a user to successfully input a negative number as an argument (actual parameter).</p>
 <ul>
-<li>If a user attempts to enter a negative number provide a short warning message.</li>
+<li>If a user attempts to enter a negative number provide a warning message matching that in Figure 2.</li>
 <li>Provide a private method <em>boolean isValid(double value)</em> within which you check that each inputted <em>value</em> is valid.</li>
 </ul>
 <pre><code>private boolean isValid(double value)
@@ -275,6 +275,10 @@ h3
 <li>Print the sum as part of a message structured as follows, for example, where range is [0, 10] and consequently sum is 30</li>
 <li><em>Sum even numbers from 0 to 10 is 30</em></li>
 </ul>
+<p>You should complete this expression and locate at end of <em>sumEven</em> so as to achieve the output corresponding to that at the end of Figure 5.</p>
+<pre><code>System.out.println(&quot;\nSum even numbers from &quot; ....&quot; inclusive is &quot; + sum);
+</code></pre>
+
 <p>Here is the complete output including that for the method <em>sumEven</em> with parameters (0, 10).</p>
 <p><img alt="Figure 5: test output" src="img/11.png"></p>
   </div>
@@ -290,7 +294,7 @@ public boolean isBorrowed() // is book on loan?
 public void returns()       // return book 
 public String loanStatus()  // print a message
 public void printDetails()  // print details re book
-public void getTitle()      // return book title
+public String getTitle()      // return book title
 
 </code></pre>
 
@@ -320,13 +324,13 @@ public void getTitle()      // return book title
 <p><img alt="Figure 1: Sample book details" src="img/book-details.png"></p>
 <h2>3.2</h2>
 <p>Now write a simple Library class in which to store books. Here is its API:      </p>
-<pre><code>    public void     addBook(Book book)
+<pre><code>    public void     add(Book book)
     public int      numberBooks()
     public String   loanStatus(Book book)
-    public boolean  hasBook(Book book)
+    public String   hasBook(Book book)
     public boolean  removeBook(Book book)
     public void     removeAllBooks()
-    public void     printDetails()
+    public void     printDetailsAll() // print details all books in library
 </code></pre>
 
 <p>The books are stored in a list:</p>
@@ -341,7 +345,8 @@ public void unitTest()
 </code></pre>
 
 <p>And here is the entire class:</p>
-<pre><code>public class Librarian
+<pre><code>
+public class Librarian
 {  
     Library library;
 
@@ -395,6 +400,7 @@ public void unitTest()
     }
 
 }
+
 </code></pre>
 
 <p>You are expected to obtain output matching that in Figure 2 when you invoke the Librarian.unitTest method.</p>
