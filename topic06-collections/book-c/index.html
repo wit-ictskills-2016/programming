@@ -1,0 +1,1319 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      5: More sophisticated behaviour
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Collections">
+        Collections
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Collections">
+    <h1>Objectives</h1>
+<p>We revisit arrays and ArrayLists and introduce two other collection classes, the HashMap and HashSet. A HashMap comprises key-value pairs. A HashSet matches the mathematical model of a set. We use the Random class, a member of the <em>java.util</em> package, to generate pin numbers for use in an introductory bank class. </p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Setup</h1>
+<p>Create a new folder in workspaceBlueJ named session05.</p>
+<p>Create a new BlueJ project BIABank in this folder.</p>
+<p>This project will represent a really naive bank.</p>
+<p>Create a new class <em>BIABank_v0</em> in this project.</p>
+<p>This will be one of several somewhat similarly named classes that we will introduce as we make progressive improvements to BIABank.</p>
+<p>See Figure 1.</p>
+<p><img alt="Figure 1: Create new BIABank_v0 class" src="img/newBankV0.png"></p>
+<p>Open the BIABandk_v0 class editor (Figure 2).</p>
+<p><img alt="Figure 2: Open source code in class editor for BIABank_v0" src="img/bankV0Edit.png"></p>
+<p>Delete the existing code and replace it with the following outer class wrapper:</p>
+<pre><code>public class BIABank_v0
+{
+
+}
+</code></pre>
+
+<p>Check that this code compiles without error by either pressing the Compile button at the top left of the editor or selecting the BIABank_v0 hatched rectangle, right clicking and selecting compile from the drop-down menu (Figure 3).</p>
+<p><img alt="Figure 3: compile BIABank_v0" src="img/bankV0Compile.png"></p>
+<p>Then add the fields: </p>
+<ul>
+<li>An array of String representing customers</li>
+<li>An array of integers representing account numbers</li>
+<li>An array of integers representing the account balances</li>
+</ul>
+<pre><code>    private String[] customers;
+    private int[] accountNumbers;
+    private int[] balance;
+</code></pre>
+
+<p>We will generate an account number for a new customer by incrementing the last customer's number.</p>
+<p>Towards this end we declare a class variable called <em>nextAccountNumber</em> to which we will assign
+the next customer's number as we create the current customer account.</p>
+<p>We give this an initial value of 1000; </p>
+<p>Thereafter, for each new account, the account number is incremented by 1 as you will observe below.</p>
+<pre><code>static int nextAccountNumber = 1000;
+</code></pre>
+
+<p>Next we shall implement the constructor:</p>
+<pre><code>public BIABank_v0() {
+        customers = new String[1000];
+        accountNumbers = new int[1000];
+        balance = new int[1000];
+    }
+</code></pre>
+
+<p>We have, arbitrarily, decided that the bank can contain at most 1000 customers.
+Therefore we create arrays of size 1000 for customers, accountNumbers and balance.</p>
+<p>Finally we write a method called <em>newCustomer</em> that we invoke whenever a new customer opens an account.</p>
+<pre><code>    public int newCustomer(String name, int openingBalance) {
+        int index = nextAccountNumber - 1000;
+        customers[index] = name;
+        accountNumbers[index] = nextAccountNumber;
+        balance[index] = openingBalance;
+        nextAccountNumber += 1;
+        return accountNumbers[index];
+    }
+</code></pre>
+
+<p>Below is the completed code, lightly commented.</p>
+<p>Study the code and see if you can identify where it might be improved. </p>
+<p>In the following steps we shall discuss the code and progressively make improvements.</p>
+<pre><code>/**
+ * A naive bank 
+ * Limited number of customers
+ * Matching array indices link customers with their account numbers and balances.
+ * Example: accountNumbers[i] and balance[i] are associated with customer[i] 
+ * 
+ * @author jfitzgerald
+ *
+ */
+public class BIABank_v0 {
+    private String[] customers;
+    private int[] accountNumbers;
+    private int[] balance;
+
+    /**
+     * nextAccountNumber is the next available account number and
+     * is assigned to a new customer
+     * It is a class variable rather than an instance variable since
+     * the value requires visibility across all BIABank objects
+     */
+    static int nextAccountNumber = 1000;
+    /**
+     * 1000 customers at most 
+     * 1000 account numbers range from 1000 to 1999
+     */
+    public BIABank_v0() {
+        customers = new String[1000];
+        accountNumbers = new int[1000];
+        balance = new int[1000];
+    }
+
+    /**
+     * Accepts a new customer
+     * @param name the name of new customer
+     * @param openingBalance the balance when account opened
+     * @return the new customer's account number
+     */
+    public int newCustomer(String name, int openingBalance) {
+        int index = nextAccountNumber - 1000;
+        customers[index] = name;
+        accountNumbers[index] = nextAccountNumber;
+        balance[index] = openingBalance;
+        nextAccountNumber += 1;
+        return accountNumbers[index];
+    }
+}
+</code></pre>
+
+<p>Compile the BIABank_v0 project.</p>
+<p>Create a new bank object on the object workbench. </p>
+<p>The code should compile without error and return the first new customer's account number (1000) as expected. See Figure 4.</p>
+<p><img alt="Figure 4: New customer" src="img/newCustomer.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>BIABank_v0</h1>
+<p><strong>BIABank_v0 code review</strong></p>
+<p><strong>Magic Numbers</strong></p>
+<p>A <em>Magic number</em> is a number that is used directly in the code. </p>
+<ul>
+<li>This style of coding should not be used. It has several disadvantages such as</li>
+<li>The code is difficult to read. For example:<ul>
+<li>What does 1000 represent?</li>
+<li>The same number may refer to different entities.</li>
+</ul>
+</li>
+<li>The code is difficult to maintain:<ul>
+<li>If the entity to which a particular number refers changes then this change must be made throughtout the code</li>
+<li>If two numbers are the same but refer to different entities then a change of one entity may accidentally result in a change in the other.</li>
+</ul>
+</li>
+</ul>
+<p>BIABank_v0 uses magic numbers to represent</p>
+<ul>
+<li>The maximum number of customers (1000)</li>
+<li>The initial accountNumber (also 1000)</li>
+</ul>
+<p>Refactor the code by introducing constant values so as to eliminate the magic numbers as follows (substituting the variables for the numbers where appropriate in the code):</p>
+<pre><code>private static int INITIAL_ACCOUNT_NUMBER = 1000;
+private static final int MAX_NUMBER_CUSTOMERS = 1000;
+</code></pre>
+
+<p>The use of the keyword <em>static</em> defines the variable MAX_NUMBER_CUSTOMERS as a <em>class variable</em> and so, consequently, every object of BIABank, on instantiation, will possess a field <em>int MAX_NUMBER_CUSTOMERS</em> whose value will have been initialized to 1000.</p>
+<p>The use of the keyword <em>final</em> means that the value of MAX_NUMBER_CUSTOMERS cannot be changed. </p>
+<p>Contrast that to the INITIAL_ACCOUNT_NUMBER field whose value can be changed (since it is not preceded by <em>final</em>).</p>
+<p>The refactored code follows:</p>
+<pre><code>/**
+ * A naive bank Limited number of customers Matching array indices link
+ * customers with their account numbers and balances. Example customer[i] has
+ * account number accountNumbers[i] with a balance balance[i]
+ * 
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v0_1
+{
+  private String[] customers;
+  private int[] accountNumbers;
+  private int[] balance;
+
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  private static final int MAX_NUMBER_CUSTOMERS = 1000;
+  /**
+   * This is the next available account number
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+  /**
+   * 1000 customers at most 1000 account numbers range from 1000 to 1999
+   */
+  public BIABank_v0_1()
+  {
+    customers = new String[MAX_NUMBER_CUSTOMERS];
+    accountNumbers = new int[MAX_NUMBER_CUSTOMERS];
+    balance = new int[MAX_NUMBER_CUSTOMERS];
+  }
+
+  /**
+   * Accepts a new customer
+   * 
+   * @param name
+   *          the name of new customer
+   * @return the new customer's account number
+   */
+  public int newCustomer(String name, int openingBalance)
+  {
+    int index = nextAccountNumber - INITIAL_ACCOUNT_NUMBER;
+    customers[index] = name;
+    accountNumbers[index] = nextAccountNumber;
+    balance[index] = openingBalance;
+    nextAccountNumber += 1;
+    return nextAccountNumber - 1;
+  }
+}
+</code></pre>
+
+<p>Make the changes as shown above.</p>
+<p>Compile the project.</p>
+<p>Create a new bank object on the object workbench. </p>
+<p>The result should be unchanged from that obtained prior to refactoring (Figure 1).
+<img alt="Figure 1: New customer" src="img/newCustomer.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>BIABank_v1</h1>
+<p>We shall now replace the fixed array fields with flexible ArrayList fields.</p>
+<p>The result is somewhat improved, though still far short of a feasible bank class.</p>
+<p>Create a new class BIABank_v1 in the usual manner as follows:</p>
+<ul>
+<li>Place the cursor in the BlueJ BIABank window.</li>
+<li>Right clicking and selecting <em>New Class</em> in the drop-down menu. </li>
+<li>A new window, <em>BlueJ Create New Class</em> should open containing a text input box labelled <em>Class Name</em>.</li>
+<li>Enter the name of the new class <em>BIABank_v1</em> in this text box.</li>
+</ul>
+<p>The result should be as illustrated in Figure 1.</p>
+<p><img alt="Figure 1: Create new class BIABank_v1" src="img/newBankV1.png"></p>
+<p>Place the cursor on the BIABank_v1 class rectangle in the BlueJ BIABank window and select <em>Open Editor</em> which should open the source code file (Figure 2).</p>
+<p><img alt="Figure 2: Edit BIABank_v1 source code" src="img/bankV1Edit.png"></p>
+<p>Delete the existing source code and add the outer class wrapper, compile and verify no errors:</p>
+<pre><code>public class BIABank_v1
+{
+
+
+}
+</code></pre>
+
+<p>We now replace the fixed array fields of the previous version <em>BIABank_v0</em> with flexible ArrayLists:</p>
+<pre><code>public class BIABank_v1
+{
+    private ArrayList&lt;String&gt; customers = new ArrayList&lt;&gt;();
+    private ArrayList&lt;Integer&gt; accountNumbers = new ArrayList&lt;&gt;();
+    private ArrayList&lt;Integer&gt; balance = new ArrayList&lt;&gt;();
+}
+</code></pre>
+
+<p>Notice that we have both declared and invoked the <em>new</em> operator in a single statement.</p>
+<p>Notice also the we have used an empty diamond (&lt;&gt;) rather than including the relevant parameter, such as <String>. </p>
+<ul>
+<li>This is known as <em>Type Inference</em>.  See <a href="http://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html">here</a> for further information.</li>
+</ul>
+<p>Add a static variable to set the first customer's account number:</p>
+<pre><code>  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+</code></pre>
+
+<p>Next, declare and initialize a variable representing the next customer's account number:</p>
+<pre><code>  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+</code></pre>
+
+<p>Finally we modify the <em>newCustomer</em> method</p>
+<pre><code>    public int newCustomer(String name, int openingBalance)
+    {
+        customers.add(name);
+        accountNumbers.add(nextAccountNumber);
+        balance.add(openingBalance);
+        nextAccountNumber += 1; // assign the account number of next customer
+        return nextAccountNumber - 1;// the account number of this customer
+    }
+</code></pre>
+
+<p>Here is the complete refactored class that you should now compile.</p>
+<pre><code>import java.util.ArrayList;
+
+/**
+ * A slightly less naive bank No specified upper limit on number of customers
+ * Use a flexible collection ArrayList
+ * 
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v1
+{
+  private ArrayList&lt;String&gt; customers = new ArrayList&lt;&gt;();
+  private ArrayList&lt;Integer&gt; accountNumbers = new ArrayList&lt;&gt;();
+  private ArrayList&lt;Integer&gt; balance = new ArrayList&lt;&gt;();
+
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+  /**
+   * Accepts a new customer
+   * 
+   * @param name
+   *          the name of new customer
+   * @return the new customer's account number
+   */
+  public int newCustomer(String name, int openingBalance)
+  {
+    customers.add(name);
+    accountNumbers.add(nextAccountNumber);
+    balance.add(openingBalance);
+    nextAccountNumber += 1; // assign the account number of next customer
+    return nextAccountNumber - 1;// the account number of this customer
+  }
+}
+</code></pre>
+
+<p>Observe that we have not explicitly provided a constructor. </p>
+<ul>
+<li>Where a constructor is not explicitly included, Java transparently provides a default constructor.</li>
+<li>In this case, the implicit default constructor will have neither parameters nor a body.</li>
+</ul>
+<p>Following compilation perform a basic test as follows:</p>
+<ul>
+<li>Create a new BIABank_v1 object on the object bench</li>
+<li>Create a new customer, completing the name and opening balance text edit fields</li>
+<li>Note the results in the BlueJ Method Result window</li>
+</ul>
+<p>See Figure 3.</p>
+<p><img alt="Figure 3: First customer in BIABank_v1" src="img/newCustomerV1.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Customer</h1>
+<p>Here we design and implement a class named <em>Customer</em> to contain details regarding a bank customer. </p>
+<p>We shall use this class in future iterations (versions) of BIABank.</p>
+<p>Here is an initial version of Customer. </p>
+<pre><code>public class Customer
+{
+  private String name;
+  private int accountNumber;
+  private int balance;
+
+  public Customer(String name, int accountNumber, int balance)
+  {
+    this.name           = name;
+    this.accountNumber  = accountNumber;
+    this.balance        = balance;
+  }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>BIABank_v2</h1>
+<p>In this version (or iteration) we shall combine the fields describing a customer's name, account and balance into a new class.</p>
+<p>In the same manner as previously:</p>
+<ul>
+<li>Create a new class in BlueJ called <em>BIABank_v2</em>.</li>
+<li>Open the default source code in the editor.</li>
+<li>Replace the default source code with the outer class wrapper for <em>BIABank_v2</em>.</li>
+</ul>
+<pre><code>public class BIABank_v2
+{
+
+}
+</code></pre>
+
+<p>Check that this compiles withour error.</p>
+<p>We require an import statement so as to use <em>ArrayList</em>:</p>
+<pre><code>import java.util.ArrayList;
+</code></pre>
+
+<p>Introduce an ArrayList field parameterizedd with <em>Customer</em> into the BIABank class, replacing the three existing fields. This is known as object composition.</p>
+<pre><code>  private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
+</code></pre>
+
+<p>Next we refactor the method to add a new customer:</p>
+<pre><code>public int newCustomer(String name, int balance)
+  {
+    int accountNumber = nextAccountNumber;
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+    nextAccountNumber += 1;
+    return accountNumber;
+  }
+</code></pre>
+
+<p>As previously, declare and initialize variables controlling account numbers:</p>
+<pre><code>
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+</code></pre>
+
+<p>Here is the complete BIABank_v2 source code:</p>
+<pre><code>import java.util.ArrayList;
+
+/**
+ * Abstraction: create class Customer with fields name, accountNumber and  balance 
+ * Use HashArray collection of Customer objects in BIABank field
+ * 
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v2
+{
+  private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+  public int newCustomer(String name, int balance)
+  {
+    int accountNumber = nextAccountNumber;
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+    nextAccountNumber += 1;
+    return accountNumber;
+  }
+}
+</code></pre>
+
+<p>Following compilation perform a basic test as follows:</p>
+<ul>
+<li>Create a new BIABank_v2 object on the object bench</li>
+<li>Create a new customer, completing the name and opening balance text edit fields</li>
+<li>Note the results in the BlueJ Method Result window. The account number is 1001 because an earlier account had been created.</li>
+</ul>
+<p>See Figure 1.</p>
+<p><img alt="Figure 1: First customer in BIABank_v2" src="img/newCustomerV2.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>BIABank_v3</h1>
+<p>In this version of BIABank we shall demonstrate use of a HashMap to store <em>accountnumber - Customer</em> pairs of values.</p>
+<p>A HashMap is an unordered list of key-value pairs.</p>
+<p>Recall that <em>Customer</em> is a class that we wrote earlier to contain essential information on a customer such as account number, name and account balance.</p>
+<p>In the same manner as previously:</p>
+<ul>
+<li>Copy the source code for the previous version (BAIBank_v2) to the clipboard</li>
+<li>Create a new class in BlueJ called <em>BIABank_v3</em>.</li>
+<li>Open the default source code in the editor.</li>
+<li>Replace the default source code with the clipboard contents (BIABank_v2).</li>
+<li>Replace all occurrences of BIABank_v2 with BIABank_v3</li>
+<li>Compile and check no syntax errors.</li>
+</ul>
+<p>We will now proceed to add a HashMap field to BAIBank_v3.</p>
+<p>Let's name the field <em>customerRecord</em>. Its purpose is to associate each account number with the corresponding customer.</p>
+<p>The declaration is </p>
+<pre><code>HashMap&lt;Integer, Customer&gt; customerRecord;
+</code></pre>
+
+<p>We shall expand this declaration by </p>
+<ul>
+<li>adding a <em>private</em> access modifier</li>
+<li>initializing the field using the <em>new</em> operator.</li>
+</ul>
+<p>The completed statement is</p>
+<pre><code>private HashMap&lt;Integer, Customer&gt; customerRecord = new HashMap&lt;&gt;();
+</code></pre>
+
+<p>We are using the <em>Integer</em> class to contain the account number. </p>
+<ul>
+<li>The account number has been declared as an <em>int</em> but we are not allowed to use <em>int</em>s as keys in a HashMap, hence the use of <em>Integer</em>.</li>
+</ul>
+<p>It will be necessary to import the HashMap:</p>
+<pre><code>import java.util.HashMap;
+</code></pre>
+
+<p>It's now necessary to decide where and how to add customers and their keys to the map.</p>
+<p>The method <em>newCustomer</em> seems a suitable location.</p>
+<p>HashMap has a public method <em>put</em> that allows us to add an account number - customer pair. This statement is what's required:</p>
+<pre><code>customerRecord.put(accountNumber, newCustomer);
+</code></pre>
+
+<p>The accountNumber is the key and newCustomer is the value. </p>
+<p>Knowing a particular key allows one to retrieve the corresponding value:</p>
+<ul>
+<li>accountNumber (key) allows retrieval of Customer instance (value)</li>
+</ul>
+<p>Add the above statement to <em>newCustomer</em> method </p>
+<ul>
+<li>This this is identified with a comment in the code below</li>
+</ul>
+<pre><code>public int newCustomer(String name, int balance)
+{
+    int accountNumber = nextAccountNumber;
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+
+    customerRecord.put(accountNumber, newCustomer);// &lt;------ new customer added to map
+
+    nextAccountNumber += 1;
+    return accountNumber;
+}
+</code></pre>
+
+<p>That's it: each time a new customer joins the bank, the details are added to the HashMap field.</p>
+<p>We shall now write a public method in BIABank class to extract information from the map. </p>
+<ul>
+<li>We would like to be able to retrieve a Customer's name, given the account number.</li>
+</ul>
+<p>The method signature could be as follows:</p>
+<pre><code>public String getCustomerName(int accountNumber)
+</code></pre>
+
+<p>To complete this method's implementation, however, we require a getter (accessor) method in the Customer class.</p>
+<p>Open the Customer class source code in the editor and add this getter:</p>
+<pre><code>public String getName()
+{
+    return name;
+}
+</code></pre>
+
+<p>Compile and verify no errors.</p>
+<p>Now, return to the source code for BIABank_v3 and complete the implementation of <em>getCustomerName</em>:</p>
+<pre><code>public String getCustomerName(int accountNumber)
+{
+    Customer customer = customerRecord.get(accountNumber);
+    return customer.getName();
+}
+</code></pre>
+
+<p>This method</p>
+<ul>
+<li>Retrieves a reference from the HashMap to the customer whose bank account number is <em>accountNumber</em>.</li>
+<li>Note that <em>accountNumber</em>, the actual parameter (the argument), is provided by the caller of the <em>getCustomerName</em> method.</li>
+<li>The Customer getter is then invoked to obtain the customer's name which is immediately returned to the caller.</li>
+<li>Recall that <em>customerRecord</em> is an instance variable of BIABank_v3.</li>
+</ul>
+<p>Add the method <em>getCustomerName</em> to the source file. </p>
+<p>Here is the completed BIABank_v3 source:</p>
+<pre><code>import java.util.ArrayList;
+import java.util.HashMap;
+/**
+ * Bank class containing an ArrayList of Customers and 
+ * a HashMap associating customers to their account numbers
+ * 
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v3
+{
+  private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
+  private HashMap&lt;Integer, Customer&gt; customerRecord = new HashMap&lt;&gt;();
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+  public int newCustomer(String name, int balance)
+  {
+    int accountNumber = nextAccountNumber;
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+    customerRecord.put(accountNumber, newCustomer);
+    nextAccountNumber += 1;
+    return accountNumber;
+  }
+
+  public String getCustomerName(int accountNumber)
+  {
+    return customerRecord.get(accountNumber).getName(); 
+  }
+}
+</code></pre>
+
+<p>Test the BIABank_v3 class as follows:</p>
+<ul>
+<li>Compile and verify no errors</li>
+<li>Create a new object named, for example, <em>bIABankv3</em> on the object bench.</li>
+<li>Create a new customer and note the bank account returned.</li>
+<li>Access the new customer <em>getCustomerName</em> using the customer's bank account.</li>
+<li>Verify the name of the customer is correct.</li>
+</ul>
+<p>See Figure 1.</p>
+<p><img alt="Figure 1: get new customer name" src="img/newCustomerV3.png"></p>
+<p>Now attempt to obtain a non-existent customer's name by invoking <em>getCustomerName</em> with a non-existent account number, for example 10.</p>
+<p>A <em>Null Pointer Exception</em> error is generated. 
+You should see something similar to that illustrated in Figure 2.</p>
+<p><img alt="Figure 2: Null Pointer Exception" src="img/nullPointerException.png"></p>
+<p>The problem that causes this error is located in <em>getCustomerName</em>, specifically the statement <em>Customer customer = customerRecord.get(accountNumber)</em>.  </p>
+<p>Because no customer exists with the specified account number, <em>null</em> is returned by the <em>customerRecord.get(...)</em> method call. </p>
+<p>The following modified method fixes this:</p>
+<pre><code>public String getCustomerName(int accountNumber)
+{
+    Customer customer = customerRecord.get(accountNumber);
+    if(customer != null) 
+    {
+      return customer.getName();
+    }
+    else 
+    {
+      return &quot;Customer with account number &quot;+accountNumber+&quot; does not exist&quot;;
+    }
+}
+</code></pre>
+
+<p>Replace <em>getCustomer</em> in BIABank_v3 with the code above. </p>
+<p>Test the modified BIABank_v3 class as follows:</p>
+<ul>
+<li>Compile and verify no errors</li>
+<li>Again, create a new object named, for example, <em>bIABankv3</em> on the object bench.</li>
+<li>Access the new customer <em>getCustomerName</em> with a non-existent account number such as 10.</li>
+<li>Verify the program does not crash as previously and that a message similar to that shown in Figure 3 appears.</li>
+</ul>
+<p><img alt="Figure 3: Null Pointer exception error fixed" src="img/nullPointerFix.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>BAIBank_v4</h1>
+<p>In this version (iteration) we shall demonstrate use of a HashSet.</p>
+<p>A HashSet is a set which is a collection of distinct objects, i.e. no object can exist more than once in the collection.</p>
+<p>Create a new class BAIBank_v4 and initialize it with a copy of the final source code from the previous class BAIBank_v3.</p>
+<p>Let's assume we require reassurance that at the time of allocating an account number to a new customer that the account number is unique.
+One way of doing this is by using a HashSet:</p>
+<pre><code>  private HashSet&lt;Integer&gt; accountNumberSet;
+</code></pre>
+
+<p>A specific <em>Integer</em> contains the account number for a particular customer.
+The set contains all the account numbers allocated to date, representing the complete customer base.</p>
+<p>If we adhere to the following procedure then we can verify the validity of newly assigned account numbers:</p>
+<ul>
+<li>Check if the proposed account number is contained in the set.</li>
+<li>If so, then do not create the new account but print a message and return an integer indicating the error.</li>
+<li>We could return <em>Integer.MIN_VALUE</em> to indicate the error. This is, as the name suggests, the smallest possible integer value - a negative number.</li>
+<li>If the account number is not in the set then add it to the set and proceed as before to create the new account.</li>
+</ul>
+<p>Here is the statement to declare and create an empty HashSet:</p>
+<pre><code>private HashSet&lt;Integer&gt; accountNumberSet = new HashSet&lt;&gt;();
+</code></pre>
+
+<p>An import statement will be necessary:</p>
+<pre><code>import java.util.HashSet;
+</code></pre>
+
+<p>Modify the <em>newCustomerMethod</em> to read as follows, implementing the procedure just outlined:</p>
+<pre><code>public int newCustomer(String name, int balance)
+  {
+    int accountNumber = nextAccountNumber;
+    if(accountNumberSet.contains(accountNumber) == true) //&lt;---- check unique account number
+    {
+      System.out.println(&quot;Fatal error: invalid account number generated&quot;);
+      return Integer.MIN_VALUE;
+    }
+    accountNumberSet.add(accountNumber);//&lt;------- account number unique so add it to set
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+    customerRecord.put(accountNumber, newCustomer);
+    nextAccountNumber += 1;
+    return accountNumber;
+  }
+</code></pre>
+
+<p>It would help testing by having a method to print all the account numbers in the bank. Here is one such method:</p>
+<pre><code>public void printAccountNumbers()
+  {
+    Iterator&lt;Integer&gt; it = accountNumberSet.iterator();
+    System.out.println(&quot;Complete list account numbers&quot;);
+    while (it.hasNext())
+    {
+      System.out.println(it.next());
+    }
+  }
+</code></pre>
+
+<p>Add an import statement to access the Iterator class:</p>
+<pre><code>import java.util.Iterator;
+</code></pre>
+
+<p>We could have used other methods of looping such as <em>for-each</em>, <em>for</em> or <em>while</em>.</p>
+<p>Here is the compete source code listing for the class - BIABank_v4. </p>
+<pre><code>import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
+import java.util.Iterator; //&lt;--- NB: import from java.util
+/**
+ * Bank class containing an ArrayList of Customers and 
+ * a HashMap associating customers to their account numbers
+ * 
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v4
+{
+  private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
+  private HashMap&lt;Integer, Customer&gt; customerRecord = new HashMap&lt;&gt;();
+  private HashSet&lt;Integer&gt; accountNumberSet = new HashSet&lt;&gt;(); //&lt;-------added set account numbers
+  private static int INITIAL_ACCOUNT_NUMBER = 1000;
+  /**
+   * nextAccountNumber is the next available account number and is assigned to a
+   * new customer It is a class variable rather than an instance variable since
+   * the value requires visibility across all BIABank objects
+   */
+  static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+  public int newCustomer(String name, int balance)
+  {
+    int accountNumber = nextAccountNumber;
+    if(accountNumberSet.contains(accountNumber) == true) //&lt;---- check unique account number
+    {
+      System.out.println(&quot;Fatal error: invalid account number generated&quot;);
+      return Integer.MIN_VALUE;
+    }
+    accountNumberSet.add(accountNumber);//&lt;------- account number unique so add it to set
+    Customer newCustomer = new Customer(name, accountNumber, balance);
+    customers.add(newCustomer);
+    customerRecord.put(accountNumber, newCustomer);
+    nextAccountNumber += 1;
+    return accountNumber;
+  }
+
+  public String getCustomerName(int accountNumber)
+  {
+    Customer customer = customerRecord.get(accountNumber);
+    if(customer != null) 
+    {
+      return customer.getName();
+    }
+    else 
+    {
+      return &quot;Customer with account number &quot;+accountNumber+&quot; does not exist&quot;;
+    }
+  }
+
+  public void printAccountNumbers()
+  {
+    Iterator&lt;Integer&gt; it = accountNumberSet.iterator();
+    System.out.println(&quot;Complete list account numbers&quot;);
+    while (it.hasNext())
+    {
+      System.out.println(it.next());
+    }
+  }
+}
+</code></pre>
+
+<p>Test the modified BIABank_v4 class as follows:</p>
+<ul>
+<li>Compile and verify no errors</li>
+<li>Create a new object named, for example, <em>bIABankv4</em> on the object bench.</li>
+<li>Access the new customer <em>getCustomerName</em> with a non-existent account number such as 10.</li>
+<li>Verify the program does not crash as previously and that a message similar to that shown in Figure 3 appears.</li>
+<li>Add some customers.</li>
+<li>Invoke the newly added method <em>printAccountNumbers</em>. Verify the output is correct, i.e. no account number repeats. See, for example, Figure 1.</li>
+</ul>
+<p>Note that a set is unordered and so the ouput will likely be unordered</p>
+<p><img alt="Figure 1: Print account numbers from set" src="img/setAccountNumbers.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>BIABank_v5</h1>
+<p>In this iteration we shall design and implement a Personal Identification Number (PIN) generator.</p>
+<p>Using similar techniques as previously, </p>
+<ul>
+<li>Create a new class BIABank_v5 and </li>
+<li>Replace the default code with an exact copy of the code from the previous iteration BIABank_v4.</li>
+<li>In this copied source code change the class name from <em>BIABank_v4</em> to <em>BIABank_v5</em>.</li>
+<li>Compile and verify no errors.</li>
+</ul>
+<p>The signature for the PIN generator method is</p>
+<pre><code>public String generatePin()
+</code></pre>
+
+<p>We define the following rules with which the PIN must comply:</p>
+<ul>
+<li>It must contain 4 digits</li>
+<li>The range of digits is to be between 1 to 9 inclusive.</li>
+<li>Zero is not permitted anywhere in the PIN</li>
+</ul>
+<p>We will use the <em>Math</em> library class. This class is located in the package <em>java.lang</em> which is loaded automatically. Consequently an <em>import</em> statement is not required.</p>
+<p>The documentation for the Math class is available online <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html">here</a>.</p>
+<p>We shall use the <em>random</em> method. This returns "<em>a double value with a positive sign, greater than or equal to 0.0 and less than 1.0</em>".</p>
+<p>We shall also use the primitive <em><a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">byte</a></em> type to contain individual PIN digits. </p>
+<p>The maximum value of a <em>byte</em> is 127 which is more than adequate.</p>
+<p>You may be concerned that the maximum value of a four-digit PIN is 9999 and that a <em>byte</em> type with a maximum value of 127 cannot therefore be suitable. You will see below, however, that this is not a problem because we assemble individual digits (bytes) into a String object.</p>
+<h2>Verbose version <em>generatePin</em> method</h2>
+<p>Let's begin with a wrapper for the method. </p>
+<ul>
+<li>The wrapper returns an empty string to avoid generating a compile-time error.</li>
+</ul>
+<pre><code>public static String generatePin()
+{
+
+    return &quot;&quot;;
+}
+</code></pre>
+
+<p>Add this to the source code and verify it compiles withour error.</p>
+<p>Next we </p>
+<ul>
+<li>Define and initialize a variable <em>NUMBER_PIN_DIGITS</em>, the size of the PIN<ul>
+<li><em>static final int NUMBER_PIN_DIGITS = 4;</em></li>
+<li>We declare it as <ul>
+<li><em>static</em> since it applies to all bank objects</li>
+<li><em>final</em> since we do not envisage the number ever being changed.</li>
+</ul>
+</li>
+<li>We used upper case to comply with conventional code styling in the case of static final variables. See <a href="archives/codeconventions-150003.pdf">Naming Conventions</a> in locally archived style guide document.</li>
+</ul>
+</li>
+<li>Create an empty String variable to contain the PIN digits:<ul>
+<li><em>String pin = new String();</em></li>
+</ul>
+</li>
+</ul>
+<pre><code>public static String generatePin()
+{
+    String pin = new String();
+    return pin;
+}
+</code></pre>
+
+<p>Check the amended method compiles without errors.</p>
+<p>We will now go through the process of generating a random (more correctly, a <em>pseudo-random</em>) digit in the range [1, 9].</p>
+<p>Recall that <em>Math.random()</em> generates a double value in the range [0.0, 1.0). </p>
+<p>[0.0, 1.0) means </p>
+<ul>
+<li>Lowest possible value generated is exactly 0.0<ul>
+<li>Denoted by open box bracket [</li>
+</ul>
+</li>
+<li>Maximum value is less than 1.0 but can be as close as you wish to 1.0, e.g. 0.9999999<ul>
+<li>Denoted by closed parenthesis bracket )</li>
+</ul>
+</li>
+</ul>
+<p>But we require a whole number number in the range [1, 9]. 
+Here is how we can obtain this:</p>
+<ul>
+<li>Generate a random number<ul>
+<li>double rnd = Math.random(); </li>
+<li>Range is [0.0, 1.0)</li>
+</ul>
+</li>
+<li>Multiply this mumber (rnd) by 9.<ul>
+<li>Range of rnd becomes [0.0, 9.0)</li>
+</ul>
+</li>
+<li>Add 1 to rnd<ul>
+<li>Range of rnd becomes [1.0, 10.0)</li>
+</ul>
+</li>
+<li>Use a <em><a href="http://stackoverflow.com/questions/2143476/how-to-cast-a-double-to-an-int-in-java">cast</a></em> to convert rnd to a <em>byte</em> type whole number, dropping the part following decimal point.<ul>
+<li>byte rnd = (byte)rnd;</li>
+<li>E.g. 9.99999 becomes 9</li>
+</ul>
+</li>
+<li>Use the Java <em><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Byte.html">Byte</a></em> class method <em>toString</em> to convert rnd to a string.<ul>
+<li>String rndStr = Byte.toString(rndByte);</li>
+</ul>
+</li>
+<li><a href="http://docs.oracle.com/javase/tutorial/java/data/strings.html">Concatenate</a> <em>rnd</em> to <em>pin</em>.<ul>
+<li>pin += rndStr;</li>
+</ul>
+</li>
+<li>Return the PIN<ul>
+<li>return pin;</li>
+</ul>
+</li>
+</ul>
+<p>In verbose code the above steps become:</p>
+<pre><code>      double rnd = Math.random();
+      rnd *= 9;
+      rnd += 1;
+      byte rndByte = (byte)rnd;
+      String rndStr = Byte.toString(rndByte);
+      pin += rndStr;
+</code></pre>
+
+<p>Summary: These statements </p>
+<ul>
+<li>Generate a random digit between 1 and 9 inclusive.</li>
+<li>Convert the digit to a String object.</li>
+<li>Concatenate this digit to the PIN String object partially constructed.</li>
+</ul>
+<p>It only remains to repeat this process for each of the 4 PIN digits.</p>
+<p>We wrap this statement block within a for loop to achieve this goal:</p>
+<pre><code>for(int i = 0; i &lt; NUMBER_PIN_DIGITS; i += 1)
+{
+    //Statement block here
+}
+</code></pre>
+
+<p>Here then is a very verbose <em>generatePin</em> method, which we shall shortly refactor into a more compact form:</p>
+<pre><code>public static String generatePin()
+{
+    String pin = new String();
+    for(int i = 0; i &lt; NUMBER_PIN_DIGITS; i += 1)
+    {
+        double rnd = Math.random();
+        rnd *= 9;
+        rnd += 1;
+        byte rndByte = (byte)rnd;
+        String rndStr = Byte.toString(rndByte);
+        pin += rndStr;
+    }
+    return pin;
+}
+</code></pre>
+
+<p>This is the completed method that you should add to your BIABank_v5 class.</p>
+<p>Check it compiles without error.</p>
+<p>Then test by 
+- Selecting the BIABank_v5 class diagram in the BlueJ: biabank window
+- Invoking <em>generatePin</em> method.
+- Observing the output is a valid PIN (See Figure 1).</p>
+<p>Since <em>generatePin</em> is a static  method you invoke the method on the class, not on an object of the class.</p>
+<p><img alt="Figure 1: Generating a PIN number" src="img/generatePin.png"></p>
+<h2>Refactored generatePin method</h2>
+<p>Here is the refactored method:</p>
+<pre><code>  public static String generatePin()
+  {
+    String pin = new String();
+
+    for (int i = 0; i &lt; NUMBER_PIN_DIGITS; i += 1)
+    {
+      pin += Byte.toString((byte)(Math.random()*9 +1));
+    }
+    return pin;
+  }
+</code></pre>
+
+<p>Study the method and note that the following six statements</p>
+<pre><code>        double rnd = Math.random();
+        rnd *= 9;
+        rnd += 1;
+        byte rndByte = (byte)rnd;
+        String rndStr = Byte.toString(rndByte);
+        pin += rndStr;
+</code></pre>
+
+<p>are condensed into the following single statement:</p>
+<pre><code>pin += Byte.toString((byte)(Math.random()*9 +1));
+</code></pre>
+
+<p>You may wish to change your code to use the refactored method.</p>
+<ul>
+<li>Alternatively you may consider it preferrable to retain the verbose version.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>BIABank_v5</h1>
+<p>Here is the complete, uncommented, BIABank_v5 class.</p>
+<pre><code>import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+/**
+ * Bank class containing:
+ *      An ArrayList of Customers 
+ *      A HashMap associating customers to their account numbers
+ *      A HashSet of all account numbers used
+ *      A method to create a new customer
+ *      A method to retrieve a Customer object, given the customer's account number
+ *      A method to print all account numbers
+ *      A method to generate a PIN
+ *
+ * @author jfitzgerald
+ * 
+ */
+public class BIABank_v5
+{
+    private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
+    private HashMap&lt;Integer, Customer&gt; customerRecord = new HashMap&lt;&gt;();
+    private HashSet&lt;Integer&gt; accountNumberSet = new HashSet&lt;&gt;();
+    private static int INITIAL_ACCOUNT_NUMBER = 1000;
+    static final int NUMBER_PIN_DIGITS = 4;
+    /**
+     * nextAccountNumber is the next available account number and is assigned to a
+     * new customer It is a class variable rather than an instance variable since
+     * the value requires visibility across all BIABank objects
+     */
+    static int nextAccountNumber = INITIAL_ACCOUNT_NUMBER;
+
+
+    public int newCustomer(String name, int balance)
+    {
+        int accountNumber = nextAccountNumber;
+        if(accountNumberSet.contains(accountNumber) == true)
+        {
+            System.out.println(&quot;Fatal error: invalid account number generated&quot;);
+            return Integer.MIN_VALUE;
+        }
+        accountNumberSet.add(accountNumber);
+        Customer newCustomer = new Customer(name, accountNumber, balance);
+        customers.add(newCustomer);
+        customerRecord.put(accountNumber, newCustomer);
+        nextAccountNumber += 1;
+        return accountNumber;
+    }
+
+    public String getCustomerName(int accountNumber)
+    {
+        Customer customer = customerRecord.get(accountNumber);
+        if(customer != null) 
+        {
+            return customer.getName();
+        }
+        else 
+        {
+            return &quot;Customer with account number &quot;+accountNumber+&quot; does not exist&quot;;
+        }
+    }
+
+    public void printAccountNumbers()
+    {
+        Iterator&lt;Integer&gt; it = accountNumberSet.iterator();
+        System.out.println(&quot;Complete list account numbers&quot;);
+        while (it.hasNext())
+        {
+            System.out.println(it.next());
+        }
+    }
+
+    public static String generatePin()
+    {
+        String pin = new String();
+
+        for (int i = 0; i &lt; NUMBER_PIN_DIGITS; i += 1)
+        {
+            pin += Byte.toString((byte)(Math.random()*9 +1));
+        }
+        return pin;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>Modify the <em>generatePin</em> method in BIABank_v5 so that a user can generate a PIN of any size, for example a six digit pin. </p>
+<p>The signature becomes <em>public String generatePin(int nmrPinDigits)</em> where the actual parameter specifies the PIN size, i.e. the number of digits in the PIN.</p>
+<p>Make whatever other changes are necesssary to the bank class.</p>
+<h2>Exercise 2</h2>
+<p>Modify the <em>generatePin</em> method so that a PIN cannot comprise 4 consecutive digits in ascending order.</p>
+<p>For example 3456 would be disallowed. However 6543 would be acceptable.</p>
+<h2>Exercise 3 (Advanced)</h2>
+<p>In this exercise we define a PIN as being invalid if it comprises consecutive ascending digits , otherwise the PIN is valid:</p>
+<ul>
+<li>Example PIN 456 is invalid.</li>
+</ul>
+<p>Write a method to test whether a PIN is valid or invalid.</p>
+<ul>
+<li>Use the signature: <em>public static boolean isValid(String pin)</em></li>
+<li>The method should return <em>false</em> if an invalid PIN is detected, else <em>true</em>.</li>
+</ul>
+<h2>Exercise 4 (Advanced)</h2>
+<p>Write a test method with signature <em>public static void testPIN(int nmrPinDigits)</em> </p>
+<ul>
+<li>Generate 1000 3-digit PINs</li>
+<li>Invoke <em>isValid</em> for each PIN</li>
+<li>Print a warning if an invalid PIN is discovered including the offending PIN<ul>
+<li>Example: xxxxx is an invalid PIN</li>
+</ul>
+</li>
+<li>Print a success message otherwise.<ul>
+<li>Example: All pins comply with specification</li>
+</ul>
+</li>
+</ul>
+<p>Test as follows:</p>
+<ul>
+<li>Use the original PIN generator which will result in invalid PINs</li>
+<li>Use the PIN generator modified in Exercise 2 which should generate only valid PINS</li>
+</ul>
+<h1>Exercise 5 (Advanced)</h1>
+<p>Write a method to print out a list of all the bank's customers:</p>
+<ul>
+<li>Account number</li>
+<li>Balance</li>
+<li>Customer name</li>
+</ul>
+<p>Replicate the layout shown in the table in Figure 1:</p>
+<p><img alt="Figure 1: List of Bank Customers" src="img/01.png"></p>
+<p>The solution provides three different methods to print out the required details using in turn:</p>
+<ul>
+<li>The ArrayList of customers</li>
+<li>The HashSet of account numbers and the HashMap of <em>account number - customer</em> pairs</li>
+<li>The HashMap only</li>
+</ul>
+<p>Implement one or all of these three approaches or a different approach should you discover one.</p>
+<h2>Exercise 6</h2>
+<p>Write a method to close an account and delete customer's records.</p>
+<ul>
+<li>Use the signature <em>public void closeAccount(int accountNumber)</em></li>
+<li>Remove the Customer object from the ArrayList of Customers</li>
+<li>Remove the relevant key-value pair from the HashMap</li>
+<li>Remove the account number from the HashSet</li>
+<li>Verify by printing out a list of customers before and after invoking this new method</li>
+</ul>
+<h1>Exercise 7</h1>
+<p>Complete the skeleton code in Figure 2 below so that when the method <em>test()</em> is invoked the matrix shown in Figure 3 is printed.</p>
+<p><img alt="Figure 2: Skeleton code for Exercise 7" src="img/02.png"></p>
+<p><img alt="Figure 3 Required output Exercise 7" src="img/03.png"></p>
+<h1>Exercise 8</h1>
+<p>Complete the skeleton class below as follows:</p>
+<p>8.1. Create a HashSet and add the following String objects:</p>
+<pre><code>String[] strings = {&quot;DCU&quot;, &quot;DCU&quot;, &quot;WIT&quot;, &quot;CIT&quot;};
+</code></pre>
+
+<p>8.2 Use an iterator to traverse the set, printing out each element in the set and verify that "DCU" has been added only once to the set.</p>
+<p>8.3 Remove "CIT" from the set.</p>
+<p>8.4 Use an iterator to traverse the set, printing out each element in the set and verify that the removal has been successful.</p>
+<pre><code>//add import statements
+public class DemoHashSet
+{
+
+  public static void demo()
+  {
+    //Declare and initialize a HashSet
+
+    //Add this array of strings
+    String[] strings = {&quot;DCU&quot;, &quot;DCU&quot;, &quot;WIT&quot;, &quot;CIT&quot;};
+    //Declare an iterator and use it to traverse the set
+    //Print out each element
+    //Verify duplicates not present
+
+    //Remove &quot;DCU&quot;
+    //Iterate the set
+    //Print out elements
+    //Verify element has been removed  
+  }
+
+}
+
+</code></pre>
+
+<h1>Exercise 9</h1>
+<p>Create and implement a class DemoHashMap as follows:</p>
+<ul>
+<li>Refer to the code in Figure 4.</li>
+</ul>
+<p>9.1 Create a HashMap and add the following key-value pairs:</p>
+<pre><code>&quot;George&quot;, &quot;0231 8542983&quot;
+&quot;Michael&quot;, &quot;0595 848290&quot;
+&quot;Paul&quot;,    &quot;044 5644321&quot;
+</code></pre>
+
+<p>9.2 Print the elements in the map.</p>
+<p>9.3 Remove the first key-value pair in 9.1.</p>
+<p>9.4 Print out the list of key-value pairs and verify that the element has been removed.</p>
+<p><img alt="Figure 4: HashMap sample code" src="img/04.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

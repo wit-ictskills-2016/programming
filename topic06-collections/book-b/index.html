@@ -1,0 +1,533 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      5: More sophisticated behaviour
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Class-members">
+        Class-members
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Class-members">
+    <h1>Objectives</h1>
+<p>Static variables and methods belong to the class rather than to an instance of the class. Static methods may be invoked using the class name (example System.out) whereas non-static methods may only be invoked on an object. A Static variable is shared by every instance of its containing class and is to be found at one fixed location in memory.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Class (static) variables</h1>
+<p>In your session05 create a new project named <em>javaLang</em>.</p>
+<p>Create a new class in the project with the following source code:</p>
+<pre><code>public class JavaLang
+{
+  private static int value = 0;
+
+  public void incrementValue()
+  {
+    value += 1;
+  }
+  public static int getValue()
+  {
+    return value;
+  }
+}
+</code></pre>
+
+<p>This class has a </p>
+<ul>
+<li>static int field</li>
+<li>public method to increment the field (effectively a mutator)</li>
+<li>getter for the field.</li>
+</ul>
+<p>Consider the class variable:</p>
+<pre><code>static int value;
+</code></pre>
+
+<p>The default initialization of a static variable is zero. See <a href="http://docs.oracle.com/javase/specs/jls/se7/html/jls-4.html#jls-4.12.5">here</a> and <a href="http://stackoverflow.com/questions/3918578/should-i-initialize-variable-within-constructor-or-outside-constructor">here</a>. </p>
+<ul>
+<li>Nevertheless, some may consider code easier to read if such a variable is explicitly initialized even when the required initial value is zero.</li>
+</ul>
+<p>Check that this code compiles without error.</p>
+<p>Now create a second class named TestJavaLang with the following code:</p>
+<pre><code>public class TestLang
+{
+    /**
+     * Print the values of the JavaLang objects' static variables
+     */
+    public void test()
+    {
+        int nmrObjs = 4;
+        //create array of references to JavaLang objects
+        JavaLang[] obj = new JavaLang[nmrObjs];
+        //instantiate the JavaLang objects
+        for(int i = 0; i &lt; nmrObjs; i += 1 )
+        {
+            obj[i] = new JavaLang();
+        }
+        System.out.println(&quot;Before state change&quot;);
+        print(obj);
+        //Method incrementValue invoked on JavaLang object
+        obj[0].incrementValue();
+        System.out.println(&quot;After state change&quot;);
+        print(obj);
+    }
+
+    private void print(JavaLang[] obj)
+    {
+        System.out.println(&quot;obj[i]  value&quot;);
+        for (int i = 0; i &lt; obj.length; i += 1)
+        {
+            System.out.println(&quot;  &quot;+i+&quot;       &quot; + obj[i].getValue());
+        }
+    }
+}
+</code></pre>
+
+<p>This class has a private method <em>void print(JavaLang[] obj)</em> that, when inovoked, prints the static field value associated with each JavaLang object in the parameter array of JavaLang object.</p>
+<p>The class also has a method <em>public void test()</em> that</p>
+<ul>
+<li>Creates an array of JavaLang objects.</li>
+<li>Prints out the default value of the static field in each JavaLang object.</li>
+<li>Invokes the method <em>public void incrementValue()</em> on a particular JavaLang object.</li>
+<li>Prints out the values of the static variables which confirm that <ul>
+<li>Method <em>incrementValue</em> on one object changes the static variable value as seen by all objects.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Testing effect of increment static field" src="img/staticVals.jpg"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Non-static (instance) variables</h1>
+<p>We shall now introduce an instance variable to class JavaLang</p>
+<pre><code>private int objectId;
+</code></pre>
+
+<p>Also, add a mutator and accessor:</p>
+<pre><code>public void setObjectId(int objectId)
+{
+    this.objectId = objectId;
+}
+
+public int getObjectId()
+{
+    return objectId;
+}
+</code></pre>
+
+<p>Refactor the method <em>test</em> to include changes to the instance variable in addition to the changes to the class (static) variable already programmed.</p>
+<pre><code>/**
+ * Print the values of the JavaLang object static variable
+ */
+public void test()
+{
+    int nmrObjs = 4;
+    //create array of references to JavaLang objects
+    JavaLang[] obj = new JavaLang[nmrObjs];
+    //instantiate JavaLang objects
+    for(int i = 0; i &lt; nmrObjs; i += 1 )
+    {
+        obj[i] = new JavaLang();
+    }
+    System.out.println(&quot;Before state change&quot;);
+    print(obj);
+    //Method incrementValue invoked on JavaLang object
+    obj[0].incrementValue();
+    //Method setObjectId invoked on JavaLang object
+    obj[0].setObjectId(100);
+    System.out.println(&quot;After state change&quot;);
+    print(obj);
+}
+
+private void print(JavaLang[] obj)
+{
+    System.out.println(&quot;obj[i]  value  objectId &quot;);
+    for (int i = 0; i &lt; obj.length; i += 1)
+    {
+        System.out.println(&quot;  &quot;+i+&quot;       &quot;+obj[i].getValue()+&quot;       &quot;+obj[i].getObjectId());
+    }
+}
+</code></pre>
+
+<p>The important points to note in Figure 1 are that</p>
+<ul>
+<li>When class (static) variable is changed, the change applies across all objects.</li>
+<li>When the instance (non-static) variable is changed by invocation on a partiular object, the change applies only to that object's state.</li>
+</ul>
+<p><img alt="Figure 1: Testing effect changes to both class and instance variables" src="img/instanceVals.jpg"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Static and non-static methods</h1>
+<p>Here we will compare invocations of static and non-static methods.</p>
+<p>Within the BlueJ javaLang project create a new class named <em>TestMethod</em>.</p>
+<p>Replace the default code with the following:</p>
+<pre><code>public class TestMethod
+{
+
+    public void getClassVariable()
+    {
+        int var = JavaLang.getValue();
+        System.out.println(&quot;Class variable: &quot;+var);
+    }   
+
+}
+</code></pre>
+
+<p>Open the JavaLang source code in the editor and change the signature of the <em>getValue</em> method from</p>
+<pre><code>  public int getValue()
+</code></pre>
+
+<p>to </p>
+<pre><code>  public static int getValue()
+</code></pre>
+
+<p>As you can see, we have added the <em>static</em> keyword to the method signature for a reason that will become evident below.</p>
+<p>Test this method as follows:</p>
+<ul>
+<li>Compile the class TestMethod.</li>
+<li>Create an instance of TestMethod on the object bench.</li>
+<li>Invoke <em>getClassVariable</em>.</li>
+<li>Observe that the value of the static variable should be displayed as 0, the default value (See Figure 1).</li>
+</ul>
+<p><img alt="Figure 1: Invoking static (class) method" src="img/invokeStaticMethod.png"></p>
+<p>Note that this class, TestMethod, does not have fields, just a method <em>getClassVariable()</em>.</p>
+<p>Notice the statement:</p>
+<pre><code>int var = JavaLang.getValue();
+</code></pre>
+
+<p>Note the following important points:</p>
+<ul>
+<li>This method invocation, <em>JavaLang.getValue()</em> retrieves the current value of the class variable in JavaLang.</li>
+<li>The invocation is effected by intervening the dot (.) notation between the class name, <em>JavaLang</em> and the method <em>getValue</em>.</li>
+<li>It is not necessary that a JavaLang object exist in order to <ul>
+<li>access the static variable</li>
+<li>invoke the static method</li>
+</ul>
+</li>
+</ul>
+<p>We will now examine how invoking a non-static method is different.</p>
+<p>Recall that JavaLang also has an instance variable <em>objectId</em>.</p>
+<p>Attempt to retrieve the value of this variable by adding the following line to <em>getClassVariable</em> and compiling the source code. This is the method we used above to retrieve the class variable <em>value</em>.</p>
+<pre><code>int objId = JavaLang.getObjectId();
+</code></pre>
+
+<p>The code will fail to compile and flag an error that a <em>non-static method </em>getObjectId<em> cannot be referenced from a static context</em>. (Figure 2).</p>
+<p><img alt="Figure 2: Error attempting to invoke non-static method from static context" src="img/errorNonStatCall.png"></p>
+<p>Let's resolve this issue as follows by refactoring <em>TestMethod</em> class:</p>
+<ul>
+<li>Remove the line of code that we introduced: <em>int objId = JavaLang.getObjectId();</em>.</li>
+<li>Introduce an instance variable <em>JavaLang obj</em>.</li>
+<li>Write a default constructor</li>
+<li>Instantiate the instance variable<ul>
+<li>obj = new JavaLang();</li>
+</ul>
+</li>
+<li>Write a method <em>getInstanceVariable</em> to <ul>
+<li>get the value of the JavaLang instance variable</li>
+</ul>
+</li>
+<li>Test by<ul>
+<li>Compiling</li>
+<li>Creating a new TestMethod instance on the object workbench</li>
+<li>Invoke <em>getInstanceVariable</em></li>
+<li>Verify default value, 0 , returned and printed to screen</li>
+</ul>
+</li>
+</ul>
+<p>See Figure 3.</p>
+<p>Here is the refactored <em>TestMethod</em> class. </p>
+<p>Carefully study this to gain an understanding of how class and instance methods are invoked.</p>
+<pre><code>public class TestMethod
+{
+    private JavaLang obj;
+
+    /**
+     * Default constructor
+     */
+    public TestMethod()
+    {
+        obj = new JavaLang();
+    }
+
+    public void getClassVariable()
+    {
+        int var = JavaLang.getValue();
+        System.out.println(&quot;Class variable: &quot;+var);
+    }   
+
+
+    public void getInstanceVariable()
+    {
+       int objId = obj.getObjectId();
+       System.out.println(&quot;Instance variable: &quot;+objId);
+    }
+}
+</code></pre>
+
+<p><img alt="Figure 3: Invoking non-static method" src="img/invokeInstanceMethod.png"></p>
+<p>Finally see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html">here</a> for further information on use of the <em>static</em> keyword.</p>
+<ul>
+<li>Note in particular that <ul>
+<li><em>you can refer to static fields with an object reference</em> but </li>
+<li><em>this is discouraged because it does not make it clear that they are class variables</em>.</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>You are provided with partially-completed classes named</p>
+<ul>
+<li>Event</li>
+<li>Walker</li>
+</ul>
+<p>The Walker class has </p>
+<ul>
+<li>A field that keeps a running total of all the kilometers walked by all the walkers (Walker objects) in a particular Event (object)</li>
+<li>a getter for the above field</li>
+<li>A constructor with a parameter to indicate the number of miles walked by an individual walker.</li>
+</ul>
+<p>The Event class has</p>
+<ul>
+<li>a list of walkers</li>
+<li>a means of randomly generating the distance to be walked by an individual walker</li>
+<li>a prescribed minimum and maximum distance to be walked</li>
+<li>a constructor with a parameter that sets the number of walkers and max and min distances</li>
+<li>a public method <em>walkTheWalk</em> to <ul>
+<li>simulate the walk event and </li>
+<li>return the cumulative number of miles walked, that is, the sum of the miles that each walker covered.</li>
+</ul>
+</li>
+</ul>
+<p>Here are the skeletons of the classes to be developed:</p>
+<pre><code>public class Walker
+{
+    //provide field to record cumulative miles walked
+
+    public Walker(int milesWalked)
+    {
+
+    }
+
+    //provide a getter here
+}
+</code></pre>
+
+<pre><code>
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Event
+{
+    //fields
+
+    public Event(int numberWalkers, int maxDistance, int minDistance)
+    {
+       //initialize fields
+    }
+
+    public int walkTheWalk()
+    {
+         for(int i=0; i &lt; numberWalkers; i += 1)
+        {
+            //generate random distance
+            //create walker
+            //add walker to list
+        }
+
+        //return total miles walked by all walkers
+    }
+}
+</code></pre>
+
+<h2>Exercise 2</h2>
+<p>Test the application in Exercise 1 as follows:</p>
+<ul>
+<li>
+<p>Write method <em>printWalkerDistances()</em> that:</p>
+<ul>
+<li>Prints two columns of data<ul>
+<li>Columm 1: Walker (the walker number, example 0, 1, 2....number walkers -1)</li>
+<li>Column 2: Distance (the distance walked by each walker)</li>
+<li>See Figure 1 for typical output.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Write method <em>printEventData()</em> that prints the:</p>
+<ul>
+<li>number of walkers</li>
+<li>maximum and minimum distance attributes</li>
+<li>the cumulative distance walked by all walkers in the <em>event</em></li>
+<li>enforce a constraint that the method prints data only following invocation of <em>walkTheWalk</em></li>
+<li>See Figure 2 for typical output</li>
+</ul>
+</li>
+<li>
+<p>Instantiate <em>Event event</em> with these parameters;</p>
+<ul>
+<li>number walkers 10</li>
+<li>maximum distance 50</li>
+<li>minimum distance 20</li>
+</ul>
+</li>
+<li>
+<p>Invoke the methods</p>
+<ul>
+<li><em>printEventData</em><ul>
+<li>invocation should fail to print data and trigger a warning to first invoke <em>walkTheWalk</em></li>
+</ul>
+</li>
+<li><em>walkTheWalk</em></li>
+<li><em>printEventData</em></li>
+<li><em>printWalkerDistances</em></li>
+</ul>
+</li>
+</ul>
+<p>Check the cumulative miles walked (as shown Figure 1) against the sum of the distances output (as shown Figure 2).</p>
+<p><img alt="Figure 1: Typical output printWalkerDistances" src="img/05.png">
+<img alt="Figure 2: Typical output printEventData" src="img/07.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
