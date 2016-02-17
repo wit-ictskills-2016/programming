@@ -115,7 +115,7 @@ h3
   </div>
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Class (static) variables</h1>
-<p>In your session05 create a new project named <em>javaLang</em>.</p>
+<p>Create a new project named <em>javaLang</em> in your current session.</p>
 <p>Create a new class in the project with the following source code:</p>
 <pre><code>public class JavaLang
 {
@@ -250,7 +250,7 @@ private void print(JavaLang[] obj)
 <p>The important points to note in Figure 1 are that</p>
 <ul>
 <li>When class (static) variable is changed, the change applies across all objects.</li>
-<li>When the instance (non-static) variable is changed by invocation on a partiular object, the change applies only to that object's state.</li>
+<li>When the instance (non-static) variable is changed by invocation on a particular object, the change applies only to that object's state.</li>
 </ul>
 <p><img alt="Figure 1: Testing effect changes to both class and instance variables" src="img/instanceVals.jpg"></p>
   </div>
@@ -265,7 +265,7 @@ private void print(JavaLang[] obj)
     public void getClassVariable()
     {
         int var = JavaLang.getValue();
-        System.out.println(&quot;Class variable: &quot;+var);
+        System.out.println(&quot;Class variable: &quot; + var);
     }   
 
 }
@@ -279,7 +279,7 @@ private void print(JavaLang[] obj)
 <pre><code>  public static int getValue()
 </code></pre>
 
-<p>As you can see, we have added the <em>static</em> keyword to the method signature for a reason that will become evident below.</p>
+<p>As you can see, we have added the <em>static</em> keyword to the method signature. The reason for this change will become evident below.</p>
 <p>Test this method as follows:</p>
 <ul>
 <li>Compile the class TestMethod.</li>
@@ -401,14 +401,14 @@ private void print(JavaLang[] obj)
 <p>Here are the skeletons of the classes to be developed:</p>
 <pre><code>public class Walker
 {
-    //provide field to record cumulative miles walked
+    // provide field to record cumulative miles walked
 
     public Walker(int milesWalked)
     {
 
     }
 
-    //provide a getter here
+    // provide a getter here
 }
 </code></pre>
 
@@ -417,24 +417,26 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Event
-{
-    //fields
+{ 
+    // fields
+    ...
+    ...
 
     public Event(int numberWalkers, int maxDistance, int minDistance)
     {
-       //initialize fields
+       // initialize fields
     }
 
     public int walkTheWalk()
     {
-         for(int i=0; i &lt; numberWalkers; i += 1)
+        for (int i = 0; i &lt; numberWalkers; i += 1)
         {
-            //generate random distance
-            //create walker
-            //add walker to list
+            // generate random distance
+            // create walker
+            // add walker to list
         }
 
-        //return total miles walked by all walkers
+        // return total miles walked by all walkers
     }
 }
 </code></pre>

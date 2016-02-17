@@ -133,8 +133,7 @@ h3
   </div>
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Setup</h1>
-<p>Create a new folder in workspaceBlueJ named session05.</p>
-<p>Create a new BlueJ project BIABank in this folder.</p>
+<p>Create a new BlueJ project named BIABank in your current working folder.</p>
 <p>This project will represent a really naive bank.</p>
 <p>Create a new class <em>BIABank_v0</em> in this project.</p>
 <p>This will be one of several somewhat similarly named classes that we will introduce as we make progressive improvements to BIABank.</p>
@@ -200,7 +199,6 @@ Therefore we create arrays of size 1000 for customers, accountNumbers and balanc
  * Matching array indices link customers with their account numbers and balances.
  * Example: accountNumbers[i] and balance[i] are associated with customer[i] 
  * 
- * @author jfitzgerald
  *
  */
 public class BIABank_v0 {
@@ -284,7 +282,7 @@ private static final int MAX_NUMBER_CUSTOMERS = 1000;
  * customers with their account numbers and balances. Example customer[i] has
  * account number accountNumbers[i] with a balance balance[i]
  * 
- * @author jfitzgerald
+ * @author
  * 
  */
 public class BIABank_v0_1
@@ -404,7 +402,7 @@ public class BIABank_v0_1
  * A slightly less naive bank No specified upper limit on number of customers
  * Use a flexible collection ArrayList
  * 
- * @author jfitzgerald
+ * @author
  * 
  */
 public class BIABank_v1
@@ -522,13 +520,7 @@ public class BIABank_v1
 <p>Here is the complete BIABank_v2 source code:</p>
 <pre><code>import java.util.ArrayList;
 
-/**
- * Abstraction: create class Customer with fields name, accountNumber and  balance 
- * Use HashArray collection of Customer objects in BIABank field
- * 
- * @author jfitzgerald
- * 
- */
+
 public class BIABank_v2
 {
   private ArrayList&lt;Customer&gt; customers = new ArrayList&lt;&gt;();
@@ -589,21 +581,25 @@ public class BIABank_v2
 <pre><code>private HashMap&lt;Integer, Customer&gt; customerRecord = new HashMap&lt;&gt;();
 </code></pre>
 
-<p>We are using the <em>Integer</em> class to contain the account number. </p>
+<p>We use the <em>Integer</em> class to contain the account number. </p>
 <ul>
-<li>The account number has been declared as an <em>int</em> but we are not allowed to use <em>int</em>s as keys in a HashMap, hence the use of <em>Integer</em>.</li>
+<li>The account number has been declared as an <em>int</em>. But we are not allowed to use <em>int</em>s as keys in a HashMap, hence the use of <em>Integer</em>.</li>
 </ul>
-<p>It will be necessary to import the HashMap:</p>
+<p>It is necessary to import the HashMap:</p>
 <pre><code>import java.util.HashMap;
 </code></pre>
 
-<p>It's now necessary to decide where and how to add customers and their keys to the map.</p>
+<p>It's now time to decide where and how to add customers and their keys to the map.</p>
 <p>The method <em>newCustomer</em> seems a suitable location.</p>
-<p>HashMap has a public method <em>put</em> that allows us to add an account number - customer pair. This statement is what's required:</p>
+<p>HashMap has a public method <em>put</em> that allows us to add an account number - customer pair. </p>
+<ul>
+<li>The account number is the key. </li>
+<li>The customer object is the value. </li>
+</ul>
+<p>This statement is what's required:</p>
 <pre><code>customerRecord.put(accountNumber, newCustomer);
 </code></pre>
 
-<p>The accountNumber is the key and newCustomer is the value. </p>
 <p>Knowing a particular key allows one to retrieve the corresponding value:</p>
 <ul>
 <li>accountNumber (key) allows retrieval of Customer instance (value)</li>
@@ -666,7 +662,7 @@ import java.util.HashMap;
  * Bank class containing an ArrayList of Customers and 
  * a HashMap associating customers to their account numbers
  * 
- * @author jfitzgerald
+ * @author
  * 
  */
 public class BIABank_v3
@@ -811,7 +807,7 @@ import java.util.Iterator; //&lt;--- NB: import from java.util
  * Bank class containing an ArrayList of Customers and 
  * a HashMap associating customers to their account numbers
  * 
- * @author jfitzgerald
+ * @author
  * 
  */
 public class BIABank_v4
@@ -1070,6 +1066,11 @@ Here is how we can obtain this:</p>
 <ul>
 <li>Alternatively you may consider it preferrable to retain the verbose version.</li>
 </ul>
+<p>Other approaches to generating random numbers are possible. For example, one may use either of these classes:</p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html">Random</a></li>
+<li><a href="https://docs.oracle.com/javase/7/docs/api/java/security/SecureRandom.html">SecureRandom</a></li>
+</ul>
   </div>
   <div  class="ui tab segment lab" data-tab="09">
     <h1>BIABank_v5</h1>
@@ -1088,7 +1089,7 @@ import java.util.Iterator;
  *      A method to print all account numbers
  *      A method to generate a PIN
  *
- * @author jfitzgerald
+ * @author
  * 
  */
 public class BIABank_v5
@@ -1170,7 +1171,7 @@ public class BIABank_v5
 <h2>Exercise 3 (Advanced)</h2>
 <p>In this exercise we define a PIN as being invalid if it comprises consecutive ascending digits , otherwise the PIN is valid:</p>
 <ul>
-<li>Example PIN 456 is invalid.</li>
+<li>Example PIN 4567 is invalid.</li>
 </ul>
 <p>Write a method to test whether a PIN is valid or invalid.</p>
 <ul>
@@ -1203,15 +1204,8 @@ public class BIABank_v5
 <li>Balance</li>
 <li>Customer name</li>
 </ul>
-<p>Replicate the layout shown in the table in Figure 1:</p>
+<p>A sample layout is shown in the table in Figure 1:</p>
 <p><img alt="Figure 1: List of Bank Customers" src="img/01.png"></p>
-<p>The solution provides three different methods to print out the required details using in turn:</p>
-<ul>
-<li>The ArrayList of customers</li>
-<li>The HashSet of account numbers and the HashMap of <em>account number - customer</em> pairs</li>
-<li>The HashMap only</li>
-</ul>
-<p>Implement one or all of these three approaches or a different approach should you discover one.</p>
 <h2>Exercise 6</h2>
 <p>Write a method to close an account and delete customer's records.</p>
 <ul>
