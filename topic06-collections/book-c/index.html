@@ -329,6 +329,179 @@ h3
 </code></pre>
 
 <p>Introduce the method at appropriate locations in SubstitutionCipher.</p>
+<p><strong>Exercise 6</strong>
+Develop a class VigenereCipher. </p>
+<ul>
+<li>Complete the skeleton code below so as to obtain the output shown in Figures 1 &amp; 2 when the method testVigenere is invoked.</li>
+<li>You are free to refactor the code should you prefer to redesign the class.</li>
+</ul>
+<pre><code>
+/*
+ * For simplicity work in upper case and use [A-Z] only
+ * That is, no other characters, such as white space and so on.
+ * All input strings are immediately normalized to bytes in range [0 25] for algorithmic simplicity
+ * For example the character A whose code is 65 becomes 0, B becomes 1 and so on.
+ * The normalization process is reversed when required such as on generating output.
+ * @author ...
+ * @see http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
+ * @see http://ascii.cl/
+ * @version 15-2-2016
+ */
+public class VigenereCipher
+{
+
+    private static final byte NUMBER_CHARS = 26;
+    private static byte[][] vignereTable = new byte[NUMBER_CHARS][NUMBER_CHARS];
+
+    // vignereTable is normalized to range [0 25]. A is 65
+    private static final byte TRANSFORM_UPPER = 65; 
+
+    // keyword is building block for key
+    // key comprises repeating keyword such that 
+    // the key length matches length of plaintext
+    private String keyword;
+
+    // the key comprising repeating keyword
+    // key is normalized to range [0 25]
+    private byte[] key;
+
+    // the plain or message text
+    private byte[] plainText;
+
+    // the encrypted message text
+    private byte[] cipherText;
+
+    public VigenereCipher()
+    {
+        generateVigenereTable();
+    }
+
+    public static void generateVigenereTable()
+    {
+
+    }
+
+    /**
+     * The keyword is used to generate a key. A key comprises repeating keywords.
+     * The length of the key is the length of the plaintext. Example following:
+     * Note absence of whitespace which is not allowed in this version. 
+     * The keyword is ATTACKATDAWN
+     * 
+     * Plaintext: Thisisplaintextanditsasplainasplaincanbe 
+     * Key:       ATTACKATDAWNATTACKATDAWNATTACKATDAWNATTA
+     */
+    public void setKeyword(String keyword)
+    {
+
+    }
+
+    /**
+     * Uses vignere table and keyword to encrypt plaintext
+     * 
+     * @param plainText
+     * @return The cipher text
+     */
+    public String encrypt(String plainText)
+    {
+
+        byte[] cipherText = new byte[plainText.length()];
+        // ...
+        return new String(cipherText);
+    }
+
+    public String decrypt(String cipherText)
+    {
+
+        byte[] plainText = new byte[cipherText.length()];
+        // ...
+        return new String(plainText);
+    }
+
+    /**
+     * Find the column index in the vigenere table on which the cipherText char located
+     * @param row The row number on which the current key character is located
+     * @param cipherTxt The current cipherText character
+     * @return The column number containing the decrypted message, i.e. the plain text character
+     */
+    private byte getCipherTextColumn(byte row, byte cipherTxt)
+    {
+        byte col = 0;
+        // ...
+        return col;
+    }
+
+    /**
+     * Convert the plain text string to a normalized array of bytes
+     * @param plainText The plain text string
+     */
+    private void setPlainText(String plainText)
+    {
+        // ...
+    }
+
+    /**
+     * Convert the cipherText to a normalized array of bytes
+     * The cipher text is an instance variable byte[] cipherText
+     * @param cipherText The cipher text string
+     */
+    private void setCipherText(String cipherText)
+    {
+
+    }
+
+    /**
+     * Use the instance variable keyword to generate a key
+     * The key is an instance variable byte[] key
+     * whose length is the same as the length of the plain text.
+     * @param plainText The plain text for which a key will be generated.
+     */
+    public void generateKey(String plainText)
+    {
+        // ...
+        printMessageAndKey();
+    }
+
+    /**
+     * A test method to output both the message and key
+     */
+    public void printMessageAndKey()
+    {
+
+    }
+
+    /**
+     * A test method to output the vigenere table
+     */
+    public static void printVigenereTable()
+    {
+
+    }
+
+    /*
+     * The main test method used to print the Vigenere table and 
+     * encrypt and decrypt the resulting cipher text arising from a sample message text
+     */
+    public static void testVigenere()
+    {
+        VigenereCipher vigenere = new VigenereCipher();
+
+        printVigenereTable();
+        System.out.println();
+
+        vigenere.setKeyword(&quot;HOUGHTON&quot;);
+        String messageText = &quot;MICHIGANTECHNOLOGICALUNIVERSITY&quot;;
+        String cipherText = vigenere.encrypt(messageText);
+        System.out.println(cipherText);
+        String plainText = vigenere.decrypt(cipherText);
+        System.out.println(plainText);
+    }
+}
+
+
+</code></pre>
+
+<p><img alt="Figure 1: Vigenere table" src="img/05.png">
+<img alt="Figure 2: Test output" src="img/04.png"></p>
   </div>
 <script>
 $('.ui.menu .item')
