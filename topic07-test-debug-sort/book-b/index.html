@@ -1,0 +1,906 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      6: Testing, Debugging, Searching & Sorting
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Testing-&-Debugging-(contd.)">
+        Testing-&-Debugging-(contd.)
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Testing-&-Debugging-(contd.)">
+    <h1>Objectives</h1>
+<p>We implement some simple unit tests. We first test manually and progress to semi-automated tests. Then we introduce test automation by showing how batches of unit tests can be run automatically. The BlueJ Debugger is used to locate any errors discovered during testing. A helpful feature of the BlueJ framework is exercised to record and replay a suite of tests.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Using BlueJ Debugger(1)</h1>
+<p>To investigate the error triggered by invoking <em>checkEndDayBoundary</em> we shall now make use of our knowledge of:</p>
+<ul>
+<li>The BlueJ debugger. </li>
+<li>Arrays</li>
+</ul>
+<p>To reproduce the error:</p>
+<ul>
+<li>Instantiate DiaryTester object</li>
+<li>Invoke <em>checkEndDayBoundary</em> method.</li>
+</ul>
+<p>Here is the error message output to the BlueJ Terminal Window (diary-prototype):</p>
+<p><img alt="" src="img/03.png"></p>
+<p>Line numbers are inserted for ease of identification. </p>
+<p>Notice the number 9 in row 1.</p>
+<p>Since, from line 2 above, we see that the error is first triggered in the Day method <em>makeAppointment</em> then a first guess is that this number corresponds to the maximum number of appointments per day.</p>
+<p>This is specified in the Day class thus:</p>
+<pre><code>    // The first and final bookable hours in a day.
+    public static final int START_OF_DAY = 9;
+    public static final int FINAL_APPOINTMENT_TIME = 17;
+    // The number of bookable hours in a day.
+    public static final int MAX_APPOINTMENTS_PER_DAY =  FINAL_APPOINTMENT_TIME - START_OF_DAY + 1; //which amounts to 9
+</code></pre>
+
+<p>Open the Day class and study the <em>makeAppointment</em> method:</p>
+<pre><code>    public boolean makeAppointment(int time, Appointment appointment)
+    {
+        if(validTime(time)) {
+            int startTime = time - START_OF_DAY;
+            if(appointments[startTime] == null) {
+                int duration = appointment.getDuration();
+                // Fill in all the slots for the full duration of the appointment.
+                for(int i = 0; i &lt; duration; i++) {
+                    appointments[startTime + i] = appointment;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+</code></pre>
+
+<p>In order to narrow down the possible causes of the error, we note the following:</p>
+<ul>
+<li>From the error message it's clear the error occurs in this method, <em>makeAppointment</em>.</li>
+</ul>
+<pre><code> 2    Day.makeAppointment(Day.java:87)
+</code></pre>
+
+<ul>
+<li>From the Day constructor that the array <em>appointments</em> has a maximum size of MAX_APPOINTMENTS_PER_DAY which is 9.</li>
+</ul>
+<pre><code>    appointments = new Appointments[MAX_APPOINTMENTS_PER_DAY];
+</code></pre>
+
+<ul>
+<li>The only array referenced in <em>makeAppointment</em> is <em>appointments</em>. The type of this array is <em>Appointment</em>.</li>
+<li>The array <em>appointments</em> is accessed in two locations within <em>makeAppointments</em>.</li>
+</ul>
+<pre><code>    if(appointments[startTime] == null)...
+    appointments[startTime + i] = ....
+</code></pre>
+
+<p>To investigate further:</p>
+<ul>
+<li>Place a breakpoint at the first line in <em>makeAppointments</em> (Figure 1).</li>
+<li>Create a <em>DiaryTester</em> object on the object bench.</li>
+<li>Invoke <em>checkEndDayBoundary</em> on the <em>DiaryTester</em> object.<ul>
+<li>The program will halt at the breakpoint and open a Debugger window (Figure 2)..</li>
+<li>Press Continue. This triggers the error.</li>
+<li>Invoke <em>checkEndDayBoundary</em> again.</li>
+<li>When the program stops at the breakpoint step through the code using the Step button.<ul>
+<li>An attempt is made to access <em>appointments[9]</em> when in fact the maximum permissible index is 8.</li>
+<li>This is so because arrays are zero-index based and so the valid range here is [0, 8].</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Breakpoint in makeAppointments" src="img/breakPoint.png"></p>
+<p><img alt="Figure 2: Program halts at breakpoint" src="img/breakPoint2.png"></p>
+<p>We have investigated the source of this error in considerable detail. </p>
+<p>In this particular case, however, we could have located the offending line of code using a quicker method as follows:</p>
+<ul>
+<li>Notice the number 87 towards the end of line 2 of line 2 of the error messsge:</li>
+</ul>
+<pre><code>2 Day.makeAppointent(Day.java.93)
+</code></pre>
+
+<ul>
+<li>The number 87 is the line number in Day source code at which the error was triggered.</li>
+<li>Line numbers are disabled by default in the BlueJ Editor. To enable them<ul>
+<li>Open Day source code in the editor.</li>
+<li>Place the cursor anywhere in the source code window.<ul>
+<li>This reveals a BlueJ Options menu item.</li>
+</ul>
+</li>
+<li>Select Options and then Preferences.
+    _- A BlueJ Preferences window is launced (Figure 3).</li>
+<li>In the Preferences tick the box labelled <em>Display line numbers</em>.<ul>
+<li>Press OK.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Return to the Day class source code in the BlueJ Editor.<ul>
+<li>Notice the line numbers in a vertical column along the left hand margin.<ul>
+<li>Once again, we have discovered the offending line of code, consistent with the earlier method. (Figure 4).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: BlueJ Preferences" src="img/blueJPrefs.png">
+<img alt="Figure 4: Day source code + line number where error triggered" src="img/line93.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Using BlueJ Debugger(2)</h1>
+<p>We will now eliminate the bug triggered by invoking <em>checkEndDayBoundary</em> method.</p>
+<p>We shall do this by inserting a fix in the method <em>makeAppointment</em> to ensure that if an attempt is made to access the array <em>appointments</em> with an invalid upper index:</p>
+<ul>
+<li>The program will not crash </li>
+<li>The program will not attempt to access an array with an invalid (out-of-bounds) index</li>
+<li>The method <em>makeAppointment</em> will return <em>false</em> immediately any such invalid action is attempted.</li>
+</ul>
+<p>Here is the refactored <em>makeAppointment</em> method:</p>
+<pre><code>    public boolean makeAppointment(int time, Appointment appointment)
+    {
+        if(validTime(time)) {
+            int startTime = time - START_OF_DAY;
+            if(appointments[startTime] == null) {
+                int duration = appointment.getDuration();
+                // Fill in all the slots for the full duration
+                // of the appointment.
+                for(int i = 0; i &lt; duration; i++) {
+                    int index = startTime + i;
+                    //check for out of bounds condition 20140301jf
+                    if(index &gt;= MAX_APPOINTMENTS_PER_DAY) 
+                    {
+                        return false;
+                    }
+                    appointments[index] = appointment;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+</code></pre>
+
+<p>As you can see, we have modified the <em>for</em> loop as shown in Figure 1 to ensure the <em>appointments</em> array is never accessed with an upper invalid index.</p>
+<p><img alt="Figure 1: Bug fix array out of bounds" src="img/bugFixArrayOutOfBounds.png">   </p>
+<p>This describes what we have done and why:</p>
+<ul>
+<li>Declared a local variable <em>index</em>.</li>
+<li><em>index</em> has been assigned <em>startTime + i</em>.</li>
+<li>Checked if <em>index</em> is equal to or greater than the termination value in the preceeding <em>for</em> statement in which case <em>index</em> is invalid.<ul>
+<li>The termination value is contained in the variable <em>duration</em>.<ul>
+<li><em>for(int i = 0; i &lt; duration; i++)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If index is greater than or equal to the termination value then attempting to access the <em>appointments</em> array with this index would trigger an out of bounds error.</li>
+<li>To avoid such an error occuring, therefore, if the index is invalid the method immediatly returns the boolean value <em>false</em>.</li>
+</ul>
+<p>Here is a slightly different approach to refactoring where we have created a private method to check if the index under consideration is out of bounds. Which do you think is easier to understand?</p>
+<pre><code>    /**
+     * Make an appointment.
+     * @param time The hour at which the appointment starts.
+     * @param appointment The appointment to be made.
+     * @return true if the appointment was successful,
+     *         false otherwise.
+     */
+    public boolean makeAppointment(int time,
+    Appointment appointment)
+    {
+        if(validTime(time)) {
+            int startTime = time - START_OF_DAY;
+            if(appointments[startTime] == null) {
+                int duration = appointment.getDuration();
+                // Fill in all the slots for the full duration
+                // of the appointment.
+                for(int i = 0; i &lt; duration; i++) {
+                    if (outOfBounds(startTime + i))
+                        return false;
+                    appointments[startTime + i] = appointment;
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    /*
+     * Checks if appointments array index is out of bounds - below lower bound or above upper bound
+     * @param index the index of the Appointment[] appointments array being checked
+     * @return returns true if the index is out of bounds otherwise returns false
+     */
+    private boolean outOfBounds(int index)
+    {
+        return index &gt;= MAX_APPOINTMENTS_PER_DAY || index &lt; 0;
+    }
+</code></pre>
+
+<p>Test this refactoring as follows:</p>
+<ul>
+<li>If the debugger is still running shut it down by pressing the Terminate button on the BlueJ Debugger window (Figure 2)</li>
+<li>Refactor the <em>Day.makeAppointment</em> method as described above.</li>
+<li>Recompile, ensuring no errors generated.</li>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>checkEndDayBoundary</em> on the DiaryTester object.</li>
+<li>The error previously encountered should no longer appear.</li>
+<li>See sample output in Figure 3. Note that output message:<ul>
+<li><em>Unable to make appointment outside office hours</em></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: BlueJ Debug Window" src="img/blueJDebugWin.png">   </p>
+<p><img alt="Figure 3: Test method boundaryOverrun" src="img/testBdryOverrunSuccess.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Automated regression test</h1>
+<p>The test methods that we have demonstrated can be automated using a testing system know as JUnit.</p>
+<p>JUnit is a Java test framework. Variations exist also for other languages.</p>
+<p>We will now implement JUnit for the <em>diary-prototype</em> project.</p>
+<p>Open <em>diary-prototype project</em></p>
+<p>Create a JUnit test class for DiaryTester as follows:</p>
+<ul>
+<li>Select DiaryTester<ul>
+<li>Right click</li>
+<li>Select and invoke Create Test Class</li>
+<li>Observe new class diagram DiaryTesterTest in the background of DiaryTester (Figure 1).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Create Test class" src="img/createTestClass.png"></p>
+<p>As a reminder, here are the signatures of the methods in DiaryTester.</p>
+<ul>
+<li>Positive testing<ol>
+<li>public void oneHourAppointment()</li>
+<li>public void twoHourAppointment()</li>
+<li>public void multipleUseAppointmentObject()</li>
+<li>public void systemCapacity()</li>
+</ol>
+</li>
+<li>Negative testing<ol>
+<li>public void doubleBooking()</li>
+<li>public void checkStartDayBoundary()</li>
+<li>public void checkEndDayBoundary()</li>
+</ol>
+</li>
+</ul>
+<p>Before we implement the tests we will make changes to ensure the methods return <em>boolean</em> values.</p>
+<p>Refactor the <em>DiaryTester</em> code as follows:</p>
+<pre><code>public class DiaryTester
+{
+//Positive tests
+  public boolean oneHourAppointment()
+  {
+        Day day = new Day(1); 
+        boolean testResult = true;
+
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);
+        Appointment appointm3 = new Appointment(&quot;Database lecture&quot;, 1);
+
+        testResult =    day.makeAppointment(10, appointm1) &amp;&amp;
+                        day.makeAppointment(11, appointm2) &amp;&amp;
+                        day.makeAppointment(12, appointm3);
+
+        return testResult;
+
+  }
+
+  public boolean twoHourAppointment()
+  {
+        Day day = new Day(1);
+        boolean testResult = true;
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        testResult = day.makeAppointment(16, appointm1);//add at 4 p.m.
+        return testResult;
+  } 
+
+  // Purpose is to demonstrate same appointment object
+  // may be used more than once.
+
+  public boolean multipleUseAppointmentObject()
+  {
+        Day day = new Day(1);
+        boolean testResult = true;
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+        testResult = day.makeAppointment(16, appointm1) &amp;&amp; //add at 4 p.m.
+        day.makeAppointment(17, appointm1);                //add same appointment at 5 p.m.
+        return testResult;
+  }
+
+  public boolean systemCapacity()
+  {
+        Day day = new Day(1);
+        boolean testResult = true;
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+        //add the same appointment throughout the entire day
+        testResult =    day.makeAppointment(9, appointm1) &amp;&amp;  
+                        day.makeAppointment(10, appointm1) &amp;&amp;  
+                        day.makeAppointment(11, appointm1) &amp;&amp; 
+                        day.makeAppointment(12, appointm1) &amp;&amp; 
+                        day.makeAppointment(13, appointm1) &amp;&amp; 
+                        day.makeAppointment(14, appointm1) &amp;&amp; 
+                        day.makeAppointment(15, appointm1) &amp;&amp;  
+                        day.makeAppointment(16, appointm1) &amp;&amp; 
+                        day.makeAppointment(17, appointm1); 
+        return testResult;
+  }
+
+  //Negative Tests
+  public boolean doubleBooking()
+  {     
+        Day day = new Day(1);
+        boolean testResult = true;
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);     
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);   
+        testResult =    day.makeAppointment(10, appointm1) &amp;&amp; 
+                        day.makeAppointment(10, appointm1);     
+        return testResult;
+   }
+
+   public boolean checkStartDayBoundary()
+   {
+        Day day = new Day(1);
+        //check start day boundary by attempting 2 hour appointment beginning at 8am
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(8, appointm1);   
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+            return false;
+        }
+        return true;
+   }
+
+   public boolean checkEndDayBoundary()
+   {
+        Day day = new Day(1);
+        //check end day boundary by attempting 2 hour appointment beginning at 5pm
+        Appointment appointm2 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(17, appointm2);
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+            return false;
+        }
+        return true;
+   }  
+
+   public boolean boundaryOverrun()
+   {     
+        Day day = new Day(1);
+        boolean testResult = true;
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 2);     
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 2);   
+        testResult =    day.makeAppointment(8, appointm1) &amp;&amp; 
+                        day.makeAppointment(17, appointm2);    
+        return testResult;
+   }
+} 
+</code></pre>
+
+<p>The above refactored code comprises the following changes in each method:</p>
+<ul>
+<li>A local variable <em>boolean testResults</em> is declared.</li>
+<li>The returned boolean values from each invocation of <em>makeAppointment</em> are combined using logical AND (&amp;&amp;).<ul>
+<li>This provides a single boolean value to be returned.</li>
+</ul>
+</li>
+<li>The variable <em>testResult</em> is returned to the invoking method.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>BlueJ Recorder</h1>
+<p>Let's begin by creating a DiaryTesterTest method <em>batchTest</em>.</p>
+<ul>
+<li>Right click on DiaryTesterTest and invoke <em>CreateTestMethod</em> (Figure 2).
+<img alt="Figure 2: Create Test Method" src="img/createTestMethod.png"></li>
+<li>In the New Test Method window that appears type the name of the new method <em>batchTest</em> in the text box (Figure 3).
+<img alt="Figure 3: Naming new Test method" src="img/batchTest.png"></li>
+<li>The red recording button then appears in the left column (Figure 4).
+<img alt="Figure 4: Recording commenced" src="img/recording.png"></li>
+<li>Right click on DiaryTester and instantiate <em>new DiaryTester()</em> object named <em>diaryTester</em> (Figure 5).
+<img alt="Figure 5: DiaryTester object on object bench" src="img/diaryTester2.png"></li>
+<li>Invoke the method <em>oneHourAppointment</em> on <em>diaryTester</em> (Figure 6).
+<img alt="Figure 6: Invoke oneHourAppointment" src="img/invokeOneHourAppt.png"></li>
+<li>
+<p>A window <em>BlueJ: Method Result</em> then opens:</p>
+<ul>
+<li>type <em>true</em> in the edit box following the button <em>equal to</em> (Figure 7)</li>
+<li><em>true</em> because this is a positive test and we expect, for success, that invoking <em>oneHourAppointment</em> returns <em>true</em>.
+<img alt="Figure 7: Expecting oneHourAppointment to return true" src="img/01.png"></li>
+<li>Press Close and then press the End button to terminate recording.</li>
+<li>Invoke the method <em>testAll</em> on the DiaryTesterTest class (Figure 8).
+<img alt="Figure 8: testAll" src="img/testAllSuccess.png"></li>
+</ul>
+</li>
+</ul>
+<p>You can see from Figure 7 that the test succeeded. This is indicated by the horizontal green bar in the BlueJ Test Results window.</p>
+<p>Let's now explore the source code for DiaryTesterTest. </p>
+<p>Open the file in the BlueJ editor.</p>
+<p>With the exception of the final method, <em>batchTest</em>, all the class was auto-generated when we invoked <em>new DiaryTester</em> method on DiaryTester (Figure 9).
+<img alt="Figure 9: Tester class created" src="img/createTestClass.png">
+The method <em>batchTest</em> (Figure 10) was created while the recording facility was active. 
+<img alt="Figure 10: batchTest method" src="img/batchTestMethod.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Refactor Test method</h1>
+<p>Summary of the steps required to create and run a test method on the DiaryTesterTest JUnit class:</p>
+<ul>
+<li>Generate a DiaryTesterTest class<ul>
+<li>Right click on DiaryTester selected <em>Create Test Class</em> from drop-down menu.</li>
+<li>This creates a DiaryTesterTest class represented by a green class diagram partially concealed behind the DiaryTester class diagram.</li>
+</ul>
+</li>
+<li>Right click on DiaryTesterTest and select <em>Create New Test Method</em> to which we assign the name <em>batchTest</em>.</li>
+<li>This starts the recorder, represented by a red dot in the left column of the BlueJ diary-prototype window.</li>
+<li>While the recorder is running<ul>
+<li>Right click on DiaryTester and create a DiaryTester object, <em>diaryTester</em> on the object bench.</li>
+<li>Invoke <em>oneHourAppointment</em> on <em>diaryTester</em> object.</li>
+<li>End the recording.</li>
+</ul>
+</li>
+<li>Right click on DiaryTesterTest and invoke <em>TestAll()</em>.<ul>
+<li>Observe the results in the BlueJ Test Results window.</li>
+</ul>
+</li>
+</ul>
+<p>We could continue to add test methods using the recorder. </p>
+<p>But, alternatively, we now choose to manually refactor DiaryTesterTest:</p>
+<ul>
+<li>Delete <em>batchTest</em> and replace with:<ul>
+<li><em>positiveTests</em> and </li>
+<li><em>negativeTests</em> as follows:</li>
+</ul>
+</li>
+</ul>
+<pre><code>    @Test
+    public void positiveTests()
+    {
+        DiaryTester diaryTester = new DiaryTester();
+        //positive tests
+        assertEquals(true, diaryTester.oneHourAppointment());
+        assertEquals(true, diaryTester.twoHourAppointment());
+        assertEquals(true, diaryTester.multipleUseAppointmentObject());
+        assertEquals(true, diaryTester.systemCapacity());
+    }
+</code></pre>
+
+<pre><code>    @Test
+    public void negativeTests()
+    {
+        DiaryTester diaryTester = new DiaryTester();
+        //negative tests
+        assertEquals(false, diaryTester.doubleBooking());
+        assertEquals(false, diaryTester.checkStartDayBoundary());
+        assertEquals(false, diaryTester.checkEndDayBoundary());
+    }
+</code></pre>
+
+<p>Observe that in negative tests the first argument to <em>assertEquals</em> is <em>false</em>.</p>
+<ul>
+<li>Compare with the <em>assertsEquals</em> arguments in the positive tests.</li>
+</ul>
+<p>Compile this code and invoke </p>
+<ul>
+<li>DiaryTesterTest negativeTests</li>
+<li>DiaryTesterTest positiveTests</li>
+</ul>
+<p>You may run all tests, positive and negative, with a single invocation of DiaryTesterTest <em>TestAll</em> the result of which is depicted in Figure 1.</p>
+<p><img alt="Figure 1: Refactored Test Method" src="img/testPosNeg.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Fixtures</h1>
+<p>A fixture comprises objects used repeatedly in a test. The following examples should help to clarify.</p>
+<p>We shall make use of BlueJ to add a fixture to the DiaryTesterTest class.</p>
+<ul>
+<li>Open the source code for DiaryTesterTest in the editor and note that we use the same local variable in both methods, namely, <em>DiaryTester diaryTester</em> (Figure 1).</li>
+</ul>
+<p><img alt="Figure 1: Fixtures" src="img/fixture.png"></p>
+<ul>
+<li>Delete the DiaryTesterTest by right clicking and selecting Remove (Figure 2).</li>
+</ul>
+<p><img alt="Figure 2: Remove Tester" src="img/removeTester.png"></p>
+<ul>
+<li>
+<p>Recreate DiaryTesterTest by invoking <em>Create Test Class</em> on DiaryTester.</p>
+</li>
+<li>
+<p>Create a DiaryTester object named <em>diaryTester</em> on the object bench.</p>
+</li>
+<li>
+<p>Right click on DiaryTesterTest and select <em>Object Bench to Test Fixture</em> (Figure 3).</p>
+<ul>
+<li>Observe that the DiaryTester object disappears from the object bench.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: Object Bench to Test Fixture" src="img/objBenchToFixture.png"></p>
+<ul>
+<li>Right click on DiaryTesterTest and invoke Create Test Method called <em>positiveTests</em>.<ul>
+<li>The recorder is now active and</li>
+<li>The <em>DiaryTester diaryTester</em> object reappears on the object bench.</li>
+<li>Right click on the <em>diaryTester</em> object on the object bench and invoke <em>oneHourAppointment</em></li>
+<li>Ensure <em>Assert that</em> result is set equal to <em>true</em> (Figure 4).</li>
+<li>Caution: ensure that the BlueJ: Test Results window (as shown on the previous step Figure 1) is closed. Othewise invoking <em>oneHourAppointment</em> may not function correctly: for example the window shown in Figure 7, step 12, may not open.</li>
+<li>End recording.</li>
+</ul>
+</li>
+<li>Repeat steps similar to immediately above to create a negative test:<ul>
+<li>Ensure that the <em>diaryTester</em> is displayed on the object bench.</li>
+<li>Right click on DiaryTesterTest and invoke Create Test Method called <em>negativeTests</em>.</li>
+<li>Invoke <em>doubleBooking</em> on the DiaryTester object.<ul>
+<li>Ensure <em>Assert that</em> result is set to <em>false</em> (Figure 5).</li>
+</ul>
+</li>
+<li>Close and End recording.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 4: Creating Positive Test" src="img/recordPosTest.png"></p>
+<p><img alt="Figure 5: Creating Negative Test" src="img/02.png"></p>
+<p>In the BlueJ editor, inspect the DiaryTesterTest source code, copied below. </p>
+<p>Notice that <em>DiaryTester diaryTester</em> which had been a local variable previous to introducing fixtures, has now been changed to an instance variable.</p>
+<pre><code>public class DiaryTesterTest
+{
+    private DiaryTester diaryTester; //This is the fixture
+
+    /**
+     * Default constructor for test class DiaryTesterTest
+     */
+    public DiaryTesterTest()
+    {
+    }
+
+    /**
+     * Sets up the test fixture.
+     *
+     * Called before every test case method.
+     */
+    @Before
+    public void setUp()
+    {
+        diaryTester = new DiaryTester();
+    }
+
+    /**
+     * Tears down the test fixture.
+     *
+     * Called after every test case method.
+     */
+    @After
+    public void tearDown()
+    {
+    }
+
+    @Test
+    public void positiveTests()
+    {
+        assertEquals(true, diaryTester.oneHourAppointment());
+    }
+
+    @Test
+    public void negativeTests()
+    {
+        assertEquals(false, diaryTester.doubleBooking());
+    }
+}
+</code></pre>
+
+<p>Using the above model, you may find it more efficient to make any further additions manually rather than using the BlueJ recording facility.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>DiaryTester: Write the negative regression test <em>capacityOverrun</em>:</p>
+<ul>
+<li>Write this method and incorporate method into DiaryTester</li>
+<li>The method should attempt to add a single appointment that exceeds the length of a working day and returns <em>false</em></li>
+<li>Run all regression tests to verify no errors introduced.</li>
+</ul>
+<h2>Exercise 2</h2>
+<p>This exercise comprises addition to and unit testing of BIABank class, developed in an earlier lab.</p>
+<h3>Exercise 2: Preparation</h3>
+<ul>
+<li>Download the archive <em>biabank.zip</em> available <a href="archives/biabank.zip">here</a> and expand it into your working folder <em>workspaceBlueJ/labs/session06</em>.</li>
+<li>In <em>Windows Explorer</em>, <em>Finder</em> or other file manager, navigate to <em>workspaceBlueJ/labs/session06</em>.<ul>
+<li><em>biabank.zip</em> should be expanded into this folder as a BlueJ project, <em>BIABank</em> (see Figure 1).</li>
+<li>Launch the project by double clicking on <em>package.bluej</em> within <em>BIABank folder</em></li>
+<li>Open BIABank source file and observe that it closely matches <em>BIABank_v5</em>, the final iteration, developed in a previous session.<ul>
+<li>Some refactoring has been applied to simplify testing.<ul>
+<li>the <em>private</em> access modifiers have been mostly removed.</li>
+<li>this allows package-wide access to the affected variables (see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html">here</a>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: BlueJ BIABank project" src="img/ex0201.png"></p>
+<h3>Exercise 2: Task 1</h3>
+<p>Observe the following field in BIABank:</p>
+<ul>
+<li>ArrayList<Customer> customers</li>
+</ul>
+<p>Create a method in BIABank with this signature:</p>
+<ul>
+<li>public Customer getCustomer(String name)</li>
+</ul>
+<p>The method searches through the list of customers for a customer matching the actual parameter <em>name</em>.</p>
+<ul>
+<li>If found, the corresponding Customer object is returned.</li>
+<li>Else return a new Customer object with parameters:<ul>
+<li>"No such customer exists"</li>
+<li>0</li>
+<li>0</li>
+</ul>
+</li>
+<li>study the signature of the Customer constructor if in doubt about the meaning of the above three parameters.</li>
+</ul>
+<h3>Exercise 2: Task 2</h3>
+<ul>
+<li>Create a <em>BIABank bank</em> object on the object bench and add three customers:</li>
+</ul>
+<pre><code>        bank.newCustomer(&quot;Enda Haughey&quot;, 999);
+        bank.newCustomer(&quot;Charles Kenny&quot;, 888);
+        bank.newCustomer(&quot;David Spring&quot;, 777);
+</code></pre>
+
+<ul>
+<li>
+<p>Create a BIABank test class and create a fixture by invoking the following method on the test class:</p>
+<ul>
+<li><em>Object Bench to Test Fixture</em> </li>
+<li>Inspect the test class code to verify the fixture has been written into to class.</li>
+</ul>
+</li>
+</ul>
+<h3>Exercise 2: Task 3</h3>
+<p>Write a positive test named <em>numberCustomers</em>:</p>
+<ul>
+<li>test that the number of customers is 3.</li>
+</ul>
+<h3>Exercise 2: Task 4</h3>
+<p>Write a positive test named <em>customerName</em>:</p>
+<ul>
+<li>Select one of the customer names</li>
+<li>Invoke the newly added method <em>getCustomer</em> to obtain the corresponding Customer object</li>
+<li>Get the customer name from the customer object<ul>
+<li>Test that it matches the selected name</li>
+</ul>
+</li>
+</ul>
+<h3>Exercise 2: Task 5</h3>
+<p>Write a positive test named <em>customerNames</em>:</p>
+<ul>
+<li>Select one of the customer names</li>
+<li>Invoke the newly added method <em>getCustomer</em> to obtain the corresponding Customer object</li>
+<li>Get the customer name from the customer object<ul>
+<li>Check that it matches the selected name, storing the result in a <em>boolean</em> variable.</li>
+</ul>
+</li>
+<li>Repeat for the remaining 2 customers.</li>
+<li>Test that all three <em>boolean</em> variable are <em>true</em>.</li>
+</ul>
+<h3>Exercise 2: Task 6</h3>
+<p>Write a positive test named <em>customerBalance</em>:</p>
+<ul>
+<li>Select one of the three customers' names</li>
+<li>Retrieve the Customer object for this customer</li>
+<li>Obtain the balance for the customer from the Customer object</li>
+<li>Test the balance matches the balance entered above in the fixture for the customer in question.</li>
+</ul>
+<h3>Exercise 2: Task 7</h3>
+<p>Write a positive test named <em>customerBalances</em>:</p>
+<ul>
+<li>Using a simiar approach to that used in <em>customerBalance</em>, obtain all the balances.</li>
+<li>Test the sum of the balances equals 999 + 888 + 777.</li>
+</ul>
+<h3>Exercise 2: Task 8</h3>
+<p>Write a negative test in BIABankTest named <em>notNumberCustomers</em>.</p>
+<ul>
+<li>test that the number of customers is not, for example, 2.</li>
+</ul>
+<h3>Exercise 3: Task 9</h3>
+<p>Write a negative test named <em>notCustomerBalance</em>:</p>
+<ul>
+<li>Select one of the three customers' names</li>
+<li>Retrieve the Customer object for this customer</li>
+<li>Obtain the balance for that customer from the Customer object</li>
+<li>Test the balance does not match a balance that you know to be incorrect.</li>
+</ul>
+<h3>Exercise 2: Task 10</h3>
+<p>Write a negative test named <em>notCustomerBalances</em>:</p>
+<ul>
+<li>Using a simiar approach to that used in <em>notCustomerBalance</em>, obtain all the balances.</li>
+<li>Test the sum of the balances does not equal a balance you know to be incorrect, for example 20000.</li>
+</ul>
+<h3>Exercise 3</h3>
+<p>This is a simple exercise (more of a mini-lab really and to which a solution will not be provided) to obtain further experience in the use of the BlueJ debugger:</p>
+<ul>
+<li>Compile BIABankTest</li>
+<li>Place a break point on the first line of the method <em>public void customerNames()</em></li>
+<li>Invoke <em>TestAll</em> on the BIABankTest class</li>
+<li>See Figure 2</li>
+<li>Step through the method and study the instance and local variables at each step(See Figure 3).<ul>
+<li>Satisfy yourself with each value in turn as the program moves from one line to the next</li>
+</ul>
+</li>
+<li>At the end of the method, run program to completion (press Continue).</li>
+<li>The tests should succeed as shown in Figure 4.</li>
+</ul>
+<p><img alt="Figure 2: Invoke BIABankTest.testAll" src="img/ex0202.jpg"></p>
+<p><img alt="Figure 3: BlueJ debugger in action" src="img/ex0203.jpg"></p>
+<p><img alt="Figure 4: BIABankTest.testAll()" src="img/ex0204.jpg"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

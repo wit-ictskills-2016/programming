@@ -1,0 +1,862 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      6: Testing, Debugging, Searching & Sorting
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Testing-&-Debugging">
+        Testing-&-Debugging
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Testing-&-Debugging">
+    <h1>Objectives</h1>
+<p>We explore the BlueJ <em>diary-prototype</em> project as a prelude to unit and regression testing.
+In introducing unit tests we examine the role and experiment with both positive and negative tests.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Preparation for Unit Testing</h1>
+<p>Before launching BlueJ:</p>
+<ul>
+<li>Download an archive of Chapter 6 sample projects provided by BlueJ, available <a href="archives/chapter06.zip">here</a>. </li>
+<li>These projects are in a file named <em>chapter06.zip</em>. </li>
+<li>Save and unzip chapter06.zip into <em>workspaceBlueJ/blueJ/</em> directory.</li>
+<li>The archive should unzip a folder <em>chapter06</em> within <em>workspaceBlueJ/blueJ/</em>. </li>
+<li>Recall that your directory structure should be as illustrated in Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Proposed directory structure" src="img/0101.png"></p>
+<p>Launch BlueJ and open the <em>diary-prototype</em> project located in <em>../workspaceBlujeJ/blueJ/chapter06</em> folder(Figure 2).</p>
+<p><img alt="Figure 2: Opening diary-prototype-v1 project" src="img/0102.png"></p>
+<p>You should be presented with the BlueJ diary-prototype window similar to that shown in Figure 3.</p>
+<p><img alt="Figure 3: BlueJ diary-prototype" src="img/0103.png"></p>
+<p>We are interested in the interfaces of the classes in the project rather than their implementations.</p>
+<p>The project comprises three classes:</p>
+<ul>
+<li>Appointment<ul>
+<li>Describes purpose of appointment</li>
+<li>Records duration of appointment measured in blocks of 1 hour</li>
+</ul>
+</li>
+<li>Day<ul>
+<li>Day object keeps track of a set of appointments for particular day</li>
+<li>Knows which day of year is being referred to.</li>
+</ul>
+</li>
+<li>Week<ul>
+<li>Has an array of Day objects, typically 5, the default value, representing the working week, but easily changed to 6 or 7.</li>
+</ul>
+</li>
+</ul>
+<p>Although, as stated, for the purose of testing it is only necessary that we understand the interfaces of these classes, nevertheless, you may benefit from studying their implementations also. </p>
+<p>You can view the source code in the BlueJ editor by selecting, for example, the Week class diagram in the BlueJ diary-prototype window, right clicking and executing the <em>Open Editor</em> command. See Figure 4.</p>
+<p><img alt="Figure 4: Viewing Week class source code" src="img/0104.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exploring class behaviour</h1>
+<p>Before proceeding with testing it is worthwhile acquiring an understanding of the functionality of the project's components.</p>
+<p>Create three Appointment objects on the object bench</p>
+<ul>
+<li>Accept default names</li>
+<li>Fill in actual parameters<ul>
+<li>String description : a brief description of the meeting, e.g. "Staff meet"</li>
+<li>int duration : assume all meeting durations 1 hour</li>
+</ul>
+</li>
+</ul>
+<p>See Figure 1.</p>
+<p><img alt="Figure 1: Appointment objects" src="img/0201.png"></p>
+<p>Create a Day object:</p>
+<ul>
+<li>Fill in actual parameter<ul>
+<li>int dayNumber: 1</li>
+</ul>
+</li>
+</ul>
+<p>Add an existing appointment to this day object:</p>
+<ul>
+<li>Select Day object on object workbench</li>
+<li>Right click and from drop-down menu invoke <em>makeAppointment</em> method</li>
+<li>Fill in actual parameters of <em>makeAppointment</em><ul>
+<li>int time: 9</li>
+<li>Appointment appointment: appointm1</li>
+</ul>
+</li>
+</ul>
+<p>See Figures 2 and 3.</p>
+<p><img alt="Figure 2: Make appointment on new Day object" src="img/0202.png"></p>
+<p><img alt="Figure 3: Appointment set at 9 a.m." src="img/0203.png"></p>
+<p>In a similar manner make appointments at 1 p.m. and 5 p.m. using the other 2 Appointment objects that we created.</p>
+<ul>
+<li>We are using a 24 hour clock, therefore the argument to enter for for 1 p.m. is 13, and so on.</li>
+</ul>
+<p>Observe that if an appointment is successfully made a boolean valued <em>true</em> will be returned by the method <em>makeAppointment</em> (Figure 3).</p>
+<p>Display and check the appointments:</p>
+<ul>
+<li>Select the day object</li>
+<li>Right click and invoke <em>showAppointments</em>. </li>
+<li>Verify the information displayed is consistent with what you entered (Figure 4).</li>
+</ul>
+<p><img alt="Figure 4: Checking appointments" src="img/0204.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Conducting manual testing</h1>
+<p>From the BlueJ tools menu select <em>Rebuild Package</em>:</p>
+<ul>
+<li>This should clear all objects from the object bench.</li>
+</ul>
+<p>Carry out the following tests:</p>
+<ul>
+<li>Double booking</li>
+<li>Check behaviours at boundaries</li>
+<li>Use same Appointment object multiple times same day</li>
+<li>Check system capacity</li>
+</ul>
+<h2>Double booking</h2>
+<ul>
+<li>
+<p>Create a new appointment <em>appointm4</em> with following state:</p>
+<ul>
+<li>description: "Sales meet"</li>
+<li>duration: 1</li>
+</ul>
+</li>
+<li>
+<p>Create a new Day object <em>day1</em>.</p>
+</li>
+<li>
+<p>Invoke <em>makeAppointment</em> on object <em>day1</em> with parameters</p>
+<ul>
+<li>time: 10</li>
+<li>appointment: appointm4</li>
+</ul>
+</li>
+<li>
+<p>Invoke <em>makeAppointment</em> again with same parameters, i.e. attempt double booking appointment at 10 a.m.</p>
+<ul>
+<li>The value returned by <em>makeAppointment</em> is <em>false</em>.<ul>
+<li><em>false</em> means double booking has been disallowed (Figure 1).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Failed attempt to double book appointment" src="img/0301.png"></p>
+<h2>Check behaviours at boundaries</h2>
+<ul>
+<li>
+<p>Often errors occur at boundaries, for example at the beginning and end of arrays. </p>
+</li>
+<li>
+<p>In this case boundaries are the beginning and end of the day (9 a.m and 6 p.m.). </p>
+</li>
+<li>
+<p>Violation of the boundaries would, for example, be an attempt to make an appointment before 9 a.m. or at 6 p.m.</p>
+</li>
+<li>
+<p>Test these boundaries as follows:</p>
+<ul>
+<li>Remove all objects from the workbench, both day and appointment.</li>
+<li>Create a new Day object on the object workbench.</li>
+<li>Create a new Appointment object <em>appointm1</em>,  1 hour duration.</li>
+<li>Attempt to add the appointment at 8 a.m. to the Day object.</li>
+<li>The attempt will fail: see Figure 2.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Lower boundary check" src="img/0302.png"></p>
+<ul>
+<li>
+<p>Conduct the following further tests:</p>
+<ul>
+<li>Check that an attempt to add the same appointment at 6 p.m will also fail.</li>
+<li>Check that you can add the appointment at 5 p.m.</li>
+<li>Create a 2-hour appointment (<em>appointm2</em>) and attempt to add this at 5 p.m. It should fail.</li>
+<li>Again, remember we are working with a 24 hour clock therefore for 5 p.m. you enter 17.</li>
+</ul>
+</li>
+</ul>
+<h2>Use same Appointment object multiple times same day</h2>
+<ul>
+<li>
+<p>Check that the same appointment object may be used more than once in the same day. This would be realistic in practice.</p>
+<ul>
+<li>Invoke <em>showAppointments</em> on the Day object (<em>day1</em>).</li>
+<li>Chose 2 available slots, say 10 a.m. and 11.am..</li>
+<li>Add <em>appointm1</em> to both slots.</li>
+<li>Invoke <em>showAppointments</em> on <em>day1</em>.</li>
+<li>You should see that the test has succeeded as illustrated in Figure 3.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: Appointment instance repeated same day" src="img/0303.png"></p>
+<h2>Check system capacity</h2>
+<ul>
+<li>
+<p>Fill all remaining slots in the <em>day1</em> object:</p>
+<ul>
+<li>Check the available slots by studying the output when <em>showAppointments</em> is invoked on <em>day1</em>.</li>
+<li>Add <em>appointm1</em> to each of the empty slots.</li>
+<li>Show all appointments to verify that all the slots have been filled as illustrated in Figure 4.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 4: Testing capacity" src="img/0304.png"></p>
+<ul>
+<li>Now invoke the method <em>findSpace</em> on <em>day1</em> to attempt to fit <em>appointm1</em> into the day somehow.</li>
+<li>The attempt will fail as illustrated in Figure 5.<ul>
+<li>Negative 1 returned by <em>findSpace</em> means the schedule already full so cannot accept appointment.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 5: Attempt to find space on already fully booked day" src="img/0305.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Positive and negative testing</h1>
+<p>An interesting discussion on why unit testing is worth the effort is available online <a href="http://stackoverflow.com/questions/67299/is-unit-testing-worth-the-effort">here</a> and locally <a href="archives/stackoverflow_unit_testing.pdf">here</a></p>
+<h2>Positive Testing</h2>
+<p>A positive test means we expect the test to return a positive result. For example</p>
+<ul>
+<li>An attempt to make an appointment at 9 a.m. on a day object with a free slot at that time will succeed</li>
+<li>Such a test is illustrated in Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Positive testing" src="img/0401.png"></p>
+<h2>Negative testing</h2>
+<ul>
+<li>A negative test means that for the test to succeed we expect a negative result. For example:<ul>
+<li>Attempting to make an appointment at 8 a.m., which is outside of office hours, should result in failure.</li>
+</ul>
+</li>
+<li>See Figure 2 for such an example.</li>
+<li>Performing negative tests is often neglected but such tests are important and should not be omitted.</li>
+</ul>
+<p><img alt="Figure 2: Negative testing" src="img/0402.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Regression testing</h1>
+<p>Regression testing</p>
+<ul>
+<li>Comprises running a suite of unit tests to ensure software is working correctly<ul>
+<li>Tests which have previously passed, prior to subsequent code changes </li>
+</ul>
+</li>
+<li>Is recommended practice in software development projects<ul>
+<li>To help avoid introduction of bugs into previously working code</li>
+</ul>
+</li>
+</ul>
+<p>A <em>test rig</em> or <em>test harness</em> which drives the set of unit tests is typically employed to automate regression testing.</p>
+<p>We will now write a simple application to programatically run the various tests including those we ran earlier. </p>
+<p>Here is our list of tests:</p>
+<p><strong>Positive testing</strong></p>
+<ul>
+<li>Create three 1 hour appointments.<ul>
+<li>add these to the daily schedule at 10, 11, 12 a.m.</li>
+</ul>
+</li>
+<li>Create one 2 hour appointment.<ul>
+<li>Add to daily schedule at 4 p.m.</li>
+</ul>
+</li>
+<li>Check behaviours at boundaries.</li>
+<li>Multiple use Appointment object same day.<ul>
+<li>Only on vacant slots in schedule.</li>
+</ul>
+</li>
+<li>Check system capacity.<ul>
+<li>Fill all remaining schedule slots</li>
+</ul>
+</li>
+</ul>
+<p><strong>Negative testing</strong></p>
+<p>Work with new Day object, starting with schedule free of appointments.</p>
+<ul>
+<li>Attempt double booking. <ul>
+<li>Two 1 hour appointments a 9 a.m.</li>
+<li>Two 2 hour appointments at 12 a.m.</li>
+<li>Attempt to add 2 hour schedule at 9 a.m. where the 10 a.m. slot already filled.</li>
+</ul>
+</li>
+<li>Boundary overrun: attempt schedule 2 hour appointment starting 5 p.m.</li>
+<li>Capacity overrun: attempt to create a 10 hour appointment object.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Regression testing suite</h1>
+<p>Right click in the BlueJ diary-prototype window, invoke <em>New Class</em> and name it <em>DiaryTester</em> (Figure 1).</p>
+<p><img alt="Figure 1: new DiaryTester class" src="img/0601.png"></p>
+<p>In the following steps we shall develop these DiaryTest methods:</p>
+<ul>
+<li>
+<p>positive test methods</p>
+<ul>
+<li>oneHourAppointment<ul>
+<li>add three 1 hour appointments</li>
+</ul>
+</li>
+<li>twoHourAppointment<ul>
+<li>add one 2 hour appointment</li>
+</ul>
+</li>
+<li>multipleUseAppointmentObject<ul>
+<li>add same 1 hour appointment same day vacant slots</li>
+<li>add same 2 hour appointment same day vacant slots</li>
+</ul>
+</li>
+<li>systemCapacity<ul>
+<li>fill entire day with appointments</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>negative test methods</p>
+<ul>
+<li>doubleBooking<ul>
+<li>Two 1 hour appointments a 9 a.m.</li>
+<li>Two 2 hour appointments at 12 a.m.</li>
+</ul>
+</li>
+<li>checkStartDayBoundary<ul>
+<li>2 hour appointment beginning at 8 a.m.</li>
+</ul>
+</li>
+<li>checkEndDayBoundary<ul>
+<li>2 hour appointment beginning at 5 p.m.</li>
+</ul>
+</li>
+<li>capacityOverrun<ul>
+<li>10 hour appointment object</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Regression Testing (positive)</h1>
+<p>Positive Test Methods</p>
+<ul>
+<li>oneHourAppointment</li>
+<li>twoHourAppointment</li>
+<li>multipleUseAppointmentObject</li>
+<li>systemCapacity</li>
+</ul>
+<p>Open DiaryTester in the editor and replace all the auto-generated code with the following class wrapper:</p>
+<pre><code>public class DiaryTester
+{
+
+}
+</code></pre>
+
+<p>Here is the implementation of <em>oneHourAppointment</em> test.</p>
+<p>Add this to the class and verify it compiles withour error.</p>
+<pre><code>public void oneHourAppointment()
+{
+
+    Day day = new Day(1);
+
+    Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);
+    Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);
+    Appointment appointm3 = new Appointment(&quot;Database lecture&quot;, 1);
+
+    day.makeAppointment(10, appointm1);
+    day.makeAppointment(11, appointm2);
+    day.makeAppointment(12, appointm3);
+
+    day.showAppointments();
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>oneHourAppointment</em>.</li>
+<li>Verify the appointments displayed on the BlueJ Terminal Window correspond to the programmed values.</li>
+<li>See sample output in Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Test method oneHourAppointment" src="img/0701.png"></p>
+<p>Now implement <em>twoHourAppointment</em>:</p>
+<pre><code>public void twoHourAppointment()
+{
+    Day day = new Day(1);
+    Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+    day.makeAppointment(16, appointm1);//add at 4 p.m.
+    day.showAppointments();
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>twoHourAppointment</em>.</li>
+<li>Verify the appointments displayed on the BlueJ Terminal Window correspond to the programmed values.</li>
+<li>See sample output in Figure 2.</li>
+</ul>
+<p><img alt="Figure 2: Test method twoHourAppointment" src="img/0702.png"></p>
+<p>Next implement <em>multipleUseAppointmentObject</em>:</p>
+<pre><code>// Purpose is to demonstrate same appointment object
+// may be used more than once.
+
+public void multipleUseAppointmentObject()
+{
+    Day day = new Day(1);
+    Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+    day.makeAppointment(15, appointm1);//add appointment at 3 p.m.
+    day.makeAppointment(16, appointm1);//add same appointment at 4 p.m.
+    day.showAppointments();
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>multipleUseAppointmentObject</em>.</li>
+<li>Verify the appointments displayed on the BlueJ Terminal Window correspond to the programmed values.</li>
+<li>See sample output in Figure 3.</li>
+</ul>
+<p><img alt="Figure 3: Test method multipleUseAppointmentObject" src="img/0703.png"></p>
+<p>We shall now implement <em>systemCapacity</em>.</p>
+<pre><code>public void systemCapacity()
+{
+    Day day = new Day(1);
+    Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+    //add the same appointment throughout the entire day
+    day.makeAppointment(9, appointm1); 
+    day.makeAppointment(10, appointm1); 
+    day.makeAppointment(11, appointm1); 
+    day.makeAppointment(12, appointm1); 
+    day.makeAppointment(13, appointm1); 
+    day.makeAppointment(14, appointm1); 
+    day.makeAppointment(15, appointm1); 
+    day.makeAppointment(16, appointm1); 
+    day.makeAppointment(17, appointm1); 
+    day.showAppointments();
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>systemCapacity</em>.</li>
+<li>Verify the appointments displayed on the BlueJ Terminal Window correspond to the programmed values.</li>
+<li>See sample output in Figure 4.</li>
+</ul>
+<p><img alt="Figure 4: Test method systemCapacity" src="img/0704.png"></p>
+<p>Here is the entire source code for DiaryTester to date:</p>
+<pre><code>public class DiaryTester
+{
+
+  public void oneHourAppointment()
+  {
+        Day day = new Day(1);
+
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);
+        Appointment appointm3 = new Appointment(&quot;Database lecture&quot;, 1);
+
+        day.makeAppointment(10, appointm1);
+        day.makeAppointment(11, appointm2);
+        day.makeAppointment(12, appointm3);
+
+        day.showAppointments();
+  }
+
+  public void twoHourAppointment()
+  {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        day.makeAppointment(16, appointm1);//add at 4 p.m.
+        day.showAppointments();
+  }
+
+  public void multipleUseAppointmentObject()
+  {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        day.makeAppointment(16, appointm1);//add at 4 p.m.
+        day.makeAppointment(15, appointm1);//add same appointment at 5 p.m.
+        day.showAppointments();
+  }
+
+  public void systemCapacity()
+  {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+        //add the same appointment throughout the entire day
+        day.makeAppointment(9, appointm1); 
+        day.makeAppointment(10, appointm1); 
+        day.makeAppointment(11, appointm1); 
+        day.makeAppointment(12, appointm1); 
+        day.makeAppointment(13, appointm1); 
+        day.makeAppointment(14, appointm1); 
+        day.makeAppointment(15, appointm1); 
+        day.makeAppointment(16, appointm1); 
+        day.makeAppointment(17, appointm1); 
+        day.showAppointments();
+  }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Regression Testing (negative)</h1>
+<p>Negative Test Methods</p>
+<ul>
+<li>doubleBooking</li>
+<li>checkStartDayBoundary</li>
+<li>checkEndDayBoundary</li>
+<li>capacityOverrun (to be completed as exercise)</li>
+</ul>
+<p>We shall now implement these methods.</p>
+<p>Implement <em>doubleBooking</em> by </p>
+<ul>
+<li>Creating a day object, </li>
+<li>Creating two 1 hour appointment objects and</li>
+<li>Attempting to assign these appointments to the same slot (10 a.m.) in the day object. </li>
+</ul>
+<p>Here is the implementation. Add this to the class and verify it compiles withour error.</p>
+<pre><code>public void doubleBooking()
+{     
+    Day day = new Day(1);
+    Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);     
+    Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);   
+    day.makeAppointment(10, appointm1);
+    day.makeAppointment(10, appointm1);     
+    day.showAppointments();
+}
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>doubleBooking</em>.</li>
+<li>Verify the appointments displayed on the BlueJ Terminal Window show only one assignment at the 10 a.m. slot.</li>
+<li>See sample output in Figure 1.</li>
+</ul>
+<p><img alt="Figure 1: Test method doubleBooking" src="img/0801.png"></p>
+<p>We shall implement <em>checkStartDayBoundary</em> as follows:</p>
+<ul>
+<li>Create a day object, </li>
+<li>Create a 2 hour appointment object</li>
+<li>Attempt to assign appointment object commencing at 8 a.m.</li>
+</ul>
+<p>Here is the implementation. Add this to the class and verify it compiles withour error.</p>
+<pre><code>public void checkStartDayBoundary()
+    {
+        Day day = new Day(1);
+        //check start day boundary by attempting 1 hour appointment beginning at 8am
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(8, appointm1);   
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+        }
+        //day.showAppointments();
+    }
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>checkStartDayBoundary</em>.<ul>
+<li>See Figure 2 for response
+<img alt="Figure 2: Test method checkStartDayBoundary" src="img/0705.png"></li>
+</ul>
+</li>
+</ul>
+<p>Here is the implementation of <em>checkEndDayBoundary</em>:</p>
+<ul>
+<li>Create a day object, </li>
+<li>Create a 2 hour appointment object</li>
+<li>Attempt to assign appointment object commencing at 5 p.m.</li>
+</ul>
+<pre><code>    public void checkEndDayBoundary()
+    {
+        Day day = new Day(1);
+        //check end day boundary by attempting 2 hour appointment beginning at 5pm
+        Appointment appointm2 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(17, appointm2);
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+        }
+    }
+</code></pre>
+
+<p>Test as follows:</p>
+<ul>
+<li>Create a new DiaryTester on the object bench.</li>
+<li>Invoke <em>checkEndDayBoundary</em>.</li>
+<li>See Figure 3 when <em>checkEndDayBoundary</em> invoked.<ul>
+<li>We shall address the reason for such a catastrophic failure (in the legacy code) later.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 3: Test method checkEndDayBoundary" src="img/0706.png">    </p>
+<p>The actual line of code at which failure occurs when <em>checkEndDayBoundary</em> is invoked is shown in Figure 4.</p>
+<p><img alt="Figure 4: Failure in class Day legacy code" src="img/0707.png"></p>
+<ul>
+<li>We shall shortly: <ul>
+<li>Use the debugger to investigate the cause of this error.</li>
+<li>Eliminate the bug that triggered the error.</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Regression Testing</h1>
+<p>Here is the complete DiaryTester class developed so far:</p>
+<pre><code>public class DiaryTester
+{
+
+    //Positive tests
+    public void oneHourAppointment()
+    {
+        Day day = new Day(1);
+
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);
+        Appointment appointm3 = new Appointment(&quot;Database lecture&quot;, 1);
+
+        day.makeAppointment(10, appointm1);
+        day.makeAppointment(11, appointm2);
+        day.makeAppointment(12, appointm3);
+
+        day.showAppointments();
+    }
+
+    public void twoHourAppointment()
+    {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        day.makeAppointment(16, appointm1);//add at 4 p.m.
+        day.showAppointments();
+    }
+
+    public void multipleUseAppointmentObject()
+    {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        day.makeAppointment(16, appointm1);//add at 4 p.m.
+        day.makeAppointment(15, appointm1);//add same appointment at 5 p.m.
+        day.showAppointments();
+    }
+
+    public void systemCapacity()
+    {
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 1); 
+        //add the same appointment throughout the entire day
+        day.makeAppointment(9, appointm1); 
+        day.makeAppointment(10, appointm1); 
+        day.makeAppointment(11, appointm1); 
+        day.makeAppointment(12, appointm1); 
+        day.makeAppointment(13, appointm1); 
+        day.makeAppointment(14, appointm1); 
+        day.makeAppointment(15, appointm1); 
+        day.makeAppointment(16, appointm1); 
+        day.makeAppointment(17, appointm1); 
+        day.showAppointments();
+    }
+
+    //Negative tests
+
+    public void doubleBooking()
+    {     
+        Day day = new Day(1);
+        Appointment appointm1 = new Appointment(&quot;Java lecture&quot;, 1);     
+        Appointment appointm2 = new Appointment(&quot;Java lab&quot;, 1);   
+        day.makeAppointment(10, appointm1);
+        day.makeAppointment(10, appointm1);     
+        day.showAppointments();
+    }
+
+    public void checkStartDayBoundary()
+    {
+        Day day = new Day(1);
+        //check start day boundary by attempting 2 hour appointment beginning at 8am
+        Appointment appointm1 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(8, appointm1);   
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+        }
+        //day.showAppointments();
+    }
+
+    public void checkEndDayBoundary()
+    {
+        Day day = new Day(1);
+        //check end day boundary by attempting 2 hour appointment beginning at 5pm
+        Appointment appointm2 = new Appointment(&quot;Course board meet&quot;, 2); 
+        boolean status = day.makeAppointment(17, appointm2);
+        if(status == false)
+        {
+            System.out.println(&quot;Unable to make appointment outsides office hours&quot;);
+        }
+    }
+
+    public void capacityOverrun()
+    {
+        //TODO Exercise
+    }
+}
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

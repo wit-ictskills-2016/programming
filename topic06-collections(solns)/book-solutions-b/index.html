@@ -1,0 +1,415 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      5.1: More sophisticated behaviour
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Class-members-Solutions">
+        Class-members-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Class-members-Solutions">
+    <h1>Objectives</h1>
+<p>These are the solutions to the second lab in the session <em>More sophisticated behaviour</em> that deals with class and instance variables and methods.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>You are provided with partially-completed classes named</p>
+<ul>
+<li>Event</li>
+<li>Walker</li>
+</ul>
+<p>The Walker class has </p>
+<ul>
+<li>An instance variable that records the miles walked by a specific walker</li>
+<li>A class variable that keeps a running total of all the kilometers walked by all the walkers (Walker objects) in a particular Event (object)</li>
+<li>a getter for the above field</li>
+<li>A constructor with a parameter to indicate the number of miles walked by an individual walker.</li>
+</ul>
+<p>The Event class has</p>
+<ul>
+<li>a list of walkers</li>
+<li>a means of randomly generating the distance to be walked by an individual walker</li>
+<li>a prescribed minimum and maximum distance to be walked</li>
+<li>a constructor with a parameter that sets the number of walkers and max and min distances</li>
+<li>a public method <em>walkTheWalk</em> to <ul>
+<li>simulate the walk event and </li>
+<li>return the cumulative number of miles walked, that is, the sum of the miles that each walker covered.</li>
+</ul>
+</li>
+<li>a public method to print a list of walkers and the miles walked by each.</li>
+</ul>
+<p>Here are the skeletons of the classes to be developed:</p>
+<h2>Walker</h2>
+<pre><code>public class Walker
+{
+    //provide class variable to record cumulative miles walked
+    //provide instance variable to record miles walked by specific walker
+
+    public Walker(int milesWalked)
+    {
+
+    }
+
+    //provide getters for both variables
+}
+</code></pre>
+
+<h2>Event</h2>
+<pre><code>import java.util.ArrayList;
+import java.util.Random;
+
+public class Event
+{
+    //fields
+
+    public Event(int numberWalkers, int maxDistance, int minDistance)
+    {
+       //initialize fields
+    }
+
+    public int walkTheWalk()
+    {
+        for(int i=0; i &lt; numberWalkers; i += 1)
+        {
+            //generate random distance in the range [minDistance, maxDistance]
+            //create walker
+            //add walker to list
+        }
+        //return total miles walked by all walkers
+    }
+
+    public void printWalkerDistance()
+    {
+        //
+    }
+}
+</code></pre>
+
+<h2>Exercise 1 Solution</h2>
+<pre><code>import java.util.ArrayList;
+import java.util.Random;
+
+public class Event
+{
+    private ArrayList&lt;Walker&gt; walkers = new ArrayList&lt;&gt;();
+    private Random distance = new Random();
+    int maxDistance;//miles
+    int minDistance;//miles
+    int numberWalkers;
+
+    public Event(int numberWalkers, int maxDistance, int minDistance)
+    {
+       this.maxDistance     = maxDistance;
+       this.minDistance     = minDistance;
+       this.numberWalkers   = numberWalkers;
+    }
+
+    public int walkTheWalk()
+    {
+        for(int i=0; i &lt; numberWalkers; i += 1)
+        {
+            int toWalk = minDistance + distance.nextInt(maxDistance - minDistance);
+            walkers.add(new Walker(toWalk));
+        }
+
+        return Walker.getCumulativeMiles();
+    }
+
+    public void printWalkerDistances()
+    {
+        System.out.println(&quot;Walker Distance&quot;);
+        for(int i = 0; i &lt; walkers.size(); i += 1)
+        {
+            System.out.println(&quot;  &quot;+i+&quot;       &quot;+walkers.get(i).getMilesWalked());
+        }
+    }
+}
+</code></pre>
+
+<pre><code>
+public class Walker
+{
+    private static int cumulativeMiles;
+    private int milesWalked;
+
+    public Walker(int milesWalked)
+    {
+      cumulativeMiles += milesWalked;
+      this.milesWalked = milesWalked;
+    }
+
+    public static int getCumulativeMiles()
+    {
+        return cumulativeMiles;
+    }
+
+    public int getMilesWalked()
+    {
+        return milesWalked;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercises</h1>
+<h2>Exercise 2</h2>
+<p>Test the application in Exercise 1 as follows:</p>
+<ul>
+<li>
+<p>Write method <em>printWalkerDistances()</em> that:</p>
+<ul>
+<li>Prints two columns of data<ul>
+<li>Columm 1: Walker (the walker number, example 0, 1, 2....number walkers -1)</li>
+<li>Column 2: Distance (the distance walked by each walker)</li>
+<li>See Figure 1 for typical output.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Write method <em>printEventData()</em> that prints the:</p>
+<ul>
+<li>number of walkers</li>
+<li>maximum and minimum distance attributes</li>
+<li>the cumulative distance walked by all walkers in the <em>event</em></li>
+<li>enforce a constraint that the method prints data only following invocation of <em>walkTheWalk</em></li>
+<li>See Figure 2 for typical output</li>
+</ul>
+</li>
+<li>
+<p>Instantiate <em>Event event</em> with these parameters;</p>
+<ul>
+<li>number walkers 10</li>
+<li>maximum distance 50</li>
+<li>minimum distance 20</li>
+</ul>
+</li>
+<li>
+<p>Invoke the methods</p>
+<ul>
+<li><em>printEventData</em><ul>
+<li>invocation should fail to print data and trigger a warning to first invoke <em>walkTheWalk</em></li>
+</ul>
+</li>
+<li><em>walkTheWalk</em></li>
+<li><em>printEventData</em></li>
+<li><em>printWalkerDistances</em></li>
+</ul>
+</li>
+</ul>
+<p>Check the cumulative miles walked (as shown Figure 1) against the sum of the distances output (as shown Figure 2).</p>
+<p><img alt="Figure 1: Typical output printWalkerDistances" src="img/05.png">
+<img alt="Figure 2: Typical output printEventData" src="img/07.png"></p>
+<h2>Exercise 2 Solution</h2>
+<p>Here is the method <em>printWalkerDistances</em></p>
+<pre><code>    public void printWalkerDistances()
+    {
+        System.out.println(&quot;Walker Distance&quot;);
+        for(int i = 0; i &lt; walkers.size(); i += 1)
+        {
+            System.out.println(&quot;  &quot;+i+&quot;       &quot; + walkers.get(i).getMilesWalked());
+        }
+    }
+</code></pre>
+
+<p>And here is <em>printEventData</em></p>
+<pre><code>    public void printEventData()
+    {
+        if(walkers.size() &gt; 0)
+        {
+            System.out.println(&quot;Number of walkers: &quot; + numberWalkers);
+            System.out.println(&quot;Maximum &amp; minimum distances specified: &quot; + &quot;[&quot;+minDistance+&quot;, &quot;+maxDistance+&quot;]&quot;);
+            System.out.println(&quot;Cumulative miles walked: &quot; + Walker.getCumulativeMiles());
+        }
+        else
+        {
+            System.out.println(&quot;Walk the Walk before accessing data&quot;);
+        }  
+    }
+</code></pre>
+
+<p>Notice in <em>printEventData</em> that we obtain the cumulative miles walked using a static method call:</p>
+<ul>
+<li><em>Walker.getCumulativeMiles()</em></li>
+</ul>
+<p>But in <em>printWalkerDistances</em> we obtain the individual walker's distance by invoking <em>getMilesWalked</em> on the specific <em>Walker</em> object:</p>
+<ul>
+<li><em>walkers.get(i).getMilesWalked()</em></li>
+</ul>
+<p>The last expression is equivalent to </p>
+<p><em>Walker walker = walkers.get(i);</em></p>
+<p><em>walker.getMilesWalked();</em></p>
+<ul>
+<li>Select Event class diagram and invoke overloaded constructor
+<img alt="Figure 1: Create new event" src="img/01.png"></li>
+<li>Enter parameters, for example,<ul>
+<li>number walkers 10</li>
+<li>maximum distance 50</li>
+<li>minimum distance 20
+<img alt="Figure 2: Event constructor parameters" src="img/02.png"></li>
+</ul>
+</li>
+<li>Invoke <em>walkTheWalk</em> on the <em>Event event</em> object
+<img alt="Figure 3: Walk the walk" src="img/03.png"></li>
+<li>The cumulative miles walked by all the walkers is returned
+<img alt="Figure 4: Cumulative mileage walked" src="img/04.png"></li>
+<li>Invoke <em>printWalkerDistances</em> on <em>Event event</em>
+<img alt="Figure 5: Print individual distances walked" src="img/06.png"></li>
+<li>Here's the list
+<img alt="Figure 6: Nowhere to hide" src="img/05.png"></li>
+</ul>
+<p>To conclude, create a new Event object with parameters as above or of your choosing and check the print methods you've developed:</p>
+<ul>
+<li>Invoke the methods<ul>
+<li><em>printEventData</em><ul>
+<li>invocation should fail to print data and trigger a warning to first invoke <em>walkTheWalk</em></li>
+</ul>
+</li>
+<li><em>walkTheWalk</em></li>
+<li><em>printEventData</em></li>
+<li><em>printWalkerDistances</em></li>
+</ul>
+</li>
+</ul>
+<p>Satisfy yourself that all outputs are correct.</p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

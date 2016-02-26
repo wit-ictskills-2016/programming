@@ -1,0 +1,488 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      5.1: More sophisticated behaviour
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Caesar-Cipher-Solutions">
+        Caesar-Cipher-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Caesar-Cipher-Solutions">
+    <h1>Objectives</h1>
+<p>These are sample solutions to the Caesar Cipher lab.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p>Validate the constructor parameter <em>shift</em>, ensuring only numbers within a valid range are accepted.</p>
+<pre><code>private boolean isValid(int shift)
+</code></pre>
+
+<h2>Exercise 1 Solution</h2>
+<pre><code>    /*
+     * @param The integer value to be validated.
+     * @return Returns true if shift in range (0, 26)
+     */
+    private boolean isValid(int shift)
+    {
+        if(shift &gt; 0 &amp;&amp; shift &lt; 26)
+        {
+            return true;
+        }
+        return false;
+    }
+</code></pre>
+
+<p>The validation could be (naively) employed as follows:</p>
+<pre><code>    public CaesarCipher(int shift)
+    {
+        if (isValid(shift))
+        {
+            this.shift = shift;
+        }
+        else
+        {
+            System.out.println(&quot;Enter valid shift: positive number in range 1 to 25 inclusive&quot;);
+        }
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p>Validate both the message and cipher text strings so as to ensure all characters are upper case letters.</p>
+<pre><code>private boolean isUpperCase(String string)
+
+</code></pre>
+
+<p>Introduce the method into your code and test by inputting, first valid data, then invalid data.</p>
+<h2>Exercise 2 Solution</h2>
+<pre><code>    /*
+     * Permitted characters are A-Z.
+     * 
+     * @see https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
+     * @param string
+     */
+    private boolean isUpperCase(String string)
+    {
+        char[] chars = string.toCharArray();
+        for (char ch : chars)
+        {
+            if (!Character.isUpperCase(ch))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+</code></pre>
+
+<p>The validation could be (naively) employed as follows:</p>
+<pre><code>    /**
+     * Encrypt a plain text string using the Caesar Cipher
+     * @param messageText The message text (plain text)
+     * @return Returns the cipher text string
+     */
+    public String encrypt(String messageText)
+    {
+        if (!this.isUpperCase(messageText))
+        {
+            System.out.println(&quot;Input string must comprise only alphabet characters&quot;);
+            return &quot;&quot;;
+        }
+
+        char[] chars = messageText.toCharArray();
+        char[] encryptedChars = new char[chars.length];
+        for (int i = 0; i &lt; chars.length; i += 1)
+        {
+            encryptedChars[i] = encrypt(chars[i]);
+        }
+        return new String(encryptedChars);
+    }
+</code></pre>
+
+<p>You may consider it preferrable to apply the validation so as to prevent the CaesarCipher object being instantiated should an invalid shift be presented.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<p><strong>3.1</strong> Write a method to generate a ciphertext using a randomly generated shift. Here is partially completed code:</p>
+<pre><code>import java.util.Random;
+
+  public static String encryptUsingRandomShift(String message)
+  {
+    // generates random integer in range [1, 25]
+    int randomShift = new Random().nextInt(25) + 1;
+
+    // Create a CaesarCipher object using randomShift as constructor parameter
+    // Hence encrypt parameter *message*.
+    // Return ciphertext. 
+  }
+</code></pre>
+
+<p><strong>3.2</strong></p>
+<p>Compose a message, select a member of your class and exchange ciphertexts generated using <em>encryptUsingRandomShift</em>.</p>
+<p>Write a method to both decrypt your partner's ciphertext and recover the <em>shift</em> integer used to encrypt.</p>
+<ul>
+<li>The method should be a <em>brute-force attack</em>. That is, it iterates the complete valid range of the <em>shift</em> instance variable, printing the decrypted string and associated shift at each iteration. The solution may be determined by observation.</li>
+</ul>
+<h2>Exercise 3 Solution</h2>
+<p><strong>Solution 3.1</strong></p>
+<pre><code>import java.util.Random;
+</code></pre>
+
+<pre><code>    /**
+     * Encrypts a message using the CaesarCipher and a randomly generated shift.
+     * @param message The message text
+     * @return The cipher text
+     */
+    public static String encryptUsingRandomShift(String message)
+    {
+        // generates random integer in range [1, 25]
+        int randomShift = new Random().nextInt(25) + 1;
+        CaesarCipher cc = new CaesarCipher(randomShift);
+        return cc.encrypt(message);   
+    }
+</code></pre>
+
+<p><strong>Solution 3.2</strong></p>
+<pre><code>
+    /*
+     * Conduct a brute-force ciphertext-only attack
+     * &quot;TODO&quot; is placeholder for ciphertext
+     */
+    public static void cipherTextOnlyAttack()
+    {
+        String ciphertext = &quot;TODO&quot;;
+        // Traverse the entire valid shift range
+        for (int shift = 1; shift &lt;= 25; shift += 1)
+        {
+            CaesarCipher cc = new CaesarCipher(shift);
+            System.out.println(cc.decrypt(ciphertext));
+        }
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<p><strong>Exercise 4: Substitution Cipher</strong></p>
+<p>The Caesar Cipher is categorized as a substitution cipher. Here we shall develop a substitution cipher in which the set of valid characters comprise the printable ASCII set.</p>
+<p>The <a href="http://www.asciitable.com/">ASCII table</a> reveals this set to be in the range [32, 126], 32 being the space and 126 the tilde (~).</p>
+<p>Still in the <em>encryption</em> project, develop a class named SubstitutionCipher, mining as much code as you can from the Caesar Cipher.</p>
+<p>Here is starter code. </p>
+<pre><code>public class SubstitutionCipher
+{
+
+  // The number of characters to shift to encrypt
+  int shift;
+  // Defines the printable range of ASCII characters
+  private int minAscii = 32;
+  private int maxAscii = 126;
+
+  public SubstitutionCipher(int shift)
+  {
+    this.shift = shift;
+  }
+}
+</code></pre>
+
+<h2>Exercise 4 Solution</h2>
+<pre><code>/*
+ * Substitution cipher does not have a key. Simply shift by a number
+ * of characters down the alphabet. For example if shift is 1
+ * then A plaintext becomes B cipher text.
+ * Plaintext may comprise printable ASCII characters.
+ * The shift is a positive number. If a negative shift is entered it
+ * its absolute value is taken as the shift.
+ */
+public class SubstitutionCipher
+{
+
+    // The number of characters to shift
+    int shift;
+    // Defines the printable range of ASCII characters
+    private int minAscii = 32;
+    private int maxAscii = 126;
+
+    /**
+     * SubstitutionCipher constructor
+     * 
+     * @param shift A positive digit by which to shift plain text.
+     */
+    public SubstitutionCipher(int shift)
+    {
+
+        this.shift = Math.abs(shift);
+    }
+
+
+    public String encrypt(String messageText)
+    {
+        byte[] bytes = messageText.getBytes();
+        byte[] encryptedBytes = new byte[bytes.length];
+        for (int i = 0; i &lt; bytes.length; i += 1)
+        {
+            encryptedBytes[i] = encrypt(bytes[i]);
+        }
+        return new String(encryptedBytes);
+    }
+
+    private byte encrypt(byte byt)
+    {
+        int encryptedByte = byt + shift;
+        if (encryptedByte &gt; maxAscii)
+        {
+            encryptedByte = minAscii + encryptedByte % maxAscii - 1;
+        }
+        return (byte) encryptedByte;
+    }
+
+    public String decrypt(String cipherText)
+    {
+        byte[] bytes = cipherText.getBytes();
+        byte[] decryptedBytes = new byte[bytes.length];
+        for (int i = 0; i &lt; bytes.length; i += 1)
+        {
+            decryptedBytes[i] = decrypt(bytes[i]);
+        }
+        return new String(decryptedBytes);
+    }
+
+    private byte decrypt(byte byt)
+    {
+        int range = maxAscii - minAscii;
+        int decryptedByte = byt + range - shift + 1;
+        if (decryptedByte &gt; maxAscii)
+        {
+            decryptedByte = minAscii + decryptedByte % maxAscii - 1;
+        }
+        return (byte) decryptedByte;
+    }
+
+    public static void unitTest_1()
+    {
+        String messageText = &quot;Was I ever so clever as when I was 15?&quot;;
+
+        for (int shift = 1; shift &lt;= 25 ; shift += 1)
+        {
+            SubstitutionCipher caesarCipher = new SubstitutionCipher(shift);
+            String cipherTxt = caesarCipher.encrypt(messageText);
+            String dcryptTxt = caesarCipher.decrypt(cipherTxt);
+            if (!dcryptTxt.equals(messageText))
+            {
+                System.out.println(&quot;Oh oh: problem at GCHQ&quot;);
+            }
+            else
+            {
+                System.out.println(&quot;Successful encryption-decryption using shift :&quot; + shift);
+            }
+        }
+    }
+
+    public static void unitTest_2()
+    {
+        SubstitutionCipher cc = new SubstitutionCipher(3);
+        String messageText = &quot;Was I ever so clever as when I was 15?&quot;;
+        System.out.println(&quot;Message text:  &quot; + messageText);
+        String cipherText = cc.encrypt(messageText);
+        System.out.println(&quot;Cipher Text: &quot; + cipherText);
+        System.out.println(&quot;Message Text:  &quot; + cc.decrypt(cipherText));
+
+    }
+}
+
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 5</h1>
+<p>In the SubstitutionCipher write a method to validate the input string (message or cipher). A valid string shall contain only printable characters. Alert the user by printing a warning message if an invalid string is presented.</p>
+<pre><code>  private boolean isASCIIPrintable(String string)
+</code></pre>
+
+<p>Introduce the method at appropriate locations in SubstitutionCipher.</p>
+<h2>Exercise 5 Solution</h2>
+<pre><code>    /**
+     * Permitted characters are ASCII printable characters
+     * 
+     * @see https://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters
+     * @param string
+     */
+    private boolean isASCIIPrintable(String string)
+    {
+        byte[] bytes = string.getBytes();
+        for (byte byt : bytes)
+        {
+            if (byt &lt; minAscii || byt &gt; maxAscii)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+</code></pre>
+
+<pre><code>    public String encrypt(String messageText)
+    {
+        if (!this.isASCIIPrintable(messageText))
+        {
+            System.out.println(&quot;Input string must comprise only printable ASCII characters&quot;);
+            return &quot;&quot;;
+        }
+
+        byte[] bytes = messageText.getBytes();
+        byte[] encryptedBytes = new byte[bytes.length];
+        for (int i = 0; i &lt; bytes.length; i += 1)
+        {
+            encryptedBytes[i] = encrypt(bytes[i]);
+        }
+        return new String(encryptedBytes);
+    }
+
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

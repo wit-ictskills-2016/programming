@@ -1,0 +1,775 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      5.1: More sophisticated behaviour
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Collections-Solutions">
+        Collections-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Collections-Solutions">
+    <h1>Objectives</h1>
+<p>These are the solutions to first lab in the session <em>More sophisticated behaviour</em> that deals with arrays, maps and sets through the development of a simple bank class.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p>Modify the <em>generatePin</em> method in BIABank_v5 so that a user can generate a PIN of any size, for example a six digit pin. </p>
+<p>The signature becomes <em>public String generatePin(int nmrPinDigits)</em> where the actual parameter specifies the PIN size, i.e. the number of digits in the PIN.</p>
+<p>Make whatever other changes are necesssary to the bank class.</p>
+<h2>Exercise 1 Solution</h2>
+<p>Here is the code to the existing method:</p>
+<pre><code>    public static String generatePin()
+    {
+        String pin = new String();
+
+        for (int i = 0; i &lt; NUMBER_PIN_DIGITS; i += 1)
+        {
+            pin += Byte.toString((byte)(Math.random()*9 +1));
+        }
+        return pin;
+    }
+</code></pre>
+
+<p>The refactoring required for the new method is clear:</p>
+<ul>
+<li>Leave this existing method in place</li>
+<li>Modify a copy as follows:<ul>
+<li>Add the parameter <em>int nmrPinDigits</em></li>
+<li>Replace the terminating variable in the <em>for</em> loop with the argument <ul>
+<li>This now becomes <em>for (int i = 0; i &lt; nmrPinDigits; i += 1)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The solution method is, therefore:</li>
+</ul>
+<pre><code>    public static String generatePin(int nmrPinDigits)
+    {
+        String pin = new String();
+
+        for (int i = 0; i &lt; nmrPinDigits; i += 1)
+        {
+            pin += Byte.toString((byte)(Math.random()*9 +1));
+        }
+        return pin;
+    }
+</code></pre>
+
+<p>Add the method to the bank class and recompile.</p>
+<p>Test the method for, for example, 5-digit and 6-digit pins.</p>
+<p>See Figure 1 and Figure 2 for the responses:</p>
+<p><img alt="Figure 1: 5-digit PIN" src="img/02.png">
+<img alt="Figure 2: 6-digit PIN" src="img/03.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p>Modify the <em>generatePin</em> method so that a PIN cannot comprise 4 consecutive digits in ascending order.</p>
+<p>For example 3456 would be disallowed. However 6543 would be acceptable.</p>
+<h2>Exercise 2 Solution</h2>
+<p>Approach: ensure that second digit is not 1 greater than 1st. </p>
+<p>Remaining digits may be generated without checks.</p>
+<p>The algorithic approach could be as follows:</p>
+<ul>
+<li>Generate the first PIN digit</li>
+<li>Do-while loop<ul>
+<li>Generate the second digit</li>
+</ul>
+</li>
+<li>While second digit 1 greater than 1st regenerate</li>
+<li>Concatenate 2nd digit to PIN</li>
+<li>Generate remaining digits.</li>
+<li>Concatenate each successive digit to PIN</li>
+</ul>
+<p>Here is an implementation:</p>
+<ul>
+<li>For convenience move <em>Math.random</em> to a method <em>randomByte</em> in line with DRY principle.</li>
+</ul>
+<pre><code>    public static byte randomByte()
+    {
+        return (byte)(Math.random()*9 +1);
+    }
+
+    public static String generatePin(int nmrPinDigits)
+    {
+        String pin = new String();
+
+        //first digit
+        byte firstDigit = randomByte();
+        pin += firstDigit;
+
+        //second digit
+        byte thisDigit;
+        do
+        {
+            thisDigit = randomByte();
+
+        } while((thisDigit - firstDigit) == 1);
+        pin += thisDigit;
+
+        //remaining digits
+        for (int i = 3; i &lt;= nmrPinDigits; i += 1)
+        {           
+            pin += randomByte();
+        }
+        return pin;
+    }
+</code></pre>
+
+<p>Here is a method to validate this PIN:</p>
+<pre><code>    public static boolean isValid(String pin)
+    {
+        for(int i = 1; i &lt; pin.length(); i += 1)
+        {
+            int prevChar = pin.charAt(i-1);
+            int thisChar = pin.charAt(i);
+            if ((thisChar - prevChar) != 1)
+                return true;
+        }
+        return false;
+    }
+</code></pre>
+
+<p>Here is a brute-force test:</p>
+<pre><code>    public static void testPin()
+    {
+        for(int i = 0; i &lt; 100; i ++)
+        {
+            String pin = generatePin2(4);
+            if(!isValid(pin))
+                System.out.println(&quot;Invalid pin &quot; + pin);
+        }
+        System.out.println(&quot;Test succeeded: all pins tested valid&quot;);
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 3</h1>
+<p>In this exercise we define a PIN as being invalid if it comprises consecutive ascending digits (example 45678) otherwise the PIN is valid.</p>
+<p>Write a method to test whether a PIN is valid or invalid.</p>
+<ul>
+<li>Use the signature: <em>public static boolean isValid(String pin)</em></li>
+<li>The method should return <em>false</em> if an invalid PIN is detected, else <em>true</em>.</li>
+</ul>
+<h2>Exercise 3 Solution</h2>
+<pre><code>    /**
+     * Checks if all PIN digits in ascending order
+     * If in ascending order the PIN is invalid
+     *
+     * @param  a string representing the PIN
+     * @return true if the PIN is valid else false
+     */
+    static boolean isValid(String pin)
+    {
+        for (int i = 1; i &lt; pin.length(); i++)
+        {   
+          // If the current digit is not one greater 
+          // than previous digit, then the pin will be valid.
+          if ((pin.charAt(i) - pin.charAt(i-1)) != 1)
+          {
+            return true;
+          }
+        }
+        return false;
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 4</h1>
+<p>Write a test method with signature <em>public static void testPIN(int nmrPinDigits)</em> </p>
+<ul>
+<li>Generate 1000 3-digit PINs</li>
+<li>Invoke <em>isValid</em> for each PIN</li>
+<li>Print a warning if an invalid PIN is discovered including the offending PIN<ul>
+<li>Example: xxxxx is an invalid PIN</li>
+</ul>
+</li>
+<li>Print a success message otherwise.<ul>
+<li>Example: All PINs are valid</li>
+</ul>
+</li>
+</ul>
+<p>Test as follows:</p>
+<ul>
+<li>Use the original PIN generator which will result in invalid PINs</li>
+<li>Use the PIN generator modified in Exercise 2 which should generate only valid PINS</li>
+</ul>
+<h2>Exercise 4 Solution</h2>
+<p>Here is the method <em>testPIN</em>:</p>
+<pre><code>public static void testPIN(int nmrPinDigits, int numberTests)
+{
+    for(int i=0; i &lt; numberTests; i += 1)
+    {
+        String pin = generatePin(nmrPinDigits);
+        if(!isValid(pin))
+        {
+            System.out.println(pin + &quot; is an invalid PIN&quot;);
+            return;
+        }
+    }
+    System.out.println(&quot;All PINs are valid&quot;);
+
+}
+
+public static void test()
+{
+
+  int nmrDigits = 3;
+  int nmrTests = 1000;
+  // vary number pins from 3 to 6
+  for(int i = nmrTests; i &lt;= 6; i += 1)
+      testPIN(nmrDigits, nmrTests);      
+
+  // vary number tests from 1000 to 1,000,000
+  for (i = nmrTests; i &lt; nmrTests * 1000; i *= 10)
+      testPIN(nmrDigits, nmrTests);
+}
+</code></pre>
+
+<p>Here is a random output for a 3 digit pin generated by the original method, i.e. where no constraints imposed, with the <em>numberTests</em> set at 1000.</p>
+<p><img alt="Figure 1: Results of validity test on 3-digit PIN" src="img/04.png"> </p>
+<p>Experiment by testing 4, 5 and 6 digit PINs, the parameter <em>numberTests</em> being fixed at 1000 as required. </p>
+<ul>
+<li>Repeat for the same PINs but varying the <em>numberTests</em> parameter.</li>
+<li>What patterns, if any, do you observe?</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 5</h1>
+<p>Write a method to print out a list of all the bank's customers:</p>
+<ul>
+<li>Account number</li>
+<li>Balance </li>
+<li>Customer name</li>
+</ul>
+<p>Replicate the layout shown in the table in Figure 1:</p>
+<p><img alt="Figure 1: List of Bank Customers" src="img/01.png"></p>
+<p>The solution provides three different methods to print out the required details using in turn:</p>
+<ul>
+<li>The ArrayList of customers</li>
+<li>The HashSet of account numbers and the HashMap of <em>account number - customer</em> pairs</li>
+<li>The HashMap only</li>
+</ul>
+<p>Implement one or all of these three approaches or a different approach should you discover one.</p>
+<h2>Exercise 5 Solution</h2>
+<ul>
+<li>Create a <em>BIABank_v5 bank</em> instance on the object bench.
+<img alt="Figure 2: Bank instance on object bench" src="img/05.png"></li>
+<li>Select BIABank_v5 class diagram, right click and invoke <em>Create Test Method</em>.
+<img alt="Figure 3: Create TestClass" src="img/06.png"></li>
+<li>Select BIABank_v5Test and invoke <em>Object Bench to Test Fixture</em>
+<img alt="Figure 3: Object Bench to Test Fixture" src="img/07.png"><ul>
+<li>Notice the object disappears from the object bench</li>
+</ul>
+</li>
+<li>Open the Test class and observe <ul>
+<li>the presence of <em>private BIABank_v5 bank</em> field</li>
+<li>the instantiation of <em>bank</em> in the <em>setUp</em> method</li>
+<li>These changes were brought about by invoking the <em>Object Bench to Test Fixture</em> method.
+<img alt="Figure 4: Test Class following Object Bench to Test Fixture" src="img/09.png"></li>
+</ul>
+</li>
+<li>We shall now take advantage of the test class to create customer accounts rather than doing so individually using the object bench:<ul>
+<li>Add the code to create new customers immediately after the instantiation expression in <em>setUp</em> which then becomes:</li>
+</ul>
+</li>
+</ul>
+<pre><code>    @Before
+    public void setUp()
+    {
+        bank = new BIABank_v5();
+        bank.newCustomer(&quot;Yennk&quot;, 1000);
+        bank.newCustomer(&quot;Omlig&quot;, 1999);
+        bank.newCustomer(&quot;Nitra&quot;, 1555);
+        bank.newCustomer(&quot;Mada&quot;,  2500);
+        bank.newCustomer(&quot;Niggi&quot;, 3500);
+        bank.newCustomer(&quot;Nodmc&quot;, 1000);
+        bank.newCustomer(&quot;Allaw&quot;, 5000);
+        bank.newCustomer(&quot;Mings&quot;, 9990);
+    }
+</code></pre>
+
+<ul>
+<li>Compile all</li>
+<li>Invoke <em>Test Fixture to Object Bench</em> on the bank test class BIABank_v5Test<ul>
+<li>This will recreate the bank object on the object bench</li>
+<li>This hightlights the time-saving advantage of using this approach: each time we recompile we simply invoke this method to restore the object on the object bench, much more efficient than manually invoking <em>newCustomer</em> for each of the 8 customers that would be necessary following each recompilation.</li>
+</ul>
+</li>
+</ul>
+<p>Now that the setup is complete we proceed to writing the three different versions of <em>printCustomers</em>:</p>
+<p>Here is the first version in which we traverse the list of customers using an iterator:</p>
+<pre><code>//ArrayList&lt;Customer&gt; customers
+ public void printCustomers()
+  {
+      System.out.println(&quot;Number Balance Name&quot;);
+      Iterator&lt;Customer&gt; it = customers.iterator();
+      while(it.hasNext())
+      {
+          Customer c = it.next();
+          System.out.println(c.getAccountNumber() + &quot;   &quot; + c.getBalance() + &quot;    &quot; + c.getName());
+      }
+  } 
+</code></pre>
+
+<p>Add this method to the bank class, compile and invoke. </p>
+<p>Attend to the compile-time errors by adding any missing accessors to Customer class.</p>
+<p>The output should match that shown in Figure 5:</p>
+<p><img alt="Figure 5: List of customers" src="img/08.png"></p>
+<p>Here is the second version in which we </p>
+<ul>
+<li>obtain the customer account numbers from <em>accountNumberSet</em>, the set of all the account numbers.</li>
+<li>use each account number to obtain the Customer object <em>customerRecord</em>, the map of <em>account number - customer</em> pairs.</li>
+</ul>
+<pre><code>    //HashMap&lt;Integer, Customer&gt; customerRecord
+    //HashSet&lt;Integer&gt; accountNumberSet
+    public void printCustomers2()
+    {
+        System.out.println(&quot;Number Balance Name&quot;);
+        Iterator&lt;Integer&gt; it = accountNumberSet.iterator();
+        while(it.hasNext())
+        {
+            int accNumber = it.next();
+            Customer customer = customerRecord.get(accNumber);
+            System.out.println(accNumber + &quot;   &quot; + customer.getBalance() + &quot;    &quot; + customer.getName());
+        }
+    }
+</code></pre>
+
+<p>The third method traverses the map of customer records and extracts the <em>key-value</em> pairs of <em>account numbers - customer names</em>:</p>
+<pre><code>      //HashMap&lt;Integer, Customer&gt; customerRecord
+      public void printCustomers3()
+      {
+          System.out.println(&quot;Number Balance Name&quot;);
+          Iterator&lt;Entry&lt;Integer, Customer&gt;&gt; it = customerRecord.entrySet().iterator();
+          while (it.hasNext()) 
+          {
+              Entry&lt;Integer, Customer&gt; pair = it.next();
+              System.out.println(pair.getKey() + &quot;   &quot; + pair.getValue().getBalance()+ &quot;    &quot; + pair.getValue().getName());
+          }
+      }
+</code></pre>
+
+<p>An import statement is necessary as follows:</p>
+<pre><code>import java.util.Map.Entry;
+</code></pre>
+
+<p>Add and test all three version of the <em>printCustomers</em> method.</p>
+<ul>
+<li>In all three cases the output should match that in Figure 4 above.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Exercise 6</h1>
+<p>Write a method to close an account and delete customer's records.</p>
+<ul>
+<li>Use the signature <em>public void closeAccount(int accountNumber)</em></li>
+<li>Remove the Customer object from the ArrayList of Customers</li>
+<li>Remove the relevant key-value pair from the HashMap</li>
+<li>Remove the account number from the HashSet</li>
+<li>Verify by printing out a list of customers before and after invoking this new method</li>
+</ul>
+<h2>Exercise 6 Solution</h2>
+<pre><code>
+/**
+ * Remove the key-value pair from the HashMap&lt;Integer, Customer&gt; customerRecord
+ * Remove the Customer object from the ArrayList&lt;Customer&gt; customers
+ * Remove the account number from the HashSet&lt;Integer&gt; accountNumberSet
+ */
+
+public void closeAccount(int accountNumber)
+  {
+      //Remove key-customer pair from map
+      Iterator&lt;Entry&lt;Integer, Customer&gt;&gt; it = customerRecord.entrySet().iterator();
+      while (it.hasNext()) 
+      {
+          Entry&lt;Integer, Customer&gt; pair = it.next();
+          int thisAccNum = pair.getKey();
+          if(thisAccNum == accountNumber)
+          {
+              it.remove();      
+          }
+      } 
+      //remove customer from list
+      Iterator&lt;Customer&gt; itcust = customers.iterator();
+      while(itcust.hasNext())
+      {
+          Customer customer = itcust.next();
+          if(accountNumber == customer.getAccountNumber())
+          {
+              itcust.remove();
+          }
+      }
+      //remove account number from set
+      Iterator&lt;Integer&gt; itacc = accountNumberSet.iterator();
+      while(itacc.hasNext())
+      {
+          int thisAccNum = itacc.next();
+          if(thisAccNum == accountNumber)
+          {
+              itacc.remove();
+          }
+      }
+  }  
+</code></pre>
+
+<p><strong>Test</strong></p>
+<ul>
+<li>Print out the list of customers 
+<img alt="Figure 1: List of customers" src="img/10.png"></li>
+<li>Close account 1005
+<img alt="Figure 2: Close account number 1005" src="img/11.png"></li>
+<li>Verify account no longer present
+<img alt="Figure 3: List of customers following closure of account 1005" src="img/12.png"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Exercise 7</h1>
+<p>Complete the skeleton code in Figure 2 below so that when the method <em>test()</em> is invoked the matrix shown in Figure 3 is printed.</p>
+<p><img alt="Figure 2: Skeleton code for Exercise 7" src="img/13.png"></p>
+<p><img alt="Figure 3 Required output Exercise 7" src="img/14.png"></p>
+<h2>Exercise 7 Solution</h2>
+<pre><code>public class TwoDArrays {
+
+  public static final int NUM_ROWS = 10;
+  public static final int NUM_COLS = 10;
+
+  static int[][] a;
+
+  public static void generateMatrix()
+  {   
+    a = new int[NUM_ROWS][NUM_COLS];
+
+    for (int row = 0; row &lt; NUM_ROWS; row += 1)  
+    {
+      for (int col = 0; col &lt; NUM_COLS; col += 1)  
+      {
+        a[row][col] = (row + 1)*(col + 1);
+      }
+    }
+
+  }
+
+  public static void print(int[][] a)
+  {
+    for (int row = 0; row &lt; NUM_ROWS; row += 1)
+    {
+      for (int col = 0; col &lt; NUM_COLS; col += 1)
+      {
+        int val = a[row][col];
+        if (val &lt; 10)// for purpose of vertical alignment print leading zero
+        {
+          System.out.print(&quot;0&quot; + a[row][col] + &quot; &quot;);
+        }
+        else
+        {
+          System.out.print(a[row][col] + &quot; &quot;);
+        }
+      }
+      System.out.println();
+    }
+  }
+  public static void test()
+  {
+    generateMatrix();
+    print(a);
+  }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Exercise 8</h1>
+<p>Complete the skeleton class below as follows:</p>
+<p>8.1. Create a HashSet and add the following String objects:</p>
+<pre><code>String[] strings = {&quot;DCU&quot;, &quot;DCU&quot;, &quot;WIT&quot;, &quot;CIT&quot;};
+</code></pre>
+
+<p>8.2 Use an iterator to traverse the set, printing out each element in the set and verify that "DCU" has been added only once to the set.</p>
+<p>8.3 Remove "CIT" from the set.</p>
+<p>8.4 Use an iterator to traverse the set, printing out each element in the set and verify that the removal has been successful.</p>
+<pre><code>//add import statements
+public class DemoHashSet
+{
+
+  public static void demo()
+  {
+    //Declare and initialize a HashSet
+
+    //Add this array of strings
+    String[] strings = {&quot;DCU&quot;, &quot;DCU&quot;, &quot;WIT&quot;, &quot;CIT&quot;};
+    //Declare an iterator and use it to traverse the set
+    //Print out each element
+    //Verify duplicates not present
+
+    //Remove &quot;DCU&quot;
+    //Iterate the set
+    //Print out elements
+    //Verify element has been removed  
+  }
+
+}
+
+</code></pre>
+
+<h2>Exercise 8 Solution</h2>
+<pre><code>import java.util.HashSet;
+import java.util.Iterator;
+
+public class DemoHashSet
+{
+
+  public static void demo()
+  {
+    //Declare and initialize a HashSet
+    HashSet&lt;String&gt; contacts = new HashSet&lt;String&gt;();
+
+    //Add this array of strings
+    String[] strings = {&quot;DCU&quot;, &quot;DCU&quot;, &quot;WIT&quot;, &quot;CIT&quot;};
+    for (String string : strings)
+      contacts.add(string);
+
+    //Declare an iterator and use it to traverse the set
+    //Print out each element
+    //Observe duplicates not present
+    Iterator&lt;String&gt; it = contacts.iterator();
+    while (it.hasNext())
+    {
+      String element = it.next();
+      System.out.print(element + &quot; &quot;);
+    }
+    System.out.println();
+    //Remove &quot;DCU&quot;
+    contacts.remove(&quot;DCU&quot;);
+
+    //Iterate the set
+    //Print out elements
+    //Verify element has been removed  
+    Iterator&lt;String&gt; it2 = contacts.iterator();
+    while (it2.hasNext())
+    {
+      String element = it2.next();
+      System.out.print(element + &quot; &quot;);
+    }
+    System.out.println();
+  }
+
+}
+</code></pre>
+
+<p><img alt="Figure 1: Output of method demo" src="img/16.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Exercise 9</h1>
+<p>Create and implement a class DemoHashMap as follows:</p>
+<ul>
+<li>Refer to the code in Figure 4.</li>
+</ul>
+<p>9.1 Create a HashMap and add the following key-value pairs:</p>
+<pre><code>&quot;George&quot;, &quot;0231 8542983&quot;
+&quot;Michael&quot;, &quot;0595 848290&quot;
+&quot;Paul&quot;,    &quot;044 5644321&quot;
+</code></pre>
+
+<p>9.2 Print the elements in the map.</p>
+<p>9.3 Remove the first key-value pair in 9.1.</p>
+<p>9.4 Print out the list of key-value pairs and verify that the element has been removed.</p>
+<p><img alt="Figure 4: HashMap sample code" src="img/15.png"></p>
+<h2>Exercise 9 Solution</h2>
+<pre><code>import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class DemoHashMap
+{
+
+  public static void demo()
+  {
+    HashMap&lt;String, String&gt; contacts = new HashMap&lt;String, String&gt;();
+
+    contacts.put(&quot;George&quot;, &quot;0231 8542983&quot;);
+    contacts.put(&quot;Michael&quot;, &quot;0595 848290&quot;);
+    contacts.put(&quot;Paul&quot;, &quot;044 5644321&quot;);
+
+    // Print elements in map
+    Collection&lt;String&gt; c = contacts.values();
+    Iterator&lt;String&gt; it = c.iterator();
+    while (it.hasNext())
+    {
+      System.out.println(it.next());
+    }
+    System.out.println(&quot;==========================================&quot;);
+
+    // Remove first key-pair
+    contacts.remove(&quot;George&quot;);
+
+    // Print elements in map and observe method remove performed as expected
+    Collection&lt;String&gt; c2 = contacts.values();
+    Iterator&lt;String&gt; it2 = c2.iterator();
+    while (it2.hasNext())
+    {
+      System.out.println(it2.next());
+    }
+  }
+
+}
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

@@ -1,0 +1,622 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      6: Testing, Debugging, Searching & Sorting
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Sorting-searching">
+        Sorting-searching
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+      <a class="item" data-tab="10">
+        10
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Sorting-searching">
+    <h1>Objectives</h1>
+<p>Explore two contrasting sort algorithms, the inefficient Selection sort and a significantly faster Merge sort. Use Binary search to locate a specific element in a sorted array. Explore the performance of these algorithms. The results may surprise you.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Sorting</h1>
+<h2>Introduction</h2>
+<p>Any list of types whose instances are comparable may be sorted into ascending or descending order.</p>
+<p>For example the list of integers:</p>
+<pre><code>3 3 4 1 0 9 6 5 2 8 7
+</code></pre>
+
+<p>is sortable into either the ascending list:</p>
+<pre><code>0 1 2 3 3 4 5 6 7 8 9 
+</code></pre>
+
+<p>or the descending list:</p>
+<pre><code>9 8 7 6 5 4 3 3 2 1 0
+</code></pre>
+
+<p>A further example is the sorting of strings. Here is a an unsorted list of strings followed by the same list sorted in ascending alphabetical order:</p>
+<pre><code>The quick brown fox jumped over the lazy dog
+</code></pre>
+
+<pre><code>brown dog fox jumped lazy over quick The the
+</code></pre>
+
+<p>It is also possible to sort objects of classes such as those we have already encountered, for example Circle or Rectangle.</p>
+<p>In the case of Circle we might wish to sort a list of circle objects by comparing their areas and arranging the sorted list in order of increasing areas.</p>
+<p>But equally we might wish to sort the list of circle objects by reference another property such as their colours.</p>
+<p>Rectangle objects could be sorted with reference to their perimeters, areas and so on.</p>
+<h2>Sorting algorithms</h2>
+<p>Several <a href="http://en.wikipedia.org/wiki/Sorting_algorithm">sorting algorithms</a> have been developed, Merge sort and Quicksort being two of the most popular.</p>
+<p>Further examples are Insertion sort, Selection sort, Heap sort, Bubble sort and Shell sort.</p>
+<p>In this lab we shall examine Selection sort and Merge sort. These two have been chosen so as to contrast an efficient and populular algorithm, Merge sort, with the extremely inefficient Selection sort.</p>
+<p>An idea of the relative performance of these two algorithms may be had by comparing the times to sort an array of one quarter of a million randomly selected integers.</p>
+<ul>
+<li>Merge sort     : about one third of a second</li>
+<li>Selection sort : about 2 hours and 15 minutes</li>
+</ul>
+<p>In the same set of tests 500 million integers were sorted by Merge sort in a little over 2 minutes.</p>
+<p>Using a mathematical model, described in a following step, suggests that the same sort would take in the order of 10 years using Selection sort. Note that this figure is very approximate as very small changes in the coefficients used in the model extrapolate to very large changes as the size of the sort space grows. </p>
+<p>These tests were performed on an iMac.</p>
+<p>Later, during ICTSkills studio, we may have an opportunity to study Quicksort, considered one of the most important algorithms of the twentieth century in a poll conducted by "Computing in Science &amp; Engineering".</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Selection sort</h1>
+<p>Sorting algorithms may be used to sort any comparable types but for simplicity we shall restrict ourselves to integers in this lab.</p>
+<p>We shall use the following small unsorted integer array to demonstrate how the algorithm works:</p>
+<pre><code>int[] a = {20, 24, 17, 12, 11, 14, 22, 19}
+</code></pre>
+
+<p>Assume the sorting algorithm is part-way through sorting the array as follows:</p>
+<pre><code>a = {11, 12, 14, 24, 20, 17, 22, 19}
+</code></pre>
+
+<p>Elements at positions 0 to 2 inclusive in the array have been sorted as follows:</p>
+<pre><code>{11, 12, 14, ...}
+</code></pre>
+
+<ul>
+<li>
+<p>We adopt the index or pointer named <strong>i</strong> to indicate the position of the next element to be sorted, in this case element at index 3 which is 24.</p>
+</li>
+<li>
+<p>We traverse the remainder of the array from position pointer i to the last element namely length - 1 where length is the number of elements in the array.</p>
+</li>
+<li>
+<p>If we encounter an element less than a[i] then we exchange this element a[j] with a[i] and continue to search to the end of the array. </p>
+<ul>
+<li>Each time we find that a[j] is less than a[i] we make an exchange. </li>
+</ul>
+</li>
+</ul>
+<p>Figure 1 shows how the the search proceeds from position i until an element less than 24 is found.</p>
+<ul>
+<li>This element is 17. It is then exchanged with element 24.</li>
+<li>The modified array following the exchange is shown in the Figure.</li>
+</ul>
+<p><img alt="Figure 1: Selection sort" src="img/01.png">     </p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Implement Selection sort</h1>
+<p>We shall now implement a sorting algorithm as described in the previous step.</p>
+<p>Create a new project named Sorting.</p>
+<p>Create a new class SelectionSort in the project.</p>
+<p>Within this class implement a method <em>sort</em> as follows:</p>
+<pre><code>  public static void sort(int[] a)
+  {
+    for (int i = 0; i &lt; a.length; i += 1)
+      for (int j = i; j &lt; a.length; j += 1)
+        if (a[j] &lt; a[i])
+          exchange(a, i, j);
+  }
+</code></pre>
+
+<p>Add the following private method <em>exchange</em>:</p>
+<pre><code>  private static void exchange(int[] a, int i, int j)
+  {
+    int val = a[i];
+    a[i] = a[j];
+    a[j] = val;
+  }
+</code></pre>
+
+<p>See Figure 1 for a further brief explanation of how the algorithm works.</p>
+<p><img alt="Figure 1: Selection sort algorithm code" src="img/02.png"></p>
+<p>To test the algorithm create another class in the Sorting project named TestSelectionSort and add the following method. Alternatively, add <em>test()</em> to the class SelectionSort.</p>
+<pre><code>  public static void test()
+  {
+    int[] a = {20, 24, 17, 12, 11, 14, 22, 19};
+
+    print(a);
+    sort(a);
+    print(a);
+  }
+</code></pre>
+
+<p>Next add the <em>print</em> method:</p>
+<pre><code>public static void print(int[] a)
+{
+  for (int val : a)
+      System.out.print(val + &quot; &quot;);
+  System.out.println();
+}
+</code></pre>
+
+<p>Compile and execute the test method.</p>
+<p>The output should be as shown in Figure 2.</p>
+<p><img alt="Figure 2: Test data using selection sort" src="img/03.png"></p>
+<p>Experiment with different arrays.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Merge sort</h1>
+<p>We shall now explore the much more efficient Merge sort using the same test array as before:</p>
+<pre><code>int[] a = {20, 24, 17, 12, 11, 14, 22, 19};
+</code></pre>
+
+<p>Figure 1 demonstrates how over 4 iterations the entire array is modified such that it comprises sorted pairs blocks, each block containing 1 element.</p>
+<ul>
+<li>For example, {20, 24} has 2 blocks, 20, and 24.</li>
+<li>
+<p>No change is required to the first pair of blocks {20, 24} as these are already in ascending order.</p>
+</li>
+<li>
+<p>The second pair of blocks {17, 12} are rearranged as {12, 17} and so on.</p>
+</li>
+</ul>
+<p><img alt="Figure 1: Merge sort blocks size 1" src="img/04.png"></p>
+<p>When the entire array comprises pairs as shown in Figure 1, blocks of size 2 are then considered. This is shown in Figure 2.</p>
+<ul>
+<li>For example, the pair of individual blocks {20, 24} shown in Figure 1 is now considered to be a single block with 2 elements.</li>
+<li>Consider the first pair of blocks: {20, 24, 12, 17}. <ul>
+<li>Both blocks, {20, 24} and {12, 17}, have already been sorted as shown in Figure 1.</li>
+<li>The task is now to merge both these blocks into a new sorted block {12, 17, 20, 24}.</li>
+<li>This merging will be done in code in a dedicated method. We shall shortly demonstrate this.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Merge sort blocks size 1" src="img/05.png"></p>
+<p>At the end of the steps shown in Figure 2 the array is as follows:</p>
+<p>{12, 17, 20, 24, 11, 14, 19, 22}</p>
+<p>This is the complete array. Observe that it comprises two sorted blocks:</p>
+<p>{12, 17, 20, 24}</p>
+<p>{11, 14, 19, 22}</p>
+<p>The next and last step is to merge these blocks, each of size 4 elements, into the final sorted array. This is shown in Figure 3.</p>
+<p><img alt="Figure 3: Merge sort blocks size 1" src="img/06.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Merge sort implementation</h1>
+<p>The following is a brief description of the Merge sort algorithm.</p>
+<p>First, an auxiliary array <strong>aux[]</strong> is declared and instantiated, its size matching that of the array to be sorted (referred to as <strong>a[]</strong> in the algorithm below).</p>
+<ul>
+<li>The portion of <strong>a[]</strong> that is sorted in the method <strong>merge(...)</strong> is first copied into <strong>aux[]</strong>.</li>
+<li>Sorted elements are copied out of <em>aux[]</em> into <em>a[]</em> in the method <em>merge(...)</em>.</li>
+</ul>
+<p>A study of the previous step <em>Merge sort</em> shows that the algorithm may be developed using 2 loops.</p>
+<ul>
+<li>
+<p>The outer loop sets the size of the block to be merged.</p>
+</li>
+<li>
+<p>Start with block size 1 and set each successive block to be twice the previous one.</p>
+</li>
+</ul>
+<pre><code>for (int size = 1; size &lt; N; size = size + size)
+</code></pre>
+
+<p>The inner loop traverses all the blocks of a given size and merges the elements within each adjacent pair of blocks.</p>
+<pre><code>for (int lo = 0; lo &lt; N - size; lo += size + size)
+</code></pre>
+
+<p><img alt="Figure 1: Sort algorithm" src="img/07.png"></p>
+<p>The case where <em>size</em> is 2 is shown in Figure 2.</p>
+<p>The pair of blocks comprises:</p>
+<ul>
+<li>The left block {20,24}</li>
+<li>The right block {12, 17}</li>
+</ul>
+<p><img alt="Figure 2: Example of block size 2: Two pairs of blocks are merged" src="img/09.png"></p>
+<p>Figure 3 shows how the parameters <em>lo</em>, <em>mid</em> <em>hi</em> are determined.</p>
+<ul>
+<li>These parameters are passed to the method <em>merge</em> that we examine below.</li>
+</ul>
+<p><img alt="Figure 3: Values of parameters lo, mid and hi" src="img/10.png"></p>
+<p>The method <em>merge</em>, shown in Figure 4, is called for each pair of blocks.</p>
+<ul>
+<li><em>lo</em>, <em>mid</em> and <em>hi</em> are passed as parameters</li>
+<li>The pair of blocks is merged into a single sorted block.</li>
+</ul>
+<p><img alt="Figure 4: merge(...) implementation" src="img/11.png"></p>
+<p>The parameter:</p>
+<pre><code>Math.min(lo + size + size - 1, N - 1)
+</code></pre>
+
+<p>deals with the edge condition where otherwise an array bounds violation might occur.</p>
+<p><img alt="Figure 5: Class MergeSort" src="img/12.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Benchmarks</h1>
+<p>Figure 1 compares the sorting time for a series of randomly generated integer arrays.</p>
+<p>For example, an array sized 20,000 means the following:</p>
+<ul>
+<li>20,000 elements in the array</li>
+<li>the range of each integer in the array is [0, 20,000)</li>
+<li>each number within this range is selected randomly</li>
+</ul>
+<p>The running times for the array whose size is 500 million is estimated using a mathematical model. The estimating model is explained later. The remaining times were obtained by running the sorting algorithms on a desktop computer.</p>
+<p><img alt="Figure 1: Comparison times Merge and Selection sort algorithms" src="img/13.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Model</h1>
+<p>This step describes a simple model to estimate running times of the Selection sort algorithm.</p>
+<p>Figure 1 shows a general representation of the running time of, for example, a sorting algorithm. The algoritm is used to sort a series of arrays of varying sizes and each running time is plotted against the corresponding array size.</p>
+<p><img alt="Figure 1: Plot of running time v number of data points" src="img/15.png"></p>
+<p>The problem with this approach (Figure 1) it that it is difficult, if not impossible in practice, to use such a plot to project running times for large numbers of data points.</p>
+<p>Fortunately, it is a characteristic of many such problems that when the log of both the time and number of data points are plotted, an approximate straight line results. This is shown in Figure 2.</p>
+<p><img alt="Figure 2: Log-log plot of running time v number data points" src="img/14.png"></p>
+<p>We can use this fact to derive a power law equation which allows us to estimate the very approximate running time of an algorithm for large numbers of data points that would be impossible to obtain empirically. For example the theoretical time to sort 500 million integers using Selection sort is estimated to be in the order of 10 years using the data obtained from these benchmark tests carried out on a modern desktop computer. This result has been calculated as follows:</p>
+<ul>
+<li>Obtain the data in Figure 3 by sorting the series of randomly distributed integer arrays, each of size N.</li>
+<li>Plot the log-log chart of the data as shown in Figure 4 and calculate the equation of the line that approximates the data points.<ul>
+<li>Here this is approximately lg(T(N)) = 1.9974135 lg (N) -10.2533267811 where 1.9974135is the slope of the line and --10.2533267811 is the theoretical intercept of the line with the vertical axis.</li>
+<li>Note that in all cases we use log to the base 2 denoted by lg.</li>
+<li>From this linear equation we calculate the coefficients for the power law which allows us estimate the sorting time T(N) for any N:
+<img alt="" src="img/18.png">
+<img alt="Figure 3: Selection sort times for range of integer arrays on desktop computer" src="img/17.png">
+<img alt="Figure 4: Log-log plot data Figure 3" src="img/16.png"></li>
+</ul>
+</li>
+</ul>
+<p>We again point out that this approach is very approximate but, nevertheless, gives a reasonable comparison of the relative running times between the different sorting methods. Small variations in the coefficients used in the power law equation will result in greatly magnified variations in the estimated sort time.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Linear search</h1>
+<p>We use search algorithms to find a group - one or more items - in a set of data. For example:</p>
+<ul>
+<li>Locate from a database of contacts a group of people whose dates of births fall within a particular range</li>
+<li>Check if an array of integers contains a particular value</li>
+</ul>
+<p>An example of a search algorithm is a linear search:</p>
+<pre><code>  public static boolean linearSearch(String search, String[] list)
+  {
+    for (int i = 0; i &lt; list.length; i += 1)
+      if (list[i].contains(search))
+        return true;
+    return false;
+  }
+</code></pre>
+
+<p>Test this algorithm as follows:</p>
+<ul>
+<li>Create a class LinearSearch</li>
+<li>Add the method <em>linearSearch</em></li>
+<li>Implement a method <em>test</em></li>
+<li>Invoke <em>test()</em>.</li>
+</ul>
+<pre><code>public static void test()
+{
+
+    String[] list = {&quot;Able&quot;, &quot;was&quot;, &quot;I&quot;};
+    String search1 = &quot;ere&quot;;
+    String search2 = &quot;Able&quot;;
+
+    boolean found1 = linearSearch(search1, list);
+    boolean found2 = linearSearch(search2, list);
+
+    System.out.println(found1);
+    System.out.println(found2);
+}
+
+</code></pre>
+
+<p>A study of the method reveals that in worst case situation every element in the list is queried.</p>
+<p>Therefore the upper bound of the complexity of the method <em>linearSearch</em> is the order of the length of the list which is:</p>
+<ul>
+<li><strong>O(n)</strong> where <em>n</em> is the number of elements in the list.</li>
+<li>This is assuming access to each element in the list takes place in constant time.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Binary search</h1>
+<p>Suppose a list is sorted in ascending order.</p>
+<ul>
+<li>For example, using the previous array:</li>
+</ul>
+<pre><code>unsorted 20 24 17 12 11 14 22 19
+sorted   11 12 14 17 19 20 22 24
+</code></pre>
+
+<p>Let's consider 2 examples, one where the item being sought is not in the list, the other where the item is in the list.</p>
+<p>Example 1:</p>
+<ul>
+<li>Find the index where 22 is stored. </li>
+<li>Follow the steps in Figure 1:<ul>
+<li>Array considered as upper and lower half</li>
+<li>Check carried out: is item in upper or lower?</li>
+<li>Check repeated in the half array containing item.</li>
+<li>This search method repeated until item found if it exists.</li>
+<li>Each iteration reduces the search space in two.</li>
+<li>This explains the O(log n) order of complexity.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Searching for 22 (at position index 6 in list)" src="img/20.png"></p>
+<ul>
+<li>
+<p>Example 2:</p>
+</li>
+<li>
+<p>Follow the steps in Figure 2.</p>
+</li>
+</ul>
+<p><img alt="Figure 2: Searching for 0 (not present in list)" src="img/21.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="10">
+    <h1>Binary search implementation</h1>
+<p>Here is an implementation of binary search:</p>
+<pre><code>  /**
+   * Search a list of integers stored as an array for a particular integer
+   * @param a The sorted array of integers - the search space.
+   * @param sought The integer being searched for.
+   * @return The position index of the integer being sought if it exists. If it does not exist -1 is returned.
+   */
+  public static int binarySearch(int[] a, int sought)
+  {
+    int lo = 0;
+    int hi = a.length - 1;
+    int mid;
+
+    while (lo &lt;= hi)
+    {
+      mid = (lo + hi) / 2;     
+      if (sought &lt; a[mid])
+        hi = mid - 1;
+      else if (sought &gt; a[mid])
+        lo = mid + 1;
+      else // sought == a[mid]: found match
+          return mid;
+    }
+    return -1; //failed to find sought match
+  }
+</code></pre>
+
+<p>Create a class in your current lab project named BinarySearch.</p>
+<ul>
+<li>
+<p>Add this method, <em>binarySearch</em>.</p>
+</li>
+<li>
+<p>Write and execute a test method.</p>
+</li>
+<li>Here is the <em>test</em> method code. <ul>
+<li>It is necessary to invoke a sort algorithm such as MergeSort or Selection sort before calling <em>binarySearch</em>.</li>
+</ul>
+</li>
+</ul>
+<pre><code>  public static void test()
+  {
+    int sought = 22;
+    int[] a = {20, 24, 17, 12, 11, 14, 22, 19};
+    //invoke a sort algorithm on *a*
+    int x = binarySearch(a, sought);
+    boolean found = x != -1 ? true:false;
+    System.out.println(&quot;Found? : &quot; + found + &quot; found at index &quot; + x);
+  }
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1 (Selection sort)</h2>
+<p>Write out the varying sequence of arrays from the original unsorted to the final sorted arrangement for the following array that we have already encountered:</p>
+<pre><code>Unsorted: {20, 24, 17, 12, 11, 14, 22, 19}
+Sorted  : {11, 12, 14, 17, 19, 20, 22, 24}
+</code></pre>
+
+<p>For example, the first change occurs when 20 is exchanged with 11 resulting in the following array:</p>
+<pre><code>Partially sorted  : {11, 24, 17, 12, 20, 14, 22, 19}
+</code></pre>
+
+<h2>Exercise 2 (Selection sort)</h2>
+<p>Use a print method or other
+wise to programatically display the varying sequence of arrays from the original unsorted to the final sorted arrangement for the following array that we have already encountered:</p>
+<pre><code>Unsorted: {20, 24, 17, 12, 11, 14, 22, 19}
+Sorted  : {11, 12, 14, 17, 19, 20, 22, 24}
+</code></pre>
+
+<h2>Exercise 3 (Selection sort)</h2>
+<p>Write a Selection sort algorithm to sort an array of String objects.</p>
+<p>Create and implement a class in the Sort project named SelectionSortString.</p>
+<p>Use the method <em>String.compareToIgnoreCase</em> when comparing String objects.</p>
+<p>Test your code with this array:</p>
+<pre><code>String[] s = {&quot;z&quot;, &quot;Z&quot;, &quot;E&quot;, &quot;A&quot;, &quot;B&quot;, &quot;Z&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;z&quot;, &quot;C&quot;};
+</code></pre>
+
+<h2>Exercise 4 (Merge sort)</h2>
+<p>Manually use the Merge sort algorithm to sort the following array:</p>
+<pre><code>{18, 15, 19, 19, 13, 18, 14, 12}
+</code></pre>
+
+<p>Write out the array as it would exist following each call to the <em>merge</em> method.</p>
+<ul>
+<li>For example here is the array following the first invocation of <em>merge</em>:</li>
+</ul>
+<p>15 18 19 19 13 18 14 12</p>
+<p>Identify the blocks being merged at each invocation of <em>merge</em>.</p>
+<p>The solution comprises 7 sets of arrays including the original unsorted and the final sorted versions.</p>
+<h2>Exercise 5</h2>
+<p>5.1 Write two versions of a binary search algorithm to sort an array of strings:</p>
+<ul>
+<li>Case sensitive</li>
+<li>Ignoring case</li>
+</ul>
+<p>5.2 Test the algorithms:</p>
+<ul>
+<li>use the array of strings provided</li>
+<li>sort this array in ascending order using an algorithm you will already have developed</li>
+<li>search for a specific string using binary search.</li>
+<li>verify both versions of binary search function correctly.</li>
+</ul>
+<p>Here is the string to be searched for and the array of strings, the search space:</p>
+<pre><code>    String sought = &quot;able&quot;;
+
+    String[] target = {&quot;Able&quot;, &quot;was&quot;, &quot;I&quot;, &quot;ere&quot;, &quot;I&quot;, &quot;saw&quot;, &quot;Elba&quot;, &quot;How original!&quot;};
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
