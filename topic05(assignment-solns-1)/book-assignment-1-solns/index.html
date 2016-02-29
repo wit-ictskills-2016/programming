@@ -95,6 +95,9 @@ h3
       <a class="item" data-tab="Solutions">
         Solutions
       </a>
+      <a class="item" data-tab="Feedback">
+        Feedback
+      </a>
     </div>
 </div>
 
@@ -138,6 +141,685 @@ h3
 <p><img alt="Figure 1: Configuring JavaDoc output in Eclipse" src="img/01.png"></p>
 <p><img alt="Figure 2: BlueJ generated JavaDoc in which package private fields are included by default" src="img/03.png"></p>
 <p><img alt="Figure 3: Eclipse generated JavaDoc configured so that private fields and methods included" src="img/02.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Feedback">
+    <h1>Feedback</h1>
+<h2>Javadoc</h2>
+<p>See here for default list tags (such as @param, @result):
+http://www.oracle.com/technetwork/articles/java/index-137868.html
+Customized tags, such as @brief, require separate treatment if they are to be reflected in the JavaDoc output. This may be addressed when Eclipse IDE is introduced to this programming module.</p>
+<h2>Style Guide</h2>
+<p>The Google Java Style Guide is located here:
+https://google.github.io/styleguide/javaguide.html</p>
+<h2>Commenting</h2>
+<p>Use tags where appropriate such as for parameters and return. Class and instance variables commented separately. For example <em>numberSphere</em>, which is a class variable, might better be separately commented on where it is declared.</p>
+<pre><code>  /**
+  * Constructs a new sphere object defined by user-supplied parameter.
+  * @param radius The radius of the sphere.
+  * numberSpheres Increments the numberSphere field by one.
+  */
+  public Sphere(double radius)
+  {
+      setState(radius);
+      numberSpheres += 1;
+  }
+</code></pre>
+
+<h2>What happens here?</h2>
+<pre><code>    /**
+     * Method to set the state of the Sphere
+     */
+    public void setState(double radius)
+    {
+        this.radius = radius;
+        isValid(radius);
+        set++;
+    }
+</code></pre>
+
+<h2>Any views on the following method?</h2>
+<pre><code>
+    /**
+     * Method to get the volume of a sphere
+     * @return the volume of sphere
+     */ 
+    public double volume()
+    {
+        double fourThirds = 4.0/3.0;
+        double cubed = 3.0;
+        return fourThirds * Math.PI * Math.pow(radius,cubed);
+    }
+</code></pre>
+
+<h2>This method performs two tasks. A good idea?</h2>
+<pre><code>    /**
+     * Method to check the number of spheres
+     * @pram numberSpheres
+     */
+    public int getNumberSpheres()
+    {
+        if(numberSpheres == set)
+        {
+            return numberSpheres++;
+        }
+        else
+        {
+            return numberSpheres;
+        }
+    }
+</code></pre>
+
+<h2>Consistency?</h2>
+<pre><code>public class Book
+{
+    private String   title;
+    private String   author;
+    private String   isbn;            // &lt;---- ?
+    private int      numberPages;     // &lt;---- ?
+    private boolean  borrowed =false; // &lt;---- ?
+    private int      numberBorrowings;
+}
+</code></pre>
+
+<h2>Could this code be more compact without loss of clarity?</h2>
+<pre><code>    /**
+     * Method to check the loan status of a book, checks the borrowed status to return a result
+     * string 
+     */
+    public String loanStatus()  // print a message
+    {
+        if(borrowed == true ) {
+            return &quot; is not available: presently on loan&quot;;
+        }
+        else {
+            return &quot;available &quot;;
+        }
+    }
+</code></pre>
+
+<h2>Any observations on this snippet of Library class?</h2>
+<pre><code>public class Library
+{
+    private ArrayList&lt;Book&gt; books;
+    private Book valueObj; // &lt;----------- ?
+    ...
+    ...
+    public String loanStatus(Book book) {
+        return valueObj.loanStatus();
+    }
+</code></pre>
+
+<h2>Superfluous instance variable introduced</h2>
+<pre><code>public class Sphere
+{
+    double radius;
+    static int numberSpheres;
+    private boolean isValid; // &lt;----------------?
+    /**
+    ...
+ }
+</code></pre>
+
+<h2>Documentation okay? Consistent with implementation?</h2>
+<pre><code>    /**
+     * Calculates the surface area, volume and circumference of the great circle.
+     * if the parameters are changed. New radius must be &gt;0.
+     * @return the new surface area, volume and circumference of the great circle.
+     * If a negative value is entered a warning is provided.
+     */
+    public void changeSize (double radius)
+    {
+        setState(radius);
+    }
+</code></pre>
+
+<h2>Code bloat,  documentation &amp; styling</h2>
+<pre><code>    /**
+     * Makes it impossible for a user to input a negative value.
+     * If a negative value is entered a warning is provided.
+     * Check that each inputted value is valid.
+     */
+    public boolean isValid(double value)
+    {
+        if(value&gt;0) {
+            return true;
+        }
+
+        else  {
+            return false;
+        }
+    }
+</code></pre>
+
+<p>Even this, although an improvement,  could be more concise:</p>
+<pre><code>    public boolean isValid(double value)
+    {
+        return (value&gt;0)? true:false;
+    }
+</code></pre>
+
+<p>For example:</p>
+<pre><code>    public boolean isValid(double value)
+    {
+        return value &gt; 0;
+    }
+</code></pre>
+
+<h2>API</h2>
+<p>Changes to API discouraged. Example some unspecified methods introduced:</p>
+<pre><code>public class Book 
+{
+  public String getAuthor(){...}
+  public String getIsbn(){...}
+  ...
+  ...
+}
+</code></pre>
+
+<h2>Needs review:</h2>
+<pre><code>    /**
+     * A method to determine if the library contains a particular book.  
+     */
+    public String hasBook(Book book)
+    {
+        if (books.contains(book)) {
+            return(book.loanStatus());
+        }
+        else {
+            return(book.loanStatus());
+        }
+    }
+</code></pre>
+
+<h2>Documentation &amp; control flow</h2>
+<pre><code>  /**
+   * Checks if sphere is made of posible numbers, will show warning if not.
+   */
+  private boolean isValid(double value)
+  {
+      if(value &gt; 0) {
+          return true;  
+      }
+      else {
+         System.out.println(&quot;No Spheres for you&quot;); 
+      }
+      return false;
+  }
+</code></pre>
+
+<h2>Verbose &amp; Documentation</h2>
+<pre><code>    /**
+     * Checks availablity of book.
+     */
+    public boolean isBorrowed() 
+    {
+        if(borrowed == false) {
+            return false;
+        }
+        return true;
+    }
+
+   // Better?
+   public boolean isBorrowed()
+   {
+     return borrowed;
+   }  
+</code></pre>
+
+<h2>Style (Formatting)</h2>
+<p>Horizontal whitespaces</p>
+<pre><code>    return value&gt;0; // no
+</code></pre>
+
+<pre><code>    return value &gt; 0; // yes
+</code></pre>
+
+<pre><code>    if(isValid(radius)){ // no
+          this.radius = radius;
+    }
+</code></pre>
+
+<pre><code>    if (isValid(radius)) { // yes
+          this.radius = radius;
+    }
+</code></pre>
+
+<pre><code>        int count = 0;
+        for(int i=0; i&lt;books.size(); i++)
+        {
+            count+=1;
+        }
+</code></pre>
+
+<pre><code>        int count = 0;
+        for (int i = 0; i &lt; books.size(); i++)
+        {
+            count += 1;
+        }
+</code></pre>
+
+<p>See Google Style Guide
+https://google.github.io/styleguide/javaguide.html#s4.6.2-horizontal-whitespace</p>
+<h2>Logical ambiguity</h2>
+<p>Missing check: is book currently on loan?</p>
+<pre><code>    /**
+     * Method to check if a Book is in the Library catalogue
+     * @param book  The book to be searched
+     * @return      Whether the book is in library
+     */
+    public String hasBook(Book book)
+    {
+        boolean check = books.contains(book);
+        String name = book.title;
+        if(check)
+        {
+            return &quot;Book title &quot;+ name + &quot; in stock and available to borrow&quot;;
+        }
+        return &quot;We do not stock book title &quot; + name;
+    }
+</code></pre>
+
+<h2>Verbose</h2>
+<pre><code>public static boolean endsWith(String s1, String suffix)
+{
+  if(s1.endsWith(suffix)) {
+    return true;
+   }
+   return false;
+ }
+</code></pre>
+
+<pre><code>public static boolean endsWith(String s1, String suffix)
+{
+  return s1.endsWith(suffix);
+}
+</code></pre>
+
+<h2>Verbosity &amp; documentation issues:</h2>
+<pre><code>    /**
+     * clearing a particular book from the ArrayList
+     * @param book
+     */
+    public boolean removeBook(Book book)
+    {
+        if (books.contains(book))
+        {    
+            books.remove(book);
+            return true;
+        }
+
+        else
+        {   
+            System.out.println(&quot;cant find book&quot;);
+            return false;
+        }
+    }
+</code></pre>
+
+<p>And again:</p>
+<pre><code>    /**
+     * Uses an if-else statement to facilitate the removal of a book from the 
+     *          books collection in a library
+     * @return Returns whether the library contains a book and facilitates its 
+     *          removal from the library
+     */
+    public boolean  removeBook(Book book)
+    {
+        if(books.contains(book))
+        {
+            books.remove(book);
+            return true;
+        }
+        else
+        {
+            return false;   
+        }
+    }
+</code></pre>
+
+<pre><code>/**
+ * Facilitates removal of book from list books.
+ * @param book The book to be removed.
+ * @return Returns true if book successfully removed.
+ */
+public boolean removeBook(Book book)
+{
+  return books.remove(book);
+}
+</code></pre>
+
+<h2>Verbose</h2>
+<pre><code>public static int length(String s1, String s2)
+{
+  String s = s1+s2;
+  return s.length();
+}
+</code></pre>
+
+<p>Compare to:</p>
+<pre><code>public static int length(String s1, String s2)
+{
+  return (s1 + s2).length();
+}
+</code></pre>
+
+<p>or:</p>
+<pre><code>public static int length(String s1, String s2)
+{
+  return s1.concat(s2).length();
+}
+</code></pre>
+
+<h2>Is it a good idea to include a print statement here?</h2>
+<pre><code>public static String reverse_1(String string)
+{
+  StringBuilder revString = new StringBuilder(string);
+  System.out.println(revString.reverse()); // &lt;---- ?
+  return revString.toString();
+}
+</code></pre>
+
+<p>Preferrable:</p>
+<pre><code>public static String reverse_1(String string)
+{
+  return new StringBuilder(string)
+    .reverse()
+    .toString();
+}
+</code></pre>
+
+<p>which is same as this inline version:</p>
+<pre><code>public static String reverse_1(String string)
+{
+  return new StringBuilder(string).reverse().toString();
+}
+</code></pre>
+
+<h2>Horizontal whitespace</h2>
+<p>Note the space between operand and operator:</p>
+<pre><code>numberSpheres ++;
+</code></pre>
+
+<p>Convention requires no space between operand and operator (++):</p>
+<pre><code>numberSpheres++;
+</code></pre>
+
+<h2>Documentation and parameter naming</h2>
+<pre><code>    /**
+     * Resets the radius of sphere object
+     * @param radius    The changed radius of the sphere // &lt;---- Excessive number whitespaces
+     */
+    public void changeSize(double newRadius) 
+    // facilitates radius reset &lt;--- duplicate comment
+    {
+        radius = newRadius;
+    }
+</code></pre>
+
+<pre><code>    /**
+     * Resets the radius of sphere object
+     * @param radius The changed radius of the sphere
+     */
+    public void changeSize(double radius) 
+    {
+        radius = radius;
+    }
+</code></pre>
+
+<h2>Redundant block &amp; comment</h2>
+<pre><code>public static boolean isEqual(String s1, String s2)
+{
+  {
+    return s1.equals(s2);
+  }
+  //return s1.equals(s2);
+}
+</code></pre>
+
+<p>This is sufficient:</p>
+<pre><code>public static boolean isEqual(String s1, String s2)
+{
+  return s1.equals(s2);
+}
+</code></pre>
+
+<h2>Any views on this snippet from Sphere class?</h2>
+<pre><code>  /**
+  * Here's the constructor that will create the default size of my sphere
+  * @returns setState of the sphere
+  */ 
+ public Sphere () 
+ {
+     setState(10.0);
+ }
+</code></pre>
+
+<h2>Method design</h2>
+<p>Better to avoid large blocks in, for example,  <em>if-else</em> as shown here:</p>
+<pre><code>public void sumEven(int low, int hi)
+{
+  if((low % 2 == 0) &amp;&amp; (hi % 2 == 0)) {
+      // Do something: 25 lines of code here
+  }
+  else {
+     // Do something else: 1 line of code here
+   }
+ }
+</code></pre>
+
+<p>Redesign:</p>
+<pre><code>public void sumEven(int low, int hi)
+{
+  if((low % 2 != 0) || (hi % 2 != 0)) {
+      // Do something: 1 line code
+      return;
+  }
+  // Do something: 25 lines of code here
+ }
+</code></pre>
+
+<h2>Make use of existing methods</h2>
+<pre><code>public static boolean isPalindrome(String s)
+{
+  String s1 = s.replaceAll(&quot;[^a-zA-Z]&quot;, &quot;&quot;);
+  String s2 = &quot;&quot; + new StringBuilder(s1).reverse();
+  return s2.equalsIgnoreCase(s1);
+}
+</code></pre>
+
+<pre><code>public static String reverse(String string)
+{
+  StringBuilder sb = new StringBuilder(string);
+  return &quot;&quot; + sb.reverse();
+}
+
+public static boolean isPalindrome(String s)
+{
+    String s1 = s.replaceAll(&quot;[^a-zA-Z]&quot;, &quot;&quot;);
+    return reverse(s1).equalsIgnoreCase(s1);
+}
+</code></pre>
+
+<h2>This implementation of <em>isBorrowed</em> not quite correct:</h2>
+<pre><code>    public boolean isBorrowed()
+    {
+        if (borrowed = true);
+        System.out.println(title + &quot;On loan not available&quot;);
+        if (borrowed = false);
+        System.out.println(title + &quot;Available to Loan&quot;);
+        return borrowed;
+    }
+</code></pre>
+
+<h2>Palindrome</h2>
+<p>Here is one submission in which the technique of recursion, not covered to date in class, is employed:</p>
+<pre><code>public static boolean isPalindrome(String s) {
+  if(s.length() == 0 || s.length() == 1) {
+    return true;
+  }
+  if(s.charAt(0) == s.charAt(s.length()-1)) {
+    return isPalindrome(s.substring(1, s.length()-1));
+  }
+  return false;
+}
+</code></pre>
+
+<p>And here is a similar solution available in Stackoverflow at
+http://stackoverflow.com/questions/4367260/creating-a-recursive-method-for-palindrome</p>
+<pre><code>public static boolean isPalindrome(String in) {
+   if(in.equals(&quot; &quot;) || in.length() &lt; 2 ) 
+     return true;   
+
+  if(in.charAt(0).equalsIgnoreCase(in.charAt(in.length-1))
+      return isPalindrome(in.substring(1,in.length-2));
+else
+  return false;
+}
+</code></pre>
+
+<h2>What happens here?</h2>
+<pre><code>    public Sphere()
+    {
+        this.numberSpheres=numberSpheres+1;
+    }
+</code></pre>
+
+<h2>Variable naming</h2>
+<p>Two observations on following snippet:</p>
+<blockquote>
+<ol>
+<li>
+<p>variable name should begin with lower case</p>
+<blockquote>
+<p>boolean validSphere;</p>
+</blockquote>
+</li>
+<li>
+<p>unnecessary to introduce new variable here</p>
+</li>
+</ol>
+</blockquote>
+<pre><code>public class Sphere
+{
+    ...
+    private boolean ValidSphere;
+}
+</code></pre>
+
+<h2>Verbosity &amp; logical issue</h2>
+<pre><code>    /**
+     * Returns loan status of a specific book from library
+     * @param book
+     */
+    public String hasBook(Book book)
+    {
+        if (books.contains(book))
+        {
+            return book.loanStatus();
+        }
+        else
+        {    
+            return book.loanStatus();
+        }
+    }
+</code></pre>
+
+<h2>Unnecessary blocks</h2>
+<pre><code>public static String reverse_1(String string)
+{
+  StringBuilder builder = new StringBuilder (string);
+  {  
+    return builder.reverse().toString();
+  }
+}
+</code></pre>
+
+<pre><code>public static int length(String s1, String s2)
+{
+  String concatenated = s1 + s2;
+  {
+    return concatenated.length();           
+  }
+}
+</code></pre>
+
+<h2>Use camel case</h2>
+<pre><code>public static String reverse_2(String string)
+{
+  String reverse_Str = &quot;&quot;; // &lt;---- reverseStr
+  for(int i =string.length()-1; i&gt;=0; i--) 
+  {
+     reverse_Str = reverse_Str + string.charAt(i);
+  }
+  return reverse_Str;
+}
+</code></pre>
+
+<h2>JavaDoc tag</h2>
+<p>@radius should be @param</p>
+<pre><code>    /**
+     * An overloaded constructor with a variable radius
+     * @radius   The radius of the Sphere
+     */
+    public Sphere(double radius)
+    {
+        setState(radius);
+        this.numberSpheres = numberSpheres+1;
+    }
+</code></pre>
+
+<p>A further example:</p>
+<pre><code>/**
+ * A default constructor for a book object.
+ * @ title = The title of the book.
+ * @ author = The author of the book.
+ * @ numberPages = The number of pages in the book.
+ * @ isbn = The ISBN of the book.
+ * @ borrowed = Sets the default to false to make the book available for loan
+ * @ numberBorrowings = Sets the default to zero as book has not been borrowed yet.
+ */
+public Book(String title, String author, int numberPages, String isbn)
+{
+    this.title=title;
+    this.author=author;
+    this.numberPages=numberPages;
+    this.isbn=isbn;
+    borrowed=false;
+    numberBorrowings=0;
+}
+</code></pre>
+
+<h2>Excessive number whitepaces</h2>
+<pre><code>
+    /**
+     * Removes all books from the library.
+     */
+    public void     removeAllBooks()
+    {
+        books.removeAll(books);
+    }
+</code></pre>
+
+<h2>String object is immutable</h2>
+<p>Therefore, the parameter String object <strong>s</strong> is not changed in the following code.</p>
+<pre><code>public static boolean isPalindrome(String s)
+{
+  s.replaceAll(&quot;[^a-zA-Z]&quot;, &quot;&quot;);
+  ...
+  ...
+}
+
+</code></pre>
+
+<p>Create a modified copy. If, for example, s is <em>No lemon, no melon.</em> then
+sModifed becomes <em>Nolemonnomelon</em>. Punctuation and whitespace would be removed.</p>
+<pre><code>public static boolean isPalindrome(String s)
+{
+  String sModified = s.replaceAll(&quot;[^a-zA-Z]&quot;, &quot;&quot;);
+  ...
+  ...
+}
+</code></pre>
   </div>
 <script>
 $('.ui.menu .item')
