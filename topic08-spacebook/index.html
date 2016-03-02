@@ -1,0 +1,183 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+  <header class="ui middle aligned center aligned stackable grid segment">
+    <div class="eight wide  column">
+      <h2> 7: Designing classes (Spacebook) </h2>
+      <!--<h3> () </h3>-->
+    </div>
+    <div class="one wide column sitemap">
+      <div class="popup" data-content="Top Level Topic View">
+        <a href="../index.html"> <i class="big sitemap icon"></i></a>
+        topics
+      </div>
+    </div>
+    <div class="one wide column">
+      <div class="popup" data-content="All Presentations">
+        <a href="../talkwall.html"> <i class="big film icon"></i></a>
+        slides
+      </div>
+    </div>
+    <div class="one wide column">
+      <div class="popup" data-content="All Labs">
+        <a href="../labwall.html"> <i class="big lab icon"></i></a>
+        labs
+      </div>
+    </div>
+    <div class="five wide column">
+      <img class="ui centered medium image" src="http://www.wit.ie/assets/images/wit_crest.png">
+    </div>
+  </header>
+
+<script>
+  $('.popup')
+  .popup()
+;
+</script>
+
+
+<div class="ui four doubling stackable cards">
+      <a class="ui card" href="./talk-a/lecture_13.pdf">
+    <div class="content">
+      <div class="right floated meta"> <i class="film large icon"></i></div>
+      <div class="header"> Spacebook </div>
+    </div>
+    <div class="ui bordered rounded image">
+      <img src="./talk-a/lecture_13.png">
+    </div>
+    <div class="content">
+      <div class="description">
+         <p>We examine the rules that apply to designing a class and apply those rules to develop an application named <em>Spacebook</em>. Concepts such as cohesion and coupling in the relationship between classes are briefly discussed. We explain the approach that is adopted in the labs to develop the application as a series of iterations and examine the content of each iteration.</p>
+      </div>
+    </div>
+  </a>
+
+      <a class="ui card" href="./talk-b/lecture_14.pdf">
+    <div class="content">
+      <div class="right floated meta"> <i class="film large icon"></i></div>
+      <div class="header"> Program style </div>
+    </div>
+    <div class="ui bordered rounded image">
+      <img src="./talk-b/lecture_14.png">
+    </div>
+    <div class="content">
+      <div class="description">
+         <p>Code without style may compile, run and indeed produce correct results. But code written without complying with a community-agreed style proves not only difficult to write but even more difficult to maintain. Here we present an initial approach to styling code based mostly on the rules laid out in the Google Java Style document.</p>
+      </div>
+    </div>
+  </a>
+
+      <a class="ui card" href="book-a/index.html">
+    <div class="content">
+      <div class="right floated meta"> <i class="lab large icon"></i></div>
+      <div class="header"> Spacebook-(Part-1) </div>
+    </div>
+    <div class="ui bordered rounded image">
+      <img src="./book-a/img/main.png">
+    </div>
+    <div class="content">
+      <div class="description">
+         <p><em>Spacebook Application (Part 1)</em></p>
+<p>Acquire a basic knowledge of class design by designing and writing an application named Spacebook. The application initially comprises two classes, <strong>User</strong> and <strong>Friendship</strong>. <em>User</em> contains personal information about a user. <em>Friendship</em> facilitates a relationship between two users. The application is built as a series of iterations, each iteration being a standalone application that compiles and runs without error and that builds on the previous one, eventually resulting in the completed application. </p>
+      </div>
+    </div>
+  </a>
+
+      <a class="ui card" href="book-b/index.html">
+    <div class="content">
+      <div class="right floated meta"> <i class="lab large icon"></i></div>
+      <div class="header"> Spacebook-(Part-2) </div>
+    </div>
+    <div class="ui bordered rounded image">
+      <img src="./book-b/img/main.png">
+    </div>
+    <div class="content">
+      <div class="description">
+         <p><em>Spacebook Application (Part 2)</em></p>
+<p>In the second lab we continue to develop Spacebook. A new class, <strong>Message</strong>, is introduced to facilitate communication between users. A <em>Message</em> object contains the message as well as references to both the originator and target of the communication. We gain further experience in using collection classes such as ArrayList. Both manual and unit testing is employed, advantage being taken of our previous experience with the JUnit testing framework. The lab concludes with a short exercise set. </p>
+      </div>
+    </div>
+  </a>
+
+  </div>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

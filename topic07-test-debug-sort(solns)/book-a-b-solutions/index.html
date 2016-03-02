@@ -1,0 +1,501 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      6.1: Testing, Debugging, Searching & Sorting (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Testing-&-Debugging-Solutions">
+        Testing-&-Debugging-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Testing-&-Debugging-Solutions">
+    <h1>Objectives</h1>
+<p>These are the solutions to the labs in this session <em>BlueJ Debug &amp; Unit Test</em>.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercise 1</h1>
+<p><strong><em>Exercise</em></strong></p>
+<p>DiaryTester: Write the negative regression test <em>capacityOverrun</em>:</p>
+<ul>
+<li>Write this method and incorporate method into DiaryTester</li>
+<li>The method should attempt to add a single appointment that exceeds the length of a working day and returns <em>false</em></li>
+<li>Run all regression tests to verify no errors introduced.</li>
+</ul>
+<p><strong><em>Solution</em></strong></p>
+<ul>
+<li>Choose any day at random:<ul>
+<li>We select day 0 as an example.</li>
+</ul>
+</li>
+<li>Study the <em>Day</em> method and note <em>static</em> methods<ul>
+<li>We use two of these in the code that follows</li>
+<li>Day.MAX_APPOINTMENTS_PER_DAY is based on 1-hour appointments<ul>
+<li>This number is, therefore, also the number of available working hours in a day</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The idea is to create a single appointment that exceeds the length of the working day<ul>
+<li>Then attempt to add this commencing at the start of the day</li>
+<li>The <em>Day.makeAppointment</em> method will return a <em>false</em>, qualifying <em>capacityOverrun</em> as a negative test.</li>
+</ul>
+</li>
+</ul>
+<pre><code>
+public boolean capacityOverrun()
+{
+    int dayNmr = 0;
+    Day day = new Day(dayNmr);
+    Appointment appointment = new Appointment(&quot;Capacity overrun test&quot;, 
+                                               Day.MAX_APPOINTMENTS_PER_DAY + 1);
+    return day.makeAppointment(Day.START_OF_DAY, appointment);
+}
+</code></pre>
+
+<p>Use this method in the unit test class, <em>DiaryTesterTest</em>, for example by including it in the suite of negative tests as shown here in this code snippet:</p>
+<pre><code>    @Test
+    public void negativeTests()
+    {
+        ...
+        assertEquals(false, diaryTester.capacityOverrun());
+        ...
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercise 2</h1>
+<p><strong><em>Setup</em></strong></p>
+<p>This exercise comprises addition to and unit testing of BIABank class, developed in an earlier lab.</p>
+<ul>
+<li>Download the archive <em>biabank.zip</em> available <a href="archives/biabank.zip">here</a> and expand it into your working folder <em>workspaceBlueJ/labs/session06</em>.</li>
+<li>In <em>Windows Explorer</em>, <em>Finder</em> or other file manager, navigate to <em>workspaceBlueJ/labs/session06</em>.<ul>
+<li><em>biabank.zip</em> should be expanded into this folder as a BlueJ project, <em>BIABank</em> (see Figure 1).</li>
+<li>Launch the project by double clicking on <em>package.bluej</em> within <em>BIABank folder</em></li>
+<li>Open BIABank source file and observe that it closely matches <em>BIABank_v5</em>, the final iteration, developed in a previous session.<ul>
+<li>Some refactoring has been applied to make for testing easier.<ul>
+<li>the <em>private</em> access modifiers have been mostly removed.</li>
+<li>this allows package-wide access to the affected variables (see <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html">here</a>).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: BlueJ BIABank project" src="img/ex0201.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercise 2 Task 1</h1>
+<p><strong><em>Task 1</em></strong></p>
+<p>Observe the following field in BIABank:</p>
+<ul>
+<li>ArrayList<Customer> customers</li>
+</ul>
+<p>Create a method in BIABank with this signature:</p>
+<ul>
+<li>public Customer getCustomer(String name)</li>
+</ul>
+<p>The method searches through the list of customers for a customer matching the actual parameter <em>name</em>.</p>
+<ul>
+<li>If found, the corresponding Customer object is returned.</li>
+<li>Else return a new Customer object with parameters:<ul>
+<li>"No such customer exists"</li>
+<li>0</li>
+<li>0</li>
+</ul>
+</li>
+<li>study the signature of the Customer constructor if in doubt about the meaning of the above three parameters.</li>
+</ul>
+<p><strong><em>Task 1 Solution</em></strong></p>
+<pre><code>      /**
+       * Retrieve the Customer object associated with a customer name
+       * Should no such customer exist then, rather than null, return
+       * a Customer object with actual parameters shown here
+       * Customer(&quot;No such customer&quot;, 0, 0)
+       * Note that Customer constructor signature is:
+       * Customer(String name, int accountNumber, int balance)
+       *
+       * @param the name of the customer
+       * @return Customer object associated with customer name if it exists
+       *         else Customer object with parameters Customer(&quot;No such customer&quot;, 0, 0)
+       **/ 
+      public Customer getCustomer(String name)
+      {
+            Iterator&lt;Customer&gt; it = customers.iterator();
+            while (it.hasNext())
+            {
+                Customer nextCustomer = it.next();
+                if (nextCustomer.name.equals(name))
+                {
+                    return nextCustomer;
+                }
+            }
+            return new Customer(&quot;No such customer&quot;, 0, 0);//better alternative to null
+      }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercise 2 Task 2</h1>
+<p><strong><em>Task 2</em></strong></p>
+<ul>
+<li>Create a <em>BIABank bank</em> object on the object bench and add three customers:</li>
+</ul>
+<pre><code>        bank.newCustomer(&quot;Enda Haughey&quot;, 999);
+        bank.newCustomer(&quot;Charles Kenny&quot;, 888);
+        bank.newCustomer(&quot;David Spring&quot;, 777);
+</code></pre>
+
+<ul>
+<li>
+<p>Create a BIABank test class and create a fixture by invoking the following method on the test class:</p>
+<ul>
+<li><em>Object Bench to Test Fixture</em> </li>
+<li>Inspect the test class code to verify the fixture has been written into to class.</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 2 Solution</em></strong></p>
+<p>The solution to this exercise simply comprises executing the series of steps outlined, namely:</p>
+<ul>
+<li>Create the <em>Bank bank</em> object on the object bench (Figure 1)</li>
+<li>Create the three customer accounts specified (Figure 2)</li>
+<li>Create a BIABankTest class (Figure 3)</li>
+<li>Invoke <em>Object Bench to Test Fixture</em> on BIABankTest (Figure 4)</li>
+<li>Inspect source code and note existence of:<ul>
+<li><em>BIABank bank</em> field </li>
+<li>Instantiation of <em>bank</em> and creation new customers in <em>void setUp()</em></li>
+<li>See Figure 5</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Create Bank object on object bench" src="img/ex0209.png">
+<img alt="Figure 2: Create Customer account" src="img/ex0208.png">
+<img alt="Figure 3: Create BIABankTest class" src="img/ex0205.png">
+<img alt="Figure 4: Object Bench to Test Fixture class" src="img/ex0206.png">
+<img alt="Figure 5: BIABankTest source code" src="img/ex0207.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercise 2 Tasks 3 - 10</h1>
+<p><strong><em>Task 3</em></strong></p>
+<p>Write a positive test named <em>numberCustomers</em>:</p>
+<ul>
+<li>test that the number of customers is 3.</li>
+</ul>
+<p><strong><em>Task 3 Solution</em></strong></p>
+<p>We have the choice of adding test methods to <em>BIABankTest</em> class using the BlueJ recorder or manually. Here we shall use the latter approach.</p>
+<p>Here is the required test method. </p>
+<pre><code>    @Test
+    public void numberCustomers()
+    {
+        assertEquals(true, bank.customers.size() == 3);
+    }
+</code></pre>
+
+<p>Include <em>numberCustomers</em> in BIABankTest.java, compile and invoke <em>Test All</em>.</p>
+<ul>
+<li>Verify the test runs successfully.</li>
+</ul>
+<p><strong><em>Task 4</em></strong></p>
+<p>Write a positive test named <em>customerName</em>:</p>
+<ul>
+<li>Select one of the customer names</li>
+<li>Invoke the newly added method <em>getCustomer</em> to obtain the corresponding Customer object</li>
+<li>Get the customer name from the customer object<ul>
+<li>Test that it matches the selected name</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 4 Solution</em></strong></p>
+<p>Here is the method <em>customerName</em>:</p>
+<pre><code>    @Test 
+    public void customerName()
+    {
+        String name = &quot;Enda Haughey&quot;;
+        Customer customer = bank.getCustomer(name);
+        assertEquals(true, customer.name.equals(name));
+    }
+</code></pre>
+
+<p>We have chosen, at random, one of the customer names from the list of three customers.</p>
+<p><strong><em>Task 5</em></strong></p>
+<p>Write a positive test named <em>customerNames</em>:</p>
+<ul>
+<li>Select one of the customer names</li>
+<li>Invoke the newly added method <em>getCustomer</em> to obtain the corresponding Customer object</li>
+<li>Get the customer name from the customer object<ul>
+<li>Check that it matches the selected name, storing the result in a <em>boolean</em> variable.</li>
+</ul>
+</li>
+<li>Repeat for the remaining 2 customers.</li>
+<li>Test that all three <em>boolean</em> variable are <em>true</em>.</li>
+</ul>
+<p><strong><em>Task 5 Solution</em></strong></p>
+<pre><code>    @Test 
+    public void customerNames()
+    {
+        String name1 = &quot;Enda Haughey&quot;;
+        Customer customer1 = bank.getCustomer(name1);
+        boolean b1 = customer1.name.equals(name1);
+
+        String name2 = &quot;Charles Kenny&quot;;
+        Customer customer2 = bank.getCustomer(name2);
+        boolean b2 = customer2.name.equals(name2);
+
+        String name3 = &quot;David Spring&quot;;
+        Customer customer3 = bank.getCustomer(name3);
+        boolean b3 = customer3.name.equals(name3);
+
+        assertEquals(true, b1 &amp;&amp; b2 &amp;&amp; b3);
+    }
+</code></pre>
+
+<p><strong><em>Task 6</em></strong></p>
+<p>Write a positive test named <em>customerBalance</em>:</p>
+<ul>
+<li>Select one of the three customers' names</li>
+<li>Retrieve the Customer object for this customer</li>
+<li>Obtain the balance for the customer from the Customer object</li>
+<li>Test the balance matches the balance entered above in the fixture for the customer in question.</li>
+</ul>
+<p><strong><em>Task 6 Solution</em></strong></p>
+<pre><code>    @Test 
+    public void customerBalance()
+    {
+        String name = &quot;Enda Haughey&quot;;
+        Customer customer = bank.getCustomer(name);
+        assertEquals(true, customer.balance == 999);
+    }
+</code></pre>
+
+<p><strong><em> Task 7</em></strong></p>
+<p>Write a positive test named <em>customerBalances</em>:</p>
+<ul>
+<li>Using a simiar approach to that used in <em>customerBalance</em>, obtain all the balances.</li>
+<li>Test the sum of the balances equals 999 + 888 + 777.</li>
+</ul>
+<p><strong><em>Task 7 Solution</em></strong></p>
+<pre><code>    @Test 
+    public void customerBalances()
+    {
+        String name1 = &quot;Enda Haughey&quot;;
+        Customer customer1 = bank.getCustomer(name1);
+        int balance1 = customer1.balance;
+
+        String name2 = &quot;Charles Kenny&quot;;
+        Customer customer2 = bank.getCustomer(name2);
+        int balance2 = customer2.balance;
+
+        String name3 = &quot;David Spring&quot;;
+        Customer customer3 = bank.getCustomer(name3);
+        int balance3 = customer3.balance;
+
+        assertEquals(true, balance1 + balance2 + balance3 == (999 + 888 + 777));
+    }
+</code></pre>
+
+<p><strong><em>Task 8</em></strong></p>
+<p>Write a negative test in BIABankTest named <em>notNumberCustomers</em>.</p>
+<ul>
+<li>test that the number of customers is not, for example, 2.</li>
+</ul>
+<p><strong><em>Task 8 Solution</em></strong></p>
+<pre><code>    @Test
+    public void notNumberCustomers()
+    {
+        assertEquals(false, bank.customers.size() != 3);
+    }
+</code></pre>
+
+<p><strong><em>Task 9</em></strong></p>
+<p>Write a negative test named <em>notCustomerBalance</em>:</p>
+<ul>
+<li>Select one of the three customers' names</li>
+<li>Retrieve the Customer object for this customer</li>
+<li>Obtain the balance for that customer from the Customer object</li>
+<li>Test the balance does not match a balance that you know to be incorrect.</li>
+</ul>
+<p><strong><em>Task 9 Solution</em></strong></p>
+<pre><code>    @Test
+    public void notCustomerBalance()
+    {
+        String name = &quot;Enda Haughey&quot;;
+        Customer customer = bank.getCustomer(name);
+        assertEquals(false, customer.balance == 888);
+    }
+</code></pre>
+
+<p><strong><em>Task 10</em></strong></p>
+<p>Write a negative test named <em>notCustomerBalances</em>:</p>
+<ul>
+<li>Using a simiar approach to that used in <em>notCustomerBalance</em>, obtain all the balances.</li>
+<li>Test the sum of the balances does not equal a balance you know to be incorrect, for example 20000.</li>
+</ul>
+<p><strong><em>Task 10 Solution</em></strong></p>
+<pre><code>    @Test 
+    public void notCustomerBalances()
+    {
+        String name1 = &quot;Enda Haughey&quot;;
+        Customer customer1 = bank.getCustomer(name1);
+        int balance1 = customer1.balance;
+
+        String name2 = &quot;Charles Kenny&quot;;
+        Customer customer2 = bank.getCustomer(name2);
+        int balance2 = customer2.balance;
+
+        String name3 = &quot;David Spring&quot;;
+        Customer customer3 = bank.getCustomer(name3);
+        int balance3 = customer3.balance;
+        assertEquals(false, balance1 + balance2 + balance3 == (2000));
+    }
+</code></pre>
+
+<p>When you have completed all the tasks invoke <em>Test All</em> on <em>BIABankTest</em>. The result should match that in Figure 1.</p>
+<p><img alt="Figure 1: JUnit Test All on BIABankTest class" src="img/01.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

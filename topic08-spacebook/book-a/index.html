@@ -1,0 +1,855 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      7: Designing classes (Spacebook)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Spacebook-(Part-1)">
+        Spacebook-(Part-1)
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Spacebook-(Part-1)">
+    <h1>Objectives</h1>
+<p><em>Spacebook Application (Part 1)</em></p>
+<p>Acquire a basic knowledge of class design by designing and writing an application named Spacebook. The application initially comprises two classes, <strong>User</strong> and <strong>Friendship</strong>. <em>User</em> contains personal information about a user. <em>Friendship</em> facilitates a relationship between two users. The application is built as a series of iterations, each iteration being a standalone application that compiles and runs without error and that builds on the previous one, eventually resulting in the completed application. </p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>spacebook_v0</h1>
+<p>In this lab we will develop an application called <em>spacebook_v0</em>.</p>
+<p>The application will allow a user to </p>
+<ul>
+<li>Register personal information about itself such as<ul>
+<li>Name, email and password</li>
+</ul>
+</li>
+<li>Have list of friends</li>
+<li>Have a list of messages to and from friends</li>
+</ul>
+<p>We will begin with a naive design and progressively improve the design and implementation of the application.</p>
+<p>Note that this class contains several really serious design errors, many of which will be discussed and rectified as we further develop the application.</p>
+<ul>
+<li>A User class will contain personal identifier fields<ul>
+<li>First name</li>
+<li>Last name</li>
+<li>Email</li>
+<li>Password</li>
+<li>Array of friends</li>
+<li>Array of messages sent to friends</li>
+<li>Array of messages received from friends</li>
+</ul>
+</li>
+</ul>
+<p>Recall the recommended directory structure which is again illustrated in Figure 1.</p>
+<p><img alt="Figure 1: Directory Structure" src="img/01.png"></p>
+<p>Create a new directory called <em>session07</em>.</p>
+<p>Create a new BlueJ project named spacebook_v0 in session07 (Figure 2).</p>
+<p><img alt="Figure 2: Create project spacebook_v0 in BlueJ" src="img/02.png"></p>
+<p>Create a new class named User in this project (Figure 3). </p>
+<p><img alt="Figure 3: Create new class User" src="img/03.jpg"></p>
+<p>Notice the rectangle representing User is hatched: this means the class has not been compiled.</p>
+<p>Open User source code in the BlueJ editor.</p>
+<p>Replace all the code with an outer class wrapper:</p>
+<pre><code>public class User
+{
+
+}
+</code></pre>
+
+<p>Check this compiles without error.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>spacebook_v0: (continued)</h1>
+<p>Because we are using arrays we now decide the maximum size of each. </p>
+<ul>
+<li>Let's use fixed values across all objects, that is, class variables. </li>
+<li>These fields are placed first in the list of variables.</li>
+</ul>
+<pre><code>  static final int MAX_NUMBER_FRIENDS   = 100;
+  static final int MAX_NUMBER_MESSAGES  = 100;
+</code></pre>
+
+<p>Add these to <em>User</em> class and compile.</p>
+<p>It is also necessary to maintain a cumulative total of friends and messages added to date.</p>
+<ul>
+<li>We will introduce two instance variables to do so:</li>
+</ul>
+<pre><code>    public int numberFriends   = 0;
+    public int numberMessages  = 0;
+</code></pre>
+
+<p>The following fields will serve to identify a user:</p>
+<pre><code>  public String firstName;
+  public String lastName;
+  public String email;
+  public String password;
+</code></pre>
+
+<p>Now declare and initialize the arrays of friends and messages:</p>
+<pre><code>  public String[] friends      = new String[MAX_NUMBER_FRIENDS];
+  public String[] messages     = new String[MAX_NUMBER_MESSAGES];
+</code></pre>
+
+<p>Here is the class User to date:</p>
+<pre><code>public class User
+{
+  static final int MAX_NUMBER_FRIENDS   = 100;
+  static final int MAX_NUMBER_MESSAGES  = 100;
+  public int numberFriends   = 0;
+  public int numberMessages  = 0;
+
+  public String firstName;
+  public String lastName;
+  public String email;
+  public String password;
+
+  public String[] friends      = new String[MAX_NUMBER_FRIENDS];
+  public String[] messages   = new String[MAX_NUMBER_MESSAGES];
+}
+</code></pre>
+
+<p>Check this code compiles.</p>
+<p>Notice that we have not written a default constructor. </p>
+<ul>
+<li>In this situation, Java will provide a default constructor. </li>
+<li>Remember that a default constructor is simply a constructor without parameters. See <a href="http://stackoverflow.com/questions/4488716/java-default-constructor">here</a> for further information.</li>
+</ul>
+<p>Our next decision is how to assign values to the fields (initialization). </p>
+<ul>
+<li>This can be achieved with an overloaded constructor as follows:</li>
+</ul>
+<pre><code>public User(String firstName, String lastName, String email, String password)
+{
+    this.firstName  = firstName;
+    this.lastName   = lastName;
+    this.email      = email;
+    this.password   = password;
+}
+</code></pre>
+
+<p>Add this constructor to User. </p>
+<p>Compile User and verify no errors.</p>
+<p>Note the style adopted whereby we use the same name both as an actual parameter and as an instance variable.</p>
+<ul>
+<li>Observe also the use of the <em>this</em> keyword. We have already encountered this style in a lecture. </li>
+<li>The Oracle documentation that discusses this style is available <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/thiskey.html">here</a>.</li>
+<li>Where we use the same name as both actual parameter and instance variable, such as here, we must distinguish between the local variable (the actual parameter) and the instance variable. Were we, for example, to code as shown in Figure 4 the local variable <em>firstName</em> would simply be assigned to itself and the instance variable <em>firstName</em> would remain unchanged.</li>
+</ul>
+<p><img alt="Figure 4: assignment to self" src="img/03a.png"></p>
+<p>Clearly, in an industrial-grade application, a password would not be transitted as a clear-text parameter as we have done above. This would be highly insecure.</p>
+<p>Take care with indentation. </p>
+<ul>
+<li>The <a href="http://www.oracle.com/technetwork/java/javase/documentation/codeconventions-136091.html#262">recommended indentation</a> in the original (1999) Java style guide is 4 spaces. See Figure 5 and Figure 6.</li>
+<li>It should be noted, however, that some developers use 2 spaces and that <a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html#s4.1.1-braces-always-used">Google Java Style</a> requires 2 spaces (as shown in Figure 7).</li>
+<li>See <a href="http://stackoverflow.com/questions/4802381/why-4-spaces-are-used-as-the-unit-of-indentation-in-java">here</a> for an interesting <em>stackoverflow</em> discussion.</li>
+</ul>
+<p><img alt="Figure 5: Indentation 4 spaces" src="img/04.jpg"></p>
+<p><img alt="Figure 6: Indentation 4 spaces" src="img/05.png"></p>
+<p><img alt="Figure 7: Indentation 2 spaces as required by Google Java Style" src="img/13.png"></p>
+<p>Next we add a method to create a new friend:</p>
+<pre><code>  public void befriend(String name)
+  {
+    friends[numberFriends] = new String(name);
+    numberFriends += 1;
+  }
+</code></pre>
+
+<p>Corresponding to this last method is one to remove a friend:</p>
+<pre><code>  public void unfriend(String name)
+  {
+    for (int i = 0; i &lt; friends.length; i += 1)
+    {
+      String currentFriend = friends[i];
+      if (currentFriend != null &amp;&amp; currentFriend.equals(name))
+      {
+          friends[i] = null;
+          numberFriends -= 1;
+      }
+    }
+  }
+</code></pre>
+
+<p>Then we include a method to add a message:</p>
+<pre><code>  public void addMessage(String message)
+  {
+    messages[numberMessages] = new String(message);
+    numberMessages += 1;
+  }
+</code></pre>
+
+<p>And finally we add methods to display messages and friends.</p>
+<pre><code>  public void displayFriends()
+  {
+    for (int i = 0; i &lt; numberFriends; i += 1)
+    {
+      System.out.println(friends[i]);
+    }
+  }
+
+  public void displayMessages()
+  {
+    for (int i = 0; i &lt; numberMessages; i += 1)
+    {
+      System.out.println(messages[i]);
+    }
+  }
+</code></pre>
+
+<p>Add all of the above to the User class and check it compiles.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>spacebook_v0: (continued)</h1>
+<p>We shall now conduct some basic tests and then review the class we have written.</p>
+<p>Here is the completed class User at the end of the last step:</p>
+<pre><code>public class User
+{
+    static final int MAX_NUMBER_FRIENDS   = 100;
+    static final int MAX_NUMBER_MESSAGES  = 100;
+
+    public int numberFriends   = 0;
+    int numberMessages  = 0;
+
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String password;
+
+    public String[] friends      = new String[MAX_NUMBER_FRIENDS];
+    public String[] messages     = new String[MAX_NUMBER_MESSAGES];
+
+    public User(String firstName, String lastName, String email, String password)
+    {
+        this.firstName  = firstName;
+        this.lastName   = lastName;
+        this.email      = email;
+        this.password   = password;
+    }
+
+    public void befriend(String name)
+    {
+        friends[numberFriends] = new String(name);
+        numberFriends += 1;
+    }
+
+    public void unfriend(String name)
+    {
+        for (int i = 0; i &lt; friends.length; i += 1)
+        {
+            String currentFriend = friends[i];
+            if (currentFriend != null &amp;&amp; currentFriend.equals(name))
+            {
+                friends[i] = null;
+                numberFriends -= 1;
+            }
+      }
+    } 
+
+    public void addMessage(String message)
+    {
+        messages[numberMessages] = new String(message);
+        numberMessages += 1;
+    }
+
+
+    public void displayFriends()
+    {
+        for (int i = 0; i &lt; numberFriends; i += 1)
+        {
+            System.out.println(friends[i]);
+        }
+    }
+
+    public void displayMessages()
+    {
+        for (int i = 0; i &lt; numberMessages; i += 1)
+        {
+            System.out.println(messages[i]);
+        }
+    }  
+}
+</code></pre>
+
+<p>Before testing the class you are recommended to review the material in the earlier lab, <em>BlueJ Debug &amp; Unit Test</em>.</p>
+<p>Ensure you tick the <em>Show unit testing tools</em> checkbox accessible in BlueJ | Preferences | Interface (See Figure 1).</p>
+<p><img alt="Figure 1: Enable displaying BlueJ unit testing tools" src="img/05a.png"></p>
+<p>When you have completed the review and enabled the testing tools display, proceed as follows:</p>
+<ul>
+<li>Invoke <em>Create Test Class</em> on the User class rectangle in BlueJ spacebook window.</li>
+<li>A JUnit class named UserTest is created. </li>
+<li>Open this in the BlueJ editor and replace the default code with the following:</li>
+</ul>
+<pre><code>import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class UserTest
+{
+    private User homer;
+
+    @Before
+    public void setUp()
+    {
+        homer = new User(&quot;Homer&quot;, &quot;Simpson&quot;, &quot;homer@simpson.com&quot;, &quot;secret&quot;);
+    }
+
+    @Test
+    public void testFriends()
+    {
+        homer.befriend(&quot;barney&quot;);
+        homer.befriend(&quot;bart&quot;);
+        homer.befriend(&quot;maggie&quot;);
+        homer.befriend(&quot;marge&quot;);
+        assertEquals(homer.numberFriends, 4);
+        homer.unfriend(&quot;barney&quot;);
+        assertEquals(homer.numberFriends, 3);
+    }
+
+    @Test
+    public void testMessages()
+    {
+      //add code here during lab
+    }
+}
+</code></pre>
+
+<p>Observe what this UserTest class behaviour is:</p>
+<ul>
+<li>In <em>setUp</em> a new User object is created.</li>
+<li>In the method <em>testFriends</em> <ul>
+<li>Homer makes four friends</li>
+<li><em>User homer</em> is then checked that it has the correct number of friends.</li>
+<li>Then a friend is removed.</li>
+<li>Another check is carried out to verify the number of friends counter has been decremented.</li>
+<li>Observe that User homer access the variable numberFriends directly without using a getter:</li>
+<li>This is permissible because the fields are public. More on this later.</li>
+</ul>
+</li>
+<li>In the method <em>testMessages</em> which you should write during this lab:<ul>
+<li>Homer generates four messages</li>
+<li><em>User homer</em> is then checked that it has the correct number of messages
+Here is the necessary code:</li>
+</ul>
+</li>
+</ul>
+<pre><code>// homer adds four messages
+homer.addMessage(&quot;hi bart&quot;);
+homer.addMessage(&quot;hi again bart&quot;);
+homer.addMessage(&quot;hi marge&quot;);
+homer.addMessage(&quot;he maggie&quot;);
+</code></pre>
+
+<pre><code>// make a visual check by invoking *displayMessages*
+
+homer.displayMessages();
+</code></pre>
+
+<p>Check the number of messages is actually four:</p>
+<pre><code>assertEquals(true, homer.numberMessages == 4);
+</code></pre>
+
+<p>Conduct a unit test as follows:</p>
+<ul>
+<li>Right click on the UserTest class diagram (the dark green rectangle in the BlueJ spacebook_v0 window).</li>
+<li>Invoke TestAll()</li>
+<li>The BlueJ: Test Results window should appear:</li>
+<li>The two test methods executed, namely testFriends and testMessages should contain tick marks indicating a successful test run.</li>
+<li>A green progress bar indicates overall success, that is, all the individual tests succeeded.</li>
+<li>See Figure 2</li>
+</ul>
+<p><img alt="Figure 2: Successful unit test of spacebook_v0" src="img/05b.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>spacebook_v0: (continued)</h1>
+<p>Now we shall discuss briefly the class' shortcomings and then in subsequent refactorings, attempt to improve the design.</p>
+<p>Review the accompanying lecture slides in particular the topics <em>cohesion</em> and <em>coupling</em>.</p>
+<p>Here are some obvious flaws in this class' design:</p>
+<h2>Low cohesion</h2>
+<ul>
+<li>This class has low cohesion<ul>
+<li>It is responsible for several tasks.<ul>
+<li>User details</li>
+<li>Messages</li>
+<li>Friendships</li>
+</ul>
+</li>
+<li>We will address this shortcoming by creating new classes for friendships and messages.</li>
+</ul>
+</li>
+</ul>
+<h2>Tight coupling</h2>
+<ul>
+<li>The class has tight coupling because <ul>
+<li>The instance variables are public<ul>
+<li>Other classes both within the package and from outside the package can directly access these variables</li>
+<li>Thus any changes to any of these variables could have a ripple effect across other objects</li>
+<li>This would increase the risk of errors and make the code more difficult to maintain</li>
+</ul>
+</li>
+<li>We shall address this shortcoming by <ul>
+<li>omitting all <em>public</em> access modifiers on instance variables</li>
+<li>by omitting modifiers we are allowing direct access to these variables <em>only</em> from within the package. Omitting an explicit access modifier to a field results in it becoming what is termed <em>package private</em> and consequently directly accessible to objects of classes that reside in the same package.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Using fixed-fixed length arrays</h2>
+<ul>
+<li>The class uses fixed arrays and sets unrealistic maximum array sizes<ul>
+<li>Fixed arrays have several disadvantages<ul>
+<li>Difficult to know when code being written what the maximum size of the array likely to be in the future.</li>
+<li>Difficult to manipulate such as removing elements.</li>
+</ul>
+</li>
+<li>We shall replace the fixed arrays with ArrayLists:<ul>
+<li>These have the advantage that their sizes can be varied at runtime</li>
+<li>A robust and well-tested library supports ArrayList</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Other design weaknessess</h2>
+<ul>
+<li>Messages are not segregated between the message sender (source) and receiver (target).</li>
+<li>Friends: it would be better to have a record of the pair of individuals comprising a friendship.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>spacebook_v1: User class</h1>
+<p>Open spacebook_v0 project and save as <em>spacebook_v1</em> in session07 folder (package).</p>
+<p><img alt="Figure 1: Spacebook_v1" src="img/06.png"></p>
+<p>Open User source code in the BlueJ editor.</p>
+<p>Replace all the existing code with the following:</p>
+<pre><code>public class User
+{
+
+  String firstName;
+  String lastName;
+  String email;
+  String password;
+
+  public User(String firstName, String lastName, String email, String password)
+  {
+    this.firstName  = firstName;
+    this.lastName   = lastName;
+    this.email      = email;
+    this.password   = password;
+  }
+
+  public void befriend()
+  {
+  }
+
+  public void unfriend(String name)
+  {
+  }
+}
+</code></pre>
+
+<p>Compile User and verify no errors.</p>
+<p>Note that we have omitted the <em>public</em> access modifier preceeding instance variables.</p>
+<p>Although, to date, as a general policy we have been applying the <em>private</em> access modifier, we are now, in this session's labs, omitting the access modifier.</p>
+<ul>
+<li>
+<p>The reason is, primarily, to align our code-writing practices to those that will apply later in the course when this module will form the basis for further work.</p>
+</li>
+<li>
+<p>Recall that the omission of a modifier means access to members of the class is permitted from both within the class and from within the package containing the class but not from elsewhere.</p>
+</li>
+<li>
+<p>Thus omitting the access modifier is less restrictive than using <em>private</em> but more restrictive than using <em>public</em> in which case access would be available to the world.</p>
+</li>
+<li>
+<p>Adopting this access modifier policy will prove convenient during testing by dispensing with any need for accessors (getters) or mutators (setters), provided of course, that the test classes are located within the same package as the class being tested.</p>
+</li>
+<li>
+<p>You may wish to review the rules relating to access permissions by revisiting <a href="http://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html">Controlling Access to Members of a Class</a>, summarised in the table in Figure 2.</p>
+</li>
+<li><img alt="Figure 2: Access Levels" src="img/06a.png"></li>
+</ul>
+<p>This is as far as we will proceed with refactoring User until we have created a Friendship class.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>spacebook_v1: Friendship class</h1>
+<p>We shall now develop a class to manage friendships.</p>
+<p>Create a new class named Friendship in the <em>spacebook_v1</em> project.</p>
+<p>Open <em>Friendship</em> in the BlueJ editor and remove all code except the outer class wrapper:</p>
+<pre><code>public class Friendship
+{
+
+}
+</code></pre>
+
+<p>Compile to verify no errors.</p>
+<p>The purpose of the Friendship class is to contain </p>
+<ul>
+<li>a reference to the originator of the friendship</li>
+<li>a reference to the person being befriended</li>
+</ul>
+<p>Here, then, are the fields to be added to the Friendship class:</p>
+<pre><code>  User sourceUser;
+  User targetUser;
+</code></pre>
+
+<p>Add these fields to Friendship and check it compiles.</p>
+<ul>
+<li>
+<p>It only remains to initialize the fields and as with User, we shall use the constructor. </p>
+</li>
+<li>
+<p>This means that when the Friendship object is being created, all the field data must be known: <em>sourceUser</em> and <em>targetUser</em> attributes.</p>
+</li>
+</ul>
+<p>Here is the constructor code:</p>
+<pre><code>public Friendship(User sourceUser, User targetUser)
+{
+    this.sourceUser = sourceUser;
+    this.targetUser = targetUser;
+}
+</code></pre>
+
+<p>Compile to verify no syntax errors.</p>
+<p>Observe in Figure 1, the dashed line between Friendship and User, terminating with an arrow at User. </p>
+<p>This indicates that Friendship uses (or has) User as a field type.</p>
+<p>The diagonal double line at the lower right-hand corner of Friendship (also in Figure 1) simply indicates that Friendship has been selected (is in focus).</p>
+<p><img alt="Figure 1: Friendship class has User field(s)" src="img/07.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>spacebook_v1: User has Friendship</h1>
+<p>To date we have created a User class and a Friendship class.</p>
+<p>We shall now </p>
+<ul>
+<li>Add a Friendship field to User</li>
+<li>Write methods to<ul>
+<li>establish a friendship</li>
+<li>end the friendship</li>
+</ul>
+</li>
+</ul>
+<p>In this iteration a User may have only one friend. </p>
+<p>In a later iteration we shall allow a user to have many friends.</p>
+<p>Open the User source code in the BlueJ editor and add a Friendship field to the User class:</p>
+<pre><code>Friendship friendships;
+</code></pre>
+
+<p>Check your code compiles.</p>
+<p>Modify the method <em>befriend</em> as follows by adding a parameter and a single line for the body:</p>
+<pre><code>  public void befriend(User friend)
+  {
+    friendships = new Friendship(this, friend);
+  }
+</code></pre>
+
+<p>This method </p>
+<ul>
+<li>Passes as a parameter a reference to the user to be befriended</li>
+<li>Creates a new Friendship object using the Friendship class' overloaded constructor<ul>
+<li>Check the Friendship code and study its constructor signature<ul>
+<li>First parameter is the User object initiating the friendship<ul>
+<li><em>this</em> is a reference to the friendship initiator</li>
+</ul>
+</li>
+<li>the actual parameter <em>friend</em> is the second Friendship constructor argument.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the refactored method to end the friendship:</p>
+<pre><code>public void unfriend(User friend)
+{
+    friendships = null;
+}
+</code></pre>
+
+<p>We simply pass a reference to the User instance, the friend, and set this to <em>null</em>;</p>
+<p>For the purpose of testing we shall now write a method to display the friend:</p>
+<pre><code>public void displayFriends() 
+{
+    if(friendships != null)
+    {
+        System.out.println(&quot;My friend is &quot;+friendships.targetUser.firstName);
+    }
+    else 
+    {
+        System.out.println(&quot;Unfortunately you have no friends&quot;);
+    }
+}
+</code></pre>
+
+<p>The method </p>
+<ul>
+<li>Checks if a Friendship object exists (<em>friendships</em>)<ul>
+<li>If so, the program prints the friend's name</li>
+<li>Otherwise it prints a message indicating no friends exist</li>
+</ul>
+</li>
+</ul>
+<p>Here is the complete code for both User and Friendship:</p>
+<pre><code>public class User
+{
+    String firstName;
+    String lastName;
+    String email;
+    String password;
+    Friendship friendships;
+
+    public User(String firstName, String lastName, String email, String password)
+    {
+        this.firstName  = firstName;
+        this.lastName   = lastName;
+        this.email      = email;
+        this.password   = password;
+    }
+
+    public void befriend(User friend)
+    {
+        friendships = new Friendship(this, friend);
+    }
+
+    public void unfriend()
+    {
+        friendships = null;
+    }
+
+    public void displayFriends() 
+    {
+        if(friendships != null)
+        {
+            System.out.println(&quot;My friend is &quot; + friendships.targetUser.firstName);
+        }
+        else 
+        {
+            System.out.println(&quot;Unfortunately you have no friends&quot;);
+        }
+    }
+}
+</code></pre>
+
+<pre><code>public class Friendship
+{
+    User sourceUser;
+    User targetUser;
+
+    public Friendship(User sourceUser, User targetUser)
+    {
+        this.sourceUser = sourceUser;
+        this.targetUser = targetUser;
+    }
+}
+</code></pre>
+
+<p>Observe the expression <em>friendships.targetUser.firstName</em> in the method <em>public void displayFriends</em>:</p>
+<ul>
+<li>Were the variables <em>targetUser</em> (in Friendship) and <em>firstName</em> (in User) <em>private</em> variables then direct access as here would not be permitted.<ul>
+<li>Getters (accessors) would be required, for example:<ul>
+<li>In User: getFirstName</li>
+<li>In Friendship: getTargetUser</li>
+</ul>
+</li>
+<li>The expression <em>friendships.targetUser.firstName</em> would then be replaced by:<ul>
+<li><em>friendships.getTargetUser().getFirstName()</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In the next step we shall perform some basic tests to exercise these classes and their methods.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>spacebook_v1: Manual Testing</h1>
+<p>Create two User instances on the object bench by selecting User class and invoking the User constructor:</p>
+<ul>
+<li>Homer Simpson<ul>
+<li>email homer@simpson.com</li>
+<li>password secret</li>
+</ul>
+</li>
+<li>Barney Gumble<ul>
+<li>email bg@gmail.com</li>
+<li>password secret</li>
+</ul>
+</li>
+</ul>
+<p>See Figure 1 and Figure 2.</p>
+<p><img alt="Figure 1: Create users" src="img/08.png"></p>
+<p><img alt="Figure 2: User instances" src="img/09.png"></p>
+<p>Select <em>homer</em> instance on object bench, right click and invoke <em>displayFriends</em>. As you will see in Figure 3 there are no friends because Homer has not created a friendship.</p>
+<p><img alt="Figure 3: No friends yet" src="img/10.png"></p>
+<p>Remedy this by selecting Homer, right clicking and invoking <em>befriend</em> (Figure 4).</p>
+<p>Enter the name of the other User instance on the object bench, namely, <em>barney</em>.</p>
+<p><img alt="Figure 4: Make a friend" src="img/11.png"></p>
+<p>Select Homer again and invoke <em>displayFriends</em>. </p>
+<p>As illustrated in Figure 5, the friend Homer has just created should be displayed.</p>
+<p><img alt="Figure 5: Friend at last" src="img/12.png"></p>
+<p>Now check if Barney has any friends. Does he?</p>
+<p>Add Homer as a friend to Barney.</p>
+<p>Perform these tests:</p>
+<ul>
+<li>Invoke <em>displayFriends</em> on Homer<ul>
+<li>Barney should be displayed as a friend</li>
+</ul>
+</li>
+<li>Invoke <em>displayFriends</em> on Barney<ul>
+<li>Homer should be displayed as a friend       </li>
+</ul>
+</li>
+</ul>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

@@ -1,0 +1,363 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      6.1: Testing, Debugging, Searching & Sorting (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Sorting-&-Searching-Solutions">
+        Sorting-&-Searching-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Sorting-&-Searching-Solutions">
+    <h1>Objectives</h1>
+<p>These are the solutions to the sorting and searching exercises.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercises</h1>
+<h2>Exercise 1 (Selection sort)</h2>
+<p>Write out the varying sequence of arrays from the original unsorted to the final sorted arrangement for the following array that we have already encountered:</p>
+<pre><code>Unsorted: {20, 24, 17, 12, 11, 14, 22, 19}
+Sorted  : {11, 12, 14, 17, 19, 20, 22, 24}
+</code></pre>
+
+<p>For example, the first change occurs when 20 is exchanged with 11 resulting in the following array:</p>
+<pre><code>Partially sorted  : {11, 24, 17, 12, 20, 14, 22, 19}
+</code></pre>
+
+<h1>Exercise 1 solution:</h1>
+<p><img alt="Figure 1: solution exercise 1" src="img/01.png"></p>
+<h2>Exercise 2 (Selection sort)</h2>
+<p>Use a print method or otherwise to programatically display the varying sequence of arrays from the original unsorted to the final sorted arrangement for the following array that we have already encountered:</p>
+<pre><code>Unsorted: {20, 24, 17, 12, 11, 14, 22, 19}
+Sorted  : {11, 12, 14, 17, 19, 20, 22, 24}
+</code></pre>
+
+<h1>Exercise 2 solution:</h1>
+<p>Copy the content of SelectionSort to a new class named Exercises.</p>
+<ul>
+<li>Reason: for test purposes.</li>
+</ul>
+<p>Add a print statement to the sort method as shown in Figure 2, ensuring you provide a pair of {}:</p>
+<pre><code>  public static void sort(int[] a)
+  {
+    for (int i = 0; i &lt; a.length; i += 1)
+      for (int j = i; j &lt; a.length; j += 1)
+        if (a[j] &lt; a[i])
+        {
+          exchange(a, i, j);
+          print(a);
+        }
+  }
+</code></pre>
+
+<p>The output, which should be the same as that in Exercise 1, is also shown in Figure 2.</p>
+<p><img alt="Figure 2: Solution exercise 2" src="img/02.png"></p>
+<h2>Exercise 3 (Selection sort)</h2>
+<p>Write a Selection sort algorithm to sort an array of String objects.</p>
+<p>Use the method <em>String.compareToIgnoreCase</em> when comparing String objects.</p>
+<p>Test your code with this array:</p>
+<pre><code>String[] s = {&quot;z&quot;, &quot;Z&quot;, &quot;E&quot;, &quot;A&quot;, &quot;B&quot;, &quot;Z&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;z&quot;, &quot;C&quot;};
+</code></pre>
+
+<h1>Exercise 3 solution:</h1>
+<p>Add a new class named SelectionSortString to the Sorting project.</p>
+<pre><code>public class SelectionSortString
+{
+  public static void sort(String[] a)
+  {
+    for (int i = 0; i &lt; a.length; i += 1)
+      for (int j = i; j &lt; a.length; j += 1)
+        if (a[i].compareToIgnoreCase(a[j]) &gt; 0)
+        {
+          exchange(a, i, j);
+          print(a);
+        }
+  }
+
+  private static void exchange(String[] a, int i, int j)
+  {
+    String val = a[i];
+    a[i] = a[j];
+    a[j] = val;
+  }
+
+    public static void print(String[] a)
+    {
+      for (String val : a)
+          System.out.print(val + &quot; &quot;);
+      System.out.println();
+    }
+
+    public static void test()
+    {
+        String[] s = {&quot;z&quot;, &quot;Z&quot;, &quot;E&quot;, &quot;A&quot;, &quot;B&quot;, &quot;Z&quot;, &quot;e&quot;, &quot;a&quot;, &quot;b&quot;, &quot;z&quot;, &quot;C&quot;};
+        print(s);
+        sort(s);
+        print(s);
+    }
+}
+</code></pre>
+
+<p>The output on invoking <em>test()</em> is shown in Figure 3:</p>
+<p><img alt="Figure 3: Testing Selection sort string array" src="img/03.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercises</h1>
+<h1>Exercise 4 (Merge sort)</h1>
+<p>Manually use the Merge sort algorithm to sort the following array:</p>
+<pre><code>{18, 15, 19, 19, 13, 18, 14, 12}
+</code></pre>
+
+<p>Write out the array as it would exist following each call to the <em>merge</em> method.</p>
+<ul>
+<li>For example here is the array following the first invocation of <em>merge</em>:</li>
+</ul>
+<p>15 18 19 19 13 18 14 12</p>
+<p>Identify the blocks being merged at each invocation of <em>merge</em>.</p>
+<p>The solution comprises 7 sets of arrays including the original unsorted and the final sorted versions.</p>
+<h1>Exercise 4 (Merge sort) Solution</h1>
+<p>Solution shown here in Figure 1:</p>
+<p><img alt="Figure 1: Solution Exercise 4 (Merge sort)" src="img/04.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercises</h1>
+<h2>Exercise 5</h2>
+<p>5.1 Write two versions of a binary search algorithm to sort an array of strings:</p>
+<ul>
+<li>Case sensitive</li>
+<li>Ignoring case</li>
+</ul>
+<p>5.2 Test the algorithms:</p>
+<ul>
+<li>use the array of strings provided</li>
+<li>sort this array in ascending order using an algorithm you will already have developed</li>
+<li>search for a specific string using binary search.</li>
+<li>verify both versions of binary search function correctly.</li>
+</ul>
+<p>Here is the string to be searched for and the array of strings, the search space:</p>
+<pre><code>    String sought = &quot;able&quot;;
+
+    String[] target = {&quot;Able&quot;, &quot;was&quot;, &quot;I&quot;, &quot;ere&quot;, &quot;I&quot;, &quot;saw&quot;, &quot;Elba&quot;, &quot;How original!&quot;};
+</code></pre>
+
+<h2>Exercise 5 Solution (Version 1)</h2>
+<pre><code>  /**
+   * Search a list of strings stored as an array for a particular string
+   * @param a The sorted array of strings - the search space.
+   * @param sought The string being searched for.
+   * @return The position index of the string being sought if it exists. If it does not exist -1 is returned.
+   */
+  public static int binarySearch(String[] a, String sought)
+  {
+    int lo = 0;
+    int hi = a.length - 1;
+    int mid;
+
+    while (lo &lt;= hi)
+    {
+      mid = (lo + hi) / 2;     
+      if (compareTo(sought, a[mid]) &lt; 0)
+        hi = mid - 1;
+      else if (compareTo(sought, a[mid]) &gt; 0)
+        lo = mid + 1;
+      else // sought == a[mid]: found match
+          return mid;
+    }
+    return -1; //failed to find sought match
+  }
+
+  private static int compareTo(String s1, String s2)
+  {    
+    return s1.compareTo(s2);   
+  }
+</code></pre>
+
+<h2>Exercise 5 Solution (Version 2)</h2>
+<pre><code>  /**
+   * Search a list of strings stored as an array for a particular string
+   * @param a The sorted array of strings - the search space.
+   * @param sought The string being searched for.
+   * @return The position index of the string being sought if it exists. If it does not exist -1 is returned.
+   */
+  public static int binarySearchIgnoreCase(String[] a, String sought)
+  {
+    int lo = 0;
+    int hi = a.length - 1;
+    int mid;
+
+    while (lo &lt;= hi)
+    {
+      mid = (lo + hi) / 2;     
+      if (compareToIgnoreCase(sought, a[mid]) &lt; 0)
+        hi = mid - 1;
+      else if (compareToIgnoreCase(sought, a[mid]) &gt; 0)
+        lo = mid + 1;
+      else // sought == a[mid]: found match
+          return mid;
+    }
+    return -1; //failed to find sought match
+  }
+
+  private static int compareToIgnoreCase(String s1, String s2)
+  {   
+    return s1.compareToIgnoreCase(s2);    
+  }
+</code></pre>
+
+<p>Test method:</p>
+<pre><code>  public static void test()
+  {
+    String sought = &quot;able&quot;;
+
+    String[] target = {&quot;Able&quot;, &quot;was&quot;, &quot;I&quot;, &quot;ere&quot;, &quot;I&quot;, &quot;saw&quot;, &quot;Elba&quot;, &quot;How original!&quot;};
+    SelectionSort_String.sort(target);
+    int x = binarySearch(target, sought);
+    String response = x != -1 ? &quot;found&quot; : &quot;not found&quot;;
+    System.out.println(&quot;Value &quot; + searchFor + &quot; &quot; + response);
+    x = binarySearchIgnoreCase(target, sought);
+    response = x != -1 ? &quot;found&quot; : &quot;not found&quot;;
+    System.out.println(&quot;Value &quot; + searchFor + &quot; &quot; + response);
+  }
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
