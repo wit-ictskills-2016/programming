@@ -154,7 +154,7 @@ h3
 </ul>
 <p>Recall the recommended directory structure which is again illustrated in Figure 1.</p>
 <p><img alt="Figure 1: Directory Structure" src="img/01.png"></p>
-<p>Create a new directory called <em>session07</em>.</p>
+<p>Create a new directory called <em>sessionXX</em> where XX denotes your current session.</p>
 <p>Create a new BlueJ project named spacebook_v0 in session07 (Figure 2).</p>
 <p><img alt="Figure 2: Create project spacebook_v0 in BlueJ" src="img/02.png"></p>
 <p>Create a new class named User in this project (Figure 3). </p>
@@ -205,18 +205,18 @@ h3
 <p>Here is the class User to date:</p>
 <pre><code>public class User
 {
-  static final int MAX_NUMBER_FRIENDS   = 100;
-  static final int MAX_NUMBER_MESSAGES  = 100;
-  public int numberFriends   = 0;
-  public int numberMessages  = 0;
+  static final int MAX_NUMBER_FRIENDS = 100;
+  static final int MAX_NUMBER_MESSAGES = 100;
+  public int numberFriends = 0;
+  public int numberMessages = 0;
 
   public String firstName;
   public String lastName;
   public String email;
   public String password;
 
-  public String[] friends      = new String[MAX_NUMBER_FRIENDS];
-  public String[] messages   = new String[MAX_NUMBER_MESSAGES];
+  public String[] friends = new String[MAX_NUMBER_FRIENDS];
+  public String[] messages = new String[MAX_NUMBER_MESSAGES];
 }
 </code></pre>
 
@@ -281,7 +281,8 @@ h3
   }
 </code></pre>
 
-<p>Then we include a method to add a message:</p>
+<p>There is a fundamental flaw in the above method, <em>unfriend</em>. Can you identify it? The same flaw will be repreated in the method to remove a message. We shall not address the issue in this iteration.</p>
+<p>We now include a method to add a message:</p>
 <pre><code>  public void addMessage(String message)
   {
     messages[numberMessages] = new String(message);
