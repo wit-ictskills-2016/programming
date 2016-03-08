@@ -1,0 +1,538 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      7.1: Designing classes (Solutions)
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Spacebook-Solutions">
+        Spacebook-Solutions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Spacebook-Solutions">
+    <h1>Objectives</h1>
+<p>These are sample solutions to the exercises set in the labs in the session <em>Designing classes (Spacebook)</em>.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<ul>
+<li>Create 5 User objects on the object bench:<ul>
+<li>Select name, email address and password of your choice for each.<ul>
+<li>Or choose the names as shown in Table 1.</li>
+</ul>
+</li>
+<li>Tablulate on paper the friendship relationships depicted in Figure 1.<ul>
+<li>The partially completed table is shown in Figure 1.</li>
+</ul>
+</li>
+<li>Use the object bench to represent the friendship relationships.<ul>
+<li>For example since bart is a friend of marge:<ul>
+<li>select marge on the object bench and invoke <em>befriend(bart)</em>.</li>
+<li>continue until all the friendship relationships as shown in Figure 1 are established.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Verify correct implementation of the friendship network using existing User class method(s)</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: User - Friendship network" src="img/09.png"></p>
+<p><img alt="Table 1" src="img/13-2.png"></p>
+<h2>Exercise 1 Solution</h2>
+<ul>
+<li>
+<p>You could manually create the 5 User objects by clicking on the User class diagram and invoking the User constructor for each object (see Figure 2)
+<img alt="Figure 2: Manually create User object" src="img/01.png"></p>
+</li>
+<li>
+<p>An alternative and possibly quicker method would be to use the UserTest class as follows:</p>
+<ul>
+<li>Open UserTest in editor</li>
+<li>Add and simulaneously initialize 5 User fields (see Figure 3)
+<img alt="Figure 3 Availing of UserTest to generate User objects" src="img/02.png"></li>
+<li>Compile UserTest</li>
+<li>Invoke <em>Test Fixture to Object Bench</em> on UserText<ul>
+<li>This will position the 5 User objects on the object bench
+<img alt="Figure 4: Using Text Fixture to Object Bench" src="img/03.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Tabular representation of User-Friendship relationships depicted here in Figure 5. </p>
+<ul>
+<li>The table may be created by observing the network of relationships portrayed in Figure 1 above.
+<img alt="Figure 5: User-Friendship network" src="img/04.png"></li>
+</ul>
+</li>
+<li>
+<p>Represent (implement) the friendship relationships using the objects on the object bench:</p>
+</li>
+<li>Marge first, followed by the others:<ul>
+<li>Right click on User marge and invoke <em>befriend</em><ul>
+<li>befriend <em>bart</em></li>
+</ul>
+</li>
+<li>Repeat for <em>barney</em> and <em>homer</em> (see Figure 6).
+<img alt="Figure 6: Marge creates friendship networkd" src="img/05.png"></li>
+<li>Check friends have been created:<ul>
+<li>Invoke <em>displayFriends</em> on <em>User marge</em>:</li>
+<li>Check the correct list of friends displayed (Figure 7).
+<img alt="Figure 7: Marge's friends" src="img/06.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Repeat the above steps for Bart, Barney, Homer and Maggie.<ul>
+<li>Bart: see Figure 8:
+<img alt="Figure 8: Bart's friends" src="img/07.png"></li>
+<li>Barney: see Figure 8:
+<img alt="Figure 9: Barney's friends" src="img/08.png"></li>
+<li>Homer: see Figure 8:
+<img alt="Figure 10: Homer's friends" src="img/11.png"></li>
+<li>Maggie:  see Figure 8:
+<img alt="Figure 11: Maggie's friends" src="img/12.png"></li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Exercises</h1>
+<h2>Exercise 2</h2>
+<p>Recall that it is possible for a user to befriend itself. 
+For example, you could </p>
+<ul>
+<li>create a User object <em>bart</em> and </li>
+<li>invoke <em>befriend</em> on <em>bart</em> <ul>
+<li>using <em>bart</em> as a parameter</li>
+</ul>
+</li>
+<li>invoking <em>displayFriends</em> on <em>bart</em> will demonstrate he has succeeded in befriending himself (see Figure 2).
+<img alt="Figure 2: Bart befriends Bart" src="img/10.png"></li>
+<li>This Exercise requires you to modify the method <em>befriend</em> in User to disallow a user befriending oneself.<ul>
+<li>Test the refactored method works as intended by invoking it<ul>
+<li>Using the invoking object as the argument, that is, attempting to befriend oneself</li>
+<li>Using an object other than the invoking object to establish a friendship.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 2 Solution</h2>
+<p>Here is the existing method <em>befriend</em>:</p>
+<pre><code>    public void befriend(User friend)
+    {
+        Friendship friendship = new Friendship(this, friend);
+        friendships.add(friendship);
+    }
+</code></pre>
+
+<p>Here is the same method but refactored to prevent a user befriending oneself:</p>
+<pre><code>    public void befriend(User friend)
+    {
+        if(!(friend == this))
+        {
+            Friendship friendship = new Friendship(this, friend);
+            friendships.add(friendship);
+        }
+        else
+        {
+            System.out.println(&quot;Opps! You seem to have made a mistake in attempting to befriend yourself&quot;);
+        }
+    }
+</code></pre>
+
+<h2>Test 1 : Attempt befriending oneself</h2>
+<ul>
+<li>Remove all friends from <em>marge</em></li>
+<li>Invoke <em>befriend</em> on <em>User marge</em> using <em>marge</em> as argument.</li>
+<li>This action should fail (see Figure 3).
+<img alt="Figure 3: Attempt to befriend oneself no longer permissible" src="img/13.png"></li>
+</ul>
+<h2>Test 2 : Attempt befriending other user</h2>
+<ul>
+<li>Ensure that <em>marge</em> has no friends<ul>
+<li>if necessary invoke <em>unfriend</em> to remove any that may be present</li>
+</ul>
+</li>
+<li>Invoke <em>befriend</em> on <em>User marge</em> using <em>bart</em> as argument.<ul>
+<li>Display <em>marge</em> friends to verify refactored <em>befriend</em> still functions correctly (see Figure 4)
+<img alt="Figure 4 Attempt to befriend other user succeeds" src="img/14.png"></li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Exercises</h1>
+<h2>Exercise 3</h2>
+<p>Presently a user can remove a specific friend from its list of <em>friendships</em> by invoking <em>unfriend</em>.</p>
+<ul>
+<li>Write a method that would allow a user to remove all friends.</li>
+<li>Use the signature: <em>public void unfriendAll()</em></li>
+</ul>
+<h2>Exercise 3 Solution</h2>
+<p>Simply use the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html">ArrayList clear</a> method.</p>
+<pre><code>    public void unfriendAll()
+    {
+        friendships.clear();
+    }
+
+</code></pre>
+
+<h2>Test Solution</h2>
+<ul>
+<li>Invoke <em>Test Fixture to Object Bench</em></li>
+<li>As shown in Figure 1, User objects representing marge, bart, barney, homer and maggie will be placed on the object bench.</li>
+</ul>
+<p><img alt="Figure 1 : Preparing test" src="img/15.png"></p>
+<ul>
+<li>
+<p>By invoking <em>befriend</em>, create 3 friends for <em>User marge</em> </p>
+<ul>
+<li>bart</li>
+<li>barney</li>
+<li>homer</li>
+</ul>
+</li>
+<li>
+<p>Invoke <em>displayFriends</em> to verify these friends have been created (see Figure 2):</p>
+</li>
+</ul>
+<p><img alt="Figure 2: Marge's new old friends" src="img/16.png"></p>
+<ul>
+<li>Test the new method <em>unfriendAll</em> by invoking it on <em>User marge</em></li>
+<li>Then invoke <em>displayFriends</em> to verify method works as intended (see Figure 3):</li>
+</ul>
+<p><img alt="Figure 3: Test run method unfriendAll" src="img/17.png"></p>
+<h2>Alternative solutions</h2>
+<p>Other solutions are possible as described and illustrated as follows:</p>
+<ul>
+<li><em>unfriendAll_3</em> fails because it is illegal to attempt changes to the array within enhanced for loop.</li>
+<li>Study Figure 7 to understand why the method <em>unfriendAll_4</em> fails.</li>
+</ul>
+<pre><code>/**
+   * homer dumps all his friends...
+   * ...in several different ways
+   */
+  public void unfriendAll_1()
+  {
+    // count down: counting up would not work as friendships.size changes
+    // with each iteration, reducing by one each time.
+
+    for (int i = friendships.size() - 1; i &gt;= 0; i -= 1)
+    {
+      friendships.remove(i);
+    }
+  }
+</code></pre>
+
+<p><img alt="Figure 4: unfriendAll_1() - Success" src="img/35.png"></p>
+<pre><code>  public void unfriendAll_2()
+  {
+    Iterator&lt;Friendship&gt; it = friendships.iterator();
+    while (it.hasNext())
+    {
+      it.next();
+      it.remove();
+    }
+  }
+
+</code></pre>
+
+<p><img alt="Figure 5: unfriendAll_2() - Success" src="img/36.png"></p>
+<pre><code>  public void unfriendAll_3()
+  {
+    for (Friendship friendship : friendships)
+    {
+      friendships.remove(friendship);
+    }
+  }
+</code></pre>
+
+<p><img alt="Figure 6: unfriendAll_3() - Failure" src="img/37.png"></p>
+<pre><code>
+  public void unfriendAll_4()
+  {
+    for (int i = 0; i &lt; friendships.size(); i += 1)
+    {
+      friendships.remove(i);
+    }
+  }
+</code></pre>
+
+<p><img alt="Figure 7: unfriendAll_4() - Failure" src="img/38.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Exercises</h1>
+<h2>Exercise 4</h2>
+<ul>
+<li>Introduce additional fields in User as follows:</li>
+</ul>
+<pre><code>  int    age;
+  String nationality;
+</code></pre>
+
+<ul>
+<li>Modify the overloaded constructor to includes parameters representing these fields.<ul>
+<li>Apply this signature:<ul>
+<li><em>public User(String firstName, String lastName, int age, String nationality, String email, String password)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Initialize the new fields within the constructor.</li>
+</ul>
+<h2>Exercise 4 Solution</h2>
+<p>Here is an extract from User class that contains the additional fields and the new overloaded constructor:</p>
+<pre><code>public class User
+{
+    String firstName;
+    String lastName;
+    int age;
+    String nationality;
+    String email;
+    String password;
+
+    ArrayList&lt;Friendship&gt; friendships   = new ArrayList&lt;&gt;();
+    ArrayList&lt;Message&gt; inbox            = new ArrayList&lt;&gt;();
+    ArrayList&lt;Message&gt; outbox           = new ArrayList&lt;&gt;(); 
+
+    public User(String firstName, String lastName, int age, String nationality, String email, String password)
+    {
+        this.firstName  = firstName;
+        this.lastName   = lastName;
+        this.age        = age;
+        this.nationality= nationality;
+        this.email      = email;
+        this.password   = password;
+    }
+    ...
+    ...
+}
+</code></pre>
+
+<h2>Test</h2>
+<ul>
+<li>Add the new code</li>
+<li>Compile the class</li>
+<li>Instantiate the class using the new overloaded constructor as depicted in Figure 1.
+<img alt="Figure 1: Instantiating User by invoking new overloaded constructor" src="img/18.png"></li>
+<li>Inspect the object state using the inspector (see Figure 2).</li>
+<li>Verify the state matches the data you input.
+<img alt="Figure 2: State of User object created with refactored class" src="img/19.png"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Exercises</h1>
+<h2>Exercise 5</h2>
+<ul>
+<li>Introduce a method to broadcast a message from a particular user to all its friends.<ul>
+<li>The signature of the method is:<ul>
+<li><em>public void broadcastMessage(String messageText)</em></li>
+</ul>
+</li>
+<li>Test the method as follows:<ul>
+<li>Use the UserTest as previously (or other methods) to populate the object bench with 5 User objects.</li>
+<li>The network of friendships established in Exercise 1 should be present.</li>
+<li>Marge has befriended Bart, Barney and Homer:<ul>
+<li>Marge broadcasts a message</li>
+<li>Check Marge's outbox</li>
+<li>Check the inbox of the intended recipients.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 5 Solution</h2>
+<p>This Exercise is solved by </p>
+<ul>
+<li>composing the text of a common message destined for the target group<ul>
+<li>this would be done in testing</li>
+</ul>
+</li>
+<li>traversing the friendships list and for each element:<ul>
+<li>invoke the existing <em>sendMessage</em> method with the appropriate parameters:<ul>
+<li>target user<ul>
+<li>this is obtained from the friendship object</li>
+</ul>
+</li>
+<li>message text</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    public void broadcastMessage(String messageText)
+    {
+        for(Friendship f : friendships)
+        {
+            sendMessage(f.targetUser, messageText);
+        }
+    }
+</code></pre>
+
+<p><img alt="Figure 1: Enhanced for loop traverses list of friendships" src="img/24.png"></p>
+<h2>Test</h2>
+<ul>
+<li>Follow the steps in Exercise 1 to create 5 User objects on the object bench with the same network of friendships as depicted in Figure 1 in Exercise 1.</li>
+<li>Marge broadcasts to her friends:
+<img alt="Figure 5: Marge broadcasts to friends" src="img/28.png"></li>
+<li>Check Marge's outbox and observe the message objects have been added:
+<img alt="Figure 6: Messages now in Marge's outbox" src="img/29.png"></li>
+<li>Check inbox of targets, namely Bart, Barney and Homer:<ul>
+<li>Each should have received Marge's broadcast message</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 7: Bart receives broadcast message from Marge" src="img/30.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
