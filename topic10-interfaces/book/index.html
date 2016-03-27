@@ -1,0 +1,1145 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      8: Java interface type
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Using_Interfaces">
+        Using_Interfaces
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Using_Interfaces">
+    <h1>Objectives</h1>
+<p>A Java Interface is a type comprising a group of public method signatures. It may also include constant declarations that are static public by default. Methods have no implementation in the interface definition, implementation taking place in classes that use (implement) the interfaces. An interface only specifies behaviour: one is not allowed to create objects of an interface. However one may create objects of classes that use or implement an interface.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Introduction</h1>
+<p>Refer to the recommended directory structure again shown in Figure 1 below.</p>
+<p><img alt="Figure 1: Recommended directory structure" src="img/01.png">.</p>
+<p>For this lab we will be working from directory <em>session08</em>.</p>
+<ul>
+<li>Download the file <em>interfaces.zip</em> from the local archive, available <a href="archives/interfaces.zip">here</a></li>
+<li>Save and uncompress the file.</li>
+<li>The file expands to a directory <em>interfaces</em>.</li>
+<li>Move or drag this directory into the the directory <em>session08</em> (Figure 2).</li>
+</ul>
+<p><img alt="Figure 2: Session08 ready to go" src="img/02.png"></p>
+<ul>
+<li>In Explorer(Windows) or Finder (Mac) or equivalent, browse to <em>labs/session08/interfaces/drawable</em> and double click on <em>package.bluej</em>.</li>
+<li>Ths launches the downloaded BlueJ <em>drawable</em> project. See Figure 3 and Figure 4.</li>
+</ul>
+<p><img alt="Figure 3: Open BlueJ project drawable" src="img/03.png"></p>
+<p>On opening the project you should be presented with a series of rectangles representing classes that we have met in earlier labs. These are illustrated in Figure 4.</p>
+<p><img alt="Figure 4: Interface project classes" src="img/04.png"></p>
+<p>Open Circle source code and observe that we have added an overloaded constructor to allow a user to define the circle's color. This is illustrated in Figure 5.</p>
+<p><img alt="Figure 5; Refactored Circle class" src="img/05.png"></p>
+<p>We have made this trivial change to differentiate between various circles that we shall construct in demonstating the unifying power of Java <em>interface</em>s.</p>
+<p>We shall also use the RectangleBJ class. Its overloaded constructor provides for different colors and so refactoring is unnecessary.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Display list shapes (1)</h1>
+<p>Here we shall demonstrate the use of interfaces to unify common behaviour.</p>
+<p>In the BlueJ <em>drawable</em> project create a class <em>InterfaceDemo</em>.</p>
+<p>Populate this class with</p>
+<ul>
+<li>Data: ArrayLists of Circle and RectangleBJ objects</li>
+<li>Behaviour: a demo method to display all the circles and rectangles using a for-each loop to transverse each list and invoke <em>makeVisible</em>.</li>
+</ul>
+<p>Here is the class wrapper:</p>
+<pre><code>public class InterfaceDemo
+{
+
+}
+
+</code></pre>
+
+<p>Add data:</p>
+<pre><code>   ArrayList&lt;Circle&gt; circles = new ArrayList&lt;&gt;();
+   ArrayList&lt;RectangleBJ&gt; rectangles = new ArrayList&lt;&gt;();
+</code></pre>
+
+<p>Add an import statement as the top line in the InterfaceDemo file to access ArrayList:</p>
+<pre><code>import java.util.ArrayList;
+</code></pre>
+
+<p>Initialize the data in the constructor:</p>
+<pre><code>   public InterfaceDemo()
+   {
+       circles.add(new Circle(30, 20, 60, &quot;red&quot;));
+       circles.add(new Circle(40, 50, 70, &quot;blue&quot;));
+       circles.add(new Circle(50, 60, 80, &quot;green&quot;));
+       circles.add(new Circle(60, 70, 90, &quot;black&quot;));    
+
+       rectangles.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+       rectangles.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+       rectangles.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+       rectangles.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+   }
+</code></pre>
+
+<p>The choice of coordinates and colors ensure the objects, when drawn, will be distinguishable from each other.</p>
+<p>Now, traverse these objects and invoke the makeVisible methods:</p>
+<pre><code>   public void makeVisible()
+   {
+       for(Circle c : circles)
+       {
+           c.makeVisible();
+       }
+
+       for(RectangleBJ r : rectangles)
+       {
+           r.makeVisible();
+       }
+  }
+</code></pre>
+
+<p>Here is the complete class:</p>
+<pre><code>import java.util.ArrayList;
+
+public class InterfaceDemo
+{
+   ArrayList&lt;Circle&gt; circles = new ArrayList&lt;&gt;();
+   ArrayList&lt;RectangleBJ&gt; rectangles = new ArrayList&lt;&gt;();
+
+   public InterfaceDemo()
+   {
+       circles.add(new Circle(30, 20, 60, &quot;red&quot;));
+       circles.add(new Circle(40, 50, 70, &quot;blue&quot;));
+       circles.add(new Circle(50, 60, 80, &quot;green&quot;));
+       circles.add(new Circle(60, 70, 90, &quot;black&quot;));    
+
+       rectangles.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+       rectangles.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+       rectangles.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+       rectangles.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+   }
+
+   public void makeVisible()
+   {
+       for(Circle c : circles)
+       {
+           c.makeVisible();
+       }
+
+       for(RectangleBJ r : rectangles)
+       {
+           r.makeVisible();
+       }
+    }
+}
+</code></pre>
+
+<p>Test the work to date as follows:</p>
+<ul>
+<li>Compile </li>
+<li>Create an InterfaceDemo object on the object bench</li>
+<li>Invoke <em>makeVisible</em> method. </li>
+</ul>
+<p>The result is depicted in Figure 1.</p>
+<p><img alt="Figure 1: Displaying lists of circles and rectangles" src="img/06.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Display list shapes (2)</h1>
+<p>First we shall create a Java interface named Drawable by placing the cursor anywhere in the BlueJ <em>drawable</em> project window, right clicking and selecting <em>New Class</em>.</p>
+<p>In the widow that then appears type Drawable in the Class Name textbox and select the button opposite Interface (Figure 1).</p>
+<p><img alt="Figure 1: Create new Java Interface type" src="img/07.png">.</p>
+<p>This will create a Drawable interface, represented by a rectangle in the project window as illustrated in Figure 2.</p>
+<p><img alt="Figure 2: New Java Interface in project window" src="img/08.png"></p>
+<p>Open the Drawable source code and replace the autogenerated code with the following interface defintion.</p>
+<pre><code>public interface Drawable
+{
+    void display(boolean show);
+}
+</code></pre>
+
+<p>Any class that uses this interface will be obliged to implement a <em>display</em> method. </p>
+<p>This method takes a boolean parameter:</p>
+<ul>
+<li><em>true</em> indicates that the object is to be displayed</li>
+<li><em>false</em> indicates that the object should be hidden.</li>
+</ul>
+<p>Open the Circle source code and change the line containing the class name from:</p>
+<pre><code>public class Circle
+</code></pre>
+
+<p>to</p>
+<pre><code>public class Circle implements Drawable
+</code></pre>
+
+<p>Now attempt to compile Circle.</p>
+<p>You will encounter a compile-time error (See Figure 3).</p>
+<p><img alt="Figure 3: Circle compile-time error" src="img/09.png"></p>
+<p>The reason for the error is that we have not implemented the Drawable method <em>display</em>.</p>
+<p>Add a wrapper for this method to Circle:</p>
+<pre><code>public void display(boolean show)
+{
+
+}
+</code></pre>
+
+<p>We will complete the implementation of the method shortly.</p>
+<p>First attempt to compile the Circle class again. </p>
+<ul>
+<li>The class should now compile without error.</li>
+</ul>
+<p>The implementation of display is simple since Circle already has two methods that we can use:</p>
+<ul>
+<li>makeVisible</li>
+<li>makeInvisible</li>
+</ul>
+<p>Here's the completed <em>display</em> method:</p>
+<pre><code>public void display(boolean show)
+{
+    if(show == true) 
+    {
+        makeVisible();
+    }
+    else
+    {
+        makeInvisible();
+    }
+}
+</code></pre>
+
+<p>Check that Circle compiles once this method has been added.</p>
+<p>Repeat for RectangleBJ:</p>
+<ul>
+<li>Modify the line containing the class name by adding <em>implements Drawable</em>.</li>
+<li>Add the <em>display</em> method to RectangleBJ source<ul>
+<li>Note that the display methods are not required to have similar implementations. If fact, in practice, it would be unusual for them to be so.</li>
+</ul>
+</li>
+<li>Check that RectangleBJ compiles.</li>
+</ul>
+<p>In the next step we shall use the magic of interfaces to display, not an ArrayList of Circle object references but an ArrayList of Drawable references to Circle objects.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Display list shapes (3)</h1>
+<p>In this step we shall modify InterfaceDemo class as follows:</p>
+<ul>
+<li>Create an ArrayList of Drawable elements</li>
+<li>Populate the list with Circle and Rectangle objects</li>
+<li>Use a single for-each loop to traverse the list and display the shapes.</li>
+</ul>
+<p>Add the Drawable list declaration as a field in InterfaceDemo:</p>
+<pre><code>ArrayList&lt;Drawable&gt; elements = new ArrayList&lt;&gt;();
+</code></pre>
+
+<p>Next modify the constructor by adding the following code block:</p>
+<pre><code>       //add Circle and RectangleBJ objects to the Drawable list
+       elements.add(new Circle(30, 20, 60, &quot;red&quot;));
+       elements.add(new Circle(40, 50, 70, &quot;blue&quot;));
+       elements.add(new Circle(50, 60, 80, &quot;green&quot;));
+       elements.add(new Circle(60, 70, 90, &quot;black&quot;));   
+
+       elements.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+       elements.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+       elements.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+       elements.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+</code></pre>
+
+<p>Compare what we have done above to what we previously did: previously we </p>
+<ul>
+<li>added Circle objects to an ArrayList of Circle objects.</li>
+<li>added RectangleBJ objects to an ArrayList of Rectangle objects.</li>
+</ul>
+<p>Here we have:</p>
+<ul>
+<li>added both Circle objects and RectangleBJ objects to an ArrayList of Drawable elements.<ul>
+<li>this is legal because a Drawable variable may be assigned a reference to any object that implements Drawable.</li>
+</ul>
+</li>
+</ul>
+<p>Finally we write a method that we shall name <em>demoInterfaceUsage</em> to invoke the Circle display methods and the RectangleBJ display methods:</p>
+<pre><code>    public void demoInterfaceUsage()
+    {
+        for(Drawable element : elements)
+        {
+            element.display(true);
+        }
+    }
+</code></pre>
+
+<p>Compile and test by creating a new Interface object and then invoking the <em>demoInterfaceUsage</em> method.</p>
+<p>The result should be similar to that illustrated in Figure 1.</p>
+<p><img alt="Figure 1: Rendering objects referenced by array Java interface type" src="img/10.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Algorithm Reuse (1)</h1>
+<p>Open the project named <em>measurable</em> and observe the classes present, namely</p>
+<ul>
+<li>Cone</li>
+<li>Rectangle</li>
+<li>Sphere</li>
+<li>Circle</li>
+<li>Measure</li>
+<li>MeasureTester</li>
+<li>MeasurableTester</li>
+</ul>
+<p>Please note that the classes Cone, Rectangle and Circle differ from those classes of the same name that we have worked with in previous labs.</p>
+<ul>
+<li>Open each of these three classes and study the source code.<ul>
+<li>The principle difference is that none of the classes possesses the ability to draw themselves.</li>
+<li>Cone is defined by height and radius fields<ul>
+<li>It has public methods to return volume and surface area.</li>
+</ul>
+</li>
+<li>Rectangle is defined by length and height fields<ul>
+<li>It has public methods to return its area and perimeter.</li>
+</ul>
+</li>
+<li>Sphere is defined by a radius field<ul>
+<li>It has public methods to return volume and surface area</li>
+</ul>
+</li>
+<li>Circle is defined by a radius field <ul>
+<li>It has a public method to return its area.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Measure</strong> class: open the source file in the editor and note the presence of three methods wrappers, all having the same name, <em>maximum</em>, but different signatures.</p>
+<ul>
+<li>The signatures and return values are<ul>
+<li><em>public static double maximum(Cone[] cone)</em><ul>
+<li>the maximum surface area
+<img alt="Figure 1: Obtain largest surface area of array of Cone objects" src="img/11.png"></li>
+</ul>
+</li>
+<li><em>public static double maximum(Circle[] circle)</em>    <ul>
+<li>the maximum area
+<img alt="Figure 2: Obtain largest area of array of Circle objects" src="img/12.png"></li>
+</ul>
+</li>
+<li><em>public static double maximum(Rectangle[] rectangle)</em><ul>
+<li>the maximum perimeter
+<img alt="Figure 3: Obtain largest perimeter of array of Rectangles objects" src="img/13.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>As you can see, the methods accept arrays of Cone, Circle and Rectangle classes and search through these arrays for the maximum value in the various properties of interest namely suface area (Cone), area (Circle) and perimeter (Rectangle).</p>
+<p>Based on the contents of the above 3 figures, complete and compile the Measure class.</p>
+<p>Observe that the three <em>maximum</em> methods are essentially similar. All three</p>
+<ul>
+<li>traverse the parameter array</li>
+<li>locate the largest value of interest</li>
+<li>return that value.</li>
+</ul>
+<p><strong>MeasureTester</strong> class is, as the name suggests, a class to test these methods.</p>
+<ul>
+<li>It has three static methods<ul>
+<li><em>public static double maxConeSurfaceArea()</em></li>
+<li><em>public static double maxCircleArea()</em></li>
+<li><em>public static double maxRectanglePerimeter()</em></li>
+</ul>
+</li>
+<li>The methods instantiate a given number of Cone, Circle and Rectangle objects and assign these to arrays.</li>
+<li>Invoking a <em>Measure.maximum</em> method would obtain the maximum value of the property of interest relating to a specific array as described above.</li>
+</ul>
+<p>Test the Measure class as follow:</p>
+<ul>
+<li>
+<p>Invoke <em>MeasureTester.maxRectanglePerimeter</em></p>
+<ul>
+<li>1076.0 is the returned value.</li>
+<li>This is clearly the correct answer <ul>
+<li>Examination of the source reveals the largest rectangle has (length, height) = (219, 319)</li>
+<li>The perimeter of this rectangle is 2 x (219 + 319) = 1076<img alt="Figure 1: Obtain the maximum perimeter from array Rectangles" src="img/14.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Repeat similar tests and checks for </p>
+<ul>
+<li><em>MeasureTester.maxCircleArea</em></li>
+<li><em>MeasureTester.maxConeSurfaceArea</em></li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Algorithm Reuse (2)</h1>
+<p>We have written three search algorithms to look for the largest value. </p>
+<p>Would it not be better to use a single algorithm since the three algorithms comprise the same pattern?</p>
+<p>Indeed, this is possible using the Java <em>interface</em> type and that is what we shall now address.</p>
+<p>In the <em>measurable</em> project:</p>
+<ul>
+<li>Define a new interface named Measurable
+<img alt="Figure 1: Measurable Interface" src="img/15.png">
+Add a method signature to Measurable:</li>
+</ul>
+<pre><code>    double getMeasure();
+</code></pre>
+
+<p>Here is the complete (and very simple) Measurable interface:</p>
+<pre><code>public interface Measurable
+{
+    double getMeasure();
+}
+</code></pre>
+
+<ul>
+<li>Open the Cone class and modify as follows:</li>
+</ul>
+<pre><code>public class Cone implements Measurable
+</code></pre>
+
+<p>Cone now implements the Measurable interface.</p>
+<p>Compile the class. As expected we receive a message indicating a failure to compile:</p>
+<p><img alt="Figure 2: Compile-time error" src="img/16.png"></p>
+<p>Omitting to implement the <em>getMeasure</em> method has resulted in this error.</p>
+<ul>
+<li>Before implementing this method let's reflect on what it is we wish to measure.<ul>
+<li>In the case of the Cone, we wish to measure the surface area</li>
+<li>A method <em>surfaceArea</em> already exists in Cone</li>
+<li>Therefore the body of <em>getMeasure</em> simply requires to invoke this method and return its return value. This results in the following implementation of <em>getMeasure</em>:</li>
+</ul>
+</li>
+</ul>
+<pre><code>public double getMeasure()
+{
+    return surfaceArea();
+}
+</code></pre>
+
+<p>Modify Circle and Rectangle so that they also implement Measurable:</p>
+<ul>
+<li><em>public class Circle implements Measurable</em></li>
+<li><em>public class Rectangle implements Measurable</em></li>
+</ul>
+<p>Add <em>getMeasure</em> to each of Circle and Rectangle:</p>
+<ul>
+<li>In the case of Circle we are interested in measuring its area:<ul>
+<li>We make use of the existing method <em>area.</em></li>
+</ul>
+</li>
+</ul>
+<pre><code>    public double getMeasure()
+    {
+       return area();
+    }
+</code></pre>
+
+<ul>
+<li>In the case of Rectangle, the perimeter is the property we wish to measure:<ul>
+<li>We make use of the existing method <em>perimeter</em>.</li>
+</ul>
+</li>
+</ul>
+<pre><code>    public double getMeasure()
+    {
+        return perimeter();
+    }
+</code></pre>
+
+<p>The final step is to utilize <em>getMeasure</em> within the Measure class as a replacement to the three <em>maximum</em> methods we've already written.</p>
+<ul>
+<li>Open Measure in the editor</li>
+<li>Comment out (do not delete) the three <em>maximum</em> methods.</li>
+<li>Replace with the following:</li>
+</ul>
+<pre><code>   static double maximum(Measurable[] object)
+    {
+        double max = object[0].getMeasure();
+        for(int i = 1; i &lt; object.length; i += 1)
+        {
+            double val = object[i].getMeasure();
+            max = val &gt; max ? val : max;
+        }
+        return max;
+    }
+</code></pre>
+
+<p>Study this method carefully:</p>
+<ul>
+<li>the parameter is an array of Measurable objects<ul>
+<li>In our case these can be Cone, Circle or Rectangle. </li>
+<li>Why? Because these three classes implement the Measurable interface</li>
+</ul>
+</li>
+<li>Using the same pattern as in the case of the three former <em>maximum</em> methods, this method<ul>
+<li>traverses the parameter array</li>
+<li>locates the largest value of interest</li>
+<li>returns that value.</li>
+</ul>
+</li>
+</ul>
+<p>The elegance of this design approach is that only one method is now required instead of the three previous ones or indeed any number of such methods. </p>
+<p>Finally, we will test the new system. </p>
+<ul>
+<li>As previously, we shall use MeasureTester class.</li>
+<li>Open MeasureTester in the editor with a view to making any necessary changes.<ul>
+<li>Consider: what changes might be necessary?</li>
+<li>The answer: none. </li>
+<li>Why is that, you may enquire?</li>
+<li>Answer: because the existing three method calls <em>Measure.maximum(...)</em> are still perfectly valid.<ul>
+<li>Instead of routing the execution path through the three previous <em>maximum</em> methods, the program now, in all three cases, routes the execution through the new <em>maximum</em> method that takes as argunent an array of Measurable objects.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>It was suggested above that you comment out rather than delete the three original <em>maximum</em> methods.</p>
+<ul>
+<li>Observe the amount of code that we have replaced with the new <em>maximum</em> method.</li>
+<li>This may help you appreciate the advantages of the <em>interface</em> approach<ul>
+<li>Greater code reuse</li>
+<li>Less chance of error</li>
+<li>Easier maintenance</li>
+</ul>
+</li>
+<li>Now, perhaps you may wish delete the origin three methods which would result in the following Measure class:</li>
+</ul>
+<pre><code>public class Measure
+{
+   static double maximum(Measurable[] object)
+    {
+        double max = object[0].getMeasure();
+        for(int i = 1; i &lt; object.length; i += 1)
+        {
+            double val = object[i].getMeasure();
+            max = val &gt; max ? val : max;
+        }
+        return max;
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<h2>Exercise 1</h2>
+<p>Add the class Exercise1 provided below to the <em>drawable</em> project.</p>
+<p>Add three methods to this class:</p>
+<ul>
+<li>(a) Method 1: make the circle and rectangle shapes appear<ul>
+<li>Signature : <em>public void makeVisible()</em>;</li>
+</ul>
+</li>
+<li>(a) Method 2: make the circle and rectangle shapes disappear<ul>
+<li>Signature : <em>public void makeInvisible()</em>;</li>
+</ul>
+</li>
+<li>(b) Method 3: toggle the shapes between visible and invisible<ul>
+<li>Signature: <em>public void toggleIsVisible()</em>.</li>
+</ul>
+</li>
+</ul>
+<p>Do not use Java interfaces.</p>
+<pre><code>import java.util.ArrayList;
+
+public class Exercise1
+{
+   ArrayList&lt;Circle&gt; circles = new ArrayList&lt;&gt;();
+   ArrayList&lt;RectangleBJ&gt; rectangles = new ArrayList&lt;&gt;();
+
+   public Exercise1()
+   {
+       circles.add(new Circle(30, 20, 60, &quot;red&quot;));
+       circles.add(new Circle(40, 50, 70, &quot;blue&quot;));
+       circles.add(new Circle(50, 60, 80, &quot;green&quot;));
+       circles.add(new Circle(60, 70, 90, &quot;black&quot;));    
+
+       rectangles.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+       rectangles.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+       rectangles.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+       rectangles.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+   }
+}
+</code></pre>
+
+<h2>Exercise 2</h2>
+<p>Add the class Exercise2 provided below to the <em>drawable</em> project.</p>
+<p>Add three methods to this class:</p>
+<ul>
+<li>(a) Method 1: make the circle and rectangle shapes appear<ul>
+<li>Signature : <em>private void makeVisible()</em>;</li>
+</ul>
+</li>
+<li>(a) Method 2: make the circle and rectangle shapes disappear<ul>
+<li>Signature : <em>private void makeInvisible()</em>;</li>
+</ul>
+</li>
+<li>(b) Method 3: override the abstract method <em>display(boolean)</em> declared in Drawable, using the above 2 methods in the implementation.</li>
+<li>Use Java interfaces.</li>
+</ul>
+<pre><code>import java.util.ArrayList;
+
+public class Exercise2 implements Drawable
+{
+    //Here declare and instantiate an array list of Drawable type
+
+    public Exercise2()
+    {
+        shapes.add(new Circle(30, 20, 60, &quot;red&quot;));
+        shapes.add(new Circle(40, 50, 70, &quot;blue&quot;));
+        shapes.add(new Circle(50, 60, 80, &quot;green&quot;));
+        shapes.add(new Circle(60, 70, 90, &quot;black&quot;));    
+
+        shapes.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+        shapes.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+        shapes.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+        shapes.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+    }
+
+    private void makeVisible()
+    {       
+         //TODO
+    }
+
+
+    private void makeInvisible()
+    {
+        //TODO
+    }
+
+    public void display(boolean show)
+    {
+        //TODO
+    }
+}
+</code></pre>
+
+<h2>Exercise 3</h2>
+<p>In the class Exercise3 below (also added to <em>drawable</em> project) invoking <em>display(true)</em> renders an array of objects of type Circle and RectangleBJ, references to which are stored in a single list of <em>interface</em> type Drawable variables. See Figure 1:
+<img alt="Figure 1 : cascade of Circle and Rectangle shapes" src="img/19.png"></p>
+<p>In this exercise do the following:</p>
+<ul>
+<li>Use the Triangle class, present in the BlueJ <em>drawable</em> project.<ul>
+<li>Modify Triangle by implementing Drawable and</li>
+<li>Overriding <em>abstract void display(boolean)</em>.</li>
+</ul>
+</li>
+<li>Add references to 4 Triangle objects to the list of shapes, each differently sized and positioned</li>
+<li>Ensure that you select positions of the triangles such that they are visible and distinguishable.</li>
+<li>Programatically display all shapes on single canvas (Circles, Rectangles and Triangles).<ul>
+<li>The goal is to generate output similar to that depicted in Figure 2 when <em>display(true)</em> is invoked on an object of <em>Exercise3</em>.
+<img alt="Figure 2 : cascade of Circle, Rectangle and Triangle shapes" src="img/20.png"></li>
+</ul>
+</li>
+</ul>
+<pre><code>import java.util.ArrayList;
+
+public class Exercise3 implements Drawable
+{
+    ArrayList&lt;Drawable&gt; shapes = new ArrayList&lt;&gt;();
+
+    public Exercise3()
+    {
+        shapes.add(new Circle(30, 20, 60, &quot;red&quot;));
+        shapes.add(new Circle(40, 50, 70, &quot;blue&quot;));
+        shapes.add(new Circle(50, 60, 80, &quot;green&quot;));
+        shapes.add(new Circle(60, 70, 90, &quot;black&quot;));    
+
+        shapes.add(new RectangleBJ(160, 30, 60, 150, &quot;red&quot;));
+        shapes.add(new RectangleBJ(170, 40, 70, 160, &quot;blue&quot;));
+        shapes.add(new RectangleBJ(180, 50, 80, 170, &quot;green&quot;));
+        shapes.add(new RectangleBJ(190, 60, 90, 180, &quot;black&quot;));
+
+        shapes.add(new Triangle(... &quot;red&quot;));
+        shapes.add(new Triangle(... &quot;blue&quot;));
+        shapes.add(new Triangle(... &quot;green&quot;));
+        shapes.add(new Triangle(... &quot;black&quot;));
+    }
+
+    public void display(boolean show)
+    {
+        ...
+    }
+
+}
+</code></pre>
+
+<h2>Exercise 4</h2>
+<p>Write a method named <em>maximum</em> in the Measure class in the <em>measurable</em> project.</p>
+<ul>
+<li>The method has this signature:<ul>
+<li><em>public static double maximum(Sphere[] spheres)</em></li>
+</ul>
+</li>
+<li>The method examines each sphere and returns the maximum spherical volume.</li>
+</ul>
+<h2>Exercise 5</h2>
+<p>Add a field in MeasureTester in the <em>measurable</em> project:</p>
+<ul>
+<li><em>int numberSpheres = 25;</em></li>
+</ul>
+<p>Write a method named <em>maxSphericalSurfaceArea</em> in MeasureTester</p>
+<ul>
+<li>The method has this signature:<ul>
+<li><em>public static double maxSphericalSurfaceArea()</em></li>
+</ul>
+</li>
+<li>The method instantiates an array of size <em>numberSpheres</em> each element of which is a sphere.</li>
+<li>The radii of the spheres are defined by 40 + i where i is a loop counter with range [0, numberSpheres-1]</li>
+<li>The  method concludes by invoking <em>Measure.maximum</em> to obtain the maximum spherical volume.</li>
+<li>The method follows the same pattern as, for example, <em>MeasureTester.maxConeSurfaceArea</em></li>
+</ul>
+<h2>Exercise 6</h2>
+<p>Figure 1 shows a section of a pipe</p>
+<p><img alt="Figure 1: Pipe" src="img/17.png"></p>
+<p>The volume of material in a section of such a pipe is:</p>
+<ul>
+<li><em>π * height * (outer radius - inner radius)*(outer radius + inner radius)</em></li>
+</ul>
+<p>Create a Pipe class to represent the above pipe length:</p>
+<ul>
+<li>Implements Measurable</li>
+<li>Add suitable fields</li>
+<li>Add an overloaded constructor.<ul>
+<li>Initialize the fields within the constructor.</li>
+<li>The constructor signature is:<ul>
+<li><em>public Pipe(int radiusOuter, int radiusInner, int height)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Write a public method named <em>volumeMaterial</em> <ul>
+<li>The method should return the volume of the solid material in the pipe.</li>
+</ul>
+</li>
+</ul>
+<p>Here is the skeleton code:</p>
+<pre><code>public class Pipe implements Measurable
+{
+    //...
+    //...
+    //...
+
+
+    public Pipe(int radiusOuter, int radiusInner, int height)
+    {
+      //...
+      //...
+      //...
+    }
+
+    public double volumeMaterial()
+    {
+        return 0;
+    }
+
+    public double getMeasure()
+    {
+        return 0;
+    }
+}
+</code></pre>
+
+<h2>Exercise 7</h2>
+<ul>
+<li>Write a method named <em>maximum</em> in the Measure class.<ul>
+<li>The method has this signature:</li>
+<li><em>public static double maximum(Pipe[] pipe)</em></li>
+<li>The method examines each pipe in the array of pipes and returns the maximum volume of pipe material chosen from all of the pipes.</li>
+</ul>
+</li>
+</ul>
+<h2>Exercise 8</h2>
+<p>In the MeasureTester class:</p>
+<ul>
+<li>Declare and initialize a field <em>private static int numberPipes = 5;</em></li>
+<li>Declare and initialize an array of Pipe<ul>
+<li><em>private static Pipe[] pipe = ...</em></li>
+</ul>
+</li>
+<li>
+<p>Write a method named <em>maxPipeMaterialVolume</em></p>
+</li>
+<li>
+<p>The method has this signature:</p>
+<ul>
+<li><em>public static double maxPipeMaterialVolume()</em></li>
+</ul>
+</li>
+<li>The method instantiates an array of size <em>numberPipes</em> each element of which is a cylindrical pipe.</li>
+<li>The radii of the pipes are defined as follows:<ul>
+<li>outer radii : 40 + 2*i </li>
+<li>inner radii : 35 + i<ul>
+<li>where i is a loop counter with range [0, numberPipes-1]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The height of the pipe is defined by (1+i)*100;</li>
+<li>The  method concludes by invoking <em>Measure.maximum</em> to obtain the maximum pipe volume.</li>
+<li>The method follows the same pattern as, for example, <em>MeasureTester.maxConeSurfaceArea</em></li>
+</ul>
+<p>Test as follows:</p>
+<ul>
+<li>Invoke <em>MeasureTester.maxPipeMaterialVolume</em> and note the answer.</li>
+</ul>
+<h2>Exercise 9</h2>
+<p>Modify the following classes so that they implement Measurable and override <em>getMeasure</em></p>
+<ul>
+<li>Cone<ul>
+<li>getMeasure returns <em>volume()</em></li>
+</ul>
+</li>
+<li>Circle<ul>
+<li>getMeasure returns <em>area()</em></li>
+</ul>
+</li>
+<li>Rectangle<ul>
+<li>getMeasure returns <em>perimeter()</em></li>
+</ul>
+</li>
+<li>Pipe<ul>
+<li>getMeasure returns <em>volumeMaterial()</em></li>
+</ul>
+</li>
+<li>Sphere<ul>
+<li>getMeasure returns <em>surfaceArea()</em></li>
+</ul>
+</li>
+</ul>
+<p>Test as follows:</p>
+<p>You are provided with a class MeasurableTester</p>
+<ul>
+<li>This class contains a method <strong><em>maximum(Measurable[] objects)</em></strong></li>
+<li>The method returns the maximum value obtained be iterating an array of Measurable objects.</li>
+<li>The class contains 5 other methods, one corresponding to each of the 5 shape classes above (Cone, Circle and so on).<ul>
+<li>For example: <strong>public static double maxConeSurfaceArea()</strong></li>
+<li>Invoke each method and note the results.</li>
+</ul>
+</li>
+</ul>
+<pre><code>    static double maximum(Measurable[] objects)
+    {
+        double max = objects[0].getMeasure();
+        for(Measurable object : objects)
+        {
+            double val = object.getMeasure();
+            max = val &gt; max ? val : max;
+        }
+        return max;
+    }
+</code></pre>
+
+<p>You are also provided with a class MeasureTester.</p>
+<ul>
+<li>This class contains methods with the same names as methods in MeasurableTester (also provided):<ul>
+<li>maxCircleArea</li>
+<li>maxRectanglePerimeter</li>
+<li>and so on.</li>
+</ul>
+</li>
+<li>Invoke each of these methods and note down the results.</li>
+<li>Compare the results to those obtained earlier.<ul>
+<li>They should match.</li>
+</ul>
+</li>
+</ul>
+<p>The fundamental difference between the two approaches is that in the case of MeasurableTester only one <strong>maximum</strong> method is invoked for the entire set of shapes whereas in the case of MeasureTester each shape has its own dedicated <em>maximum</em> method.</p>
+<p>This major reduction in code effected by using the behaviour-unifying properties of Java interfaces has many advantages such as:</p>
+<ul>
+<li>shorter development time</li>
+<li>smaller code base</li>
+<li>easier to test</li>
+<li>easier to maintain</li>
+<li>lower risk or errors</li>
+<li>and so on</li>
+</ul>
+<h2>Exercise 10</h2>
+<p>Rewrite the following method replacing the ternary operator with an <em>if - else</em> construct:</p>
+<pre><code>static double maximum(Measurable[] object)
+    {
+        double max = object[0].getMeasure();
+        for(int i = 1; i &lt; object.length; i += 1)
+        {
+            double val = object[i].getMeasure();
+            max = val &gt; max ? val : max;
+        }
+        return max;
+    }
+</code></pre>
+
+<h2>Exercise 11</h2>
+<ul>
+<li>
+<p>11.1 Modify the SelectionSort class provided below so that it sorts Comparable types rather than int[] arrays.</p>
+<ul>
+<li>the expression <em>if (a[j] &lt; a[i])</em> should be replaced by <em>if (a[i].compareTo(a[j]) &lt; 0)</em>.</li>
+<li>references to <em>int[]</em> should be replaced by <em>Comparable[]</em>.</li>
+</ul>
+</li>
+<li>
+<p>11.2 Modify Message and Circle classes as follows:</p>
+<ul>
+<li>let classes implement Comparable</li>
+<li>fully implement method <em>int compareTo(Comparable)</em> in both classes.</li>
+</ul>
+</li>
+<li>
+<p>11.3 Test that these changes allow one to use the same sort algorithm to sort different object types by executing the <em>main</em> method in the Test class provided below.</p>
+</li>
+<li>11.4 Observe that in Test class we use the same method <em>print</em> to print both Message and Circle objects. Why does this work?</li>
+</ul>
+<p>See Figure 1 for class diagram layout.</p>
+<p><img alt="Figure 1: Class diagrams" src="img/21.png"></p>
+<p>Here is the interface definition:</p>
+<pre><code>public interface Comparable
+{
+  int compareTo(Comparable comparable);
+}
+</code></pre>
+
+<p>Here is a class that facilitates sorting of an int[] array:</p>
+<pre><code>public class SelectionSort
+{ 
+  public static void sort(int[] a)
+  {
+    for (int i = 0; i &lt; a.length; i += 1)
+      for (int j = i; j &lt; a.length; j += 1)
+        if (a[j] &lt; a[i])
+          exchange(a, i, j);
+  }
+
+  private static void exchange(int[] a, int i, int j)
+  {
+    int val = a[i];
+    a[i] = a[j];
+    a[j] = val;
+  }
+
+}
+</code></pre>
+
+<p>Here are simplified versions of Message and Circle classes:</p>
+<pre><code>public class Message
+{
+  String message;
+
+  public Message(String message)
+  {
+    this.message = message;
+  }
+
+  @Override
+  public String toString()
+  {
+    return message + &quot;\n&quot;;
+  }
+}
+</code></pre>
+
+<pre><code>public class Circle
+{
+    int radius;
+
+    public Circle(int radius)
+    {
+        this.radius = radius;
+    }
+
+    @Override
+    public String toString()
+    {
+      return &quot;radius: &quot; + String.valueOf(radius) + &quot;\n&quot;;
+    }
+}
+</code></pre>
+
+<p>The following class, Test, may be used to verify that the code refactoring results in correct output when the Test.main method is executed.</p>
+<pre><code>public class Test
+{
+
+  static Message[] messages = {
+                      new Message(&quot;hey diddle diddle&quot;),
+                      new Message(&quot;the cat and the fiddle&quot;),
+                      new Message(&quot;cow she jumped over the moon&quot;),
+                      new Message(&quot;little dog laughed&quot;),
+                      new Message(&quot;to see such fun&quot;),
+                      new Message(&quot;dish ran away with the spoon&quot;)
+                    };
+
+  static Circle[] circles = {
+                      new Circle(88),
+                      new Circle(2),
+                      new Circle(33),
+                      new Circle(77),
+                      new Circle(21),
+                      new Circle(12)
+                  };
+
+  public static void print(Comparable[] comparables)
+  {
+    for(Comparable comparable : comparables)
+      System.out.print(&quot; &quot; + comparable);
+    System.out.println();
+  }
+
+  public static void main(String[] args)
+  {
+    print(messages);
+    SelectionSort.sort(messages);
+    print(messages);
+
+    print(circles);
+    SelectionSort.sort(circles);
+    print(circles);   
+  }
+
+}
+
+</code></pre>
+
+<p>Expected test output is shown in Figure 2.</p>
+<p><img alt="Figure 2: Expected test output" src="img/22.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
