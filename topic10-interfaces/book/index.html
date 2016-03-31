@@ -120,22 +120,22 @@ h3
 
   <div  class="ui tab segment lab" data-tab="Using_Interfaces">
     <h1>Objectives</h1>
-<p>A Java Interface is a type comprising a group of public method signatures. It may also include constant declarations that are static public by default. Methods have no implementation in the interface definition, implementation taking place in classes that use (implement) the interfaces. An interface only specifies behaviour: one is not allowed to create objects of an interface. However one may create objects of classes that use or implement an interface.</p>
+<p>A Java 7 Interface is a type comprising a group of public method headers (return type and signature). It may also include constant declarations that are static public by default. Methods have no implementation in the interface definition, implementation taking place in classes that use (implement) the interfaces. An interface only specifies behaviour: one is not allowed to create objects of an interface. However an interface type variable may refer to an object of a class that implements that interface. Java 8 interfaces have additional features that are not addressed here.</p>
   </div>
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
 <p>Refer to the recommended directory structure again shown in Figure 1 below.</p>
 <p><img alt="Figure 1: Recommended directory structure" src="img/01.png">.</p>
-<p>For this lab we will be working from directory <em>session08</em>.</p>
+<p>For this lab we will be working from directory <em>session10</em>.</p>
 <ul>
 <li>Download the file <em>interfaces.zip</em> from the local archive, available <a href="archives/interfaces.zip">here</a></li>
 <li>Save and uncompress the file.</li>
 <li>The file expands to a directory <em>interfaces</em>.</li>
-<li>Move or drag this directory into the the directory <em>session08</em> (Figure 2).</li>
+<li>Move or drag this directory into the the directory <em>session10</em>.</li>
 </ul>
-<p><img alt="Figure 2: Session08 ready to go" src="img/02.png"></p>
+<p><img alt="Figure 2: Session10 ready to go" src="img/02.png"></p>
 <ul>
-<li>In Explorer(Windows) or Finder (Mac) or equivalent, browse to <em>labs/session08/interfaces/drawable</em> and double click on <em>package.bluej</em>.</li>
+<li>In Explorer(Windows) or Finder (Mac) or equivalent, browse to <em>labs/session10/interfaces/drawable</em> and double click on <em>package.bluej</em>.</li>
 <li>Ths launches the downloaded BlueJ <em>drawable</em> project. See Figure 3 and Figure 4.</li>
 </ul>
 <p><img alt="Figure 3: Open BlueJ project drawable" src="img/03.png"></p>
@@ -480,7 +480,7 @@ public class InterfaceDemo
 <ul>
 <li>Define a new interface named Measurable
 <img alt="Figure 1: Measurable Interface" src="img/15.png">
-Add a method signature to Measurable:</li>
+Add a method header to Measurable:</li>
 </ul>
 <pre><code>    double getMeasure();
 </code></pre>
@@ -626,15 +626,15 @@ Add a method signature to Measurable:</li>
 <p>Add three methods to this class:</p>
 <ul>
 <li>(a) Method 1: make the circle and rectangle shapes appear<ul>
-<li>Signature : <em>public void makeVisible()</em>;</li>
+<li>Header : <em>public void makeVisible()</em>;</li>
 </ul>
 </li>
 <li>(a) Method 2: make the circle and rectangle shapes disappear<ul>
-<li>Signature : <em>public void makeInvisible()</em>;</li>
+<li>Header : <em>public void makeInvisible()</em>;</li>
 </ul>
 </li>
 <li>(b) Method 3: toggle the shapes between visible and invisible<ul>
-<li>Signature: <em>public void toggleIsVisible()</em>.</li>
+<li>Header: <em>public void toggleIsVisible()</em>.</li>
 </ul>
 </li>
 </ul>
@@ -666,11 +666,11 @@ public class Exercise1
 <p>Add three methods to this class:</p>
 <ul>
 <li>(a) Method 1: make the circle and rectangle shapes appear<ul>
-<li>Signature : <em>private void makeVisible()</em>;</li>
+<li>Header : <em>private void makeVisible()</em>;</li>
 </ul>
 </li>
 <li>(a) Method 2: make the circle and rectangle shapes disappear<ul>
-<li>Signature : <em>private void makeInvisible()</em>;</li>
+<li>Header : <em>private void makeInvisible()</em>;</li>
 </ul>
 </li>
 <li>(b) Method 3: override the abstract method <em>display(boolean)</em> declared in Drawable, using the above 2 methods in the implementation.</li>
@@ -766,7 +766,7 @@ public class Exercise3 implements Drawable
 <h2>Exercise 4</h2>
 <p>Write a method named <em>maximum</em> in the Measure class in the <em>measurable</em> project.</p>
 <ul>
-<li>The method has this signature:<ul>
+<li>The method has this header:<ul>
 <li><em>public static double maximum(Sphere[] spheres)</em></li>
 </ul>
 </li>
@@ -779,7 +779,7 @@ public class Exercise3 implements Drawable
 </ul>
 <p>Write a method named <em>maxSphericalSurfaceArea</em> in MeasureTester</p>
 <ul>
-<li>The method has this signature:<ul>
+<li>The method has this header:<ul>
 <li><em>public static double maxSphericalSurfaceArea()</em></li>
 </ul>
 </li>
@@ -801,7 +801,7 @@ public class Exercise3 implements Drawable
 <li>Add suitable fields</li>
 <li>Add an overloaded constructor.<ul>
 <li>Initialize the fields within the constructor.</li>
-<li>The constructor signature is:<ul>
+<li>The constructor header is:<ul>
 <li><em>public Pipe(int radiusOuter, int radiusInner, int height)</em></li>
 </ul>
 </li>
@@ -842,7 +842,7 @@ public class Exercise3 implements Drawable
 <h2>Exercise 7</h2>
 <ul>
 <li>Write a method named <em>maximum</em> in the Measure class.<ul>
-<li>The method has this signature:</li>
+<li>The method has this header:</li>
 <li><em>public static double maximum(Pipe[] pipe)</em></li>
 <li>The method examines each pipe in the array of pipes and returns the maximum volume of pipe material chosen from all of the pipes.</li>
 </ul>
@@ -860,7 +860,7 @@ public class Exercise3 implements Drawable
 <p>Write a method named <em>maxPipeMaterialVolume</em></p>
 </li>
 <li>
-<p>The method has this signature:</p>
+<p>The method has this header:</p>
 <ul>
 <li><em>public static double maxPipeMaterialVolume()</em></li>
 </ul>
