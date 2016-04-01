@@ -40,12 +40,12 @@ public class RectangleBJ
      * @param ySideLen  length of side in y-direction
      * @param xPos      x coordinate top-left corner rectangle
      * @param yPos      y coordinate top-left corner rectangle
-     * @param colour    colour of rectangle body
+     * @param color    color of rectangle body
      */
-    public RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+    public RectangleBJ(int xSideLen, int ySideLen, int xPos, int yPos,String color)
     {
        isVisible = false;
-       setState(xSideLen, ySideLen, xPos, yPos,colour);
+       setState(xSideLen, ySideLen, xPos, yPos,color);
     }    
   
     /**
@@ -56,15 +56,15 @@ public class RectangleBJ
      * @param ySideLen  length of side in y-direction
      * @param xPos      x coordinate top-left corner rectangle
      * @param yPos      y coordinate top-left corner rectangle
-     * @param colour    colour of rectangle body
+     * @param color    color of rectangle body
      */
-    public void setState(int xSideLen, int ySideLen, int xPos, int yPos,String colour)
+    public void setState(int xSideLen, int ySideLen, int xPos, int yPos,String color)
     {
         xSideLength = xSideLen;
         ySideLength = ySideLen;
         xPosition = xPos;
         yPosition = yPos;
-        color = colour;
+        color = color;
     }
    
     /**
@@ -226,7 +226,7 @@ public class RectangleBJ
     /**
      * Change the color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
-     * @param newColor  the new colour which will painted on the rectangle
+     * @param newColor  the new color which will painted on the rectangle
      */
     public void changeColor(String newColor)
     {

@@ -120,7 +120,7 @@ h3
 
   <div  class="ui tab segment lab" data-tab="Using_Interfaces">
     <h1>Objectives</h1>
-<p>A Java 7 Interface is a type comprising a group of public method headers (return type and signature). It may also include constant declarations that are static public by default. Methods have no implementation in the interface definition, implementation taking place in classes that use (implement) the interfaces. An interface only specifies behaviour: one is not allowed to create objects of an interface. However an interface type variable may refer to an object of a class that implements that interface. Java 8 interfaces have additional features that are not addressed here.</p>
+<p>A Java 7 Interface is a type comprising a group of public method headers (return type and signature). It may also include constant declarations that are static public by default. Methods are not implemented in the interface definition. Implementation takes place in classes that use (implement) the interfaces. An interface only specifies behaviour: one is not allowed to create objects of an interface. However, an interface type variable may refer to (be bound to) an object of a class that implements that interface. Java 8 interfaces have additional features that are not addressed here.</p>
   </div>
   <div  class="ui tab segment lab" data-tab="01">
     <h1>Introduction</h1>
@@ -130,21 +130,21 @@ h3
 <ul>
 <li>Download the file <em>interfaces.zip</em> from the local archive, available <a href="archives/interfaces.zip">here</a></li>
 <li>Save and uncompress the file.</li>
-<li>The file expands to a directory <em>interfaces</em>.</li>
-<li>Move or drag this directory into the the directory <em>session10</em>.</li>
+<li>The file expands to a folder (directory) named <em>interfaces</em>.</li>
+<li>Move or drag this folder into your <em>session10</em> folder.</li>
 </ul>
 <p><img alt="Figure 2: Session10 ready to go" src="img/02.png"></p>
 <ul>
 <li>In Explorer(Windows) or Finder (Mac) or equivalent, browse to <em>labs/session10/interfaces/drawable</em> and double click on <em>package.bluej</em>.</li>
-<li>Ths launches the downloaded BlueJ <em>drawable</em> project. See Figure 3 and Figure 4.</li>
+<li>This launches the downloaded BlueJ <em>drawable</em> project. See Figure 3 and Figure 4.</li>
 </ul>
 <p><img alt="Figure 3: Open BlueJ project drawable" src="img/03.png"></p>
 <p>On opening the project you should be presented with a series of rectangles representing classes that we have met in earlier labs. These are illustrated in Figure 4.</p>
-<p><img alt="Figure 4: Interface project classes" src="img/04.png"></p>
+<p><img alt="Figure 4: Project interfaces" src="img/04.png"></p>
 <p>Open Circle source code and observe that we have added an overloaded constructor to allow a user to define the circle's color. This is illustrated in Figure 5.</p>
 <p><img alt="Figure 5; Refactored Circle class" src="img/05.png"></p>
 <p>We have made this trivial change to differentiate between various circles that we shall construct in demonstating the unifying power of Java <em>interface</em>s.</p>
-<p>We shall also use the RectangleBJ class. Its overloaded constructor provides for different colors and so refactoring is unnecessary.</p>
+<p>We shall also use the RectangleBJ class. Its overloaded constructor already provides for different colors and so refactoring is unnecessary.</p>
   </div>
   <div  class="ui tab segment lab" data-tab="02">
     <h1>Display list shapes (1)</h1>
@@ -409,33 +409,30 @@ public class InterfaceDemo
 </ul>
 </li>
 </ul>
-<p><strong>Measure</strong> class: open the source file in the editor and note the presence of three methods wrappers, all having the same name, <em>maximum</em>, but different signatures.</p>
+<p><strong>Measure</strong> class: open the source file in the editor and note the presence of three method wrappers, all having the same name, <em>maximum</em>, but different signatures as follows:</p>
 <ul>
-<li>The signatures and return values are<ul>
 <li><em>public static double maximum(Cone[] cone)</em><ul>
 <li>the maximum surface area
-<img alt="Figure 1: Obtain largest surface area of array of Cone objects" src="img/11.png"></li>
+  <img alt="Figure 1: Obtain largest surface area of array of Cone objects" src="img/11.png"></li>
 </ul>
 </li>
 <li><em>public static double maximum(Circle[] circle)</em>    <ul>
 <li>the maximum area
-<img alt="Figure 2: Obtain largest area of array of Circle objects" src="img/12.png"></li>
+  <img alt="Figure 2: Obtain largest area of array of Circle objects" src="img/12.png"></li>
 </ul>
 </li>
 <li><em>public static double maximum(Rectangle[] rectangle)</em><ul>
 <li>the maximum perimeter
-<img alt="Figure 3: Obtain largest perimeter of array of Rectangles objects" src="img/13.png"></li>
+  <img alt="Figure 3: Obtain largest perimeter of array of Rectangles objects" src="img/13.png"></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p>As you can see, the methods accept arrays of Cone, Circle and Rectangle classes and search through these arrays for the maximum value in the various properties of interest namely suface area (Cone), area (Circle) and perimeter (Rectangle).</p>
+<p>As you can see, the methods accept arrays of Cone, Circle and Rectangle objects and search through these arrays for the maximum value in the various properties of interest namely suface area (Cone), area (Circle) and perimeter (Rectangle).</p>
 <p>Based on the contents of the above 3 figures, complete and compile the Measure class.</p>
 <p>Observe that the three <em>maximum</em> methods are essentially similar. All three</p>
 <ul>
-<li>traverse the parameter array</li>
-<li>locate the largest value of interest</li>
+<li>traverse the parameter array,</li>
+<li>locate the largest value of interest,</li>
 <li>return that value.</li>
 </ul>
 <p><strong>MeasureTester</strong> class is, as the name suggests, a class to test these methods.</p>
@@ -475,7 +472,16 @@ public class InterfaceDemo
     <h1>Algorithm Reuse (2)</h1>
 <p>We have written three search algorithms to look for the largest value. </p>
 <p>Would it not be better to use a single algorithm since the three algorithms comprise the same pattern?</p>
-<p>Indeed, this is possible using the Java <em>interface</em> type and that is what we shall now address.</p>
+<ul>
+<li>Algorithmic (pseudo) code:<ul>
+<li>A variable to hold the maximum value is declared and initialized.</li>
+<li>The array is traversed using a <em>for</em> loop.</li>
+<li>At each iteration the current array element is compared to the maximum value which is updated if the current element is greater.</li>
+<li>At the end of the loop the maximum value is returned.</li>
+</ul>
+</li>
+</ul>
+<p>We shall now use the Java <em>interface</em> type to create a single algorithm capable of sorting the Cone, Rectangle, Sphere and Circle object arrays.</p>
 <p>In the <em>measurable</em> project:</p>
 <ul>
 <li>Define a new interface named Measurable
@@ -485,7 +491,7 @@ Add a method header to Measurable:</li>
 <pre><code>    double getMeasure();
 </code></pre>
 
-<p>Here is the complete (and very simple) Measurable interface:</p>
+<p>Here is the complete Measurable interface:</p>
 <pre><code>public interface Measurable
 {
     double getMeasure();
@@ -567,26 +573,25 @@ Add a method header to Measurable:</li>
 <p>Study this method carefully:</p>
 <ul>
 <li>the parameter is an array of Measurable objects<ul>
-<li>In our case these can be Cone, Circle or Rectangle. </li>
+<li>In our case this may be Cone, Circle or Rectangle. </li>
 <li>Why? Because these three classes implement the Measurable interface</li>
 </ul>
 </li>
 <li>Using the same pattern as in the case of the three former <em>maximum</em> methods, this method<ul>
-<li>traverses the parameter array</li>
-<li>locates the largest value of interest</li>
+<li>traverses the parameter array,</li>
+<li>locates the largest value of interest,</li>
 <li>returns that value.</li>
 </ul>
 </li>
 </ul>
-<p>The elegance of this design approach is that only one method is now required instead of the three previous ones or indeed any number of such methods. </p>
+<p>The elegance of this design approach is that only one method is now required instead of the three previous ones. </p>
 <p>Finally, we will test the new system. </p>
 <ul>
 <li>As previously, we shall use MeasureTester class.</li>
 <li>Open MeasureTester in the editor with a view to making any necessary changes.<ul>
 <li>Consider: what changes might be necessary?</li>
 <li>The answer: none. </li>
-<li>Why is that, you may enquire?</li>
-<li>Answer: because the existing three method calls <em>Measure.maximum(...)</em> are still perfectly valid.<ul>
+<li>This is so because the existing three method calls <em>Measure.maximum(...)</em> are still perfectly valid.<ul>
 <li>Instead of routing the execution path through the three previous <em>maximum</em> methods, the program now, in all three cases, routes the execution through the new <em>maximum</em> method that takes as argunent an array of Measurable objects.</li>
 </ul>
 </li>
@@ -597,12 +602,12 @@ Add a method header to Measurable:</li>
 <ul>
 <li>Observe the amount of code that we have replaced with the new <em>maximum</em> method.</li>
 <li>This may help you appreciate the advantages of the <em>interface</em> approach<ul>
-<li>Greater code reuse</li>
-<li>Less chance of error</li>
-<li>Easier maintenance</li>
+<li>Greater code reuse,</li>
+<li>Less chance of error,</li>
+<li>Easier maintenance.</li>
 </ul>
 </li>
-<li>Now, perhaps you may wish delete the origin three methods which would result in the following Measure class:</li>
+<li>Now, perhaps, you may wish delete the origin three methods which would result in the following Measure class:</li>
 </ul>
 <pre><code>public class Measure
 {
@@ -958,7 +963,7 @@ public class Exercise3 implements Drawable
 <pre><code>static double maximum(Measurable[] object)
     {
         double max = object[0].getMeasure();
-        for(int i = 1; i &lt; object.length; i += 1)
+        for (int i = 1; i &lt; object.length; i += 1)
         {
             double val = object[i].getMeasure();
             max = val &gt; max ? val : max;
