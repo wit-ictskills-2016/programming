@@ -1,0 +1,1205 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      9. Inheritance, Exceptions & Final Round-up
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Eclipse_Exceptions">
+        Eclipse_Exceptions
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+      <a class="item" data-tab="10">
+        10
+      </a>
+      <a class="item" data-tab="11">
+        11
+      </a>
+      <a class="item" data-tab="12">
+        12
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Eclipse_Exceptions">
+    <h1>Objectives</h1>
+<p><br>
+In addition to exploring Exceptions, we introduce the Eclipse Integrated Development Environment (IDE). We examine the class <em>Object</em>, which is the root of the Java class hierarchy, and explore some of the methods in <em>Object</em>', for example <em>toString</em>, <em>equals</em>, hashCode and <em>clone</em>.</p>
+<p>We also briefly explore an number of optional topics such as importing and exporting jars and using customized styling within the Eclipse environment.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <p><br><br></p>
+<h1>Setup</h1>
+<p>If Eclipse is not already on your computer then:</p>
+<ul>
+<li>
+<p>Download <a href="https://www.eclipse.org/downloads/">Eclipse</a> IDE for Java developers. <br>
+<img alt="Figure 1: Download appropriate version of Eclipse for Java developers" src="img/01.jpg"></p>
+</li>
+<li>
+<p>Launch Eclipse and when prompted to select a workspace browse to <em>workspaceBlueJ/labs/session11</em></p>
+<ul>
+<li>Create new folder <em>ICTSkillsIO</em> and press OK.
+<img alt="Figure 2: Create Eclipse workspace" src="img/02.jpg"></li>
+</ul>
+</li>
+<li>
+<p>Your directory stucture should be somewhat similar to that shown in Figure 3.
+<img alt="Figure 3: Directory structure" src="img/03.jpg"></p>
+</li>
+<li>
+<p>When you launch Eclipse for the first time in a new workspace you will be presented with the Eclipse welcome screen:
+<img alt="Figure 4: Eclipse Welcome screen" src="img/04.jpg"></p>
+</li>
+<li>
+<p>Reveal the Eclipse Package Explorer by clicking on the <em>Restore</em> Icon which appears in the top-left corner of the Eclipse window when you position the mouse in this area, as depicted in Figure 5:
+<img alt="Figure 5: Reveal Package Explorer" src="img/05.jpg"></p>
+</li>
+</ul>
+<p>Eclipse facilitates development in several environments in addition to Java. For example, JavaScript, Web, C++ and so on and provides individual perspectives for each environment.</p>
+<p>A perspective is simply an arrangement of sub-windows within the Eclipse main window.</p>
+<ul>
+<li>If you are unsure which perspective is open you may invoke the menu commands <em>Window | Open Perspective | Java</em>.
+<img alt="Figure 6: Check active perspective is Java" src="img/06.jpg"></li>
+<li>This will ensure the Java perspective is active. You may quickly verify by observing that the Java icon in the top right corner of the Eclipse window is depressed (shaded) as shown in Figure 7.
+<img alt="Figure 7: Java perspective active" src="img/07.jpg"></li>
+</ul>
+<p>In the next step we shall create work with a Java project.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <p><br><br></p>
+<h1>BlueJ project to Eclipse</h1>
+<p>We shall now import the BlueJ shapes project into a similarly named project in Eclipse.</p>
+<p>In the ICTSkillsIO workspace create a new project named <em>shapes</em>:</p>
+<p><img alt="" src="img/60.png">
+<img alt="" src="img/61.png"></p>
+<p>Create a package named</p>
+<pre><code>ie.wit.ictskills
+</code></pre>
+
+<p><img alt="" src="img/62.png">
+<img alt="" src="img/65.png"></p>
+<p>Download and expand the archived file <a href="archives/shapes.zip">shapes.zip</a> into a temporary folder.</p>
+<p>Import the files in the expanded folder <em>shapes</em> into the Eclipse shapes project:</p>
+<p><img alt="" src="img/67.png">
+<img alt="" src="img/63.png">
+<img alt="" src="img/64.png"></p>
+<p>Four classes will be imported:</p>
+<ul>
+<li>Canvas</li>
+<li>Circle</li>
+<li>Rectangle</li>
+<li>Triangle</li>
+</ul>
+<p>To fix the errors that will probably be generated, add </p>
+<pre><code>package ie.wit.ictskills;
+</code></pre>
+
+<p>to the top of each class file.</p>
+<p>For example: </p>
+<pre><code>package ie.wit.ictskills;
+
+public class Rectangle
+{
+    private int xSideLength;
+    private int ySideLength;
+    private int xPosition;
+    private int yPosition;
+    private String color;
+    private boolean isVisible;
+
+    public Rectangle()
+    {
+        xSideLength = 60;
+
+</code></pre>
+
+<p>Access to a <em>main</em> method is required to run an application. </p>
+<p>Create a new class named, arbitrarily, <em>MainShapes</em> as follows:</p>
+<pre><code>package ie.wit.ictskills;
+
+public class MainShapes
+{
+
+  public static void main(String[] args)
+  {
+    Circle circle = new Circle(100, 0, 0, &quot;yellow&quot;);
+    circle.makeVisible();
+    Rectangle rectangle = new Rectangle();
+    rectangle.makeVisible();
+    Triangle triangle = new Triangle();
+    triangle.makeVisible();
+  }
+
+}
+</code></pre>
+
+<p>In <em>main</em> we have created instances of Circle, Rectangle and Triangle classes and invoked <em>makeVisible</em> on each object.</p>
+<p>To run the program select MainShapes and then, from the menu, select <em>Run As | Java Application</em> as shown here:</p>
+<p><img alt="" src="img/66.png"></p>
+<p>Here is the output generated by the app:</p>
+<p><img alt="" src="img/68.png"></p>
+<p>Quit the MainShapes window when done:</p>
+<p><img alt="" src="img/69.png"></p>
+<p>A compressed archived copy of the Eclipse shapes project is available <a href="archives/shapes_eclipse.zip">here</a>.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <p><br><br></p>
+<h1>Compile jar</h1>
+<p>A Java Archive or JAR file is a compressed (zip) file typically containing Java binary files (.class) and optionally corresponding source files (.java) in addition to other optional resources. See <a href="http://docs.oracle.com/javase/tutorial/deployment/jar/">here</a> for a more detailed treatment of the subject.</p>
+<p>In this step we shall:</p>
+<ul>
+<li>Create a Java project in Eclipse</li>
+<li>Import a selection of source files from the standard libraries developed by <a href="http://introcs.cs.princeton.edu/java/stdlib/">Sedgewick &amp; Wayne</a></li>
+<li>Compile and export these files as a jar file</li>
+<li>Create a demo project in which we shall link to this newly created jar and use some of its features.
+<img alt="Figure 1 Introduction to Programming in Java Standard Libraries" src="img/08.jpg"></li>
+</ul>
+<p>Using Eclipse menu commands create a new project named StdLib:</p>
+<ul>
+<li>File | New | Java Project
+<img alt="Figure 2: New Java Project" src="img/09.png">
+<img alt="Figure 3: Name project StdLib" src="img/10.jpg"></li>
+</ul>
+<p>Download and save to a temporary directory the archive file <strong>ie.zip</strong> available <a href="archives/ie.zip">here</a>
+<img alt="Figure 4: Download archive to temporary folder" src="img/12.jpg"></p>
+<ul>
+<li>Select <strong>src</strong> folder in StdLib in the Package Explorer, right click and select <strong>Import</strong></li>
+<li>A window named <em>Import</em> appears in which you should select <em>Archive File</em> and then click <em>Next</em>.
+<img alt="Figure 5: Import archive" src="img/11.jpg"></li>
+</ul>
+<p>Browse to the temporary folder and select <em>ie.zip</em>
+<img alt="Figure 6: Importing archive" src="img/13.jpg"></p>
+<p>Expand <em>src</em> folder in the Package Explorer. Open the file <em>StdOut.java</em>. You should the be presented with a file structure as shown in Figure 7 together with <em>StdOut.java</em> file just opened.
+<img alt="Figure 7: Imported file structure" src="img/14.jpg"></p>
+<p>Observe the package name at the head of the file <em>StdOut.java</em>:</p>
+<ul>
+<li>package ie.wit.io.ictskills;
+Read the the Oracle online article <a href="http://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html">Naming a Package</a> to understand why this name has been chosen.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <p><br><br></p>
+<h1>Export JAR</h1>
+<p>In this step we shall export the project <em>StdLib</em> as a JAR file.</p>
+<p>In the Eclipse menu select File | Export</p>
+<ul>
+<li>In the window named <em>Export</em> that opens, select <em>Java | Jar file</em>.
+<img alt="Figure 1 : Select Java JAR file" src="img/15.jpg"></li>
+<li>Press the Next button.</li>
+<li>A window, <em>JAR Export</em>, opens in which should be ticked:<ul>
+<li><em>Export generated class files and resources</em></li>
+<li><em>Export Java source files and resources</em></li>
+</ul>
+</li>
+<li>Press the Browse button located to the right of the input slot named <em>JAR file:</em>
+<img alt="Figure 2: JAR Export" src="img/16.jpg"><ul>
+<li>Browse to a location on your disk where you wish to store the JAR. For example on a PC it might be C:\mylibs</li>
+<li>When at the chosen location <ul>
+<li>Press the New Folder button at the bottom-left of the Save window.</li>
+<li>Name the folder <em>mylibs</em>.</li>
+<li>Enter a name for the JAR, for example, <em>stdiolib</em>, in the Save As input text area located towards the top of the Save window.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In the next step we shall use some of the functionality in the exported JAR, for example <em>StdOut</em>, as an alternative to Java's <em>Sytem.out</em>.
+    <img alt="Figure 3: Saving JAR file" src="img/17.jpg"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <p><br><br></p>
+<h1>Using stdiolib</h1>
+<p>Here is an outline of the approach we shall adopt to explore some of the functionality in the newly created JAR will be as follows:</p>
+<ul>
+<li>Create a new Java project in Eclipse.</li>
+<li>Download the archive file <a href="archives/spacebook.zip">spacebook</a> and save in your temporary directory.</li>
+<li>Import the <em>spacebook</em> folder into the Eclipse project</li>
+<li>Integrate the library JAR <em>stdiolib</em> and use its functionality to:<ul>
+<li>Read a log file.</li>
+<li>Amend the log file.</li>
+<li>Write the amended log file.</li>
+<li>Use a simple demonstration to compare some of <em>stdiolib</em> functionality to that of Java's System.out.</li>
+</ul>
+</li>
+</ul>
+<p>Here are the detailed steps:</p>
+<p><strong>Download spacebook archive</strong></p>
+<ul>
+<li>A modified version of the spacebook project is available <a href="archives/spacebook.zip">here</a></li>
+<li>Download and save to your temporary directory.</li>
+</ul>
+<p><strong>Create Java Project</strong></p>
+<p>Execute Eclipse menu command:</p>
+<ul>
+<li>
+<p>File | New | Java Project
+<img alt="Figure 1: New Java Project" src="img/18.jpg"></p>
+</li>
+<li>
+<p>Name the project <em>spacebook</em>.</p>
+</li>
+<li>Press Finish.</li>
+</ul>
+<p><img alt="Figure 2: spacebook project" src="img/19.jpg"></p>
+<p>In Eclipse Package Explorer open <em>spacebook</em> and select <em>src</em> folder.</p>
+<ul>
+<li>Right click and in menu that opens select <em>Import</em></li>
+<li>This opens the Import window.</li>
+<li>Select Archive File in the Import window.
+<img alt="Figure 3: Browse to Spacebook project" src="img/20.jpg"></li>
+<li>Click Next and in the window that opens (also Import) <ul>
+<li>Browse to the temporary folder in which you have saved the archive file <em>spacebook.zip</em>.
+<img alt="Figure 4: Importing spacebook files" src="img/21.jpg"></li>
+</ul>
+</li>
+<li>Press Finish button</li>
+<li>Expand the <em>src</em> folder in Package Explorer. You should be presented with that shown in Figure 4.
+<img alt="Figure 4: Spacebook files imported" src="img/22.jpg"></li>
+</ul>
+<p><strong>Import external JAR</strong></p>
+<p>The following series of steps explain how to import the JAR file we created earlier so that we can experiment with alternatives to System.out and so on.</p>
+<ul>
+<li>Select spacebook project in Package Explorer
+Right click-  and execute Build Path | Add External Archives
+<img alt="Figure 5: Add external archives" src="img/23.jpg"></li>
+<li>Browse to the folder where you saved stdiolib.jar.</li>
+<li>Select the JAR file and press Open.
+<img alt="Figure 6: Browse to JAR to import" src="img/24.jpg"></li>
+<li>Observe that stdiolib.jar now appears in the Package Explorer pane. Expand this: you should see the imported files as depicted in Figure 7.
+<img alt="Figure 7: Imported archive" src="img/25.jpg"></li>
+</ul>
+<p><strong>Using the imported JAR functionality</strong></p>
+<ul>
+<li>Select the package <em>ie.wit.spacebook</em> and execute New | Class
+<img alt="Figure 8: New Class" src="img/26.jpg"></li>
+<li>In the text edit field Name in the window New Java Class type TestSpacebook.</li>
+<li>Press Finish.
+<img alt="Figure 9: Naming new class TestSpacebook" src="img/27.jpg"></li>
+<li>The newly created class, TestSpacebook, opens automatically. <ul>
+<li>Refactor the class as follows:</li>
+</ul>
+</li>
+</ul>
+<pre><code>package ie.wit.spacebook;
+import ie.wit.io.ictskills.StdOut;
+public class TestSpacebook {
+
+    public static void main(String[] args) {
+        System.out.println(&quot;Hello World&quot;);
+        StdOut.println(&quot;Hello ICTSkills World&quot;);
+
+    }
+}
+</code></pre>
+
+<p>What follows is a brief explanation of this newly created and refactored class:</p>
+<p>The class is in the package <em>ie.wit.spacebook</em>.</p>
+<ul>
+<li>package ie.wit.spacebook;</li>
+</ul>
+<p>We import the class <em>StdOut</em> from the stdiolib.jar. Notice that this class is in a different package to <em>TestSpacebook</em>.</p>
+<ul>
+<li>import ie.wit.io.ictskills.StdOut;</li>
+</ul>
+<p>We define a <em>main</em> method. Every Java application uses a <em>main</em> method to engage with low-level Java infrastructure and the system's operating system.</p>
+<ul>
+<li>public static void main(String[] args) {...}</li>
+</ul>
+<p>Next we print the famous (or infamous) "Hello World" slogan using Java's System.out.println method.</p>
+<ul>
+<li>System.out.println("Hello World");</li>
+</ul>
+<p>Finally, we use one of the methods in <em>StdOut</em>, also called <em>println</em>, to display a slightly different (and somewhat more relevant) slogan.</p>
+<ul>
+<li>StdOut.println("Hello ICTSkills World");</li>
+</ul>
+<p>Run the application, TestSpacebook:</p>
+<ul>
+<li>Select TestSpacebook.java in the Package Explorer window</li>
+<li>Execute Eclipse Menu command: Run | Run
+<img alt="Figure 10: Run TestSpacebook" src="img/28.jpg"></li>
+<li>Observe the output in the Console window at the bottom of the Eclipse perspective.
+<img alt="Figure 11: TestSpacebook output" src="img/29.jpg"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <p><br><br></p>
+<h1>CStyle Formatter</h1>
+<p><strong>Installing CStyle Formatter</strong></p>
+<p>Following are instructions to change the Eclipse Formatter, which controls the default positioning of curly brackets and so on in Java source files.</p>
+<ul>
+<li>Download and expand the file <a href="archives/style.java.xml.zip">style.java.xml.zip</a> into your temporary directory.</li>
+<li>Open the Eclipse Preferences window and type <em>formatter</em> in the top left edit input slot. This will allow you to quickly locate the <em>Java | Code Style | Formatter</em> window:
+<img alt="Figure 1: Eclipse Preferences Formatter" src="img/30.jpg"></li>
+<li>Press the Import button, browse to the temporary folder, select <em>style.java.xml</em> and press Open.</li>
+<li>In the Formatter window the Active profile should now be <strong>CStyle</strong> whereas previously it was <em>Eclipse[built-in]</em></li>
+<li>Press Apply and OK. 
+<img alt="Figure 2: CStyle is the active profile" src="img/31.jpg"></li>
+<li>Open TestSpacebook.java in Eclipse. </li>
+<li>Select all using, for example, Menu commands Edit | Select All.</li>
+<li>Execute menu command: Source | Format.
+<img alt="Figure 3: Applying C-Style Formatter" src="img/32.jpg"></li>
+<li>Observe the old and new styles of presentation:
+<img alt="Figure 4: Eclipse[built-in] v CStyle formatting of TestSpacebook.java" src="img/33.jpg"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <p><br><br></p>
+<h1>Logger</h1>
+<p>In this step we shall:</p>
+<ul>
+<li>Develop a simpler <em>Logger</em> in the <em>StdLib</em> project</li>
+<li>Use <em>Logger</em> in <em>spacebook</em> to log an entry each time a Message object is created</li>
+</ul>
+<p><strong>Logger</strong></p>
+<ul>
+<li>Create a new class named Logger in StdLib project in the <em>ie.wit.io.ictskills</em> package.</li>
+</ul>
+<pre><code>public class Logger
+{
+
+}
+</code></pre>
+
+<p>We shall use existing classes and methods in <em>StdLib</em>. Here is a method to write to a file. If the file does not exist the method first creates the file.</p>
+<pre><code>  /**
+   * Write a string to a file
+   * If file does not exist it is automatically created
+   *
+   * @param data
+   *          the string to write to file
+   * @param filename
+   *          the user-supplied filename
+   */
+  public static void write(String data, String filename)
+  {
+
+    Out out = new Out(filename);
+    out.println(data);
+    out.close();
+  }
+</code></pre>
+
+<p>Next we write a method to append a string to an existing file:</p>
+<pre><code>  /**
+   * Append string data to end of file without changing existing file content,
+   * creating the file if it does not already exist.
+   * 
+   * @param data
+   *          the string to append to file
+   */
+  public static void append(String data, String filename)
+  {
+    Out.append(data, filename);
+  }
+</code></pre>
+
+<p>Finally we develop a method to read the contents of the file and print to the console:</p>
+<pre><code>  /**
+   * Read all the file contents of file and print to console.
+   * 
+   * @return the contents of the file
+   */
+  public static String read(String filename)
+  {
+
+    In in = new In(filename);
+    String log = in.readAll();
+    in.close();
+    return log;
+  }
+</code></pre>
+
+<p>Add these methods to the Logger class and export <em>StdLib</em> as before, overwriting the existing <em>stdiolib.jar</em> file when prompted.</p>
+<p>Now, return to the <em>spacebook</em> project:</p>
+<ul>
+<li>Select <em>spacebook</em></li>
+<li>Right click and select Refresh in the menu that appears.</li>
+<li>This will cause the <em>stdiolib</em> JAR file to be updated.<ul>
+<li>Allows us to use newly added Logger class methods.
+<img alt="Figure 1: Refresh project" src="img/34.jpg"></li>
+</ul>
+</li>
+</ul>
+<p>Open the Message class and add a new field:</p>
+<pre><code>public static final String logFileName = &quot;spacebook-messagelog.txt&quot;;
+</code></pre>
+
+<p>Next add a method to generate a log entry message:</p>
+<pre><code>  private void logMessage()
+  {
+    String logEntry = &quot;Log entry at &quot; + 
+                            Datestamp.timestamp() +
+                            &quot; : Message from : &quot; + 
+                            from.firstName + &quot; to &quot; + 
+                            to.firstName + &quot; : Message content : &quot; + 
+                            this.messageText;
+
+    Logger.append(logEntry, logFileName);
+
+  }
+</code></pre>
+
+<p>This will return strings similar to those shown in Figure 2 and append each log-entry in turn to the log file on disk.
+<img alt="Figure 2: Message log-entries" src="img/35.jpg"></p>
+<p>The final step in adding a logging facility to Message is to invoke <em>logMessage</em>.</p>
+<ul>
+<li>Add the invocation to the constructor:</li>
+</ul>
+<pre><code>logMessage();
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <p><br><br></p>
+<h1>Exceptions</h1>
+<ul>
+<li>Working with Eclipse, create a new folder in your working session (topic) folder named <em>exceptions</em>.
+<img alt="Figure 1: exceptions folder" src="img/36.png"></li>
+<li>Create a new Java project located in this directory:<ul>
+<li>Name the project <em>exceptions</em>.</li>
+</ul>
+</li>
+</ul>
+<h2>Unchecked exception</h2>
+<p>Select the folder <em>src</em> in the project <em>exceptions</em> in the Package Explorer, right click and in the menu that appears select new package.</p>
+<ul>
+<li>Name the package <em>unchecked</em>.
+<img alt="Figure 2: Create new package" src="img/37.png"></li>
+<li>The package icon should appear in the Package Explorer
+<img alt="Figure 3: package icon representing unchecked package in package explorer" src="img/38.png"></li>
+</ul>
+<p>We shall now demonstrate the generation of an unchecked exception.</p>
+<p>We will write these simple classes:</p>
+<ul>
+<li>Book</li>
+<li>Test</li>
+</ul>
+<p>Here is the Book class:</p>
+<pre><code>package unchecked;
+
+public class Book {
+  String title;
+  String author;
+  Book(String title, String author)
+  {
+      this.title = title;
+      this.author = author;
+  }
+}
+</code></pre>
+
+<p>Here is the Test class. It contains an unitialized Map instance variable, a method named <em>getBook</em> and a <em>main</em> method to conduct a simple test which results in a NullPointerException.</p>
+<pre><code>package unchecked;
+
+import java.util.Map;
+
+public class Test {
+
+   Map&lt;String, Book&gt; books;
+
+  public Book getBook(int index) {
+    return books.get(index);
+  }
+
+  public static void main(String[] args) {
+    Test test = new Test();
+    Book book = test.getBook(0);
+  }
+}
+</code></pre>
+
+<ul>
+<li>The class contains a field of type Map&lt;String, Book>.</li>
+<li>The map is not initialized.</li>
+<li>A method <em>getBook</em> attempts to access the map.</li>
+<li>This triggers a NullPointerException.<ul>
+<li>We have already encountered this exception in previous labs as it, unfortunately, occurs all too frequently.</li>
+</ul>
+</li>
+</ul>
+<p>Run <em>Test</em> and observe the output in the Console:
+<img alt="Figure 4: NullPointerException" src="img/39.png"></p>
+<p>We have just demonstrated an <strong>unchecked</strong> exception.</p>
+<ul>
+<li>Introducing an unchecked exception handler is optional.</li>
+<li>The exception is generated by the Java infrastructure once the anomaly is encountered during the program's execution.</li>
+<li>At the instant that the anomaly is encountered, an exception object is created, the program execution ceases and:<ul>
+<li>The execution path begins to unwind or reverse to the point where the exception is caught or handled, passing the exception object up the call stack.</li>
+<li>If the exception is not handled then the program crashes.</li>
+<li>If the exception is handled then the program behaves as dictated by the exception handling code.</li>
+</ul>
+</li>
+</ul>
+<p>In this instance, the <a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/definition.html">call stack</a> is the list of methods invoked up to the point where the exception is generated.</p>
+<ul>
+<li>A list of these methods is often referred to as a stacktrace.</li>
+</ul>
+<p>Modify the above code, as shown below, so as to handle the exception. </p>
+<ul>
+<li>Run Test again and verify you have correctly refactored the code.</li>
+</ul>
+<p>Here is a refactored <em>main</em> method that will avoid the program crash and print a message to the console.  </p>
+<pre><code>public static void main(String[] args) {
+    Test test = new Test();
+    try {
+      Book book = test.getBook(0);
+    } catch (RuntimeException e) {
+      e.printStackTrace();
+    } 
+  }
+</code></pre>
+
+<h2>Checked exception</h2>
+<p>Create a package named <em>unchecked</em> in the exceptions project.</p>
+<p>The purpose of this section of the lab is to generate a (very contrived) checked exception and handle this exception so as to avoid a program crash and inform the developer that a problem exists.</p>
+<ul>
+<li>Develop an exception class called BookException. </li>
+<li>Develop a class Test to generate a BookException exception</li>
+<li>Run Test.main to trigger the exception.</li>
+</ul>
+<p>Here is the <em>BookException</em>:</p>
+<pre><code>package checked;
+
+public class BookException extends Exception
+{
+  String message;
+
+  BookException(String message)
+  {
+    this.message = message;
+  }
+}
+</code></pre>
+
+<p>Here is the code for <em>Test</em>. </p>
+<ul>
+<li>Notice the header (API) of the method <em>getBook</em> has been altered from previously.<ul>
+<li><em>public Book getBook(String key) throws BookException</em></li>
+<li>indicating that in the event of a <em>null</em> key, a BookException object is thrown</li>
+</ul>
+</li>
+<li>Within the method the keyword <strong>throw</strong> is used to begin the unwinding process.</li>
+<li>The keyword <strong>throws</strong> followed by the exception is used in the method header.</li>
+</ul>
+<pre><code>package checked;
+
+import java.util.Map;
+import unchecked.Book;
+
+public class Test {
+
+   Map&lt;String, Book&gt; books;
+
+  public Book getBook(String key) throws BookException {
+    if(key == null)
+    {
+      throw new BookException(&quot;\nBook exception encountered in method getBook&quot;);
+    }
+    return books.get(key);
+  }
+
+  public static void main(String[] args) {
+    Test test = new Test();
+    Book book = test.getBook(null);
+  } 
+}
+</code></pre>
+
+<p>An error is flagged:
+<img alt="Figure 5: Unhandled exception compile-time error" src="img/40.png"></p>
+<p>Select the light bulb | x icons, right click and in the menu that appears select <em>Quick Fix</em>.</p>
+<p><img alt="Figure 6: Quick Fix" src="img/41.png"></p>
+<p>Select <em>Surround with try/catch</em>. 
+<img alt="Figure 7: Surround with try/catch block" src="img/42.png"></p>
+<p><em>try-catch</em> block is inserted as shown in Figure 8.</p>
+<p><img alt="Figure 8: try/catch block applied" src="img/43.png"></p>
+<p>Run <em>Test</em> and observe the output as shown in Figure 9.</p>
+<ul>
+<li>It includes the message we provided when constructing BookException in the method <em>getBook</em>.</li>
+</ul>
+<p><img alt="Figure 9: Output from printStackTrace" src="img/43a.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <p><br><br></p>
+<h1>main function</h1>
+<p>A final note on the <em>main</em> function.</p>
+<p>Consider the method header:</p>
+<ul>
+<li>public static void main(String[] args)</li>
+</ul>
+<p>The parameter <em>String[] args</em> may be used to input information to the method when the application execution begins.</p>
+<p>Here's an example from ICTSkills Java 2013:</p>
+<pre><code>/**
+ * @file      Cross.java
+ * @author    kmurphy
+ * @practical lab-04
+ * @brief     Draw a slanted cross (X)
+ */
+public class Cross {
+
+  public static void main(String[] args) {
+    int n = Integer.parseInt(args[0]);
+
+    for (int row=1; row&lt;=n; row++) {
+      for (int col=1; col&lt;=n; col++) 
+        System.out.print( (row==col || row==n-col+1) ? &quot;*&quot; : &quot; &quot;);
+      System.out.println();
+    }
+  }
+
+}
+</code></pre>
+
+<p>Create a new project named <em>cross</em>.
+<img alt="Figure 1: Create new project named cross" src="img/45.png"></p>
+<p>Add the class <em>Cross</em> to the project, compile and run.</p>
+<p>An exception is thrown:</p>
+<p><img alt="Figure 2: Exception on attempting to execute Cross.main" src="img/46.png"></p>
+<p>Study the message in the console:</p>
+<p><em>Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 0</em></p>
+<p><em>at cross.Cross.main(Cross.java:14)</em></p>
+<p>Here is the code at line 14:</p>
+<p><em>int n = Integer.parseInt(args[0]);</em></p>
+<p>The reason for the out-of-bounds exception is that the String array has not been initialized. We can do this in Eclipse as follows:</p>
+<p>Select the class Cross (or package cross) and from the menu Run | Run Configurations.
+<img alt="Figure 3: Open Run Configurations window" src="img/47.png"></p>
+<ul>
+<li>In the Run Configurations window that opens select the tab Arguments and enter, for example, 10.</li>
+<li>Ensure that Cross is selected in the left panel.</li>
+<li>Then press Run
+<img alt="Figure 4: Input a command line argument" src="img/48.png"></li>
+</ul>
+<p>Observe the output in the console:
+<img alt="Figure 5: Output from Cross.main" src="img/49.png"></p>
+<p>The code could be refactored to behave more robustly as follows. </p>
+<ul>
+<li>We have introduced a conditional that checks if the String array is empty in which case we provide a default argument. </li>
+<li>Experiment by removing the Program arguments from the Run Configurations window and re-running the program.</li>
+</ul>
+<pre><code>  public static void main(String[] args)
+  {
+    int n = 20;
+    if(args.length &gt; 0)
+    {
+      n = Integer.parseInt(args[0]);
+    }
+
+    for (int row = 1; row &lt;= n; row++)
+    {
+      for (int col = 1; col &lt;= n; col++)
+        System.out.print((row == col || row == n - col + 1) ? &quot;*&quot; : &quot; &quot;);
+      System.out.println();
+    }
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="10">
+    <p><br><br></p>
+<h1>Object</h1>
+<p><strong>Object class</strong></p>
+<p>If a class, say Spacebook, does not use the <em>extends</em> keyword, that is, if a superclass is not specified, then the immediate superclass of Spacebook is Object.</p>
+<p>The following two definitions are equivalent:</p>
+<pre><code>public class Spacebook
+{
+
+}
+</code></pre>
+
+<pre><code>public class Spacebook extends Object
+{
+
+}
+</code></pre>
+
+<p><a href="http://docs.oracle.com/javase/tutorial/java/IandI/objectclass.html">Object</a> is the ultimate superclass to all other classes in Java:</p>
+<ul>
+<li><em>Every class is a descendant of Object, direct or indirect.</em></li>
+</ul>
+<p>Object has a number of methods, some of which we shall discuss briefly below. A developer has the option of overriding some, all or none of these methods with the exception of <em>getClass</em>.</p>
+<h3>toString</h3>
+<p>Overriding the <em>toString</em> method allows one to create a string representation of an instance of a class (an object). </p>
+<p>Here is a demonstration:</p>
+<ul>
+<li>
+<p>Create a project named objectClass, a package called <em>methods</em> in the project and a class named ObjectMethods in the package:
+<img alt="Figure 1: toString demonstration" src="img/50.png"></p>
+</li>
+<li>
+<p>Add a class ToString to the ObjectMethods.java file.</p>
+</li>
+<li>In ObjectMethods.main instantiate ToString.</li>
+<li>Print the object to standard output.<ul>
+<li>ToString toString = new ToString(10, "string");</li>
+<li>System.out.println(toString);</li>
+<li>Notice that we are attempting to print an object.</li>
+</ul>
+</li>
+</ul>
+<p>Here is the refactored code base:</p>
+<pre><code>package methods;
+
+public class ObjectMethods
+{
+
+  public static void main(String[] args)
+  {
+
+   ToString toString = new ToString(10, &quot;string&quot;);
+   System.out.println(toString);
+  }
+
+}
+
+class ToString
+{
+  int val;
+  String name;
+  ToString(int val, String name)  
+  {
+    this.val = val;
+    this.name = name;
+  }
+}
+</code></pre>
+
+<p>Note that you may include both classes, ObjectMethods and ToString in the same file but that <em>class ToString</em> is not qualified with the access modifer <em>public</em>.</p>
+<p>Run this application. You should see output in the console similar to that shown in Figure 2.
+<img alt="Figure 2: Print an object to standard output" src="img/51.png"></p>
+<p>Let's now override <em>toString</em>:</p>
+<p>Execute Eclipse menu commands Source | Generate toString()</p>
+<ul>
+<li>Accept the default checks in the Generate toString() window<ul>
+<li>Fields</li>
+<li>val</li>
+<li>name</li>
+</ul>
+</li>
+<li>Press OK
+<img alt="Figure 3: toString auto-generated" src="img/52.png"></li>
+</ul>
+<p>Study the ToString class source code. The method <em>toString</em> should have been added.
+<img alt="Figure 4: toString source" src="img/53.png"></p>
+<p>Run the application again: the output should have changed from that shown in Figure 2 to that shown in Figure 4.
+<img alt="Figure 4: Output by invoking overridden toString()" src="img/54.png"></p>
+<p><strong><em>hashCode</em></strong> and <strong><em>equals</em></strong></p>
+<p>Here is an extract from the <a href="">Oracle documentation</a> about hashCodes.</p>
+<p><em>The value returned by hashCode() is the object's hash code, which is the object's memory address in hexadecimal.</em></p>
+<p><em>By definition, if two objects are equal, their hash code must also be equal. If you override the equals() method, you change the way two objects are equated and Object's implementation of hashCode() is no longer valid. Therefore, if you override the equals()  method, you must also override the hashCode() method as well.</em></p>
+<p>Further information is available as follows:</p>
+<ul>
+<li>
+<p><a href="http://stackoverflow.com/questions/3563847/what-is-the-use-of-hashcode-in-java">this</a> <em>stackoverflow</em> article.</p>
+</li>
+<li>
+<p>discussion <a href="http://eclipsesource.com/blogs/2012/09/04/the-3-things-you-should-know-about-hashcode/">here</a></p>
+</li>
+</ul>
+<p>Here is sample code for a class <em>Shapes</em> in which both <em>hashCode</em> and <em>equals</em> are overridden:</p>
+<pre><code>public class Shapes
+{
+    private int shapeFactor;
+
+    @Override
+    public String toString() {
+        return &quot;Shapes [shapeFactor=&quot; + shapeFactor + &quot;]&quot;;
+    }
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + shapeFactor;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Shapes)) {
+            return false;
+        }
+        Shapes other = (Shapes) obj;
+        if (shapeFactor != other.shapeFactor) {
+            return false;
+        }
+        return true;
+    }   
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="11">
+    <p><br><br></p>
+<h1>Sort with Comparator</h1>
+<p>We have gained some experience of sorting in earlier labs. For example, here again is the code to sort an array of Message class objects by reference to the message text stored in each object.</p>
+<pre><code>    public static void selectionSort(ArrayList&lt;Message&gt; m)
+    {
+        for (int i = 0; i &lt; m.size(); i += 1)
+        {
+            for (int j = i; j &lt; m.size(); j += 1)
+            {
+                if (m.get(i).messageText.compareTo(m.get(j).messageText) &gt; 0)
+                {
+                    Collections.swap(m, i, j);
+                }
+            }
+        }
+    } 
+</code></pre>
+
+<p>You have been advised that such a sorting pattern is an extremely inefficient O(n2) category algorithm. </p>
+<p>It's now time to introduce a more terse and efficient sorting method, namely the <em>Collections.sort</em>. </p>
+<p>The <a href="http://docs.oracle.com/javase/tutorial/collections/algorithms/">Collection sort</a> algorithm <em>is a modified mergesort ... that offers guaranteed n log(n) performance</em>.</p>
+<p>Compare that performance [n x log(n)] to the performance of selectionSort, [n x n]. </p>
+<ul>
+<li>As you will see in Figure 1 the difference in sort times for large n is enormous.</li>
+<li>For example, for n equals one million sorts then <em>selectionSort</em> would be approximately more than one hundred and sixty thousand times more programming steps when both sorts run in similar environments.</li>
+</ul>
+<p><img alt="Figure 1: Comparison ratio of running time for selection v merge sort" src="img/55.png"></p>
+<p>A further advantage is that using <em>Collection.sort</em> is easier and the code is better tested and consequently more reliable and robust.</p>
+<p>So, here are the steps to replace <em>selectionSort</em> with <em>Collection.sort</em>.</p>
+<p>Let us assume we wish to sort, as before, an array list of messages in lexicographic order.</p>
+<p>The method call will be:</p>
+<pre><code>Collections.sort(List&lt;T&gt; list, Comparator&lt;? super T&gt; c))
+</code></pre>
+
+<ul>
+<li>List<T> equates to our ArrayList<Message>.</li>
+<li><em>? super T</em> denotes an unknown type that is a super type of T.<ul>
+<li>That is, T is a subclass of ?, an unknown type.</li>
+<li>? could also be T.</li>
+</ul>
+</li>
+</ul>
+<p>We now address the second parameter, Comparator.</p>
+<p>We first present the code for our comparator and follow with a short explanation:</p>
+<pre><code>import java.util.Comparator;
+
+public class MessageTextComparator implements Comparator&lt;Message&gt;
+{
+
+    @Override
+    public int compare(Message o1, Message o2)
+    {
+        return o1.messageText.compareTo(o2.messageText);
+    }
+}
+</code></pre>
+
+<p>The class <em>MessageTextComparator</em> implements an interface, <em>Comparator<Message></em>. </p>
+<p>This interface, <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html">Comparator</a> has a single method declaration, namely:</p>
+<p><em>int compare(T o1, T o2)</em></p>
+<p>In our case we implement this using the <em>String compareTo</em>, a method with which we are already familiar, for example from <em>selectionSort</em>.</p>
+<p>Recall the return value from <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String.compareTo</a></p>
+<p><em>Returns:</em></p>
+<ul>
+<li><em>the value 0 if the argument string is equal to this string;</em></li>
+<li><em>a value less than 0 if this string is lexicographically less than the string argument;</em></li>
+<li><em>and a value greater than 0 if this string is lexicographically greater than the string argument.</em></li>
+</ul>
+<p>The specific steps are summarised as follows:</p>
+<pre><code>//Develop a new comparator class
+
+import java.util.Comparator;
+public class MessageTextComparator implements Comparator&lt;Message&gt;
+{
+  //remaining code as shown above
+}
+</code></pre>
+
+<pre><code>//In another class, example User:
+//Populate the list of messages
+ArrayList&lt;Message&gt; messages = new ArrayList&lt;&gt;();
+messages.add(...);
+...
+...
+//Where required, sort the list
+Collections.sort(messages, new MessageTextComparator());
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="12">
+    <p><br><br></p>
+<h1>Farewell BlueJ</h1>
+<p>BlueJ has served us well. It has proven an excellent programming learning tool. Its advantages have been many:</p>
+<ul>
+<li>Classes and objects are represented graphically.</li>
+<li>The graphical user interface is simple.</li>
+<li>The visual representation of classes and objects gives an intuitive understanding of object-oriented programming (OOP).</li>
+<li>Objects and classes are introduced almost immediately once the course begins.</li>
+<li>The infamous "Hello World" with the complex accompanying boiler-plate is not introduced on day one as with conventional approaches to teaching Java &amp; OOP.</li>
+<li>The <strong>main</strong> program is hidden in the BlueJ infrastructure and can be exposed at an appropriate point during the course.</li>
+<li>It heavily promotes the use of JUnit testing.</li>
+<li>A simple debugger is included.</li>
+<li>The code pad allows one to instantly evaluate Java expressions.</li>
+<li>The same code base developed in BlueJ can be used when one inevitably migrates to more complex integrated development environments (IDEs) such as Eclipse, Netbeans or IntelliJ IDEA.</li>
+</ul>
+<p><img alt="Bye-Bye BlueJ" src="img/44.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <p><br><br></p>
+<h1>Exercises</h1>
+<p><strong>Exercise 1</strong></p>
+<p>In the <em>exceptions</em> project write an unchecked exception class named <em>SpacebookNullPointerException</em>.</p>
+<pre><code>package exercises;
+
+public class SpacebookNullPointerException extends NullPointerException
+{
+
+  ...
+
+  public SpacebookNullPointerException(...)
+  {
+   ...
+  }
+  @Override
+  public String getLocalizedMessage()
+  {
+    ...
+  }
+}
+</code></pre>
+
+<ul>
+<li>Derive the class from <em>NullPointerException</em>.</li>
+<li>Override Throwable.getLocalizedMessage()</li>
+<li>Class to contain field String message.</li>
+<li>Initialized field via constructor.</li>
+<li>Write some demo code to trigger this exception, completing the following code:</li>
+</ul>
+<pre><code>package exercises;
+
+import java.util.Map;
+
+public class ThrowSpacebookException {
+
+    Map&lt;String, Book&gt; books;
+
+    public static void throwException(String key)
+    {
+      //TODO
+    }
+
+    public static void main(String[] args)
+    {     
+      //TODO
+    }
+}
+</code></pre>
+
+<p>Although not mandatory, since this is an unchecked exception, handle the exception in <em>main</em> using a try-catch block and the overridden method <em>getLocalizedMessage</em>.  </p>
+<p><strong>Exercise 2</strong></p>
+<p>Here is the <em>main</em> method in the <em>Cross</em> class:</p>
+<pre><code>  public static void main(String[] args)
+  {
+    int n = 20;
+    if(args.length &gt; 0)
+    {
+      n = Integer.parseInt(args[0]);
+    }
+
+    for (int row = 1; row &lt;= n; row++)
+    {
+      for (int col = 1; col &lt;= n; col++)
+        System.out.print((row == col || row == n - col + 1) ? &quot;*&quot; : &quot; &quot;);
+      System.out.println();
+    }
+  }
+</code></pre>
+
+<p>Replace this block:</p>
+<pre><code class="ene">    int n = 20;
+    if(args.length &gt; 0)
+    {
+      n = Integer.parseInt(args[0]);
+    }
+</code></pre>
+
+<p>using the ternary operator (?:).</p>
+<p><strong>Exercise 3</strong>
+Download the file recursion.zip available <a href="archives/recursion.zip">here</a> and import the archive (a Java project) into your Eclipse workspace.</p>
+<ul>
+<li>
+<p>The project contains a single class Factorial in which two algorithms are provided to calculate the factorial of an integer n.</p>
+<ul>
+<li>One algorithm uses an iterative pattern</li>
+<li>The other algorithm uses recursion.</li>
+</ul>
+</li>
+<li>
+<p>The purpose of the exercise is to obtain an appreciation of how recursion works and how its approach differs from that of the iterative pattern.</p>
+</li>
+<li>
+<p>Use the debugger to step through the code as an aid to gaining a conceptual appreciation of, in particular, the recursive pattern.</p>
+</li>
+</ul>
+<p>Note: in general both iterative and recursive patterns are available for a specific algorithm but it is claimed that in some cases the recursive pattern is more suitable and easier to apply.</p>
+<ul>
+<li>One such example is the <a href="https://www.youtube.com/watch?v=5_6nsViVM00">Tower of Hanoi</a> problem.</li>
+</ul>
+<p>Have fun!</p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

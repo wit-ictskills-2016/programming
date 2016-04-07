@@ -1,0 +1,1044 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      9. Inheritance, Exceptions & Final Round-up
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Polymorphism">
+        Polymorphism
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="Exercises">
+        Exercises
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Polymorphism">
+    <h1>Objectives</h1>
+<p>Inheritance is a powerful concept employed in object-oriented programming that facilitates solutions to a wide variety of problems. A class may inherit from another class and in doing so gain access to much of the behaviour of that other class.  The class inherited from is referred to as the base class or parent. The inheriting class is referred to as the subclass. Some or all of the base class behaviour may be used by the subclass and some base class behaviour may be overridden (redefined) by the subclass. Also, typically, the base class introduces new fields and methods.</p>
+<p>Here we refactor the BlueJ shape project encountered in an earlier lab by creating an inheritance hierarchy. We create a base Shape class from which we inherit the other shape classes such as Circle, Triangle and so on. Polymorphism is used to display a cascade of different shapes.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Setup</h1>
+<p><strong><em>Create working folder</em></strong></p>
+<ul>
+<li>Make a new working BlueJ folder called <em>session11</em> located in <em>labs</em><ul>
+<li><em>workspaceBlueJ/labs/session11</em></li>
+<li>This structure is depicted in Figure 1
+<img alt="Figure 1: Recommended directory structure" src="img/01.png"></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Download archive</em></strong></p>
+<ul>
+<li>Download the archive <em>shapes.zip</em> available <a href="archives/shapes.zip">here</a> and expand into the folder <em>session11</em>.</li>
+<li>Your folder and files should be asshown in Figure 2
+<img alt="Figure 2: contents of shapes folder" src="img/02.png"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Rectangle</h1>
+<p>Open the <em>RectangleBJ</em> class in the editor.</p>
+<p><strong><em>Rename RectangleBJ</em></strong></p>
+<p>We chose the rather cumbersome name <em>RectangleBJ</em> to avoid a name clash with a <em>Rectangle</em> class already present in legacy code.</p>
+<ul>
+<li>Recall that we created <em>RectangleBJ</em> by refactoring a copy of the <em>Square</em> class supplied by BlueJ:<ul>
+<li>Comment out the statement <em>import java.awt.*;</em> located towards the top of the file.</li>
+<li>Press the <em>Compile</em> button.</li>
+<li>A compile time error is triggered as illustrated in Figure 1.
+<img alt="Figure 1: Compile-time error" src="img/11.png"></li>
+<li>We can solve this by adding package information (<em>java.awt</em>) to the Rectangle constructor. The method <em>draw()</em> now becomes:</li>
+</ul>
+</li>
+</ul>
+<pre><code>    private void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color,
+                    new java.awt.Rectangle(xPosition, yPosition, xSideLength, ySideLength));
+            canvas.wait(10);
+        }
+    }
+</code></pre>
+
+<ul>
+<li>Check the code now compiles successfully.<ul>
+<li>This expression <em>java.awt.Rectangle</em> essentially states that the class is <em>Rectangle</em> and it is located in the package <em>java.awt</em>.<ul>
+<li>A package is, in fact, a folder structure and in this case there exists in the Java installation a folder <em>java</em> within which is present a sub-folder <em>awt</em> within which is located the class <em>Rectangle</em>.</li>
+</ul>
+</li>
+<li>We are now free to change the name of <em>RectangleBJ</em> to <em>Rectangle</em> without risk of name clash.</li>
+<li>Make this change to the three occurrences (the class name and two constructors) and recompile the file:<ul>
+<li>Observe that by making these class name changes the name in the class diagram has also changed as may be seen in Figure 2.
+<img alt="Figure 2: RectangleBJ changed to Rectangle" src="img/12.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>In the next step we shall commence refactoring the package by introducing an inheritance hierarchy.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Shapes superclass</h1>
+<p>We shall now create a superclass called <em>Shapes</em> and derive the other shape classes in the package from this new superclass.</p>
+<ul>
+<li>The existing shape classes are <em>Triangle</em>, <em>Rectangle</em> and <em>Circle</em>.</li>
+<li>We shall not make changes to <em>Canvas</em></li>
+</ul>
+<p>Create a new class named <em>Shapes</em> in the <em>BlueJ: inheritance [shapes]</em> package and delete all but the class wrapper:</p>
+<pre><code>public class Shapes
+{
+
+}
+</code></pre>
+
+<p>Modify the <em>Triangle</em> class by adding <strong><em>extends Shapes</em></strong> as shown in Figure 1 and compile the package.
+<img alt="Figure 1: Subclassing Triangle class" src="img/13.png"></p>
+<p>Observe the change that occurs to the class diagrams: an arrow now leads from <em>Triangle</em> to <em>Shapes</em> (Figure 2):</p>
+<ul>
+<li>This means <em>Triangle</em> is derived from, or is a subclass of, <em>Shapes</em>.</li>
+<li>Which is the same as stating that <em>Shapes</em> is a parent or superclass of <em>Triangle</em>.
+<img alt="Figure 2: Triangle a subclass of Shapes" src="img/14.png"></li>
+</ul>
+<p>Next we migrate some fields from <em>Triangle</em> to <em>Shapes</em></p>
+<ul>
+<li><em>Triangle</em>'s fields are shown in Figure 3. <em>height</em> and <em>width</em> are relevant to a triangle but the remaining fields could apply to any shape:<ul>
+<li>We will, therefore, migrate all but these two fields to <em>Shapes</em>.
+<img alt="Figure 3: Triangle fields" src="img/15.png"></li>
+</ul>
+</li>
+</ul>
+<p>Delete the 4 fields in question from <em>Triangle</em> and locate them in <em>Shapes</em>. The resulting <em>Shapes</em> and <em>Triangle</em> classes become:</p>
+<pre><code>public class Shapes
+{
+    private int xPosition;
+    private int yPosition;
+    private String color;
+    private boolean isVisible;  
+}
+</code></pre>
+
+<pre><code>import java.awt.Polygon;
+
+public class Triangle extends Shapes
+{
+    private int height;
+    private int width;
+
+    ...
+    ...
+    //remaining code follows here:
+}
+</code></pre>
+
+<p>Obviously only the relevant changed parts of the <em>Triangle</em> class are shown.</p>
+<p>Attempt a compilation: it will fail as shown shown in Figure 4
+<img alt="Figure 4: Compilation failure" src="img/16.png">
+The reason for the compilation failure is that the fields in <em>Shapes</em> are <em>private</em> and so not visible outside the class, not even within subclasses.</p>
+<ul>
+<li>We can solve the problem in one of three ways:<ul>
+<li>Make the <em>Shapes</em> fields public</li>
+<li>Create accessors for the <em>Shapes</em> fields</li>
+<li>Make the <em>Shapes</em> fields <strong><em>package-private</em></strong>.</li>
+</ul>
+</li>
+<li>We shall adopt the third option:<ul>
+<li>remove the <em>private</em> access modifiers from the fields resulting in the following code:</li>
+</ul>
+</li>
+</ul>
+<pre><code>public class Shapes
+{
+    int xPosition;
+    int yPosition;
+    String color;
+    boolean isVisible;  
+}
+</code></pre>
+
+<p>You should now succeed in compiling the package.</p>
+<p>Test by instantiating the default <em>Triangle</em> class and invoking <em>makeVisible</em>:</p>
+<ul>
+<li>The triangle should be displayed (as shown in Figure 5).
+<img alt="Figure 5: Triangle instantiated and displayed" src="img/17.png"></li>
+</ul>
+<p>We shall now add an overloaded constructor to <em>Shapes</em>:</p>
+<pre><code>    public Shapes(int xPosition, int yPosition, String color, boolean isVisible)
+    {
+        this.xPosition  = xPosition;
+        this.yPosition  = yPosition;
+        this.color      = color;
+        this.isVisible  = isVisible;         
+    }
+</code></pre>
+
+<p>Press <em>Compile</em> button. </p>
+<ul>
+<li><em>Shapes</em> compiles ok.</li>
+<li><em>Triangle</em> fails to compile.</li>
+<li>From Figure 6 we see that there is problem related to the constructors in <em>Shapes</em> and <em>Triangle</em><ul>
+<li>Question: Why <em>Shapes</em> you may ask? Does not <em>Shapes</em> compile without any problems?</li>
+<li>Answer: Because a <em>Triangle</em> object is also a <em>Shape</em> object because of the inheritance relationship.<ul>
+<li>The newly added <em>Shapes</em> constructor must be invoked from the baseclass.</li>
+<li>This can be done by using the <em>super</em> keyword as shown in the following refactored code:
+<img alt="Figure 6: Compilation fails" src="img/19.jpg"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>import java.awt.Polygon;
+
+public class Triangle extends Shapes
+{
+    private int height;
+    private int width;
+
+    public Triangle()
+    {
+        //super(int xPosition, int yPosition, String color, boolean isVisible)
+        super(50, 15, &quot;green&quot;, true);
+        setState(50, 15);
+    }
+
+   public Triangle(int height, int width, int xPosition, int yPosition, String color)
+    { 
+        super(xPosition, yPosition, color, true);
+        this.height = height;
+        this.width = width;
+    }
+
+    public void setState(int height, int width)
+    { 
+
+        this.height = height;
+        this.width  = width;
+    }
+
+    ...
+    ...
+    //remaining code follows here:
+}
+</code></pre>
+
+<p>In the above refactored code </p>
+<ul>
+<li>the fields in the base class are initialized through a modified <em>setState</em>.</li>
+<li>the superclass fields are initialized by invoking <em>super</em> whose argument values are passed through to the superclass constructor and hence used to initialize the superclass fields.</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Subclass Triangle</h1>
+<p>We shall now examine all the remaining methods in <em>Triangle</em> with a view to determining the optimum location:</p>
+<ul>
+<li>In the baseclass <em>Triangle</em></li>
+<li>Or in the superclass <em>Shapes</em></li>
+</ul>
+<p>Remember, from the slide presentation, that the methods can be summarized as follows:</p>
+<ul>
+<li>
+<p>[1] Those that will apply to all possible subclasses, not just <em>Triangle</em>, <em>Rectangle</em> and <em>Circle</em> but other classes in the shape family not yet considered.</p>
+</li>
+<li>
+<p>[2] Methods that work okay in the superclass but that the developer may wish to override in a specific subclass or number of subclasses</p>
+</li>
+<li>
+<p>[3] Methods that will be implemented only in the subclasses because of unique properties of each class.</p>
+</li>
+</ul>
+<p><strong><em>Category [1] methods</em></strong></p>
+<p>A study of the methods in <em>Triangle</em> suggests the following required for all possible subclasses whose primary property is geometric shape:</p>
+<ul>
+<li>makeVisible</li>
+<li>makeInvisible</li>
+<li>moveTo</li>
+<li>moveHorizontal</li>
+<li>moveVertical</li>
+<li>moveRight</li>
+<li>moveLeft</li>
+<li>moveUp</li>
+<li>moveDown</li>
+<li>changeColor</li>
+<li>erase</li>
+</ul>
+<p><strong><em>Category [2] methods</em></strong></p>
+<p>There does not appear, at this stage of development, to be any methods that are implemented in the superclass but that one might wish to override in a specific base class.</p>
+<p><strong><em>Category [3] methods</em></strong></p>
+<p>Two methods fall into this category:</p>
+<ul>
+<li><em>draw</em></li>
+<li><em>changeSize</em></li>
+</ul>
+<p>The method <em>draw</em> is specific to each type because, for example, the geometry of a triangle is very different from the geometry of a circle.</p>
+<ul>
+<li>We can arrange that <em>draw</em> in each shape class is invoked by refactoring as follows:<ul>
+<li>Remove the access modifier <em>private</em> from <em>draw</em>. 
+The signature now becomes: <em>void draw()</em></li>
+<li>Make the superclass abstract by placing the <em>abstract</em> keyword before the word <em>class</em> as follows:<ul>
+<li><strong><em>abstract public class Shapes</em></strong><ul>
+<li>An abstract class cannot be instantiated </li>
+<li>We can, however, use a variable of an abstract class type as a reference to an object (such as Triangle).   </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Place the following statement in the <em>Shapes</em> class following the constructor:<ul>
+<li><strong><em>abstract void draw();</em></strong>          <ul>
+<li>An abstract method has a signature only: it is implemented in each subclass.</li>
+</ul>
+</li>
+<li>Declaring <em>draw</em> as abstract in the superclass requires the implementation of the method in all subclasses of <em>Shapes</em>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The second method falling into this category is <strong><em>changeSize</em></strong>.</p>
+<ul>
+<li>Declare an abstract method in the superclass<ul>
+<li><em>abstract void changeSize(int scale)</em></li>
+<li>Implement in subclass(es).</li>
+</ul>
+</li>
+</ul>
+<p>The completed <em>Shapes</em> class is as follows:</p>
+<pre><code>/**
+ * An abstract class describing geometric shapes
+ *
+ * @author  Michael Kolling and David J. Barnes
+ * @version 2006.03.30
+ *
+ * @author jfitzgerald
+ * @version 2014-05-23
+ */
+public abstract class Shapes
+{
+    int xPosition;
+    int yPosition;
+    String color; 
+    boolean isVisible;
+
+    public Shapes()
+    { 
+    }
+
+    public Shapes(int xPosition, int yPosition, String color, boolean isVisible)
+    {
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
+        this.color = color;
+        this.isVisible = isVisible;        
+    }
+
+    abstract void draw();
+    abstract void changeSize(int scale);
+
+    public void makeVisible()
+    {
+        isVisible = true;
+        draw();
+    }
+
+    public void makeInvisible()
+    {
+        erase();
+        isVisible = false;
+    }
+
+    public void moveTo(int x, int y)
+    {
+        xPosition = x;
+        yPosition = y;
+        makeVisible();
+    }
+
+    public void moveRight()
+    {
+        moveHorizontal(20);
+    }
+
+    public void moveLeft()
+    {
+        moveHorizontal(-20);
+    }
+
+    public void moveUp()
+    {
+        moveVertical(-20);
+    }
+
+    public void moveDown()
+    {
+        moveVertical(20);
+    }
+
+    public void moveHorizontal(int distance)
+    {
+        erase();
+        xPosition += distance;
+        draw();
+    }
+
+    public void moveVertical(int distance)
+    {
+        erase();
+        yPosition += distance;
+        draw();
+    }
+
+    public void changeColor(String color)
+    {
+        this.color = color;
+        draw();
+    }
+
+    protected void erase()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.erase(this);
+        }
+    }
+
+}
+
+</code></pre>
+
+<p><em>Triangle</em> then reduces to:</p>
+<pre><code>import java.awt.Polygon;
+/**
+ * A subclass of Shapes describing a regular 2-D Triangle
+ *
+ * @author  Michael Kolling and David J. Barnes
+ * @version 2006.03.30
+ *
+ * @author jfitzgerald
+ * @version 2014-05-23
+ */
+public class Triangle extends Shapes
+{
+    private int height;
+    private int width;
+
+    public Triangle()
+    {   
+        //super(xPosition, yPosition, color, isVisible)
+        super(150, 65, &quot;black&quot;, true);
+        this.height = 50;
+        this.width  = 75;
+    }
+
+    public Triangle(int height, int width, int xPosition, int yPosition, String color)
+    { 
+        //super(xPosition, yPosition, color, isVisible)
+        super(xPosition, yPosition, color, true);
+        this.height = height;
+        this.width = width;
+
+    }
+
+    public void changeSize(int scale)
+    {
+        erase();
+        height *= scale;
+        width *= scale;
+        draw();
+    }
+
+    void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            int[] xpoints = { xPosition, xPosition + (width/2), xPosition - (width/2) };
+            int[] ypoints = { yPosition, yPosition + height, yPosition + height };
+            canvas.draw(this, color, new Polygon(xpoints, ypoints, 3));
+            canvas.wait(10);
+        }
+    }
+}
+</code></pre>
+
+<p>Henceforth when one wishes to add a new shape class, such as for example Rectangle, Circle or Pentagon, much, if not most, of the code required will already have been written and be available in Shapes, the superclass.
+<img alt="Figure: Enjoy the fruits of others' labour" src="img/30.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Display Shapes</h1>
+<p>Create a new class <em>TestShapes</em> in the <em>shapes</em> package.</p>
+<pre><code>
+
+public class TestShapes
+{
+
+
+}
+</code></pre>
+
+<p>Create a <em>main</em> method in <em>Shapes</em>:</p>
+<pre><code>public static void main(String[] args)
+{
+
+}
+</code></pre>
+
+<p>All of the following code is located within <em>main</em></p>
+<p>Create a list of <em>Shapes</em> references in <em>main</em>:</p>
+<pre><code>ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;(); 
+</code></pre>
+
+<p>Intialize these references with Triangle objects:</p>
+<pre><code>        shapes.add(new Triangle(30, 40, 160, 50, &quot;red&quot;));
+        shapes.add(new Triangle(40, 50, 170, 60, &quot;blue&quot;));
+        shapes.add(new Triangle(50, 60, 180, 70, &quot;green&quot;));
+        shapes.add(new Triangle(60, 70, 190, 80, &quot;black&quot;));
+</code></pre>
+
+<p>To understand what the argument values refer to study the Triangle constructor signature (Figure 1):</p>
+<p><img alt="Figure 1: Triangle constructor signature" src="img/28.png"></p>
+<p>Add the following code which will display the triangles:</p>
+<pre><code>        for(Shapes shape : shapes)
+        {
+            shape.makeVisible();
+        }
+</code></pre>
+
+<p>Here is the complete <em>TestShapes</em> class to date:</p>
+<pre><code>
+import java.util.ArrayList;
+
+public class TestShapes
+{
+    public static void main(String[] args)
+    {
+        ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;();  
+
+        shapes.add(new Triangle(30, 40, 160, 50, &quot;red&quot;));
+        shapes.add(new Triangle(40, 50, 170, 60, &quot;blue&quot;));
+        shapes.add(new Triangle(50, 60, 180, 70, &quot;green&quot;));
+        shapes.add(new Triangle(60, 70, 190, 80, &quot;black&quot;));
+
+        for(Shapes shape : shapes)
+        {
+            shape.makeVisible();
+        }
+    }
+}
+</code></pre>
+
+<p>Select the <em>TestShapes</em> class diagram and execute <em>main</em> (Figure 2).</p>
+<ul>
+<li>Output similar to that displayed in Figure 2 should appear.</li>
+<li>This is an example of polymorphism in action:<ul>
+<li>We have assigned each of a set of Triangle objects to a superclass reference, a Shapes type.</li>
+<li>We have then invoked method <em>makeVisible</em> on each Triangle object referenced by a <em>Shapes</em> type reference.</li>
+<li>The method invoked, namely <em>makeVisible</em>, is implemented not in the <em>Shapes</em> class but in the <em>Triangle</em> class</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Invoke TestShapes.main method" src="img/20.png"></p>
+<p><img alt="Figure 3: Polymorphism in action" src="img/21.png"> </p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Subclass Circle</h1>
+<p>We shall now subclass the Circle class.</p>
+<ul>
+<li>Add the <em>extends</em> keyword:</li>
+</ul>
+<pre><code>public class Circle extends Shapes
+</code></pre>
+
+<p>An attempt at compilation fails: see Figure 1.
+<img alt="Figure 1: Compilation failure" src="img/22.png"></p>
+<p>Fix this by removing the <em>private</em> modifier preceeding the method <em>draw</em>.</p>
+<p>Attempt to compile again. Again compilation fails: see Figure 2.
+<img alt="Figure 2: Compilation failure" src="img/23.png"></p>
+<p>To resolve the latest failure requires taking the following steps:</p>
+<ul>
+<li>
+<p>Delete the Circle fields already in Shapes:</p>
+<ul>
+<li>xPosition</li>
+<li>yPosition</li>
+<li>color</li>
+<li>isVisible</li>
+</ul>
+</li>
+<li>
+<p>Add a call to <em>super</em> in the Circle constructors:</p>
+</li>
+</ul>
+<pre><code>   /**
+    * Create a new circle at default position with default color &amp; diameter.
+    */
+   public Circle()
+   {
+        super(20, 30, &quot;blue&quot;, true);
+        isVisible = false;
+        setState(30);
+   }
+
+   public Circle (int diameter, int xPosition, int yPosition, String color)
+    {
+        super(xPosition, yPosition, color, true);
+        setState(diameter);
+    }
+</code></pre>
+
+<p>Modify Circle setState method by removing refererences to the variables no longer in Circle (effectively moved to Shapes superclass)</p>
+<pre><code>    public void setState(int diameter)
+    {
+        this.diameter = diameter;
+    }
+</code></pre>
+
+<p>Delete all remaining methods except</p>
+<ul>
+<li><em>draw</em></li>
+<li><em>changeSize</em></li>
+</ul>
+<p>These deleted methods are present in the superclass Shapes.</p>
+<p>The Circle class should now compile.</p>
+<p>Check that it is possible to instantiate and display a Circle object.</p>
+<p>Observe that the Circle class diagram is now associated with the Shapes superclass with the arrow as shown in Figure 3.</p>
+<p><img alt="Figure 3: Circle a subclass of Shapes" src="img/24.png"></p>
+<p>Here is the complete Circle code:</p>
+<pre><code>
+
+import java.awt.geom.*;
+
+/**
+ * A circle that can be manipulated and that draws itself on a canvas.
+ * 
+ * @author  Michael Kolling and David J. Barnes
+ * @version 2006.03.30
+ * 
+ * @author jfitzgerald
+ * @version 2014-05-23
+ * 
+ */
+
+public class Circle extends Shapes
+{
+    private int diameter;
+
+    /**
+     * Create a new circle at default position with default color &amp; diameter.
+     */
+    public Circle()
+    {
+        super(120, 180, &quot;green&quot;, true);
+        this.diameter = 80;
+    }
+
+    public Circle (int diameter, int xPosition, int yPosition, String color)
+    {
+        super(xPosition, yPosition, color, true);
+        this.diameter = diameter;
+    }
+
+    /**
+     * Change the circle's size by factor 'scale'
+     */
+    public void changeSize(int scale)
+    {
+        super.erase();
+        diameter *= scale;
+        draw();
+    }
+
+    /**
+     * Draw the circle with current specifications on screen.
+     */
+    void draw()
+    {
+        if(isVisible) {
+            Canvas canvas = Canvas.getCanvas();
+            canvas.draw(this, color, new Ellipse2D.Double(xPosition, yPosition, 
+                    diameter, diameter));
+            canvas.wait(10);
+        }
+    }
+
+}
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Display Shapes</h1>
+<p>Here is the code for the <em>TestShapes</em> class used to create and display an array of Triangle objects.</p>
+<pre><code>
+import java.util.ArrayList;
+
+public class TestShapes
+{
+    public static void main(String[] args)
+    {
+        ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;();  
+
+        shapes.add(new Triangle(30, 40, 160, 50, &quot;red&quot;));
+        shapes.add(new Triangle(40, 50, 170, 60, &quot;blue&quot;));
+        shapes.add(new Triangle(50, 60, 180, 70, &quot;green&quot;));
+        shapes.add(new Triangle(60, 70, 190, 80, &quot;black&quot;));
+
+
+        for(Shapes shape : shapes)
+        {
+            shape.makeVisible();
+        }
+    }
+}
+</code></pre>
+
+<p>We shall now modify this to additionally display an array of Circle objects:</p>
+<pre><code>         shapes.add(new Circle(30, 20, 60, &quot;red&quot;));
+         shapes.add(new Circle(40, 30, 70, &quot;blue&quot;));
+         shapes.add(new Circle(50, 40, 80, &quot;green&quot;));
+         shapes.add(new Circle(60, 50, 90, &quot;black&quot;));   
+</code></pre>
+
+<p>No further change is necessary: the same code block will display all the shapes, both Triangle and Circle types, as for Triangle types alone:</p>
+<pre><code>        for(Shapes shape : shapes)
+        {
+            shape.makeVisible();
+        }
+</code></pre>
+
+<ul>
+<li>Note that the same type <strong><em>Shapes</em></strong> is used to reference two types of objects, <strong><em>Triangle</em></strong> and <strong><em>Circle</em></strong>    <ul>
+<li>This, again, is an example of polymorphism in action.</li>
+</ul>
+</li>
+<li>You will be asked to add different shapes, such as <strong><em>Rectangle</em></strong>, to the ArrayList<Shapes> in the Exercise section.</li>
+</ul>
+<p>Here is the complete TestShapes class to date:</p>
+<pre><code>
+import java.util.ArrayList;
+
+public class TestShapes
+{
+    public static void main(String[] args)
+    {
+        ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;();  
+
+        shapes.add(new Circle(30, 20, 60, &quot;red&quot;));
+        shapes.add(new Circle(40, 30, 70, &quot;blue&quot;));
+        shapes.add(new Circle(50, 40, 80, &quot;green&quot;));
+        shapes.add(new Circle(60, 50, 90, &quot;black&quot;));   
+
+        shapes.add(new Triangle(30, 40, 160, 50, &quot;red&quot;));
+        shapes.add(new Triangle(40, 50, 170, 60, &quot;blue&quot;));
+        shapes.add(new Triangle(50, 60, 180, 70, &quot;green&quot;));
+        shapes.add(new Triangle(60, 70, 190, 80, &quot;black&quot;));
+
+        for(Shapes shape : shapes)
+        {
+            shape.makeVisible();
+        }
+    }
+}  
+</code></pre>
+
+<p>Execute <em>main</em> on <em>TestShapes</em>. The output should be as shown in Figure 1.
+<img alt="Figure 1: Display array Triangle and Shape objects referenced by Shapes type" src="img/26.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="Exercises">
+    <h1>Exercises</h1>
+<p><strong><em>Exercise 1</em></strong></p>
+<p>Refactor the Rectangle class in the shapes package as follows:</p>
+<ul>
+<li>Adopt a similar approach to that employed in the cases of Circle and Triangle.</li>
+<li>Extend the class from Shapes</li>
+<li>Delete fields from Rectangle that are already in Shapes.<ul>
+<li>Do not change the fields in Shapes. </li>
+<li>Do not add or delete fields in Shapes.</li>
+</ul>
+</li>
+<li>The <em>erase</em> class is applicable to all subclasses and so can reside in the superclass.<ul>
+<li>It is therefore not necessary to override it in the subclass.</li>
+</ul>
+</li>
+<li>Add a call to <em>super</em> in both Rectangle constructors.<ul>
+<li>Modify the <em>setState</em> method by eliminating all parameters representing fields migrated to the superclass.</li>
+</ul>
+</li>
+<li>Test by instantiating and rendering<ul>
+<li>a default Rectangle object (Figure 1),</li>
+<li>a Rectangle object using the overloaded constructor.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Default Rectangle object" src="img/27.png"></p>
+<p><strong><em>Exercise 2</em></strong></p>
+<p>Refactor the TestShapes class as follows:</p>
+<ul>
+<li>Instantiate 4 Rectangle objects</li>
+<li>Choose arguments so that the Rectangle objects display in a cascade style </li>
+<li>Ensure the objects do not impinge on the Triangle and Circle objects</li>
+<li>Aim for a display similar to Figure 2.
+<img alt="Figure 2: Rectangle objects added" src="img/29.png"></li>
+</ul>
+<p><strong><em>Exercise 3</em></strong></p>
+<p>Develop a class <strong><em>Pentagon</em></strong>.</p>
+<ul>
+<li>
+<p>Figure 3 depicts a pentagon and its circumscribing circle.
+<img alt="Figure 3: Pentagon and circumscribing circle" src="img/31.png"></p>
+</li>
+<li>
+<p>In this exercise origin of the pentagon is the centre of the circumscribing circle.</p>
+</li>
+<li>For example the invoking the method <em>moveTo(int x, int y)</em> with (x, y) == (0, 0) results in output shown in Figure 4.
+<img alt="Figure 4: Pentagon at origin (0,0)" src="img/32.png"></li>
+</ul>
+<p>Use <em>Shapes</em> as a superclass.</p>
+<p>Following is skeleton code for the class:</p>
+<pre><code>
+
+import java.awt.Polygon;
+/**
+ * @file    Pentagon.java
+ * @brief   This class describes a pentagon and has behaviour to display, resize and move objects
+ *                  
+ * @author   jfitzgerald 2014-05-23
+ * 
+ */
+public class Pentagon
+{
+    private int radius;//radius of circumscribing circle
+
+    public Pentagon()
+    {   
+        super(...);
+        this.radius = 50;
+    }
+
+    public Pentagon(int radius, int xPosition, int yPosition, String color)
+    { 
+        super(...);
+        ...      
+    }
+
+    public void changeSize(int scale)
+    {
+        ...
+        ...
+        ...
+    }
+
+    void draw()
+    {
+        if(isVisible) {
+            //Ref: http://mathworld.wolfram.com/Pentagon.html
+            double dc1 = 0.25*(Math.sqrt(5) - 1);
+            double dc2 = 0.25*(Math.sqrt(5) + 1);
+            double ds1 = 0.25*(Math.sqrt(10 + 2*Math.sqrt(5)));
+            double ds2 = 0.25*(Math.sqrt(10 - 2*Math.sqrt(5)));//length of pentagon side is 2*ds2
+            int c1 = -(int)(radius*dc1);//radius of circle that circumscribes pentagon
+            int c2 = -(int)(radius*dc2);
+            int s1 = (int)(radius*ds1);
+            int s2 = (int)(radius*ds2);
+
+            Canvas canvas = Canvas.getCanvas();
+            int[] xpoints = { xPosition,     
+                              xPosition + s1,
+                              xPosition + s2,
+                              xPosition - s2,
+                              xPosition - s1
+                            };
+            int[] ypoints = { yPosition - radius,
+                              yPosition + c1,
+                              yPosition - c2,
+                              yPosition - c2,
+                              yPosition + c1
+                            };
+            canvas.draw(this, color, new Polygon(xpoints, ypoints, 5));
+            canvas.wait(10);
+        }
+    }
+}
+
+</code></pre>
+
+<p>Write a class TestPentagon to display a series of Pentagon objects as depicted in Figure 5.</p>
+<p><img alt="Figure 5: Pentagon cascade" src="img/33.png"></p>
+<p>Here is the TestPentagon skeleton:</p>
+<pre><code>public class TestPentagon
+{
+    public static void main(String[] args)
+    {
+        ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;();  
+
+        shapes.add(new Pentagon(30, 60, 30, &quot;red&quot;));
+        shapes.add(new Pentagon(... &quot;blue&quot;));
+        shapes.add(new Pentagon(... &quot;green&quot;));
+        shapes.add(new Pentagon(... &quot;black&quot;));   
+
+        for(Shapes shape : shapes)
+        {
+            ...
+        }
+    }
+}
+</code></pre>
+
+<p><strong><em>Exercise 4</em></strong></p>
+<p>Change the inheritance hierarchy of shapes to that shown in Figure 6:</p>
+<ul>
+<li>Create an Ellipse class</li>
+<li>Derive Ellipse directly from Shapes</li>
+<li>Change Circle so that it is derived directly from Ellipse.</li>
+</ul>
+<p><img alt="Figure 6: Refactored inheritance hierarchy" src="img/34.png"></p>
+<p>Hint: you have already encountered an Ellipse class in Assignment 2.</p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
