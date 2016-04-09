@@ -1,0 +1,750 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-2 Solutions
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-2-Solutions-Q1">
+        Assignment-2-Solutions-Q1
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-2-Solutions-Q1">
+    <h1>Readme</h1>
+<p>Assignment 2 (Q1) solutions</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Q1 Task 1</h1>
+<p><strong><em>BlueJ Project</em></strong></p>
+<p>The completed project, Auction is available to download <a href="archives/auction.zip">here</a>.</p>
+<p>Note that the parameter <em>Catalogue catalogue</em> in the Auction constructor below is redundant. This is a typographical error. It may be ignored.</p>
+<p>Following are the code snippets missing from the assignment code base:</p>
+<p><strong><em>Task 1: Auction class</em></strong></p>
+<p>Supply the missing code indicated by // TODO 1...9 in Auction.java.</p>
+<pre><code>    public Auction(Catalogue catalogue)
+    {
+        // TODO 1 Set bidding to be closed by default
+        // initialize the map
+        bids = new HashMap&lt;Integer, ArrayList&lt;Bid&gt;&gt;();
+        winningBids = new ArrayList&lt;Bid&gt;();
+
+    }
+</code></pre>
+
+<pre><code>    // TODO 1 Solution
+    public Auction(Catalogue catalogue)
+    {
+        this.biddingOpen = false; 
+        // initialize the map
+        bids = new HashMap&lt;Integer, ArrayList&lt;Bid&gt;&gt;();
+        winningBids = new ArrayList&lt;Bid&gt;();
+    }
+</code></pre>
+
+<pre><code>    public void openBidding()
+    {
+      // TODO 2 open bidding
+    }
+</code></pre>
+
+<pre><code>    // TODO 2 Solution
+    /**
+     * allow bidding
+     */
+    public void openBidding()
+    {
+      this.biddingOpen = true;
+    }
+
+</code></pre>
+
+<pre><code>    public void closeBidding()
+    {  
+      // TODO 3 Close bidding
+    }
+</code></pre>
+
+<pre><code>    // TODO 3 Solution
+    /**
+     * no further bids accepted
+     */
+    public void closeBidding()
+    {
+      biddingOpen = false;     
+    }
+</code></pre>
+
+<pre><code>Task 4: omitted in error
+</code></pre>
+
+<pre><code>    public void holdAuction()
+    {
+      for (Integer key : bids.keySet())
+      {
+        // TODO 5 Use key to obtain list bids
+        // TODO 6 Sort the list in ascending order with reference to bid amount
+        // TODO 7 Obtain Bid object with the second highest bid amount - the winning bid
+        // TODO 8 Add winning bid to list of winning bids - winningBids.
+      }
+    } 
+</code></pre>
+
+<pre><code>    // TODO 5, 6, 7, 8
+    /**
+     * The auction comprises a check on all bids
+     * Winning bid is second highest for each lot
+     * Traverse map of bids
+     * Sort each array list of bids (corresponding to each lot)
+     * And sell to second highest bid
+     */
+    public void holdAuction()
+    {
+      for (Integer key : bids.keySet())
+      {
+        ArrayList&lt;Bid&gt; listBids = bids.get(key);
+        SelectSort.sort(listBids);
+        int indexSecondHighestBid = listBids.size() - 2;
+        winningBids.add(listBids.get(indexSecondHighestBid));  
+      }
+    }
+</code></pre>
+
+<pre><code>    public boolean status(int lotId, Person person)
+    {
+      for (Bid bid : winningBids)
+      {
+        // if (...)
+          //TODO 9 Check if this winning bid made by parameter person
+          return true;
+      }
+      return false;
+    }
+</code></pre>
+
+<pre><code>    // TODO 9
+    /**
+     * Checks if a particular person won the auction for particular lot
+     * @param lotId The id of the lot in question
+     * @param person The person whose bid is being checked
+     * @return True if the person's bid successful else return false
+     */
+    public boolean status(int lotId, Person person)
+    {
+      for (Bid bid : winningBids)
+      {
+        if ((bid.lot.lotId == lotId) &amp;&amp; (bid.bidder.equals(person)))
+          return true;
+      }
+      return false;
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Q1 Task 2</h1>
+<p><strong><em>Task 2: Audience class</em></strong></p>
+<p>Supply the missing code indicated by // TODO 1...3 in Audience.java</p>
+<pre><code>  public boolean register(Person person)
+  { 
+    // TODO 1 Add the parameter person to the set of members returning true if addition successful else false
+    return false;
+  }
+</code></pre>
+
+<pre><code>  // TODO 1
+  /**
+   * Registers a person as a member of the audience
+   * @param person an instance of Person register as member of members
+   * @return returns true if the person successfully added to set else false
+   */
+  public boolean register(Person person)
+  {
+    return members.add(person);
+  }
+</code></pre>
+
+<pre><code>  // TODO 1 (Alternative soln)
+  /**
+   * Registers a person as a member of the audience
+   * @param person an instance of Person register as member of members
+   * @return returns true if the person successfully added to set else false
+   */
+  public boolean register(Person person)
+  {
+    if (!members.contains(person)) // That is: members.contains(person) == false
+    {
+      return members.add(person);
+    }
+    System.out.println(&quot;You are already registered&quot;);
+    return false;
+  }
+</code></pre>
+
+<pre><code>  public boolean isRegistered(Person person)
+  {
+    // TODO 2 return true of the set of members contains the parameter person otherwise return false
+    return false;
+  }
+</code></pre>
+
+<pre><code>  // TODO 2
+  /**
+   * Authenticates a person is a member of the audience
+   * @param person The person being authenticated
+   * @return Returns true if the person is a member of the audience otherwise returns false.
+   */
+  public boolean isRegistered(Person person)
+  {
+    return members.contains(person);
+  }
+</code></pre>
+
+<pre><code>  public Person isRegistered(String email, int pin)
+  {
+    for (Person person : members)
+    {
+      // TODO 3 Check if the person represented by email and pin is present in the set of members
+      return null;
+    }
+    return null;
+  }
+</code></pre>
+
+<pre><code>  // TODO 3
+  /**
+   * Authenticates person is member of audience 
+   * Information provided is email and pin
+   * @param email The email address of person being authenticated
+   * @param pin The pin number of person being authnticated
+   * @return Returns Peson object, the actual parameter, if the person is a member of the audience otherwise returns null.
+   */
+  public Person isRegistered(String email, int pin)
+  {
+    for (Person person : members)
+    {
+      if (person.email.equals(email) &amp;&amp; person.getPin() == pin)
+        return  person;
+    }
+    return null;
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Q1 Task 3</h1>
+<p><strong><em>Task 3: Bid class</em></strong></p>
+<p>Supply the missing code indicated by // TODO 1...2 in Bid.java</p>
+<pre><code>    public Bid(Lot lot, Person bidder, int amountBid)
+    {
+      // TODO 1 Initialize all fields
+      this.amountBid = 0;
+    }
+</code></pre>
+
+<pre><code>    // TODO 1
+    /**
+     * 
+     * @param lot the subject of the bid
+     * @param bidder person bidding
+     * @param amountBid amount bid for lot
+     */
+    public Bid(Lot lot, Person bidder, int amountBid)
+    {
+        this.bidder = bidder;
+        this.amountBid = amountBid;
+        this.lot = lot;
+    }
+</code></pre>
+
+<pre><code>    public String toString()
+    {
+      // TODO 2 Implement this method
+      return &quot;&quot;;
+
+    }
+</code></pre>
+
+<pre><code>     // TODO 2
+     /**
+     * Constructs a string representation of this object
+     * @return string representation of this object
+     */    
+    public String toString()
+    {
+      return &quot;Bid: bidder is &quot; + bidder.email + &quot; : &quot;
+          + &quot;amount bid is &quot; + amountBid + &quot;: Lot description &quot; +lot.description + &quot;\n&quot;;
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Q1 Task 4</h1>
+<p><strong><em>Task 4: Catalogue class</em></strong></p>
+<p>Supply the missing code indicated by // TODO 1 ... 2 in Catalogue.java</p>
+<pre><code>  public void addLot(Lot lot)
+  {
+    // TODO 1 Complete implementation
+  }
+</code></pre>
+
+<pre><code>  // TODO 1
+  /**
+   * Adds a Lot object to list of lots field
+   * @param lot The Lot object being added
+   */
+  public void addLot(Lot lot)
+  {
+    lots.add(lot);
+  }
+</code></pre>
+
+<pre><code>  public String toString()
+  {
+
+    String details = &quot;There is no catalogue description: please fix me&quot;;
+    // TODO 2 Complete implementation
+    return details;
+  }
+</code></pre>
+
+<pre><code>  // TODO 2
+  /**
+   * Constructs a string representation of this object
+   * @return string representation of this object
+   */
+  public String toString()
+  {
+
+    String details = &quot;\nCatalogue: list of lots\n&quot;;
+    for (Lot lot : lots)
+    {
+      details += lot + &quot;\n&quot;;
+    }
+    return details;
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Q1 Task 5</h1>
+<p><strong><em>Task 5:  Person class</em></strong></p>
+<p>Supply the missing code indicated by // TODO 1 in Person.java</p>
+<pre><code>    public Person(String firstName, String lastName, String email, int pin)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        // TODO 1 Complete initialization with validation of remaining fields
+    }
+</code></pre>
+
+<pre><code>    // TODO 1
+    /**
+     * Construct Person object
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param pin
+     */
+    public Person(String firstName, String lastName, String email, int pin)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        if(Util.validEmail(email))
+            this.email = email;
+        if(Util.validPin(pin))
+            this.pin = pin;
+    }
+</code></pre>
+
+<pre><code>      // TODO 1 Alternative solution
+     /**
+     * Construct Person object
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param pin
+     */
+    public Person(String firstName, String lastName, String email, int pin)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        if(Util.validEmail(email))
+        {
+            this.email = email;
+        }
+        if(!Util.validPin(pin))
+        {
+          this.pin = Util.generatePin();
+          System.out.println(&quot;You have submitted an invalid pin&quot;);
+          System.out.println(&quot;Here is a temporary pin: &quot; + this.pin);
+          System.out.println(&quot;Please change as soon as possible&quot;);
+        }
+        else 
+        {
+            this.pin = pin;
+        }
+    } 
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Q1 Task 6</h1>
+<p><strong><em>Task 6: JUnit test</em></strong></p>
+<p>Create JUnit Organiser test class</p>
+<ul>
+<li>Implement a method testSubmitBids<ul>
+<li>to test the method Organiser.submitBids</li>
+</ul>
+</li>
+</ul>
+<pre><code>import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class OrganiserTest
+{
+    /**
+     * Default constructor for test class OrganiserTest
+     */
+    public OrganiserTest()
+    {
+    }
+
+    /**
+     * Sets up the test fixture.
+     *
+     * Called before every test case method.
+     */
+    @Before
+    public void setUp()
+    {
+    }
+
+    /**
+     * Tears down the test fixture.
+     *
+     * Called after every test case method.
+     */
+    @After
+    public void tearDown()
+    {
+    }  
+    @Test
+    public void testSubmitBids()
+    {
+        Organiser organiser = new Organiser();
+        assertEquals(true, organiser.submitBids());
+    }
+
+}
+
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Q1 Task 7</h1>
+<p><strong><em>Task 7:  Optional (bonus item)</em></strong></p>
+<p>Replace SelectionSort with MergeSort.</p>
+<ul>
+<li>A reference mergesort algorithm is provided.</li>
+<li>Modify this to accept ArrayList<Bid> types in place of int[].</li>
+</ul>
+<h2>Solution</h2>
+<p>Here is the reference MergeSort suitable for sorting int[] arrays.</p>
+<pre><code>public class MergeSort
+{
+  static int[] aux;
+  private static void merge(int[] a, int lo, int mid, int hi)
+  {
+    for (int k = lo; k &lt;= hi; k++)
+      aux[k] = a[k];
+
+    int i = lo;
+    int j = mid + 1;
+    for (int k = lo; k &lt;= hi; k++)
+    {
+      if (i &gt; mid)              a[k] = aux[j++];
+      else if (j &gt; hi)          a[k] = aux[i++];
+      else if (aux[j] &lt; aux[i]) a[k] = aux[j++];
+      else                      a[k] = aux[i++];
+    }
+  }
+
+  public static void sort(int[] a)
+  {
+    aux = new int[a.length];
+    int N = a.length;
+
+    for (int size = 1; size &lt; N; size = size + size)
+      for (int lo = 0; lo &lt; N - size; lo += size + size)
+        merge(a, lo, lo + size - 1, Math.min(lo + size + size - 1, N - 1));
+  }
+
+  public static void print(int[] a)
+  {
+    for (int i : a)
+      System.out.print(i + &quot; &quot;);
+    System.out.println();
+  }
+
+  public static void main(String[] args)
+  {
+    int[] a = {20, 24, 17, 12, 11, 14, 22, 19};
+    print(a);
+    sort(a);
+    print(a);
+  }
+}
+
+</code></pre>
+
+<p>Here is a version refactored to sort a list of Bid objects:</p>
+<pre><code>import java.util.ArrayList;
+/**
+ * @file MergeSortBids.java
+ * @brief Uses merge sort algorithm to sort an ArrayList of Bid objects
+ * @version 28 April 2015
+ * @author jfitzgerald
+ */
+public class MergeSortBids 
+{
+  static ArrayList&lt;Bid&gt; aux;
+
+  private static void merge(ArrayList&lt;Bid&gt; a, int lo, int mid, int hi) 
+  {
+    for (int k = lo; k &lt;= hi; k++)
+      aux.set(k, a.get(k));
+
+    int i = lo;
+    int j = mid + 1;
+    for (int k = lo; k &lt;= hi; k++) {
+      if (i &gt; mid)                                     a.set(k, aux.get(j++));
+      else if (j &gt; hi)                                 a.set(k, aux.get(i++));
+      else if (compare(aux.get(j), aux.get(i)) &lt; 0)    a.set(k, aux.get(j++));
+      else                                             a.set(k, aux.get(i++));
+    }
+  }
+
+  public static void sort(ArrayList&lt;Bid&gt; a) 
+  {
+    int N = a.size();
+
+    // initialize aux arraylist
+    aux = new ArrayList&lt;&gt;(); 
+    for (int i = 0; i &lt; N; i +=1)
+      aux.add(null);
+
+    for (int size = 1; size &lt; N; size = size + size)
+      for (int lo = 0; lo &lt; N - size; lo += size + size)
+        merge(a, lo, lo + size - 1,
+            Math.min(lo + size + size - 1, N - 1));
+  }
+
+  static int compare(Bid a, Bid b)
+  {
+    return a.compareTo(b);
+  }
+
+  public static void print(ArrayList&lt;Bid&gt; bids) 
+  {
+    for (Bid bid : bids)
+      System.out.print(bid + &quot; &quot;);
+    System.out.println();
+  }
+
+  public static void main(String[] args) 
+  {
+    // test array of Bid object literals
+    Person person = new Person(&quot;j&quot;,&quot;doe&quot;,&quot;j@doe.com&quot;,1234); 
+    ArrayList&lt;Bid&gt; a = new ArrayList&lt;Bid&gt;();
+
+    a.add(new Bid(new Lot(1, &quot;lot 1&quot;), person, 103));
+    a.add(new Bid(new Lot(2, &quot;lot 2&quot;), person, 100));
+    a.add(new Bid(new Lot(3, &quot;lot 3&quot;), person, 900));
+    a.add(new Bid(new Lot(4, &quot;lot 4&quot;), person, 110));
+    a.add(new Bid(new Lot(5, &quot;lot 5&quot;), person, 120));
+    a.add(new Bid(new Lot(6, &quot;lot 6&quot;), person, 410));
+    a.add(new Bid(new Lot(7, &quot;lot 7&quot;), person, 510));
+    a.add(new Bid(new Lot(8, &quot;lot 8&quot;), person, 1009));
+
+    // print before sorting
+    print(a);
+    sort(a);
+    // print following sorting
+    print(a);
+  }
+}
+</code></pre>
+
+<p>Some points to note:</p>
+<ul>
+<li>It is necessary to add a <em>compareTo</em> method to Bid:</li>
+</ul>
+<pre><code>    public int compareTo(Bid other)
+    {
+      return Integer.compare(amountBid, other.getAmountBid());
+    }
+</code></pre>
+
+<ul>
+<li>A <em>main</em> method is included with some test data:<ul>
+<li>You could execute this to test the algorithm.</li>
+</ul>
+</li>
+<li>Occurrences of <em>int[]</em> are replaced with <em>ArrayList&lt;Bid&gt;</em></li>
+<li>In Bid: implement <em>compareTo</em>.</li>
+<li>Implement <em>compare</em> method by invoking <em>Bid.compareTo</em>.</li>
+<li>Change line in Auction.holdAuction to invoke mergesort rather than selectsort.</li>
+</ul>
+<p><img alt="Figure 1: MergeSortBids.merge" src="img/01.png">
+<img alt="Figure 2: MergeSortBids.compare invokes Bid.compareTo" src="img/02.png">
+<img alt="Figure 3: Auction.holdAuction refactored to invoke MergeSortBids" src="img/03.png"></p>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

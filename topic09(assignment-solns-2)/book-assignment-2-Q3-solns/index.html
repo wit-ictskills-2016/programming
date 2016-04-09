@@ -1,0 +1,732 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-2 Solutions
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-2-Solutions-Q3">
+        Assignment-2-Solutions-Q3
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+      <a class="item" data-tab="10">
+        10
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-2-Solutions-Q3">
+    <h1>Readme</h1>
+<p>Assignment 2 (Q3) solutions</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Q3 Vigenere Cipher</h1>
+<p>Develop a class VigenereCipher:</p>
+<ul>
+<li>
+<p>The Application Programming Interface (API) is described in the JavaDoc generated folder <em>vigenere_api</em>: Open <em>index.html</em> to view.</p>
+</li>
+<li>
+<p>Starter code is available in the folder <em>Vigenere</em>.</p>
+</li>
+<li>
+<p>Do not alter the API or the test method in the starter code.. </p>
+</li>
+<li>
+<p>Otherwise, you are free to implement the class as you wish. That is, create whatever private instance variables and private methods that your design requires.</p>
+</li>
+</ul>
+<p>The outputs shown in Figure 1 and in the BlueJ Terminal window portion of Figure 2 should be generated when you invoke the test method provided in the starter code.</p>
+<p><img alt="Figure 1: Vigenere table" src="img/05v.png">
+<img alt="Figure 2: Test output" src="img/04v.png"></p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Q3</h1>
+<p><strong>VigenereCipher class</strong></p>
+<p>The implementation presented here as one possible solution uses static methods and a small number of static variables.</p>
+<p>Here is the class wrapper and the static variables:</p>
+<pre><code>/*
+ * For simplicity work in upper case and use [A-Z] only
+ * That is, no other characters, such as white space and so on.
+ * All input strings are immediately normalized to bytes in range [0 25] for algorithmic simplicity
+ * For example the character A whose code is 65 becomes 0, B becomes 1 and so on.
+ * The normalization process is reversed when required such as on generating output.
+ * @author jfitzgerald
+ * @see http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
+ * @see http://ascii.cl/
+ * @version 15-2-2016
+ */
+public class VigenereCipher
+{
+
+  private static final byte NUMBER_CHARS = 26;
+  private static byte[][] vigenereTable = new byte[NUMBER_CHARS][NUMBER_CHARS];
+
+  // The underlying numerical value of the character A
+  private static final byte TRANSFORM_UPPER = 65;
+
+}
+
+</code></pre>
+
+<ul>
+<li>NUMBER_CHARS represents the number of upper case letters which is 26.</li>
+<li>The two dimensional <em>vigenereTable</em> stores the normalized values that represent the encrypted plain text under a key. <ul>
+<li>By normalized we mean that the range of uppercase ASCII values is transformed from [65, 90] representing [A, Z] to [0, 26]. </li>
+<li>The constant value variable TRANSFORM_UPPER is the amount by which each character is transformed. Thus, for example, the character B whose underlying ASCII value is 66 transforms to 66 - TRANSFORM_UPPER which is 66 - 65 == 1. And so on. </li>
+<li>To obtain a character associate with a normalized value, simply add TRANSFORM_UPPER. So that, for example, the normalized value 3 transforms to 3 + TRANSFORM_UPPER which is 3 + 65 == 68. The number 68 is the ASCII value representing D.</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Q3</h1>
+<p><strong>Vigenere Table</strong></p>
+<p>Here is the code to generate a normalized Vigenere Table:</p>
+<pre><code>  /**
+   * Generates the Vigenere Table.
+   */
+  public static void generateVigenereTable()
+  {
+    // populate normalized vigenere table
+    for (byte row = 0; row &lt; NUMBER_CHARS; row += 1)
+    {
+      for (byte col = 0; col &lt; NUMBER_CHARS; col += 1)
+      {
+        vigenereTable[row][col] = (byte) ((row + col) % NUMBER_CHARS);
+      }
+    }
+  }
+</code></pre>
+
+<p>The Vigenere algorithm could easily be written without creating the table. We do simply to better illustrate how the algorithm works.</p>
+<p>Figure 1 and Figure 2 show standard and normalized version of the Vigenere Table.</p>
+<p><img alt="Figure 1: Vigenere Table" src="img/02.png">
+<img alt="Figure 2: Normalized Vigenere Table" src="img/01.png"></p>
+<p>The following method prints the table:</p>
+<pre><code>  /**
+   * Print the vigenere table.
+   * 
+   */
+  public static void printVigenereTable()
+  {
+    for (byte row = 0; row &lt; NUMBER_CHARS; row += 1)
+    {
+      for (byte col = 0; col &lt; NUMBER_CHARS; col += 1)
+      {
+        // transforms to ascii upper case character
+        System.out.printf(&quot;%2s&quot;, (char) (vigenereTable[row][col] + TRANSFORM_UPPER));
+      }
+      System.out.println();
+    }
+    System.out.println();
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <p>Q3</p>
+<p><strong>Generate key</strong></p>
+<pre><code>  /**
+   * Use the keyword to generate a key. Key length is the same as the length of
+   * the plain text. The key comprises repeating keyword. The last keyword in
+   * the key is truncated if necessary.
+   *
+   * @param keyLength
+   *          The number of characters in the key.
+   * @param plainText
+   *          The plain text for which a key will be generated.
+   * @return The key for use in encrypting a message whose length matches the
+   *         key length.
+   */
+  public static String generateKey(String keyword, int keyLength)
+  {
+    byte[] keywordBytes = keyword.getBytes();
+    byte[] key = new byte[keyLength];
+
+    int i = 0;
+    do
+    {
+      int j = 0;
+      while (j &lt; keyword.length() &amp;&amp; i &lt; keyLength)
+      {
+        key[i++] = (byte) (keywordBytes[j++]);
+      }
+    } while (i &lt; keyLength);
+
+    return new String(key);
+  }
+</code></pre>
+
+<p>Here is a more elegent solution. </p>
+<p>Note that in neither case are we applying any validation - no consideration is being given to edge cases.</p>
+<pre><code>  public String generateKey(String keyword, int keyLength) 
+  {
+      String key = &quot;&quot;;
+      for (int i = 0; i &lt; keyLength; i += 1) 
+      {
+        key += keyword.charAt(i % keyword.length());
+      }
+      return key; 
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <p>Q3</p>
+<p><strong>Encrypt message</strong></p>
+<pre><code>  /**
+   * Encrypts plain text (message text) under the key using the Vigenere Table.
+   * 
+   * @param plainText
+   *          The plain text (message text) to be encrypted
+   * @param key
+   *          The key under which the plain text is encrypted
+   * @return The cipher text created by encrypting the plaintext under the
+   *         generated key.
+   */
+  public static String encrypt(String key, String plainText)
+  {
+    byte[] cipherText = new byte[plainText.length()];
+    for (byte i = 0; i &lt; plainText.length(); i += 1)
+    {
+      byte col = (byte) (plainText.charAt(i) - TRANSFORM_UPPER);
+      byte row = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      cipherText[i] = (byte) (vigenereTable[row][col] + TRANSFORM_UPPER);
+    }
+    return new String(cipherText);
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <p>Q3</p>
+<p><strong>Decrypt cipher text</strong></p>
+<p>Method 1:</p>
+<pre><code>  /**
+   * Decrypts cipher text under the key using the Vigenere Table.
+   * 
+   * @param key
+   *          The key under which the cipher text is deccrypted
+   * @param cipherText
+   *          The cipher text to be decrypted.
+   * @return The plain text obtained by decrypting the cipher text under the
+   *         generated key.
+   */
+
+  public static String decrypt1(String key, String cipherText)
+  {
+    byte[] plainText = new byte[cipherText.length()];
+    for (byte i = 0; i &lt; plainText.length; i += 1)
+    {
+      byte row = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      byte col = getColumn(row, (byte) (cipherText.charAt(i) - TRANSFORM_UPPER));
+      plainText[i] = (byte) (col + TRANSFORM_UPPER);
+    }
+    return new String(plainText);
+  }
+
+  /**
+   * Given the row number and the Vigenere Table entry, find the corresponding
+   * column number.
+   * 
+   * @param row
+   *          The row number on which the table entry is located.
+   * @param tableEntry
+   *          The current Vigenere Table entry.
+   * @return The column number at which the current Vigenere Table entry is
+   *         located or negative 1 in case of failure.
+   */
+  private static byte getColumn(byte row, byte tableEntry)
+  {
+    byte col = 0;
+    do
+    {
+      if (tableEntry == vigenereTable[row][col])
+      {
+        return col;
+      }
+      col += 1;
+    } while (col &lt; vigenereTable[row].length);
+    return -1;
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <p>Q3</p>
+<p><strong>Decrypt cipher text</strong></p>
+<p>Method 2:</p>
+<pre><code>  /**
+   * Decrypts cipher text under the key using the Vigenere Table.
+   * 
+   * @param key
+   *          The key under which the cipher text is deccrypted
+   * @param cipherText
+   *          The cipher text to be decrypted.
+   * @return The plain text obtained by decrypting the cipher text under the
+   *         generated key.
+   */
+  public static String decrypt2(String key, String cipherText)
+  {
+    byte[] plainText = new byte[cipherText.length()];
+    for (byte i = 0; i &lt; plainText.length; i += 1)
+    {
+      byte keyRow = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      byte cipherByte = (byte) (cipherText.charAt(i) - TRANSFORM_UPPER);
+      plainText[i] = (byte) (((cipherByte - keyRow + NUMBER_CHARS) % NUMBER_CHARS) + TRANSFORM_UPPER);
+    }
+    return new String(plainText);
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <p>Q3</p>
+<p><strong>Printing</strong></p>
+<pre><code>  /**
+   * Print the key.
+   * 
+   * @param key
+   *          The key used for encryption and decryption.
+   */
+  public static void printKey(String key)
+  {
+    System.out.println(key);
+  }
+
+  /**
+   * Print the plain text (message text).
+   * 
+   * @param plainText
+   *          The plain text (message text).
+   */
+  public static void printMessage(String plainText)
+  {
+    System.out.println(plainText);
+  }
+
+  /**
+   * Print the cipher text.
+   * 
+   * @param cipherText
+   *          The encrypted message.
+   */
+  public static void printCipher(String cipherText)
+  {
+    System.out.println(cipherText);
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <p>Q3</p>
+<p><strong>Testing</strong></p>
+<pre><code>  /**
+   * Test VigenereCipher by: 
+   *     Generating and printing Vigenere Table, 
+   *     Generating the key using the keyword, 
+   *     Encrypting a message (plain text), 
+   *     Decrypting the cipher text.
+   *     Printing the table, key, message, ciphertext &amp; decrypted ciphertext.
+   */
+  public static void test()
+  {
+
+    generateVigenereTable();
+
+    String messageText = &quot;MICHIGANTECHNOLOGICALUNIVERSITY&quot;;
+    String key = generateKey(&quot;HOUGHTON&quot;, messageText.length());
+    String cipherText = encrypt(key, messageText);
+    String decrypted = decrypt2(key, cipherText);
+
+    printVigenereTable();
+    printKey(key);
+    printMessage(messageText);
+    printCipher(cipherText);
+    printMessage(decrypted);
+  }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="10">
+    <p>Q3</p>
+<p>Complete VigenereCipher class:</p>
+<pre><code>/*
+ * For simplicity work in upper case and use [A-Z] only
+ * That is, no other characters, such as white space and so on.
+ * All input strings are immediately normalized to bytes in range [0 25] for algorithmic simplicity
+ * For example the character A whose code is 65 becomes 0, B becomes 1 and so on.
+ * The normalization process is reversed when required such as on generating output.
+ * @author jfitzgerald
+ * @see http://www.cs.mtu.edu/~shene/NSF-4/Tutorial/VIG/Vig-Base.html
+ * @see http://ascii.cl/
+ * @version 15-2-2016
+ */
+public class VigenereCipher
+{
+
+  private static final byte NUMBER_CHARS = 26;
+  private static byte[][] vigenereTable = new byte[NUMBER_CHARS][NUMBER_CHARS];
+
+  // The underlying numerical value of the character A
+  private static final byte TRANSFORM_UPPER = 65;
+
+  public VigenereCipher()
+  {
+    generateVigenereTable();
+  }
+
+  /**
+   * Generates the Vigenere Table.
+   */
+  public static void generateVigenereTable()
+  {
+    // populate normalized vigenere table
+    for (byte row = 0; row &lt; NUMBER_CHARS; row += 1)
+    {
+      for (byte col = 0; col &lt; NUMBER_CHARS; col += 1)
+      {
+        vigenereTable[row][col] = (byte) ((row + col) % NUMBER_CHARS);
+      }
+    }
+  }
+
+  /**
+   * Use the keyword to generate a key. Key length is the same as the length of
+   * the plain text. The key comprises repeating keyword. The last keyword in
+   * the key is truncated if necessary.
+   *
+   * @param keyLength
+   *          The number of characters in the key.
+   * @param plainText
+   *          The plain text for which a key will be generated.
+   * @return The key for use in encrypting a message whose length matches the
+   *         key length.
+   */
+  public static String generateKey(String keyword, int keyLength)
+  {
+    byte[] keywordBytes = keyword.getBytes();
+    byte[] key = new byte[keyLength];
+
+    int i = 0;
+    do
+    {
+      int j = 0;
+      while (j &lt; keyword.length() &amp;&amp; i &lt; keyLength)
+      {
+        key[i++] = (byte) (keywordBytes[j++]);
+      }
+    } while (i &lt; keyLength);
+
+    return new String(key);
+  }
+
+  /**
+   * Encrypts plain text (message text) under the key using the Vigenere Table.
+   * 
+   * @param plainText
+   *          The plain text (message text) to be encrypted
+   * @param key
+   *          The key under which the plain text is encrypted
+   * @return The cipher text created by encrypting the plaintext under the
+   *         generated key.
+   */
+  public static String encrypt(String key, String plainText)
+  {
+    byte[] cipherText = new byte[plainText.length()];
+    for (byte i = 0; i &lt; plainText.length(); i += 1)
+    {
+      byte col = (byte) (plainText.charAt(i) - TRANSFORM_UPPER);
+      byte row = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      cipherText[i] = (byte) (vigenereTable[row][col] + TRANSFORM_UPPER);
+    }
+    return new String(cipherText);
+  }
+
+  /**
+   * Decrypts cipher text under the key using the Vigenere Table.
+   * 
+   * @param key
+   *          The key under which the cipher text is deccrypted
+   * @param cipherText
+   *          The cipher text to be decrypted.
+   * @return The plain text obtained by decrypting the cipher text under the
+   *         generated key.
+   */
+
+  public static String decrypt1(String key, String cipherText)
+  {
+    byte[] plainText = new byte[cipherText.length()];
+    for (byte i = 0; i &lt; plainText.length; i += 1)
+    {
+      byte row = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      byte col = getColumn(row, (byte) (cipherText.charAt(i) - TRANSFORM_UPPER));
+      plainText[i] = (byte) (col + TRANSFORM_UPPER);
+    }
+    return new String(plainText);
+  }
+
+  /**
+   * Given the row number and the Vigenere Table entry, find the corresponding
+   * column number.
+   * 
+   * @param row
+   *          The row number on which the table entry is located.
+   * @param tableEntry
+   *          The current Vigenere Table entry.
+   * @return The column number at which the current Vigenere Table entry is
+   *         located or negative 1 in case of failure.
+   */
+  private static byte getColumn(byte row, byte tableEntry)
+  {
+    byte col = 0;
+    do
+    {
+      if (tableEntry == vigenereTable[row][col])
+      {
+        return col;
+      }
+      col += 1;
+    } while (col &lt; vigenereTable[row].length);
+    return -1;
+  }
+
+  public static String decrypt2(String key, String cipherText)
+  {
+    byte[] plainText = new byte[cipherText.length()];
+    for (byte i = 0; i &lt; plainText.length; i += 1)
+    {
+      byte keyRow = (byte) (key.charAt(i) - TRANSFORM_UPPER);
+      byte cipherByte = (byte) (cipherText.charAt(i) - TRANSFORM_UPPER);
+      plainText[i] = (byte) (((cipherByte - keyRow + NUMBER_CHARS) % NUMBER_CHARS) + TRANSFORM_UPPER);
+    }
+    return new String(plainText);
+  }
+
+  /**
+   * Print the vigenere table.
+   * 
+   */
+  public static void printVigenereTable()
+  {
+    for (byte row = 0; row &lt; NUMBER_CHARS; row += 1)
+    {
+      for (byte col = 0; col &lt; NUMBER_CHARS; col += 1)
+      {
+        // transforms to ascii upper case character
+        System.out.printf(&quot;%2s&quot;, (char) (vigenereTable[row][col] + TRANSFORM_UPPER));
+        //System.out.printf(&quot;%3d&quot;, (int) (vigenereTable[row][col]));
+
+      }
+      System.out.println();
+    }
+    System.out.println();
+  }
+
+  /**
+   * Print the key.
+   * 
+   * @param key
+   *          The key used for encryption and decryption.
+   */
+  public static void printKey(String key)
+  {
+    System.out.println(key);
+  }
+
+  /**
+   * Print the plain text (message text).
+   * 
+   * @param plainText
+   *          The plain text (message text).
+   */
+  public static void printMessage(String plainText)
+  {
+    System.out.println(plainText);
+  }
+
+  /**
+   * Print the cipher text.
+   * 
+   * @param cipherText
+   *          The encrypted message.
+   */
+  public static void printCipher(String cipherText)
+  {
+    System.out.println(cipherText);
+  }
+
+  /**
+   * Test method by: Generating and printing Vigenere Table, Generating the key
+   * using the keyword, Encrypting a message (plain text), Decrypting the cipher
+   * text. Printing the table, key, message, ciphertext &amp; decrypted ciphertext.
+   */
+  public static void main(String[] args)
+  {
+
+    generateVigenereTable();
+
+    String messageText = &quot;MICHIGANTECHNOLOGICALUNIVERSITY&quot;;
+    String key = generateKey(&quot;HOUGHTON&quot;, messageText.length());
+    String cipherText = encrypt(key, messageText);
+    String decrypted = decrypt2(key, cipherText);
+
+    printVigenereTable();
+    printKey(key);
+    printMessage(messageText);
+    printCipher(cipherText);
+    printMessage(decrypted);
+  }
+}
+
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>

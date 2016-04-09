@@ -1,0 +1,855 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-2 Solutions
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-2-Solutions-Q2">
+        Assignment-2-Solutions-Q2
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+      <a class="item" data-tab="04">
+        04
+      </a>
+      <a class="item" data-tab="05">
+        05
+      </a>
+      <a class="item" data-tab="06">
+        06
+      </a>
+      <a class="item" data-tab="07">
+        07
+      </a>
+      <a class="item" data-tab="08">
+        08
+      </a>
+      <a class="item" data-tab="09">
+        09
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-2-Solutions-Q2">
+    <h1>Readme</h1>
+<p>Assignment 2 (Q2) solutions</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Q2</h1>
+<p><strong><em>BlueJ Project</em></strong></p>
+<p>The completed project, Spacebook is available to download <a href="archives/spacebook.zip">here</a>.</p>
+<p><strong><em>Task 1: User Friendship</em></strong></p>
+<p>Presently the <em>befriend</em> method in User ensures a user cannot befriend itself.</p>
+<ul>
+<li>Modify the <em>befriend</em> method to ensure that the same user cannot be befriended twice.</li>
+</ul>
+<p>Here is the skeleton code:</p>
+<pre><code>    public void befriend(User friend)
+    {
+        if(friend == this)
+        {
+            System.out.println(&quot;Opps! You seem to have made a mistake in attempting to befriend yourself&quot;);
+        }
+        else if(friendshipsContains(friend))
+        {
+            System.out.println(friend.firstName +&quot; is already a friend&quot;);
+        }
+        else
+        {
+            Friendship friendship = new Friendship(this, friend);
+            friendships.add(friendship);
+        }
+    }
+</code></pre>
+
+<p>As you can see from the above skeleton code, you are required to write the method <em>boolean friendshipsContains(User friend)</em></p>
+<ul>
+<li>The method should check the instance variable <em>friendships</em> and return <em>true</em> if the argument <em>friend</em> is present in the list (as a <em>targetUser</em>), else <em>false</em>.</li>
+</ul>
+<p><strong><em>Task 1 User Friendship Solution</em></strong></p>
+<pre><code>    public void befriend(User friend)
+    {
+        if(friend == this)
+        {
+            System.out.println(&quot;Opps! You seem to have made a mistake in attempting to befriend yourself&quot;);
+        }
+        else if(friendshipsContains(friend))
+        {
+            System.out.println(friend.firstName +&quot; is already a friend&quot;);
+        }
+        else
+        {
+            Friendship friendship = new Friendship(this, friend);
+            friendships.add(friendship);
+        }
+    }
+
+    private boolean friendshipsContains(User friend)
+    {
+        for(Friendship friendship : friendships)
+        {
+            if(friendship.targetUser == friend)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Q2</h1>
+<p><strong><em>Task 2: User class</em></strong></p>
+<p>In the <strong>User</strong> class:</p>
+<ul>
+<li>Use an <em>enum</em> to define status:<ul>
+<li>enum Status {ONLINE, OFFLINE, BUSY, AWAY}</li>
+</ul>
+</li>
+<li>Create a <em>Status</em> field</li>
+<li>Set the default status field to "ONLINE" at User instantiation</li>
+<li>Write a method to set the status field's value<ul>
+<li>Signature: <em>public void setStatus(...)</em></li>
+</ul>
+</li>
+<li>Write a method to display a list of friends filtered based on status<ul>
+<li>Signature: <em>public void displayFriends(Status status)</em></li>
+<li>Test by invoking <em>displayFriends(Status status)</em> on a <em>User</em> object with various Status values</li>
+<li>Test by invoking <em>displayFriends()</em> on a <em>TestSpacebook</em> object</li>
+<li>See Figure 2 for sample output</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 2: Sample output displayFriends" src="img/11.png"></p>
+<p><strong><em>Task 2: User class Solution</em></strong></p>
+<pre><code>
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+enum Status {ONLINE, OFFLINE, BUSY, AWAY}
+enum GroupName {FAMILY,FRIENDS, CLIENTS}
+public class User
+{
+    String firstName;
+    String lastName;
+    int age;
+    String nationality;
+    String email;
+    String password;
+
+    Status status;
+
+    ArrayList&lt;Friendship&gt; friendships   = new ArrayList&lt;&gt;();
+    ArrayList&lt;Message&gt; inbox            = new ArrayList&lt;&gt;();
+    ArrayList&lt;Message&gt; outbox           = new ArrayList&lt;&gt;(); 
+
+    HashMap&lt;String, Group&gt; groups = new HashMap&lt;&gt;();
+
+    /**
+     * Constructs an object intended for testing only
+     * The firstName determined by caller
+     * Remaining fields used default data
+     */
+    public User(String firstName)
+    {
+        setState(firstName, &quot;Simpson&quot;, firstName+&quot;@simpson.com&quot;, &quot;secret&quot;);
+    }
+
+    public User(String firstName, String lastName, String email, String password)
+    {
+        setState(firstName, lastName, email, password);
+    }  
+
+    public void setState(String firstName, String lastName, String email, String password)
+    {
+        this.firstName  = firstName;
+        this.lastName   = lastName;
+        this.email      = email;
+        this.password   = password;
+        this.status     = Status.ONLINE;
+    }  
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
+    }
+
+    public void broadcastMessage(Subject subject, String messageText)
+    {
+        for(Friendship f : friendships)
+        {
+            Message message = new Message(subject, this, f.targetUser, messageText);
+            outbox.add(message);
+            f.targetUser.inbox.add(message);
+        }
+    }
+
+    public void sendMessage(Message message)
+    {
+        from.outbox.add(message);
+        to.inbox.add(message);
+    }
+
+    public void sendMessage(Subject subject, User to, String messageText)
+    {
+        Message message = new Message(subject,this, to, messageText);
+        outbox.add(message);
+        to.inbox.add(message);
+    }
+
+    public void displayOutbox()
+    {
+        for(Message msg : outbox)
+        {
+            msg.displayMessage();
+        }
+    }
+
+    public void displayInbox()
+    {
+        for(Message msg : inbox)
+        {
+            msg.displayMessage();
+        }
+    }
+
+    public void befriendOriginal(User friend)
+    {
+        //if(!(friend == this))
+        if(friend != this)
+        {
+            Friendship friendship = new Friendship(this, friend);
+            friendships.add(friendship);
+        }
+        else
+        {
+            System.out.println(&quot;Opps! You seem to have made a mistake in attempting to befriend yourself&quot;);
+        }
+    }
+
+    public void befriend(User friend)
+    {
+        if(friend == this)
+        {
+            System.out.println(&quot;Opps! You seem to have made a mistake in attempting to befriend yourself&quot;);
+        }
+        else if(friendshipsContains(friend))
+        {
+            System.out.println(&quot;You attempted to befriend &quot; + friend.firstName +&quot; who is already a friend&quot;);
+        }
+        else
+        {
+            Friendship friendship = new Friendship(this, friend);
+            friendships.add(friendship);
+        }
+    }
+
+    private boolean friendshipsContains(User friend)
+    {
+        for(Friendship friendship : friendships)
+        {
+            if(friendship.targetUser == friend)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void unfriendAll()
+    {
+        for(int i = friendships.size() - 1; i &gt;= 0; i -= 1)
+        { 
+            friendships.remove(i);
+        }
+    }
+
+    public void unfriend(User friend) 
+    {
+        for(Friendship friendship : friendships)
+        {
+            if(friendship.targetUser == friend)
+            {
+                friendships.remove(friendship);
+                return;
+            }
+        }
+    }
+
+    public void displayFriends() 
+    {
+        if(friendships.isEmpty())
+        {
+            System.out.println(&quot;Unfortunately you have no friends&quot;);
+        }
+        System.out.println(&quot;I'm &quot; + this.firstName + &quot; &quot; + this.lastName + &quot; and these are my \&quot;friends\&quot; hehe :-)&quot;);
+        for(Friendship friendship : friendships)
+        {
+            System.out.println(&quot;My friend &quot;+friendship.targetUser.firstName + &quot; is &quot; + friendship.targetUser.status);
+        }
+    }
+
+    public void displayFriends(Status status)  
+    {
+        if(friendships.isEmpty())
+        {
+            System.out.println(&quot;Unfortunately you have no friends&quot;);
+        }
+        System.out.println(&quot;I'm &quot; + this.firstName + &quot; &quot; + this.lastName + &quot; and these are my &quot; + status+ &quot; \&quot;friends\&quot; hehe :-)&quot;);
+        for(Friendship friendship : friendships)
+        {
+            if(friendship.targetUser.status == status)
+            {
+                System.out.println(&quot;My friend &quot;+friendship.targetUser.firstName + &quot; is &quot; + friendship.targetUser.status);
+            }
+        }
+    }
+    public void addGroup(String groupName)
+    {
+        groups.put(groupName, new Group(groupName));
+    }
+
+    public void addGroupMember(String groupName, User user)
+    {
+        Group group = groups.get(groupName);
+        group.addGroupMember(user);
+    }
+
+    public void broadcastMessage(String groupName, Message message)
+    {
+        groups.get(groupName).broadcastMessage(message);
+    }
+
+    /**
+     * 
+     * @param content   the content sought
+     * @param msg       the array Message objects to be searched
+     * @return          returns the first Message containing content, else null
+     */
+    public Message search(String content, ArrayList&lt;Message&gt; msg)
+    {
+        int index = 0;
+        while(index &lt; msg.size())
+        {
+            Message thisMsg = msg.get(index);
+            if(content.equals(thisMsg.messageText))
+            {
+                return thisMsg;
+            }
+            index += 1;
+        }
+        return null;
+    }
+
+    /**
+     * 
+     * @param subject   seeking a Message object with Subject subject
+     * @param msg       the array Message objects to be searched
+     * @return          returns the first Message with subject matching param, else null
+     */
+    public Message search(Subject subject, ArrayList&lt;Message&gt; msg)
+    {
+        int index = 0;
+        while(index &lt; msg.size())
+        {
+            Message thisMsg = msg.get(index);
+            if(subject == thisMsg.subject)
+            {
+                return thisMsg;
+            }
+            index += 1;
+        }
+        return null;        
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Q2</h1>
+<p><strong><em>Task 3 User class</em></strong></p>
+<p>Write a method in User to send a message.</p>
+<ul>
+<li>Signature: <em>public void sendMessage(Message message)</em></li>
+<li>Add the message to the outbox of the sender and inbox of target.</li>
+</ul>
+<p><strong><em>Task 3 User class Solution</em></strong></p>
+<pre><code>    public void sendMessage(Message message)
+    {
+        message.from.outbox.add(message);
+        message.to.inbox.add(message);
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="04">
+    <h1>Q2</h1>
+<p><strong><em>Task 4: Message class</em></strong></p>
+<p>A subject field is present in the <strong>Message</strong> class</p>
+<ul>
+<li>enum Subject {PERSONAL, FAMILY, WORK, GENERAL}</li>
+<li>Modify Message constructor to initialise the subject field.<ul>
+<li>Use actual parameter <em>subject</em>.</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 4: Message class Solution</em></strong></p>
+<pre><code>    public Message(Subject subject, User from, User to, String messageText)
+    {
+        this.subject        = subject;
+        this.from           = from;
+        this.to             = to;
+        this.messageText    = messageText;
+    }
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="05">
+    <h1>Q2</h1>
+<p><strong><em>Task 5: Group class</em></strong></p>
+<p>Develop a class named <strong><em>Group</em></strong> to implement the concept of a group of friends such as family, friends, clients and so on.</p>
+<ul>
+<li>Its fields are <ul>
+<li><em>String groupName</em> <ul>
+<li>to represent the name of the group, example <em>clients</em></li>
+</ul>
+</li>
+<li><em>ArrayList&lt;User> members;</em> <ul>
+<li>to contain a list of users, members of this group</li>
+</ul>
+</li>
+<li>A constructor<ul>
+<li><em>public Group(String groupName)</em></li>
+</ul>
+</li>
+<li>A method to add a new member to the group<ul>
+<li><em>public void addGroupMember(User user)</em></li>
+</ul>
+</li>
+<li>A method to broadcast a message to the entire group<ul>
+<li><em>public void broadcastMessage(Message message)</em></li>
+</ul>
+</li>
+<li>A private helper method to print the group list as a column of data<ul>
+<li><em>private String groupList()</em></li>
+</ul>
+</li>
+<li>Override the <em>toString</em> method<ul>
+<li><em>public String toString()</em></li>
+</ul>
+</li>
+<li>Test your code by invoking <em>TestSpacebook addGroups</em><ul>
+<li>Figure 1 shows typical output</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the skeleton code:</p>
+<pre><code>import ...
+
+public class Group
+{
+    String groupName;
+
+    ArrayList&lt;User&gt; members;
+
+    public Group(String groupName)
+    {
+        ...
+    }
+
+    public void addGroupMember(User user)
+    {
+        ...
+
+    }
+
+    /**
+     * Send a message to the inbox of each group member
+     */
+    public void broadcastMessage(Message message)
+    {
+        ...
+        ...
+        ...
+    }
+
+    /*
+     * @return all the group names in a single string
+     * Use the \n between each name to ensure printed on separate lines
+     */
+    private String groupList()
+    {
+        String names = &quot;&quot;;
+        ....
+        return names;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;GroupName=&quot; + groupName + &quot;\n&quot; + groupList();
+    }   
+}
+</code></pre>
+
+<p><img alt="Figure 1: Invoking addGroups" src="img/10.png"></p>
+<p><strong><em>Task 5 Group class Solution</em></strong></p>
+<pre><code>import java.util.ArrayList;
+
+public class Group
+{
+    String groupName;
+
+    ArrayList&lt;User&gt; members = new ArrayList&lt;&gt;();
+
+    public Group(String groupName)
+    {
+        this.groupName = groupName;
+    }
+
+    public void addGroupMember(User user)
+    {
+        members.add(user);
+
+    }
+
+    public void broadcastMessage(Message message)
+    {
+        for(User user : members)
+        {
+            user.inbox.add(message);
+        }
+    }
+
+    private String groupList()
+    {
+        String names = &quot;&quot;;
+        for(User user : members)
+        {
+            names += user.firstName + &quot;\n&quot;;
+        }
+        return names;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;GroupName=&quot; + groupName + &quot;\n&quot; + groupList();
+    }
+
+}
+
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="06">
+    <h1>Q2</h1>
+<p><strong><em>Task 6: Message class</em></strong></p>
+<p>Complete the <em>displayMessage</em> method in <em>Message</em> to print output formatted as shown in Figure 3.</p>
+<ul>
+<li>Test by invoking <em>displayMessages</em> on <em>TestSpacebook</em></li>
+</ul>
+<pre><code>//Skeleton code
+
+...
+
+public class Message
+{
+    Subject   ...;
+    String    messageText;
+    User      from;
+    User      to;
+
+    public Message(Subject subject, User from, User to, String messageText)
+    {
+        this.subject        = subject;
+        this.from           = from;
+        this.to             = to;
+        this.messageText    = messageText;
+    } 
+
+    public void displayMessage()
+    {
+        String nameFrom = from.firstName;
+        String nameTo   = to.firstName;
+        System.out.println(... + &quot; says \&quot;&quot;+messageText + &quot;\&quot; to &quot; + nameTo);
+    }
+
+    public void displayMessageContent()
+    {
+        System.out.println(messageText);
+    }
+}
+</code></pre>
+
+<p><img alt="Figure 3: Displaying messages including message subject" src="img/12.png"></p>
+<p><strong><em>Task 6 Message class Solution</em></strong></p>
+<pre><code>
+public class Message
+{
+    Subject   subject;  
+    String    messageText;
+    User      from;
+    User      to;
+
+    public Message(Subject subject, User from, User to, String messageText)  
+    {
+        this.subject        = subject;
+        this.from           = from;
+        this.to             = to;
+        this.messageText    = messageText;
+    } 
+
+    public void displayMessage()
+    {
+        String nameFrom = from.firstName;
+        String nameTo   = to.firstName;
+        System.out.println(&quot;Message subject: &quot; + subject + &quot; &quot; + nameFrom + &quot; says \&quot;&quot;+messageText + &quot;\&quot; to &quot; + nameTo);
+    }
+
+    public void displayMessageContent()
+    {
+        System.out.println(messageText);
+    }
+}
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="07">
+    <h1>Q2</h1>
+<p><strong><em>Task 7 User class</em></strong></p>
+<p>Write a method in <strong>User</strong> class to display an array list of messages.</p>
+<ul>
+<li>Signature <em>public void displayMessages(ArrayList&lt;Message> messages)</em></li>
+<li>Hint: In this method, invoke the existing <em>Message</em> method <em>displayMessage</em> for each element in the list</li>
+<li>Test the method by invoking <em>TestMessaging displayMessageList()</em>.</li>
+<li>Sample out depicted in Figure 4</li>
+</ul>
+<p><img alt="Figure 4: Sample output displayMessageList()" src="img/13.png"></p>
+<p><strong><em>Task 7 User class Solution</em></strong></p>
+<pre><code>    public void displayMessages(ArrayList&lt;Message&gt; messages)
+    {
+        for(Message message : messages)
+        {          
+            message.displayMessage();           
+        }
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="08">
+    <h1>Q2</h1>
+<p><strong><em>Task 8 User class</em></strong></p>
+<p>Write a method to display an array list of messages filtered by subject:</p>
+<ul>
+<li>Signature <em>public void displayMessages(Subject subject, ArrayList&lt;Message> messages)</em></li>
+<li>Hint: Invoke the existing <em>Message</em> method <em>displayMessage</em> for each element in the list</li>
+<li>Test the method by invoking <em>TestMessaging displayMessageList(Subject subject)</em>.</li>
+<li>Sample out depicted in Figure 5</li>
+</ul>
+<p><img alt="Figure 5: Sample output displayMessageList()" src="img/14.png"></p>
+<p><strong><em>Task 8 User class Solution</em></strong></p>
+<pre><code>    public void displayMessages(Subject subject, ArrayList&lt;Message&gt; messages)
+    {
+        for(Message message : messages)
+        {
+            if(message.subject == subject)
+            {
+                message.displayMessage();
+            }
+        }
+    }
+</code></pre>
+  </div>
+  <div  class="ui tab segment lab" data-tab="09">
+    <h1>Q2</h1>
+<p><strong><em>Task 9 MessageSort class</em></strong></p>
+<p>Write a method in MessageSort to sort an array of messages.</p>
+<ul>
+<li>Signature: <em>public static void sortMessages(Message[] messages)</em></li>
+<li>Use the sorting algorithm developed in this assignment to sort the list</li>
+<li>Test your code by invoking <em>sortArrayMessages</em> on an instance of <em>TestMessaging</em> class provided (Figure 6)</li>
+</ul>
+<p><img alt="Figure 6: Sort array messages" src="img/08.png"></p>
+<p><strong><em>Task 9 MessageSort class Solution using selection sort</em></strong></p>
+<pre><code>    public static void sortMessages(Message[] m)
+    {
+        for(int i = 0; i &lt; m.length; i += 1)
+        {
+            for(j = i; j &lt; m.length; j += 1) 
+            {
+                if(m[i].messageText.compareTo(m[j].messageText) &gt; 0)
+                {
+                    swap(m, i, j);
+                }
+            }
+        }  
+    }
+
+    private static void swap(Message[] arMsg, int to, int from)
+    {
+        Message temp = arMsg[to];
+        arMsg[to] = arMsg[from];
+        arMsg[from] = temp;
+    }
+</code></pre>
+
+<p><strong><em>Task 10 MessageSort Message ArrayList</em></strong></p>
+<p>Write a method in MessageSort to sort an ArrayList of messages.</p>
+<ul>
+<li>Signature: <em>public void sortMessages(ArrayList&lt;Message> messages)</em></li>
+<li>Use the sorting algorithm developed in this assignment to sort the list</li>
+<li>Test your code by invoking <em>sortArrayListMessages</em> on an instance of <em>TestMessaging</em> class provided (Figure 7)</li>
+</ul>
+<p><img alt="Figure 7: Sort list messages" src="img/09.png"></p>
+<p><strong><em>Task 10 MessageSort Message ArrayList Solution</em></strong></p>
+<pre><code>import java.util.Collections;
+
+    public static void sortMessages(ArrayList&lt;Message&gt; m)
+    {
+        for (int i = 0; i &lt; m.size(); i += 1)
+        {
+            for (int j = i; j &lt; m.size(); j += 1)
+            {
+                if (m.get(i).messageText.compareTo(m.get(j).messageText) &gt; 0)
+                {
+                    Collections.swap(m, i, j);
+                }
+            }
+        }
+    }
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
