@@ -1,0 +1,476 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-2 Solutions
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-2-Feedback">
+        Assignment-2-Feedback
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-2-Feedback">
+    <h1>Feedback</h1>
+<p>Selection of code from assignment submissions.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Programming ICTSkills 2016</h1>
+<h2>Feedback Assignment 2</h2>
+<h3>Item 1</h3>
+<p>Naive comments.
+Dead  &amp; duplicate code within method.</p>
+<pre><code>    public void holdAuction()
+    {
+        for (Integer key : bids.keySet())
+        {
+            bids.get(key);//lists out all bids
+            ArrayList&lt;Bid&gt; listBids = bids.get(key);
+            SelectSort.sort(listBids);//sorts bids.
+            int Win = listBids.size()-2;
+            Bid winBid = listBids.get(Win);
+            winningBids.add(winBid);
+        }
+    }
+</code></pre>
+
+<h3>Item 2</h3>
+<p>Naive comment</p>
+<pre><code>  /**
+   * Registers a person as a member of the audience
+   * @param person an instance of Person register as member of members
+   * @return returns true if the person successfully added to set else false
+   */
+  public boolean register(Person person)
+  { 
+      return members.add(person);//checks if the member has been registered.
+  }
+</code></pre>
+
+<h3>Item 3</h3>
+<p>A final example (naive comment):</p>
+<pre><code>  /**
+   * Adds a Lot object to list of lots field
+   * @param lot The Lot object being added
+   */
+  public void addLot(Lot lot)
+  {
+    lots.add(lot);//adds lot to lots.
+  }
+</code></pre>
+
+<h3>Item 4</h3>
+<p>Whitespace styling violation and unnecessary parens:</p>
+<pre><code>    public boolean isRegistered(Person person)
+    {
+        return(members.contains(person));
+    }
+</code></pre>
+
+<p>Better?</p>
+<pre><code>    public boolean isRegistered(Person person)
+    {
+        return members.contains(person);
+    }
+</code></pre>
+
+<h3>Item 5</h3>
+<p>Redundant call to <em>toString()</em>:</p>
+<pre><code>  /**
+   * Constructs a string representation of this object
+   * @return string representation of this object
+   */
+  public String toString()
+  {
+
+    String details = &quot;Catalogue: list of lots &quot;;
+    Iterator&lt;Lot&gt; i = lots.iterator();
+    while(i.hasNext())
+    {
+        Lot lot = i.next();
+        details += lot.toString();
+    }
+    return details;
+  }
+</code></pre>
+
+<h3>Item 6</h3>
+<p>Verbose coding style</p>
+<pre><code>  /**
+   * Authenticates person is member of audience 
+   * Information provided is email and pin
+   * 
+   * @param email The email address of person being authenticated
+   * @param pin The pin number of person being authenticated
+   * @return Returns true if the person is a member of the audience.
+   */
+  public Person isRegistered(String email, int pin)
+  {
+    Person p=null;
+    for (Person person : members)
+    {
+      if(person.email == email &amp;&amp; person.getPin() == pin )
+      {
+          p = person;
+      }
+    }
+    return p;
+  }
+</code></pre>
+
+<h3>Item 7</h3>
+<p>What's the problem here?</p>
+<pre><code>    /**
+     * The auction comprises a check on all bids
+     * Winning bid is second highest for each lot
+     * Traverse map of bids
+     * Sort each array list of bids (corresponding to each lot)
+     * And sell to second highest bid
+     */
+    public void holdAuction()
+    {
+        for (Integer key : bids.keySet())
+        {
+            ArrayList&lt;Bid&gt; ListBids = bids.get(key);
+            SelectSort.sort(ListBids);       
+            winningBids.add(ListBids.get(ListBids.size()-2));
+            winningBids.add(ListBids.get(ListBids.size()-1));
+        }
+    } 
+</code></pre>
+
+<h3>Item 8</h3>
+<p>Verbose coding style:</p>
+<pre><code>
+    /**
+     * Authenticates a person is a member of the audience
+     * 
+     * @param person The person being authenticated
+     * @return Returns true if the person is a member of the audience otherwise returns false.
+     */
+    public boolean isRegistered(Person person)
+    {
+        if (members.contains(person))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+</code></pre>
+
+<p>Compared to:</p>
+<pre><code>    public boolean isRegistered(Person person)
+    {
+        return members.contains(person);
+    }
+</code></pre>
+
+<h3>Item 9</h3>
+<p>Unnecessary call to <em>toString()</em>.
+Layout could be improved.
+Use of <em>this</em> redundant (no ambiguity to resolve).</p>
+<pre><code>    /**
+     * Constructs a string representation of this object
+     * @return string representation of this object
+     */    
+    public String toString()
+    {
+      return &quot;&quot; + this.lot.toString() + &quot; &quot; + this.bidder.toString() + &quot; Amount Bid: &quot; + this.amountBid;
+    }
+</code></pre>
+
+<h3>Item 10</h3>
+<p>Unnecessary check: winningBids already inititialized in constructor:</p>
+<pre><code>
+    /**
+     * The auction comprises a check on all bids
+     * Winning bid is second highest for each lot
+     * Traverse map of bids
+     * Sort each array list of bids (corresponding to each lot)
+     * And sell to second highest bid
+     */
+    public void holdAuction()
+    {   
+        for (Integer key : bids.keySet())
+        {
+           ArrayList&lt;Bid&gt; ListBidding = bids.get(key);           
+           SelectSort.sort(ListBidding);
+           Bid winner = ListBidding.get(ListBidding.size() - 2);
+           if (winningBids == null)  {  
+             winningBids = new ArrayList&lt;Bid&gt;(); 
+           }
+           winningBids.add(winner);   
+        }
+    } 
+</code></pre>
+
+<h3>Item 11</h3>
+<p>Any views on how this method implemented?</p>
+<pre><code>    /**
+     * The auction comprises a check on all bids
+     * Winning bid is second highest for each lot
+     * Traverse map of bids
+     * Sort each array list of bids (corresponding to each lot)
+     * And sell to second highest bid
+     */
+    public void holdAuction()
+    {
+      for (Integer key : bids.keySet()) 
+      {              
+        SelectSort.sort(bids.get(key));
+        winningBids.add(bids.get(key).get(bids.get(key).size()-2));                   
+      }
+    }
+</code></pre>
+
+<p>Here is a simplified, albeit verbose, version. 
+Any views on ease of understanding and maintenance?</p>
+<pre><code>    public void holdAuction()
+    {
+      for (Integer key : bids.keySet()) 
+      {              
+        SelectSort.sort(bids.get(key));
+        ArrayList&lt;Bid&gt; listBids = bids.get(key);
+        int index = bids.get(key).size()-2;
+        Bid winner = listBids.get(index);
+        winningBids.add(winner);                  
+      }
+    } 
+</code></pre>
+
+<p>How about this approach?</p>
+<pre><code>
+    public void holdAuction()
+    {
+      for (Integer key : bids.keySet())
+      {
+        ArrayList&lt;Bid&gt; listBids = bids.get(key);
+        SelectSort.sort(listBids);
+        winningBids.add(listBids.get(listBids.size() - 2));  
+      }
+    }
+</code></pre>
+
+<h3>Item 12</h3>
+<p>Mixing C-Style &amp; K&amp;R Style positioning of {.
+Choose one or other: do not mix.
+K &amp; R now in favour in JavaScript. 
+So perhaps better to use in Java also.</p>
+<pre><code>    public void unfriend(User friend) {
+        for(Friendship friendship : friendships)
+        {
+            if(friendship.targetUser == friend)
+            {
+                friendships.remove(friendship);
+                return;
+            }
+        }
+    }
+</code></pre>
+
+<h3>Item 13</h3>
+<p>Better not to introduce message printing here.
+Also, note naive commenting.</p>
+<pre><code>    /**
+     * Check if the array list Friendships contains the name of the user already.
+     * @param friend The user that is being searched for in the array list.
+     * @return true if the friend already exists.
+     */
+    private boolean friendshipsContains(User friend)
+    {
+        for (Friendship friendship : friendships)//if the array list frienships contains this friend then return 
+        {
+            if (friendship.targetUser == friend)
+            {
+                System.out.println(&quot;You cannot duplicate a friendship. Your already friends with this person!&quot;);
+                return true;//this means the friend was in the array list.
+            }
+        }
+        return false;//they arent already in there.
+    }
+
+</code></pre>
+
+<h3>Item 14</h3>
+<p>Broadcast a message to all members of Group. 
+Will this work? Note the presence of <em>ArrayList<User> members</em> instance variable representing members of group, the recipient of the broadcast.</p>
+<pre><code>    /**
+     * Send a message to the inbox of each group member
+     * @param  message being sent to all the inboxes.
+     */
+    public void broadcastMessage(Message message)
+    {
+        for (User user : members)
+        {
+            message.to.inbox.add(message);
+        }
+    }
+</code></pre>
+
+<h3>Item 15</h3>
+<p>Naive comment
+Whitespace inconsistency.</p>
+<pre><code>    private boolean friendshipsContains(User friend)
+    {
+        //check if friendship contains friend
+        for (Friendship f : friendships) {
+            if (f.targetUser == friend){
+                return true;
+            }
+        }
+        return false;
+    }
+</code></pre>
+
+<h3>Item 16</h3>
+<p>Avoid using <em>magic numbers</em>. Instead of, for example, 26 below, use:</p>
+<pre><code>private final int NUMBER_CHARACTERS = 26;
+</code></pre>
+
+<pre><code>  public void testGenerateVigenereTable() {
+    //check each element is one char greater than in the column immediately preceding it
+    VigenereCipher.generateVigenereTable();
+    for (int i = 0; i &lt; 26; i++) {
+      for (int j = 0; j &lt; 26; j++) {
+        assert(VigenereCipher.vigenereTable[i][j] == (char) ('A' + i + j));  
+      }
+    }
+  }
+</code></pre>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
