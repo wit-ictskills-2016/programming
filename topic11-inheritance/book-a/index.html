@@ -288,7 +288,7 @@ The reason for the compilation failure is that the fields in <em>Shapes</em> are
 <li>From Figure 6 we see that there is problem related to the constructors in <em>Shapes</em> and <em>Triangle</em><ul>
 <li>Question: Why <em>Shapes</em> you may ask? Does not <em>Shapes</em> compile without any problems?</li>
 <li>Answer: Because a <em>Triangle</em> object is also a <em>Shape</em> object because of the inheritance relationship.<ul>
-<li>The newly added <em>Shapes</em> constructor must be invoked from the baseclass.</li>
+<li>The newly added <em>Shapes</em> constructor must be invoked from within the subclass Triangle.</li>
 <li>This can be done by using the <em>super</em> keyword as shown in the following refactored code:
 <img alt="Figure 6: Compilation fails" src="img/19.jpg"></li>
 </ul>
@@ -305,8 +305,12 @@ public class Triangle extends Shapes
 
     public Triangle()
     {
-        //super(int xPosition, int yPosition, String color, boolean isVisible)
+        // This is the Shapes constructor:
+        // Shapes(int xPosition, int yPosition, String color, boolean isVisible)
+        // super(...) is equivalent to Shapes(...)
+        // The parameters in super(...) and Shapes(...) must correspond.
         super(50, 15, &quot;green&quot;, true);
+        // setState parameters are used to initialized Triange fields.
         setState(50, 15);
     }
 
@@ -332,7 +336,7 @@ public class Triangle extends Shapes
 
 <p>In the above refactored code </p>
 <ul>
-<li>the fields in the base class are initialized through a modified <em>setState</em>.</li>
+<li>the fields in the derived class are initialized through a modified <em>setState</em>.</li>
 <li>the superclass fields are initialized by invoking <em>super</em> whose argument values are passed through to the superclass constructor and hence used to initialize the superclass fields.</li>
 </ul>
   </div>
