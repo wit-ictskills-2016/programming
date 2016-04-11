@@ -386,7 +386,7 @@ public class Triangle extends Shapes
 <ul>
 <li>We can arrange that <em>draw</em> in each shape class is invoked by refactoring as follows:<ul>
 <li>Remove the access modifier <em>private</em> from <em>draw</em>. 
-The signature now becomes: <em>void draw()</em></li>
+The header now becomes: <em>void draw()</em></li>
 <li>Make the superclass abstract by placing the <em>abstract</em> keyword before the word <em>class</em> as follows:<ul>
 <li><strong><em>abstract public class Shapes</em></strong><ul>
 <li>An abstract class cannot be instantiated </li>
@@ -397,7 +397,7 @@ The signature now becomes: <em>void draw()</em></li>
 </li>
 <li>Place the following statement in the <em>Shapes</em> class following the constructor:<ul>
 <li><strong><em>abstract void draw();</em></strong>          <ul>
-<li>An abstract method has a signature only: it is implemented in each subclass.</li>
+<li>An abstract method is only declared: it is implemented in each subclass.</li>
 </ul>
 </li>
 <li>Declaring <em>draw</em> as abstract in the superclass requires the implementation of the method in all subclasses of <em>Shapes</em>.</li>
@@ -586,7 +586,7 @@ public class TestShapes
 }
 </code></pre>
 
-<p>Create a <em>main</em> method in <em>Shapes</em>:</p>
+<p>Create a <em>main</em> method in <em>TestShapes</em>:</p>
 <pre><code>public static void main(String[] args)
 {
 
