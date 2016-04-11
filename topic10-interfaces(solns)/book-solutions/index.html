@@ -233,19 +233,6 @@ public class Exercise1
     }
 </code></pre>
 
-<p>Alternative solution using ternary operator:</p>
-<pre><code>    /**
-     * If isVisible is :
-     * true then clear the display
-     * false then display the shapes.
-     */
-
-    public void toggleIsVisible()
-    {
-        isVisible == true ? makeInvisible() : makeVisible();
-    }
-</code></pre>
-
 <p>Here is the complete source for the class:</p>
 <pre><code>import java.util.ArrayList;
 
@@ -305,7 +292,14 @@ public class Exercise1
 
     public void toggleIsVisible()
     {
-        isVisible == true ? makeInvisible() : makeVisible();
+        if(isVisible) 
+        {
+           makeInvisible();
+        }
+        else
+        {
+           makeVisible();
+        }
     }
 
 }
