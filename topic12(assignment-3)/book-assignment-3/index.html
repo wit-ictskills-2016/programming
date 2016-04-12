@@ -1,0 +1,514 @@
+ <!DOCTYPE html>
+ <html>
+   <head>
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css" type="text/css">
+     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/solarized_light.min.css" rel="stylesheet" />
+
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/java.min.js"></script>
+     <script>hljs.initHighlightingOnLoad();</script>
+
+      <style>
+
+
+body 
+{
+  font-family: "Open Sans", "Helvetica", "Helvetica Neue",  "Arial", sans-serif;
+}
+
+figcaption
+{
+  margin-bottom: 20px;
+}
+
+.vertical-align
+{
+  display: flex;
+  align-items: center;
+}
+
+.credits
+{
+  min-height:20px;
+}
+    </style>
+
+  </head>
+
+  <body>
+
+  <div class="ui container">
+<style>
+
+
+code
+{
+  font-family: "Monaco";
+  font-size: 110%;
+}
+
+img
+{
+  padding:1px;
+  border:1px solid black;
+}
+
+h1
+{
+  font-style:italic;
+  font-size:130%;
+  border-bottom: thin solid black;
+}
+h2
+{
+  font-size:110%;
+  border-bottom: thin solid black;
+}
+h3
+{
+  font-size:100%;
+  border-bottom: thin solid black;
+}
+
+</style>
+
+<div class="ui fixed top pointing inverted menu labmenu">
+  <header class="header item">
+    <a href="../index.html">
+      <i class="sitemap icon"></i>
+      Assignment-3
+    </a>
+  </header>
+  <div class="right tab-menu menu">
+    <a class="active item" data-tab="Assignment-3">
+        Assignment-3
+    </a>
+      <a class="item" data-tab="01">
+        01
+      </a>
+      <a class="item" data-tab="02">
+        02
+      </a>
+      <a class="item" data-tab="03">
+        03
+      </a>
+    </div>
+</div>
+
+<br><br>
+
+  <div  class="ui tab segment lab" data-tab="Assignment-3">
+    <h1>Readme</h1>
+<p>This assignment requires the application of some or all of the material presented during the semester.</p>
+  </div>
+  <div  class="ui tab segment lab" data-tab="01">
+    <h1>Setup and Guidelines</h1>
+<ul>
+<li>Complete the development of the projects contained in the following files in accordance with the specification in steps 2 and 3:<ul>
+<li><a href="archives/assignment-3-inheritance.zip">assignment-3-inheritance.zip</a></li>
+<li><a href="archives/assignment-3-spacebook.zip">assignment-3-spacebook.zip</a></li>
+</ul>
+</li>
+</ul>
+<p>When you have completed the assignment, export both projects to a folder (assignments-3-solutions), compress the folder and submit a single archive file named <strong><em>assignments-3-solutions.zip</em></strong>.</p>
+<p>Recall the recommended directory structure. (The session numbers may be different).
+<img alt="Figure 1: Recommended directory structure" src="img/06.png"></p>
+<p>Download the archive files to a temporary directory.</p>
+<p>Here are the steps to set up the first project (inheritance):</p>
+<ul>
+<li>Launch Eclipse</li>
+<li>
+<p>Create a new workspace named, for example, <em>workspaceBlueJ/assignments/assignments-3</em> or select it if already in existence.
+<img alt="Figure 2: Creating or selecting assignments-3 workspace" src="img/07.png"></p>
+</li>
+<li>
+<p>Import the <em>inheritance</em> project into the workspace.</p>
+<ul>
+<li>Ensure you click the button <em>Select archive file</em> in the Import window<ul>
+<li>Do not click <em>Select root directory</em>.
+<img alt="Figure 3: Import project into workspace from archive file" src="img/08.png"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>The project should appear in the Package Explorer pane.</p>
+<ul>
+<li>Click the arrow to expand and view the files in the package <em>shapes</em>.
+<img alt="Figure 4: Inheritance project imported" src="img/09.png"></li>
+</ul>
+</li>
+</ul>
+<p>Repeat for the <em>spacebook</em> project.
+<img alt="Figure 5: Spacebook project imported" src="img/10.png"></p>
+<p>You can quickly obtain a list of the tasks for the projects by selecting the Eclipse menu command: Window-&gt;Show View-&gt;Tasks. </p>
+<ul>
+<li>This will reveal a list of TODOs in the Tasks window.</li>
+<li>Double click on a task to open the corresponding source code file at this location.</li>
+</ul>
+<p>You should make frequent use of the Eclipse debugger in developing and checking your code. Help will be provided where needed on this during the assignment studio sessions.</p>
+<ul>
+<li>Some screen shots follow that may help with the steps required to export the projects:
+<img alt="Figure 6: Exporting project as an archive" src="img/11.png">
+<img alt="Figure 7: Exporting project as an archive" src="img/12.png">
+<img alt="Figure 8: Exporting project as an archive" src="img/13.png"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="02">
+    <h1>Q1 Inheritance</h1>
+<p><strong><em>Task 1</em></strong></p>
+<p>Refactor the Rectangle class in the shapes package as follows:</p>
+<ul>
+<li>Extend the class from an abstract parent class Shapes</li>
+<li>Migrate as many methods and fields as possible to Shapes.</li>
+<li>Test by writing a <em>main</em> method in Rectangle in which you create a Rectangle object with the following attributes and as displayed in Figure 1:<ul>
+<li>dimensions 100 long x 50 high</li>
+<li>color red.</li>
+<li>position (50, 100).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 1: Rectangle object" src="img/27.png"></p>
+<p><strong><em>Task 2</em></strong></p>
+<p>Develop a class <strong><em>Pentagon</em></strong>.</p>
+<ul>
+<li>
+<p>Figure 2 depicts a pentagon and its circumscribing circle.
+<img alt="Figure 2: Pentagon and circumscribing circle" src="img/31.png"></p>
+</li>
+<li>
+<p>The origin of the pentagon is the centre of the circumscribing circle.</p>
+</li>
+<li>This was demonstrated by invoking the method <em>moveTo(int x, int y)</em> with (x, y) == (0, 0) which resulted in the output shown in Figure 3.
+<img alt="Figure 3: Pentagon at origin (0,0)" src="img/32.png"></li>
+</ul>
+<p>Use <em>Shapes</em> as a superclass.</p>
+<p>Here is skeleton code for Polygon:</p>
+<pre><code>import java.awt.Polygon;
+/**
+ * @file    Pentagon.java
+ * @brief   This class describes a pentagon and has behaviour to display, resize and move objects
+ *                  
+ * @author   jfitzgerald 2016-04-12
+ * 
+ */
+public class Pentagon
+{
+    private int radius; // The radius of circumscribing circle
+
+    public Pentagon()
+    {   
+        super(...);
+        this.radius = 50;
+    }
+
+    public Pentagon(int radius, int xPosition, int yPosition, String color)
+    { 
+        super(...);
+        ...      
+    }
+
+    public void changeSize(int scale)
+    {
+        ...
+        ...
+        ...
+    }
+
+    void draw()
+    {
+        if(isVisible) {
+            //Ref: http://mathworld.wolfram.com/Pentagon.html
+            double dc1 = 0.25*(Math.sqrt(5) - 1);
+            double dc2 = 0.25*(Math.sqrt(5) + 1);
+            double ds1 = 0.25*(Math.sqrt(10 + 2*Math.sqrt(5)));
+            double ds2 = 0.25*(Math.sqrt(10 - 2*Math.sqrt(5)));
+            int c1 = -(int)(radius*dc1);//radius of circle that circumscribes pentagon
+            int c2 = -(int)(radius*dc2);
+            int s1 = (int)(radius*ds1);
+            int s2 = (int)(radius*ds2);
+
+            Canvas canvas = Canvas.getCanvas();
+            int[] xpoints = { xPosition,     
+                              xPosition + s1,
+                              xPosition + s2,
+                              xPosition - s2,
+                              xPosition - s1
+                            };
+            int[] ypoints = { yPosition - radius,
+                              yPosition + c1,
+                              yPosition - c2,
+                              yPosition - c2,
+                              yPosition + c1
+                            };
+            canvas.draw(this, color, new Polygon(xpoints, ypoints, 5));
+            canvas.wait(10);
+        }
+    }
+}
+</code></pre>
+
+<p><strong><em>Task 3</em></strong></p>
+<p>Write a class TestPentagon to display a series of Pentagon objects as depicted in Figure 4.</p>
+<p><img alt="Figure 4: Pentagon cascade" src="img/33.png"></p>
+<p>Here is skeleton TestPentagon class code:</p>
+<pre><code>public class TestPentagon
+{
+    public static void main(String[] args)
+    {
+      ArrayList&lt;Shapes&gt; shapes = new ArrayList&lt;&gt;();  
+
+      shapes.add(new Pentagon(... , ...));
+      // ...
+      // ...
+    }
+}
+</code></pre>
+
+<p><strong><em>Task 4</em></strong></p>
+<p>Change the inheritance hierarchy to that shown in Figure 5:</p>
+<ul>
+<li>This involves refactoring Circle into Ellipse and Circle classes.<ul>
+<li>The refactored Circle class is provided below.</li>
+<li>It only remains, therefore, to implement the Ellipse class.</li>
+<li>Ensure that duplication of data or methods does not occur between Circle and Ellipse.</li>
+<li>Derive Ellipse directly from Shapes.</li>
+<li>Derive Circle directly from Ellipse.</li>
+</ul>
+</li>
+<li>Common data and methods should reside in Shapes as a first choice,<ul>
+<li>Example, position coordindates, color.     </li>
+<li>As much of remaining data and methods should then be migrated to Ellipse. </li>
+<li>Finally, data and behaviour unique to Circle, if any, should be located in Circle.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Figure 5: Refactored inheritance hierarchy" src="img/34.png"></p>
+<pre><code>package ie.wit.ictskills.shapes;
+
+/**
+ * A circle that can be manipulated and that draws itself on a canvas.
+ * 
+ * @author  Michael Kolling and David J. Barnes
+ * @version 2006.03.30
+ * 
+ * @author jfitzgerald
+ * @version 2016-04-10
+ * 
+ */
+
+public class Circle extends Ellipse implements Measurable
+{
+    /**
+     * Create a new circle at default position with default color &amp; diameter.
+     */
+    public Circle()
+    {
+        // Invokes super class Ellipse with xDiameter &amp; yDiameter == 100 units
+        // Default circle positioned at 0,0
+        super(120, 120, 0, 0, &quot;red&quot;);
+    }
+
+    public Circle (int diameter, int xPosition, int yPosition, String color)
+    {
+        super(diameter, diameter, xPosition, yPosition, color);
+    }
+
+    @Override
+    public double perimeter() {
+
+        return Math.PI*xdiameter;
+    }
+
+}
+
+
+</code></pre>
+
+<p><strong><em>Task 5</em></strong></p>
+<p>The purpose of this task is to calculate the maximum perimeter of a list of various geometric shapes set out in item (i) below, applying the approach developed in the labs using Java interfaces.</p>
+<p>Here is the interface code:</p>
+<pre><code>package ie.wit.ictskills.shapes;
+
+public interface Measurable 
+{
+  double perimeter();
+}
+</code></pre>
+
+<p>(i) Implement the interface in these classes:</p>
+<ul>
+<li>Circle</li>
+<li>Pentagon</li>
+<li>Rectangle</li>
+<li>Triangle</li>
+<li>Ellipse</li>
+</ul>
+<p>(ii) Then, as required, implement the interface method <em>perimeter</em> in the classes.</p>
+<p>The method <em>perimeter()</em> calculates and returns the length of the perimeter of an object created by instantiation of one of the above classes. For example, in the case of a circle the value </p>
+<pre><code>PI*diameter 
+</code></pre>
+
+<p>is returned and in the case of a pentagon the perimeter is :</p>
+<pre><code>10*R*Sin(PI/5) 
+</code></pre>
+
+<p>where R is the radius of the circumscribing circle.</p>
+<ul>
+<li>The file <em>ellipsemeasure.jar</em> contains a method that you should use to calculate the perimeter of an ellipse.</li>
+</ul>
+<p>Here, as an example, is the class header for Rectangle:</p>
+<pre><code>public class Rectangle extends Shapes implements Measurable
+</code></pre>
+
+<p>(iii) The partially complete class MaximumPerimeter is provided. </p>
+<p>Complete the main method so as to determine the maximum perimeter in the list of objects.</p>
+<ul>
+<li>A set of objects is instantiated in the main function. This code is commented out in the skeleton code to allow the project to compile without error. Remove the comments when appropriate.</li>
+</ul>
+<p><strong><em>Task 6</em></strong></p>
+<p>(iv) Skeleton code is provided in Util to discover the maximum perimeter from an ArrayList of Measurable types containing references to objects of the above classes. Complete the code.</p>
+<p><strong><em>Task 7</em></strong></p>
+<p>Refactor the TestShapes class as follows:</p>
+<ul>
+<li>Instantiate 4 Rectangle objects</li>
+<li>Choose arguments so that the Rectangle objects display in a cascade style </li>
+<li>Produce a display matching that in Figure 6.
+<img alt="Figure 6: Shape objects cascade" src="img/29.png"></li>
+</ul>
+  </div>
+  <div  class="ui tab segment lab" data-tab="03">
+    <h1>Q2 Spacebook</h1>
+<p>You may use either your own or a library version of MergeSort for the various sorting activities performed throughout the application.</p>
+<p>A helper project, <em>messageCollectionSort</em>, is available to download <a href="archives/messageCollectionSort.zip">here</a>. </p>
+<ul>
+<li>The project demonstrates how the <em>Collections</em> class may be used to sort a list of Messages<ul>
+<li>based on natural ordering (using Message.compareTo)</li>
+<li>based on length of message text (using customized comparator)</li>
+</ul>
+</li>
+<li>A study of the project should help you to understand when a comparator is necessary and when it is not.</li>
+<li>You may import this project into Eclipse. <ul>
+<li>To run the project, select Main.java and execute run from the menu (Run | Run).</li>
+</ul>
+</li>
+</ul>
+<p>This Java application, spacebook, when developed by you, will share much of the functionality of the Home and LeaderBoard modules in the Play application developed in your WebDev labs and assignment.</p>
+<p>Use the project provided (in skeleton form) in the download <em>assignment-3-spacebook.zip</em>.</p>
+<ul>
+<li>The file README.TXT in the spacebook project provides a quick-start guide.</li>
+</ul>
+<p>The sender of the messages simulates the logged-in user.</p>
+<p>For example, in all of the sample code provided, Homer is the logged-in user.</p>
+<p>Two scenarios (stories) are fully developed in the skeleton code provided.</p>
+<p>You are asked to develop a further four scenarios (tasks) as described below.</p>
+<ul>
+<li>
+<p>You may demonstrate these by running Main.java and selecting input numbers (integers):</p>
+<ul>
+<li>
+<p>0 which is equivalent to pressing the BY DATE button on the Play version of Spacebook: Home page for Homer Simpson view (this invokes <em>Main home-index</em>).
+<img alt="Figure 1: Messages sorted by date" src="img/01.png"></p>
+</li>
+<li>
+<p>3 which is equivalent to pressing the MOST SOCIAL button in the Play version of Social Leaderboard view.
+<img alt="Figure 2: Social Leaderboard sorted by Most Social" src="img/02.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 1</em></strong></p>
+<p>Sort the logged-in user's inbox by reference to the names of the message senders.</p>
+<ul>
+<li>This requires you to complete the code along the execution path beginning with the invocation of <em>Main home_byUser</em> in the compilation unit (file) <em>Main.java</em>.<ul>
+<li>When completed, running Main and inputting 1 should run the module and display the output as depicted in Figure 3.
+<img alt="Figure 3: Messages sorted by user" src="img/03.png"></li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 2</em></strong></p>
+<p>Sort the logged-in user's conversations with all its friends.</p>
+<ul>
+<li>A conversation comprises a series of messages to and fro between a sender and receiver.<ul>
+<li>Example: the logged-in user, Homer, sends a message to Marge, Marge replies, and so on.</li>
+</ul>
+</li>
+<li>This requires you to complete the code along the execution path beginning with the invocation of <em>Main.home_byConversation</em> in the compilation unit (file) <em>Main.java</em>.<ul>
+<li>When completed, running Main and inputting 2 should run the module and display the output as depicted in Figure 4.
+<img alt="Figure 4: Messages sorted conversation" src="img/04.png">    </li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 3</em></strong></p>
+<p>Sort the Social Leaderboard by reference to the most talkative users.</p>
+<ul>
+<li>Most talkative is defined as having the most number of messages in one's outbox.</li>
+<li>This requires you to complete the code along the execution path beginning with the invocation of <em>Main leaderBoard_talkative</em> in the compilation unit (file) <em>Main.java</em>.<ul>
+<li>When completed, running Main and inputting 4 should run the module and display the output as depicted in Figure 5.
+<img alt="Figure 5: Most Talkative" src="img/05.png">   </li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Task 4</em></strong></p>
+<p>Sort the Social Leaderboard by reference to the least talkative users.</p>
+<ul>
+<li>Least talkative is defined as having the least number of messages in one's outbox.</li>
+<li>This requires you to complete the code along the execution path beginning with the invocation of <em>Main leaderBoard_leastTalkative</em> in the compilation unit (file) <em>Main.java</em>.<ul>
+<li>When completed, running Main and inputting 5 should run the module and display the output as depicted in Figure 6.
+<img alt="Figure 6: Least Talkative" src="img/14.png">   </li>
+</ul>
+</li>
+</ul>
+  </div>
+<script>
+$('.ui.menu .item')
+  .tab({
+    history: true,
+    historyType: 'hash'
+  })
+;
+</script>
+   </div>
+
+
+
+  <br><br>
+  <div class="ui bottom fixed borderless menu">
+    <div class="ui small item">
+    <p id="footertext">
+    Prepared by  John Fitzgerald (jfitzgerald@wit.ie). Except where otherwise noted, this content is licensed under a
+     <a  href="http://creativecommons.org/licenses/by-nc/4.0/" title="External link to http://creativecommons.org/licenses/by-nc/4.0/"
+       target="_blank">Creative Commons Attribution-NonCommercial 4.0 License
+     </a>
+     </p>
+    </div>
+  </div>    <script>
+
+$(document).ready(function()
+{
+  $("img").addClass ("ui image");
+
+  var images = $(".lab img");
+  jQuery.each(images, function(i)  {
+    if((images[i].alt).length > 0)
+    {
+      var div_img = $(document.createElement("div")).addClass("ui segment");
+      $(images[i]).wrap(div_img);
+      var div_label = $(document.createElement("div")).addClass("ui ribbon teal top attached label");
+      div_label.append(images[i].alt);
+      $(div_label).insertBefore(images[i]);
+    }
+  });
+})    </script>
+
+  </body>
+ </html>
