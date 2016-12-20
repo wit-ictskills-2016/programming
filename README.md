@@ -8,4 +8,4 @@ Series of labs (html books) and accompanying slide decks (pdf format).
 
 https://wit-ictskills-2016.github.io/programming/
 
-For local access clone and browse to index.html for top-level view.
+For local access clone, checkout gh-pages branch and browse to index.html for top-level view.
